@@ -46,7 +46,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   		
   	}
   	function acount(){
-  		var meng=$("#meng").val();
+  		var meng=$("#everyBagNumber").val();
   		var boxs=$("#boxs").val();
   		if(meng=="")meng=0;
   		//alert(parseFloat(meng)*parseFloat(boxs));
@@ -137,6 +137,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   	window.location.href="MainServlet?flag=1";
   }
   function submit1(obj){
+  var boxs = document.all.boxs.value;
+  if(boxs == ""){
+  	alert("请填写PO收货冲销箱数！");return;
+  }
   	obj.disabled=false;
   	document.form.submit();
   }
@@ -150,48 +154,46 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   <input type="hidden" name="sonum" id="sonum" >
   	<div>
   		<ul>
-  			<li style="height:15px;list-style-type:none;">
-  				<input name="str" type="text" style="width:70%;height:20px;"  id="str" onchange="js()">
+  			<li style="height:15px;list-style-type:none;padding:0; margin:0;}">
+  				<input name="str" style="height:20px;" type="text" style="white-space:nowrap;width:70%;"  id="str" onchange="js()">
   			</li>
   			<li class="li">
-  				物料编码：<input name="matnr" class="text"  readonly=readonly type="text" id="matnr" value="<%=request.getSession().getAttribute("matnr") == null ? "" : request.getSession().getAttribute("matnr")%>">
+  				采购订单：<input name="aufnr" style="height:20px;" size="5" readonly=readonly class="text"  type="text"  id="aufnr" />
+  				<input name="lineItem" id="lineItem" style="height:20px;width:20px" readonly=readonly class="text"/>
   			</li>
   			<li class="li">
-  				物料描述：<input name="maktx" class="text"  readonly=readonly type="text" id="maktx" value="<%=request.getSession().getAttribute("maktx") == null ? "" : request.getSession().getAttribute("maktx")%>">
+  				物料编码：<input name="matnr" class="text"  readonly=readonly type="text" id="matnr" value="">
+  			</li>
+  			<li class="li">
+  				物料描述：<input name="maktx" class="text"  readonly=readonly type="text" id="maktx" value="">
   			</li>
   			<!-- <li class="li">尾箱标识：<input type="checkbox" onclick="choose1();" id="bs" style="width:20px;height:20px;" name="bs"></li> -->
   			<li class="li">
-  				箱数量/箱数：<input name="everyBagNumber" readonly=readonly style="width:50px;background-color:#D8D8D8;height:20px;"  type="text"  id="everyBagNumber" value="<%=request.getSession().getAttribute("everyBagNumber") == null ? "" : request.getSession().getAttribute("everyBagNumber")%>">
-  				/<input name="boxs" style="width:32px;height:20px;" type="text" value="<%=request.getSession().getAttribute("boxs") == null ? "" : request.getSession().getAttribute("boxs")%>" id="boxs" onblur="acount();">
+  				箱数量/箱数：<input name="everyBagNumber" readonly=readonly style="width:50px;background-color:#D8D8D8;height:20px;"  type="text"  id="everyBagNumber" value="">
+  				/<input name="boxs" style="width:32px;height:20px;" type="text" value="" id="boxs" onblur="acount();">
   			</li>
   			<li class="li">
-  				批&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;次：<input name=batchNo class="text" readonly=readonly value="<%=request.getSession().getAttribute("batchNo") == null ? "" : request.getSession().getAttribute("batchNo")%>" style="width:80px;background-color:#D8D8D8;"  type="text"  id="batchNo">
+  				批&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;次：<input name="batchNo" class="text" readonly=readonly value="" style="width:80px;background-color:#D8D8D8;"  type="text"  id="batchNo">
   			</li>
   			<li class="li">
-  				总&nbsp;数&nbsp; 量：<input name="wemng" readonly=readonly value="<%=request.getSession().getAttribute("wemng") == null ? "" : request.getSession().getAttribute("wemng")%>" type="text" class="text1" id="wemng" >
-  				<input name="unit" style="width:35px;height:20px;" value="<%=request.getSession().getAttribute("unit") == null ? "" : request.getSession().getAttribute("unit")%>" class="text2" readonly=readonly type="text"  id="unit">
+  				总&nbsp;数&nbsp; 量：<input name="wemng" value="" type="text" class="text1" id="wemng" >
+  				<input name="unit" style="width:35px;height:20px;" value="" class="text2" readonly=readonly type="text"  id="unit"/>
+			</li>
+  			<li class="li">
+  				库存地点：<input name="lgort" class="text3" type="text" id="lgort">
   			</li>
   			<li class="li">
-  				库存地点：<input name="lgort" type="text"  value="<%=request.getSession().getAttribute("lgort") == null ? "" : request.getSession().getAttribute("lgort")%>" class="text3" id="lgort">
-  			</li>
-  			<%-- <li class="li">特殊库存：<input name="sobkz"  value="${receiptObj.sobkz}" readonly=readonly type="text" class="text"  id="sobkz"></li> --%>
-  			<li class="li">
-  				库存类别：<input name="sobkz1" readonly=readonly type="text" class="text"  id="sobkz1">
+  				特殊库存：<input name="sobkz1" style="height:20px;" readonly=readonly type="text" class="text"  id="sobkz1">
   			</li>
   			<li class="li">
-  				源&nbsp;仓&nbsp; 位：<input name="sobkz" value="<%=request.getSession().getAttribute("sobkz") == null ? "" : request.getSession().getAttribute("sobkz")%>" readonly=readonly type="text" class="text"  id="sobkz">
+  				<input type="button" valign="center" class="button" onclick="submit1(this);" style="width:40px;height:25px;" value="确定"/>
+  				<input  class="button"  type="button" onclick="forward();" style="width:30px;height:25px;" value="返回"/>
+  				<input  class="button" type="button" onclick="reset();" style="width:30px;height:25px;" value="重置"/>
+  				<input type="button" class="button" style="width:40px;height:25px;" onclick="window.location.href='MainServlet?flag=return';" value="首页">
   			</li>
-  			<!-- <li class="li">源仓&nbsp; &nbsp;位：<input name="i_nlpla" class="text" readonly= readonly type="text"  id="i_nlpla" value=""></li>-->
-  			<li class="li">
-  				<input type ="button" valign="center" class="button" onclick="submit1(this);" style="width:40px;height:25px;" value="确定"/>
-  				<input class="button"  type="button"  onclick="forward();" style="width:30px;height:25px;" value="返回"/>
-  				<input class="button"  type="button"  onclick="reset();window.location.href='MainServlet?flag=1.2';"   style="width:30px;height:25px;" value="重置"/>
-  				<input type ="button" class="button" style="width:40px;height:25px;" onclick="window.location.href='MainServlet?flag=return';" value="首页">
-  			</li>
-  			
   		</ul>
   	</div>
-     
+
 </form>
   </body>
   <script type="text/javascript">
