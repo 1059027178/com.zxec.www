@@ -133,7 +133,9 @@ public class MainServlet extends HttpServlet {
 			RequestDispatcher dispatcher = request.getRequestDispatcher("/delivery/weiwai_xiajia_pick.jsp"); 
 			dispatcher.forward(request, response); 
 		}
-		else if (flag.equals("2.4")) {//下架
+		else if (flag.equals("2.4")) {//下架--------------------------------------?
+			String string = request.getParameter("str") == null ? "" : request.getParameter("str").toString().trim();
+			
 			request.getSession().setAttribute("type", "下架");
 			RequestDispatcher dispatcher = request.getRequestDispatcher("/delivery/weiwai_xiajia_pick.jsp"); 
 			dispatcher.forward(request, response); 
@@ -249,6 +251,46 @@ public class MainServlet extends HttpServlet {
 		}
 		/*PO收货冲销*/
 		else if (flag.equals("reversalCrt")) {
+			String aufnr = request.getParameter("aufnr") == null ? "" : request.getParameter("aufnr").toString().trim();
+			System.out.println("***收货冲销订单号："+aufnr);
+			String message =null;
+			String type = null;
+			if (!aufnr.equals("")) {
+				type = "PO收货冲销成功！";
+				message = "采购订单号："+aufnr;
+				
+				String lineItem = request.getParameter("lineItem").toString().trim();
+				String boxs 	= request.getParameter("boxs").toString().trim();
+				String wemng	= request.getParameter("wemng").toString().trim();
+				String str 		= request.getParameter("str").toString().trim() == null ? "" : request.getParameter("str").trim();
+				String matnr 	= request.getParameter("matnr").toString().trim();
+				String maktx 	= request.getParameter("maktx").toString().trim();
+				String everyBagNumber 	= request.getParameter("everyBagNumber").toString().trim();
+				String batchNo 	= request.getParameter("batchNo").toString().trim();
+				String lgort 	= request.getParameter("lgort").toString().trim();
+				String unit 	= request.getParameter("unit").toString().trim();
+				System.out.println("***aufnr:"+str+"**");
+				System.out.println("*****PO收货冲销确认*****");
+				System.out.println("*****aufnr:"+aufnr+";lineItem:"+lineItem+";boxs:"+boxs+";wemng:"+wemng);
+				System.out.println("*******str:"+str);
+				
+				request.getSession().setAttribute("str", str);
+				request.getSession().setAttribute("aufnr", aufnr);
+				request.getSession().setAttribute("lineItem", lineItem);
+				request.getSession().setAttribute("boxs", boxs);
+				request.getSession().setAttribute("matnr", matnr);
+				request.getSession().setAttribute("maktx", maktx);
+				request.getSession().setAttribute("everyBagNumber", everyBagNumber);
+				request.getSession().setAttribute("batchNo", batchNo);
+				request.getSession().setAttribute("wemng", wemng);
+				request.getSession().setAttribute("lgort", lgort);
+				request.getSession().setAttribute("unit", unit);
+			}else {
+				type = "PO收货冲销失败！";
+				message = " ";
+			}
+			request.getSession().setAttribute("message", message);
+			request.getSession().setAttribute("type", type);
 			RequestDispatcher dispatcher = request.getRequestDispatcher("/bizinfo/reversal_msg.jsp"); 
 			dispatcher.forward(request, response);
 		}

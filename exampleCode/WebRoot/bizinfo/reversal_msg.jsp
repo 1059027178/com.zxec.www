@@ -25,34 +25,37 @@
   </script>
   <body>
   <div>
-  <form action="MainServlet?flag=1.2" method="post">
-   <input name="matnr" type="hidden" value="<c:out value='${receiptObj.matnr}'/>"/>
-	<input name="meins" type="hidden" value="<c:out value='${receiptObj.meins}'/>"/>
-	<input name="wemng" type="hidden" value="<c:out value='${receiptObj.wemng}'/>"/>
-	<input name="sobkz" type="hidden" value="<c:out value='${receiptObj.sobkz}'/>"/>
-	<input name="lgort" type="hidden" value="<c:out value='${receiptObj.lgort}'/>"/>
-	<input name="charg" type="hidden" value="<c:out value='${receiptObj.charg}'/>"/>
-	<input name="meng" type="hidden" value="<c:out value='${receiptObj.meng}'/>"/>
-	<input name="boxs" type="hidden" value="<c:out value='${receiptObj.boxs}'/>"/>
-	<input name="maktx" type="hidden" value="<c:out value='${receiptObj.maktx}'/>"/>
-	<input name="sonum" type="hidden" value="<c:out value='${receiptObj.sonum}'/>"/>
-	<input name="aufnr" type="hidden" value="<c:out value='${receiptObj.aufnr}'/>"/>
-  		<ul>
-  			<li class="li" style="line-height:30px;">
-  				返回消息：<c:out value="${type}"/>
-  				</br>
-  				物料凭证****创建。
-			
-  			</li>
-  			<li class="li" style="margin: 20px 0px 0px 0px;line-height:30px;"><c:out value="${message}"/></li>
-  		
-  			<li class="li" style="margin: 20px 0px 0px 0px;">
-  			<input type="button" onclick="forward();"  style="width:40px;height:25px;" class="button" value="返回" />
-  			<input type="button"  style="width:40px;height:25px;" onclick="window.location.href='MainServlet?flag=return';" value="首页"></li>
-  		</ul>
-      </form>
-      </div>
-  </body>
+  <form action="MainServlet" method="post">
+	<input name="aufnr"        type="hidden" value="<%=request.getSession().getAttribute("aufnr") == null ? "" : request.getSession().getAttribute("aufnr")%>" />
+	<input name="lineItem" 	   type="hidden" value="<%=request.getSession().getAttribute("lineItem") == null ? "" : request.getSession().getAttribute("lineItem")%>" />
+	<input name="boxs" 	       type="hidden" value="<%=request.getSession().getAttribute("boxs")	== null ? "" : request.getSession().getAttribute("boxs")%>" />
+	<input name="wemng"        type="hidden" value="<%=request.getSession().getAttribute("wemng")	== null ? "" : request.getSession().getAttribute("wemng")%>"	/>
+	<input name="str" 	   	   type="hidden" value="<%=request.getSession().getAttribute("str") 	== null ? "" : request.getSession().getAttribute("str")%>" />
+	<input name="matnr" 	   type="hidden" value="<%=request.getSession().getAttribute("matnr")== null ? "" : request.getSession().getAttribute("matnr") 	%>" />
+	<input name="maktx" 	   	 type="hidden" value="<%=request.getSession().getAttribute("maktx")== null ? "" : request.getSession().getAttribute("maktx") 	%>" />
+	<input name="everyBagNumber" type="hidden" value="<%=request.getSession().getAttribute("everyBagNumber")== null ? "" : request.getSession().getAttribute("everyBagNumber") 	%>" />
+	<input name="batchNo" 	   	 type="hidden" value="<%=request.getSession().getAttribute("batchNo")== null ? "" : request.getSession().getAttribute("batchNo") %>" />
+	<input name="lgort" 	   type="hidden" value="<%=request.getSession().getAttribute("lgort")== null ? "" : request.getSession().getAttribute("lgort") 	%>" />
+	<input name="unit" 	   type="hidden" value="<%=request.getSession().getAttribute("unit")== null ? "" : request.getSession().getAttribute("unit") 	%>" />
+  
+ 	<ul>
+ 		<li class="li" style="margin: 20px 0px 0px 30px;line-height:30px;">
+ 				返回消息：
+ 		</li>
+ 		<li class="li" style="margin: 0px 0px 0px 30px;line-height:30px;">
+ 			<%=request.getSession().getAttribute("message") == null ? "" : request.getSession().getAttribute("message").toString().trim()%>
+ 			<br>
+ 			<%=request.getSession().getAttribute("type") == null ? "" : request.getSession().getAttribute("type").toString().trim()%>
+		</li>
+ 		<li class="li" style="margin: 20px 0px 0px 0px;">
+ 			<input type="button" onclick="window.location.href='MainServlet?flag=2.4'"  style="width:40px;height:25px;" class="button" value="下架" />
+ 			<input type="button" onclick="forward();"  style="width:40px;height:25px;" class="button" value="返回" />
+ 			<input type="button"  style="width:40px;height:25px;" onclick="window.location.href='MainServlet?flag=return';" value="首页">
+ 		</li>
+ 	</ul>
+    </form>
+   </div>
+ </body>
 
 </html>
  

@@ -54,11 +54,11 @@
     	<input  class="button" style="width:200px" type="button"  onclick="window.location.href='MainServlet?flag=3';" value="3.仓库作业"/>
      </td>
     </tr>
-    <tr>
+    <!-- <tr>
     <td >
     	<input  class="button" style="width:200px" type="button"  onclick="window.location.href='MainServlet?flag=4';" value="4.查询"/>
      </td>
-    </tr>
+    </tr> -->
     <tr>
     <td >
     	<input  class="button" style="width:70px" type="button" onclick="window.location.href='MainServlet?flag=exit';" value="退出" />
