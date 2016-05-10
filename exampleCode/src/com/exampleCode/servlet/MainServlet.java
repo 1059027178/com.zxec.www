@@ -120,59 +120,54 @@ public class MainServlet extends HttpServlet {
 			
 			RequestDispatcher dispatcher = request.getRequestDispatcher("/delivery/document_pick.jsp"); 
 			dispatcher.forward(request, response); 
-		}
-		else if (flag.equals("2.2")) {//研发领料
+		}else if (flag.equals("2.2")) {//研发领料
 			request.getSession().setAttribute("type", "研发领料单");
 			
 			RequestDispatcher dispatcher = request.getRequestDispatcher("/delivery/document_pick.jsp"); 
 			dispatcher.forward(request, response); 
-		}
-		else if (flag.equals("2.3")) {//委外发料
+		}else if (flag.equals("2.3")) {//委外发料
 			request.getSession().setAttribute("type", "委外发料");
-			
-			RequestDispatcher dispatcher = request.getRequestDispatcher("/delivery/weiwai_xiajia_pick.jsp"); 
+			RequestDispatcher dispatcher = request.getRequestDispatcher("/delivery/weiwai_xiajia.jsp"); 
 			dispatcher.forward(request, response); 
-		}
-		else if (flag.equals("2.4")) {//下架--------------------------------------?
-			String string = request.getParameter("str") == null ? "" : request.getParameter("str").toString().trim();
-			
+		}else if (flag.equals("2.4")) {//下架
+			String matnr  	= request.getParameter("matnr")   == null ? "": request.getParameter("matnr");
+			String batchNo  = request.getParameter("batchNo") == null ? "": request.getParameter("batchNo");
+			System.out.println("***下架操作**matnr："+matnr+"；batchNo："+batchNo+"***");
+			if (!matnr.equals("") && !batchNo.equals("")) {
+				request.getSession().setAttribute("batchNo", batchNo);
+				request.getSession().setAttribute("matnr", matnr);
+			}else {
+				request.getSession().invalidate();
+			}
 			request.getSession().setAttribute("type", "下架");
 			RequestDispatcher dispatcher = request.getRequestDispatcher("/delivery/weiwai_xiajia_pick.jsp"); 
 			dispatcher.forward(request, response); 
 		}
-		
 		/*仓库作业二级菜单*/
 		else if (flag.equals("3.1")) {//仓位冻结/解冻
 			RequestDispatcher dispatcher = request.getRequestDispatcher("/bizinfo/repertory_add.jsp"); 
 			dispatcher.forward(request, response); 
-		}
-		else if (flag.equals("3.2")) {//仓位转移
+		}else if (flag.equals("3.2")) {//仓位转移
 			RequestDispatcher dispatcher = request.getRequestDispatcher("/bizinfo/storageM_view.jsp"); 
 			dispatcher.forward(request, response); 
-		}
-		else if (flag.equals("3.3")) {//库存转储
+		}else if (flag.equals("3.3")) {//库存转储
 			RequestDispatcher dispatcher = request.getRequestDispatcher("/bizinfo/dump_view.jsp"); 
 			dispatcher.forward(request, response); 
-		}
-		else if (flag.equals("3.4")) {//记账变更
+		}else if (flag.equals("3.4")) {//记账变更
 			RequestDispatcher dispatcher = request.getRequestDispatcher("/bizinfo/lubu_view.jsp"); 
 			dispatcher.forward(request, response); 
 		}
-		
 		/*查询二级菜单*/
 		else if (flag.equals("4.1")) {//物料查询
 			RequestDispatcher dispatcher = request.getRequestDispatcher("/matquy/matquy_Query.jsp"); 
 			dispatcher.forward(request, response); 
-		}
-		else if (flag.equals("4.2")) {//仓位查询
+		}else if (flag.equals("4.2")) {//仓位查询
 			RequestDispatcher dispatcher = request.getRequestDispatcher("/lgpquy/lgpquy_Query.jsp"); 
 			dispatcher.forward(request, response); 
-		}
-		else if (flag.equals("4.3")) {//库存查询
+		}else if (flag.equals("4.3")) {//库存查询
 			RequestDispatcher dispatcher = request.getRequestDispatcher("/stoquy/stoquy_Query.jsp"); 
 			dispatcher.forward(request, response); 
-		}
-		else if (flag.equals("4.4")) {//转储单查询
+		}else if (flag.equals("4.4")) {//转储单查询
 			RequestDispatcher dispatcher = request.getRequestDispatcher("/dumquy/dumquy_Query.jsp"); 
 			dispatcher.forward(request, response); 
 		}
@@ -295,6 +290,94 @@ public class MainServlet extends HttpServlet {
 			dispatcher.forward(request, response);
 		}
 		/***1收货***/
+		/***发货***/
+		/*下架*/
+		else if (flag.equals("xiajia")) {
+			String matnr = request.getParameter("matnr") == null ? "" : request.getParameter("matnr").trim();
+			String maktx = null;
+			System.out.println("***发货下架："+matnr);
+			if(matnr.equals("C.9.291400")) maktx = "C2沙剂-规格(25kg/桶)";
+	  		else if(matnr.equals("C.6.040501")) maktx = "ABS 规格(730 颜色:本色 玻纤:无 其他:/)";
+	  		else if(matnr.equals("C.6.040601")) maktx = "ABS-GP-22 颜色:本色 玻纤:/ 其他:/";
+	  		else if(matnr.equals("C.6.040701")) maktx = "ABS规格(710 颜色:白色 玻纤:/ 其他:锦湖日丽710)";
+	  		else if(matnr.equals("C.6.040802")) maktx = "ABS规格(4330C 颜色:本色 玻纤:/ 其他:/)";
+			
+			request.getSession().setAttribute("matnr", matnr);
+			request.getSession().setAttribute("maktx", maktx);
+			request.getSession().setAttribute("type", "下架");
+			RequestDispatcher dispatcher = request.getRequestDispatcher("/bizinfo/xiajia_pick.jsp"); 
+			dispatcher.forward(request, response);
+			
+		}else if (flag.equals("xiajiaSave")) {
+			String matnr = request.getParameter("matnr") == null ? "" : request.getParameter("matnr").trim();
+			String message = null;
+			String type = null;
+			if (!matnr.equals("")) {
+				message = "编号为"+matnr+"物料,";
+				type = "下架操作成功！";
+			}else {
+				message = "下架操作失败！";
+				type = "请检查数量是否超出范围！";
+			}
+			request.getSession().setAttribute("message", message);
+			request.getSession().setAttribute("type", type);
+			RequestDispatcher dispatcher = request.getRequestDispatcher("/bizinfo/xiajia_save.jsp"); 
+			dispatcher.forward(request, response);
+		}/*下架*/
+		/*委外下架*/
+		else if (flag.equals("weiwaiB")) {
+			String matnr = request.getParameter("matnr") == null ? "" : request.getParameter("matnr").trim();
+			String aufnr = request.getParameter("aufnr") == null ? "" : request.getParameter("aufnr").trim();
+			String maktx = null;
+			System.out.println("***发货下架："+matnr);
+			if(matnr.equals("C.9.291400")) maktx = "C2沙剂-规格(25kg/桶)";
+	  		else if(matnr.equals("C.6.040501")) maktx = "ABS 规格(730 颜色:本色 玻纤:无 其他:/)";
+	  		else if(matnr.equals("C.6.040601")) maktx = "ABS-GP-22 颜色:本色 玻纤:/ 其他:/";
+	  		else if(matnr.equals("C.6.040701")) maktx = "ABS规格(710 颜色:白色 玻纤:/ 其他:锦湖日丽710)";
+	  		else if(matnr.equals("C.6.040802")) maktx = "ABS规格(4330C 颜色:本色 玻纤:/ 其他:/)";
+			
+			request.getSession().setAttribute("matnr", matnr);
+			request.getSession().setAttribute("maktx", maktx);
+			request.getSession().setAttribute("aufnr", aufnr);
+			RequestDispatcher dispatcher = request.getRequestDispatcher("/bizinfo/weiwai_xiajia_B.jsp"); 
+			dispatcher.forward(request, response);
+		}else if (flag.equals("weiwaiC")) {
+			String matnr = request.getParameter("matnr") == null ? "" : request.getParameter("matnr");
+			String aufnr = request.getParameter("aufnr") == null ? "" : request.getParameter("aufnr");
+			String maktx = "C2沙剂-规格(25kg/桶)"; 
+			String num = request.getParameter("num") == null ? "" : request.getParameter("num");
+			System.out.println("***matnr："+matnr+"；aufnr："+aufnr+"；maktx："+maktx+"；num："+num+"***");
+			if (!maktx.equals("") && !aufnr.equals("") && !maktx.equals("") && !num.equals("")) {
+				request.getSession().setAttribute("matnr", matnr);
+				request.getSession().setAttribute("aufnr", aufnr);
+				request.getSession().setAttribute("maktx", maktx);
+				request.getSession().setAttribute("num", num);
+				request.getSession().setAttribute("message", "下架成功！转储单号为：");
+			}else {
+				request.getSession().invalidate();
+				request.getSession().setAttribute("message", "下架失败！");
+			}
+			RequestDispatcher dispatcher = request.getRequestDispatcher("/bizinfo/weiwai_xiajia_C.jsp"); 
+			dispatcher.forward(request, response);
+			
+		}else if (flag.equals("weiwaiD")) {
+			String PONO = request.getParameter("PONO") == null ? "" : request.getParameter("PONO").trim();
+			String message = null;
+			if (PONO != "") {
+				message = "单号为"+PONO+"发货成功！";
+			}else {
+				message = "发货失败！";
+			}
+			request.getSession().setAttribute("message", message);
+			RequestDispatcher dispatcher = request.getRequestDispatcher("/bizinfo/weiwai_xiajia_D.jsp"); 
+			dispatcher.forward(request, response);
+			
+		}
+		/*委外下架*/
+		/*生产领料单*/
+		
+		/*生产领料单*/
+		/***发货***/
 		/***仓库作业***/
 		else if (flag.equals("reversalCrt")) {
 			RequestDispatcher dispatcher = request.getRequestDispatcher("/bizinfo/reversal_msg.jsp"); 
