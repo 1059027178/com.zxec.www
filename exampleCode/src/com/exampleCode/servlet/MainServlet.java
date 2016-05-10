@@ -375,7 +375,16 @@ public class MainServlet extends HttpServlet {
 		}
 		/*委外下架*/
 		/*生产领料单*/
-		
+		else if(flag.equals("shengchanA")){
+			request.getSession().setAttribute("type", "生产领料单");
+			RequestDispatcher dispatcher = request.getRequestDispatcher("/bizinfo/lingliaodan_A.jsp"); 
+			dispatcher.forward(request, response);
+		}
+		else if(flag.equals("shengchanB")){
+			RequestDispatcher dispatcher = request.getRequestDispatcher("/bizinfo/lingliaodan_B.jsp"); 
+			dispatcher.forward(request, response);
+			
+		}
 		/*生产领料单*/
 		/***发货***/
 		/***仓库作业***/
