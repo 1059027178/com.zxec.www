@@ -24,15 +24,15 @@ String strDate = dateFormat.format(date);
 	  		$("#matnr").attr("value",matnr);
   		}
   	}
-function stoQuy(){
-  var werks=document.getElementById("werks").value;
+	function stoQuy(){
+  	var werks=document.getElementById("werks").value;
   	if(werks==0){
-  		alert("工厂为空，无法查询");
+  		alert("请填写工厂");
   		return;
   	}	 
   	var lgort=document.getElementById("lgort").value;
   	if(lgort==0){
-  		alert("库存地点为空，无法查询");
+  		alert("请填写库存地点");
   		return;
   	}
   	var lgort=document.getElementById("lgort").value;
@@ -62,7 +62,7 @@ function stoQuy(){
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no, target-densitydpi=medium-dpi" />
   </head>
   <body>
-  <form name="jiuhui"  id="jiuhui" method="post" action="/stoquyList.do">
+  <form name="jiuhui"  id="jiuhui" method="post" action="shengchanA">
     <div style=" padding-top: 50px;">
 	    <ul>
 	   	 	<li class="li" style="margin:20px 0px 0px 0px;">工 &nbsp;&nbsp;  &nbsp;&nbsp;  &nbsp;厂: <input name="werks" class="text" style="background-color:white;" type="text"  id="werks" value="3100"></li>
@@ -70,7 +70,7 @@ function stoQuy(){
 	    	<!-- <li class="li"><input style="width:85%;heigth=70%" type="text" id="saomiao" name="saomiao"  value="" onchange="js()"/> -->
 			<li class="li" style="margin:20px 0px 10px 0px;">制单日期：<input name="date" class="text" style="background-color:white;" type="text"  id="date" value="<%=strDate%>"/></li>
 	     	<li class="li">
-	    		<input  class="button"  type="button"  style="width:25%"  onclick="stoQuy()" value="查询" />
+	    		<input  class="button"  type="button"  style="width:25%"  onclick="stoQuy()" value="确定" />
 	    		<input  class="button"  type="button"  style="width:25%"  onclick="window.location.href='MainServlet?flag=2';" value="返回" />
 	    		<input  class="button"  type="button"  style="width:25%"  onclick="window.location.href='MainServlet?flag=return';" value="首页" />
 	    	</li>
