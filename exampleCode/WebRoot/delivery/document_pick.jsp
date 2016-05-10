@@ -1,8 +1,13 @@
-<%@page import="java.sql.Date"%>
+<%@page import="java.text.SimpleDateFormat"%>
+<%@page import="java.util.Date"%>
 <%@ page language="java" contentType="text/html; charset=GBK" %> 
 <%
 String path = request.getContextPath();
 String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
+
+Date date = new Date();
+SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+String strDate = dateFormat.format(date);
 %>
 <html>
 <script src="./js/jquery.js"></script>  
@@ -60,14 +65,14 @@ function stoQuy(){
   <form name="jiuhui"  id="jiuhui" method="post" action="/stoquyList.do">
     <div style=" padding-top: 50px;">
 	    <ul>
-	   	 	<li class="li" style="margin:20px 0px 0px 0px;">工 &nbsp;&nbsp;  &nbsp;&nbsp;  &nbsp;厂: <input name="nlpla" class="text" style="background-color:white;" onchange="getNlpla()" type="text"  id="nlpla" value=""></li>
+	   	 	<li class="li" style="margin:20px 0px 0px 0px;">工 &nbsp;&nbsp;  &nbsp;&nbsp;  &nbsp;厂: <input name="werks" class="text" style="background-color:white;" type="text"  id="werks" value="3100"></li>
 			<li class="li" style="margin:20px 0px 0px 0px;">库存地点：<input name="lgort" class="text" style="background-color:white;" type="text"  id="lgort" value=""/> </li>
 	    	<!-- <li class="li"><input style="width:85%;heigth=70%" type="text" id="saomiao" name="saomiao"  value="" onchange="js()"/> -->
-			<li class="li" style="margin:20px 0px 10px 0px;">制单日期：<input name="date" class="text" style="background-color:white;" type="text"  id="date" value=""/></li>
+			<li class="li" style="margin:20px 0px 10px 0px;">制单日期：<input name="date" class="text" style="background-color:white;" type="text"  id="date" value="<%=strDate%>"/></li>
 	     	<li class="li">
 	    		<input  class="button"  type="button"  style="width:25%"  onclick="stoQuy()" value="查询" />
 	    		<input  class="button"  type="button"  style="width:25%"  onclick="window.location.href='MainServlet?flag=2';" value="返回" />
-	    		<input  class=button type="button" style="width:25%" onclick="window.location.href='MainServlet?flag=return';" value="首页" />
+	    		<input  class="button"  type="button"  style="width:25%"  onclick="window.location.href='MainServlet?flag=return';" value="首页" />
 	    	</li>
 	    </ul>
     </div>
