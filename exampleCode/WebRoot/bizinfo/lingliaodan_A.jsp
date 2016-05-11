@@ -18,6 +18,14 @@ String strDate = dateFormat.format(date);
 	function stoQuy(){
 		document.jiuhui.submit();
 	}
+	function query(obj){
+		if(obj == 1){
+			$("#batchNO").attr("value","0000000130");
+		}else if(obj == 2){
+			$("#batchNO").attr("value","0000000131");
+		}
+		document.jiuhui.submit();
+	}
 </script>
   <head>
   <LINK href="./css/jiuhui.css" type=text/css rel=STYLESHEET>
@@ -30,7 +38,8 @@ String strDate = dateFormat.format(date);
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no, target-densitydpi=medium-dpi" />
   </head>
   <body>
-  <form name="jiuhui"  id="jiuhui" method="post" action="shengchanB">
+  <form name="jiuhui"  id="jiuhui" method="post" action="MainServlet?flag=shengchanB">
+  	<input name="batchNO"  type="hidden" id="batchNO"/>
     <div style=" padding-top: 50px;">
 	    <ul>
 	   	 	<li class="li" style="margin:20px 0px 0px 0px;">
@@ -39,11 +48,11 @@ String strDate = dateFormat.format(date);
 	   	 				<td align="center">ÐòºÅ</td>
 	   	 				<td align="center"><%=request.getSession().getAttribute("type") == null ? "" : request.getSession().getAttribute("type")%></td>
 	   	 			</tr>
-	   	 			<tr>
+	   	 			<tr onclick="query(1);">
 	   	 				<td align="center">1</td>
 	   	 				<td align="center">0000000130</td>
 	   	 			</tr>
-	   	 			<tr>
+	   	 			<tr onclick="query(2);">																
 	   	 				<td align="center">2</td>
 	   	 				<td align="center">0000000131</td>
 	   	 			</tr>

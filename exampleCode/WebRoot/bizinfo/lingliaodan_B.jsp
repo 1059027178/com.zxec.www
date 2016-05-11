@@ -10,21 +10,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <script language="javascript" src="./js/jiuhui.js"></script>
 <script type="text/javascript">
 function stoQuy(){
-	var num=$("#num").val();
-	if(num == ""||num == "0"){
-		alert("请填写委外发货数量");return;
-	}
 	document.jiuhui.submit();
 }
-function getcount(){
-	var num1=$("#num1").val();
-	var num2=$("#num2").val();
-	var num3=$("#num3").val();
-  	if(num1=="") num1=0;
-  	if(num2=="") num2=0;
-  	if(num3=="") num3=0;
-  	$("#num").attr("value",parseFloat(num1)+parseFloat(num2)+parseFloat(num3));
-}
+
 </script>
   <head>
   <LINK href="./css/jiuhui.css" type=text/css rel=STYLESHEET>
@@ -34,51 +22,55 @@ function getcount(){
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no, target-densitydpi=medium-dpi" />
   </head>
   <body>
-  <form name="jiuhui"  id="jiuhui" method="post" action="MainServlet?flag=weiwaiC">
+  <form name="jiuhui"  id="jiuhui" method="post" action="MainServlet?flag=shengchanC">
   		<input name="aufnr"  type="hidden" value="<%=request.getSession().getAttribute("aufnr") == null ? "" : request.getSession().getAttribute("aufnr")%>" />
     	<div style=" padding-top: 50px;">
     	
     	<ul>
     		<li class="li">
-    			物料编码：<input name="matnr" style="width:60%;heigth:70%;" class="text"  readonly=readonly type="text" id="matnr" value = "<%=request.getSession().getAttribute("matnr") == null ? "": request.getSession().getAttribute("matnr")%>" />
-    		</li>
-    		<li class="li">
-    			物料描述：<input name="maktx" readonly=readonly style="width:60%;heigth:70%;background-color:#D8D8D8;"  type="text"  id="maktx" value = "<%=request.getSession().getAttribute("maktx") == null ? "": request.getSession().getAttribute("maktx")%>"/>
-    		</li>
-    		<li class="li">
-    			数量合计：<input style="width:45%;heigth:70%;background-color:#D8D8D8;" type="text" id="num" name="num" />
-    		</li>
-    		<li class="li">
     			<table class="table_list">
     				<tr>
-    					<td align="center">序号</td><td align="center">仓位</td><td align="center">批次</td><td align="center">数量</td><td align="center">已检配数量</td>
+    					<td align="center">序号</td><td align="center">物料</td><td align="center">单位</td><td align="center">批次</td><td align="center">数量</td><td align="center">已拣配数量</td>
     				</tr>
-    				<tr>
+    				<tr >
     					<td align="center">1</td>
-    					<td align="center">A1-1</td>
+    					<td align="center">C.9.291400</td>
+    					<td align="center">PC</td>
+    					<% String batchNO = request.getSession().getAttribute("batchNO") == null ? "" : request.getSession().getAttribute("batchNO").toString(); %>
+    					<%if(batchNO.equals("")){ %>
     					<td align="center">0000000130</td>
-    					<td align="center">10000</td>
-    					<td align="center"><input style="width:35px;heigth:70%;" type="text" id="num1" name="num1"  onchange="getcount()"/></td>
+    					<%} else{%>
+    					<td align="center"><%=batchNO %></td>
+    					<%} %>
+    					<td align="center">20000</td>
+    					<%HttpSession httpSession = request.getSession(); %>
+    					<td align="center"><input value="<%=httpSession.getAttribute("num") == null ? "" : httpSession.getAttribute("num")%>" readonly=readonly style="width:35px;heigth:70%;background-color:#D8D8D8;" type="text" id="num1" name="num1" /></td>
     				</tr>
     				<tr>
     					<td align="center">2</td>
-    					<td align="center">A1-2</td>
-    					<td align="center">0000000130</td>
+    					<td align="center">C.9.291470</td>
+    					<td align="center">PC</td>
+    					<td align="center"><%=batchNO %></td>
     					<td align="center">10000</td>
-    					<td align="center"><input style="width:35px;heigth:70%;" type="text" id="num2" name="num2" onchange="getcount()" /></td>
+    					<td align="center">
+    					<input value="<%=httpSession.getAttribute("num") == null ? "" : httpSession.getAttribute("num")%>" readonly=readonly style="width:35px;heigth:70%;background-color:#D8D8D8;" type="text" id="num1" name="num1" />
+    					</td>
     				</tr>
     				<tr>
     					<td align="center">3</td>
-    					<td align="center">A1-3</td>
-    					<td align="center">0000000131</td>
+    					<td align="center">C.9.291470</td>
+    					<td align="center">PC</td>
+    					<td align="center"><%=batchNO %></td>
     					<td align="center">5000</td>
-    					<td align="center"><input style="width:35px;heigth:70%;" type="text" id="num3" name="num3" onchange="getcount()" /></td>
+    					<td align="center">
+    					<input value="<%=httpSession.getAttribute("num") == null ? "" : httpSession.getAttribute("num")%>" readonly=readonly style="width:35px;heigth:70%;background-color:#D8D8D8;" type="text" id="num1" name="num1" />
+    					</td>
     				</tr>
     			</table>
     		</li>
      		<li class="li">
-    				<input  class="button"  type="button"  style="width:25%"  onclick="stoQuy()" value="确定">
-    				<input  class="button"  type="button"  style="width:25%"  onclick="window.location.href='MainServlet?flag=2.3';" value="返回">
+    				<input  class="button"  type="button"  style="width:25%"  onclick="stoQuy()" value="过账">
+    				<input  class="button"  type="button"  style="width:25%"  onclick="window.location.href='MainServlet?flag=shengchanA';" value="返回">
     				<input  class="button" 	type="button"  style="width:25%"  onclick="window.location.href='MainServlet?flag=return';" value="首页">
     		</li>
     	</ul>

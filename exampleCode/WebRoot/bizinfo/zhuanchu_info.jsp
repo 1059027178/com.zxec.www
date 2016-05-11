@@ -68,47 +68,54 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
    document.onkeydown = keyDown;
 
   function forward(){
-  	window.location.href="MainServlet?flag=3";
+  	window.location.href="MainServlet?flag=3.3";
   }
   function submit1(obj){
-  	var str = document.getElementById("str").value;
-  	if(str != ""){
-  		obj.disabled=false;
-  		document.form.submit();
-  	}else{
-  		alert("请扫描物料卡！");
-  	}
-  }
+  	var num 	= $("#num").val();
+  	var lgort1 = $("#lgort1").val();
+	if(num == ""){
+	  	alert("请填写数量！");return;
+	}
+	if(lgort1 == ""){
+	  	alert("请填写库存地点！");return;
+	}
+	obj.disabled=false;
+	document.form.submit();
+	}
   function reset(){
   	$('.input').val("");
   }
   </script>
   <body>
-  <form name=form action="MainServlet?flag=zhuanchu" method="post" style="margin-top:50px;">
+  <form name=form action="MainServlet?flag=zhuanchuMsg" method="post" style="margin-top:50px;">
   	<div>
   		<ul>
-  			<li style="height:15px;list-style-type:none;">
-  				<input name="str" type="text" style="width:70%;height:20px;"  id="str" onchange="js()">
+  			<li class="li">
+  				物料编码：<input name="matnr" class="text"  readonly=readonly type="text" id="matnr" value="<%=request.getSession().getAttribute("matnr") == null ? "" : request.getSession().getAttribute("matnr")%>">
   			</li>
   			<li class="li">
-  				物料编码：<input name="matnr" class="text"  readonly=readonly type="text" id="matnr" >
+  				物料描述：<input name="maktx" class="text"  readonly=readonly type="text" id="maktx" value="<%=request.getSession().getAttribute("maktx") == null ? "" : request.getSession().getAttribute("maktx")%>">
+  			</li>
+  			<li class="li" style="line-height:30px;">
+  				批&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;次：<input style="margin-left: 2px;" name="batchNo" class="text"  readonly=readonly type="text" id="batchNo" value="<%=request.getSession().getAttribute("batchNo") == null ? "" : request.getSession().getAttribute("batchNo")%>">
   			</li>
   			<li class="li">
-  				物料描述：<input name="maktx" class="text"  readonly=readonly type="text" id="maktx" >
+  				转储数量：<input class="text" type="text" name ="num" id="num" style="background: white;"/>
   			</li>
   			<li class="li">
-  				批&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;次：<input name="batchNo" class="text" readonly=readonly style="background-color:#D8D8D8;margin-left: 2px;"  type="text"  id="batchNo">
+  				库存地点：<input name="lgort" type="text" class="text" id="lgort" style="width: 41px; " value="3107">
+  				到
+  				<input name="lgort1" type="text" class="text" id="lgort1" style="margin-left: 5px;width: 41px;;background:white;">
   			</li>
   			<li class="li">
-  				仓&nbsp;库&nbsp;&nbsp;号：<input name="lgort" type="text" class="text3" id="lgort">
+  				移动类型：<input name="moveClass" type="text" class="text"  id="moveClass" style="background: white;" value="311">
   			</li>
-  			<li class="li">
+  			<li class="li" style="margin-top: 20px;">
   				<input type ="button" valign="center" class="button" onclick="submit1(this);" style="width:40px;height:25px;" value="确定"/>
   				<input class="button"  type="button"  onclick="forward();" style="width:30px;height:25px;" value="返回"/>
   				<input class="button"  type="button"  onclick="reset();"   style="width:30px;height:25px;" value="重置"/>
   				<input type ="button" class="button" style="width:40px;height:25px;" onclick="window.location.href='MainServlet?flag=return';" value="首页">
   			</li>
-  			
   		</ul>
   	</div>
      

@@ -27,10 +27,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		  <form name="jiuhui"  id="jiuhui" >
 		  
 		  <div class="div" style=" padding-top: 50px;">
-		
+		<%HttpSession session2 = request.getSession(); %>
   		<ul>
-  			用&nbsp;户&nbsp;名：${userObj.userBH}
-			<li class="li">用户&nbsp; 别名：<input name="userName" class="text"  type="text"  id="userName"  style="width:90px;background-color:white;" value="${userObj.userName}"></li>
+  			用&nbsp;户&nbsp;名：<%=session2.getAttribute("username") %>
+			<li class="li">用户&nbsp; &nbsp;别名：<input name="userName" class="text"  type="text" readonly="readonly" id="userName"  style="width:90px;background-color:white;" value="陈科飞"></li>
   			<li class="li">用户新密码：<input name="inputPassword" type="text"  id="inputPassword"  style="width:90px;background-color:white;"class="text"></li>
   			<li class="li">重复新密码：<input name="inputPasswordAg"class="text"  type="text"  style="width:90px;background-color:white;" id="inputPasswordAg"></li>
   			
@@ -49,8 +49,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <!--[if lte IE 6]>
   <script type="text/javascript" src="js/bootstrap-ie.js"></script>
 <![endif]-->
-	 <script  langth="javascript">
-			
+	 <script  langth="javascript">			
 function save(){
 		var userId= $('#userId').val();
 		var userBH= $('#userBH').val();

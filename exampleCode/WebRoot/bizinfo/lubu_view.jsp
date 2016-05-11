@@ -35,6 +35,21 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		  	window.location.href="MainServlet?flag=3";
 		  }
 	function submit1(obj){
+		var matnr  = document.getElementById("matnr").value;
+		var matnr1  = document.getElementById("matnr1").value;
+		var num  = document.getElementById("num").value;
+		if(matnr == ""){
+			alert("请填写待变更的物料代码！");
+			return;
+		}
+		if(matnr1 == ""){
+			alert("请填写目标物料代码！");
+			return;
+		}
+		if(num == ""){
+			alert("请填写变更数量！");
+			return;
+		}
 	  	obj.disabled=false;
 	  	document.form.submit();
 	  }
@@ -45,26 +60,27 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   </head>
   
   <body>
-  <form name="form" action="/lubuList.do">
+  <form name="form" action="MainServlet?flag=jzbgMsg" method="post">
   <div>
      <ul>
      <li class="li"></li>
-		<li class="li">仓 库 号：<input name="lgnum" class="text" style="width:90px;background-color:white;" type="text" id="lgnum">	
+		<li class="li">物料代码：从&nbsp;<input name="matnr" class="text" style="width:90px;background-color:white;" type="text" id="matnr" value="<%=request.getParameter("matnr")   == null ? "": request.getParameter("matnr")%>">	
  		</li>
-		<li class="li">移动类型：<input name="bwlvs" class="text" style="width:90px;background-color:white;" type="text" id="bwlvs">	
+		<li class="li" style="margin-left: 50px;">到&nbsp;<input name="matnr1" class="text" style="width:90px;background-color:white;" type="text" id="matnr1" value="">	
  		</li>
- 		<li class="li"></li>
-		<li class="li">
+ 		<li class="li" >数&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;量：<input name="num" class="text" style="width:90px;background-color:white;margin-left:12px;" type="text" id="num" value="<%=request.getParameter("num")   == null ? "": request.getParameter("num")%>"></li>
+		<li class="li" style="line-height:20px;">库存地点：&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;3107</li>
+		<li class="li" style="line-height:20px;">移动类型：&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;309</li>
+		<li class="li" style="margin: 20px 0px 0px 0px;">
 		<input type="button" class="button" style="width:40px;height:25px;" type="button" onclick="submit1(this)" value="确定">
 		<input type="button" class="button" style="width:30px;height:25px;" type="button" onclick="forward()"value="返回">
-		<input type="button" class="button" style="width:30px;height:25px;" type="button" onclick="reset();" value="重置"/>
 		<input type="button" class="button" style="width:40px;height:25px;" onclick="window.location.href='MainServlet?flag=return';" value="首页">
 		</li>
 </ul>
 </div>
 </form>
   </body>
-    <script type="text/javascript">
-  document.getElementById("lgnum").focus();
+  <script type="text/javascript">
+  	document.getElementById("matnr").focus();
   </script>
 </html>
