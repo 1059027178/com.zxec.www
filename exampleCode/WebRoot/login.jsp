@@ -31,8 +31,18 @@ function handleForm(){
   	$('#userBH').focus();
   	return false;
   }
-   if($('#password').val()==""){
+   if($('#password').val()=="" ){
   	alert("密码必须输入！");
+  	$('#password').focus();
+  	return false;
+  }
+  if($('#userBH').val()!=6612){
+  	alert("用户账号输入有误！");
+  	$('#userBH').focus();
+  	return false;
+  }
+  if($('#password').val()!=6612){
+  	alert("用户密码输入有误！");
   	$('#password').focus();
   	return false;
   }
@@ -68,7 +78,7 @@ function handleForm(){
 </div>-->
 <tr>
 <td>
-<input class="button" type="submit" value="登 录"/>
+<input class="button" type="submit" value="登 录" />
 </td>
 </tr>
 <!--  

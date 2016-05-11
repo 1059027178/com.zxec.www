@@ -8,6 +8,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 public class MainServlet extends HttpServlet {
 
@@ -36,7 +37,7 @@ public class MainServlet extends HttpServlet {
 	}
 
 	
-	@SuppressWarnings("unused")
+	@SuppressWarnings({ "unused", "null" })
 	public void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		response.setContentType("text/html;charset=UTF-8");
@@ -53,6 +54,10 @@ public class MainServlet extends HttpServlet {
 		}
 		/*登录*/
 		if (flag.equals("login")) {
+			HttpSession session = request.getSession();
+			String username = request.getParameter("userBH").toString().trim();
+			System.out.println("****用户账户："+username+"已登录*****");
+			session.setAttribute("username", username);
 			RequestDispatcher dispatcher = request.getRequestDispatcher("index.jsp"); // 使用req对象获取RequestDispatcher对象
 			dispatcher.forward(request, response); // 使用RequestDispatcher对象在服务器端向目的路径跳转
 		}
@@ -148,12 +153,19 @@ public class MainServlet extends HttpServlet {
 			RequestDispatcher dispatcher = request.getRequestDispatcher("/bizinfo/repertory_add.jsp"); 
 			dispatcher.forward(request, response); 
 		}else if (flag.equals("3.2")) {//仓位转移
-			RequestDispatcher dispatcher = request.getRequestDispatcher("/bizinfo/storageM_view.jsp"); 
+			RequestDispatcher dispatcher = request.getRequestDispatcher("/bizinfo/storage_move.jsp"); 
 			dispatcher.forward(request, response); 
 		}else if (flag.equals("3.3")) {//库存转储
-			RequestDispatcher dispatcher = request.getRequestDispatcher("/bizinfo/dump_view.jsp"); 
+			RequestDispatcher dispatcher = request.getRequestDispatcher("/bizinfo/storageM_view.jsp"); 
 			dispatcher.forward(request, response); 
 		}else if (flag.equals("3.4")) {//记账变更
+			String matnr  	= request.getParameter("matnr")   == null ? "": request.getParameter("matnr");
+			String num  	= request.getParameter("num")   == null ? "": request.getParameter("num");
+			if (!matnr.equals("") && !num.equals("")) {
+				request.getSession().setAttribute("matnr", matnr);
+				request.getSession().setAttribute("num", num);
+			}
+			
 			RequestDispatcher dispatcher = request.getRequestDispatcher("/bizinfo/lubu_view.jsp"); 
 			dispatcher.forward(request, response); 
 		}
@@ -376,43 +388,140 @@ public class MainServlet extends HttpServlet {
 		/*委外下架*/
 		/*生产领料单*/
 		else if(flag.equals("shengchanA")){
-			request.getSession().setAttribute("type", "生产领料单");
 			RequestDispatcher dispatcher = request.getRequestDispatcher("/bizinfo/lingliaodan_A.jsp"); 
 			dispatcher.forward(request, response);
 		}
 		else if(flag.equals("shengchanB")){
+			String matnr = "C.9.291400";
+			String maktx = "C2沙剂-规格(25kg/桶)";
+			request.getSession().setAttribute("matnr", matnr);
+			request.getSession().setAttribute("maktx", maktx);
+			String batchNO = request.getParameter("batchNO") == null ? "" : request.getParameter("batchNO").trim();
+			if (!batchNO.equals("")) {
+				request.getSession().setAttribute("batchNO", batchNO);
+			}
+			
 			RequestDispatcher dispatcher = request.getRequestDispatcher("/bizinfo/lingliaodan_B.jsp"); 
+			dispatcher.forward(request, response);
+			
+		}else if(flag.equals("shengchanC")){
+			RequestDispatcher dispatcher = request.getRequestDispatcher("/bizinfo/lingliaodan_C.jsp"); 
+			dispatcher.forward(request, response);
+			
+		}else if (flag.equals("shengchanD")) {
+			String num = request.getParameter("num") == null ? "" : request.getParameter("num").trim();
+			String matnr = request.getParameter("matnr") == null ? "" : request.getParameter("matnr").trim();
+			System.out.println("***领料单领取数量：num："+num);
+			HttpSession session = request.getSession();
+			String message = null;
+			if (!num.equals("")) {
+				session.setAttribute("num", num);
+				message = "转储单创建成功！";
+			}else {
+				session.invalidate();
+				message = "转储单创建失败！";
+			}
+			request.getSession().setAttribute("matnr", matnr);
+			request.getSession().setAttribute("message", message);
+			RequestDispatcher dispatcher = request.getRequestDispatcher("/bizinfo/lingliaodan_D.jsp"); 
 			dispatcher.forward(request, response);
 			
 		}
 		/*生产领料单*/
 		/***发货***/
 		/***仓库作业***/
-		else if (flag.equals("reversalCrt")) {
-			RequestDispatcher dispatcher = request.getRequestDispatcher("/bizinfo/reversal_msg.jsp"); 
+		//仓位冻结
+		else if (flag.equals("cangwei")) {
+			String radioValue = request.getParameter("radioValue") == null ? "" : request.getParameter("radioValue").trim();//操作类型
+			String nlpla	  = request.getParameter("nlpla") 	   == null ? "" : request.getParameter("nlpla").trim();//仓位号
+			System.out.println("***仓位冻结："+nlpla+"**操作类型："+radioValue);
+			request.getSession().setAttribute("nlpla", nlpla);
+			if (radioValue.equals("1")||radioValue.equals("2")) {
+				request.getSession().setAttribute("radioValue", radioValue);
+				RequestDispatcher dispatcher = request.getRequestDispatcher("/bizinfo/cangku_info.jsp"); 
+				dispatcher.forward(request, response);
+			}else {
+				RequestDispatcher dispatcher = request.getRequestDispatcher("/bizinfo/cangku_list.jsp"); 
+				dispatcher.forward(request, response);
+			}
+		}
+		else if (flag.equals("cangkucaozuo")) {
+			String radioValue = request.getParameter("radioValue") == null ? "" : request.getParameter("radioValue").trim();//操作类型
+			System.out.println("*******仓位冻结解冻radioValue="+radioValue);
+			String message = null;
+			if (radioValue.equals("1")) {//仓位冻结
+				message = "仓位冻结成功！";
+			}
+			if (radioValue.equals("2")) {//仓位解冻
+				message = "仓位解冻成功！";
+			}
+			request.getSession().setAttribute("message", message);
+			RequestDispatcher dispatcher = request.getRequestDispatcher("/bizinfo/cangku_msg.jsp"); 
 			dispatcher.forward(request, response);
 		}
-		else if (flag.equals("repertoryAdd")) {
-			String redio = request.getParameter("radio").toString().trim();
-			System.out.println("*******仓位冻结解冻redio="+redio);
-			if (redio.equals("1")) {//仓位冻结
-				/*RequestDispatcher dispatcher = request.getRequestDispatcher("/bizinfo/repertory_view.jsp"); 
-				dispatcher.forward(request, response);*/
-			}
-			if (redio.equals("2")) {//仓位解冻
-				
-			}
-			if (redio.equals("3")) {//查询冻结仓位
-				
-			}
+		//仓位冻结
+		//仓库转移
+		else if (flag.equals("storageInfo")) {
+			String literaNO = request.getParameter("literaNO");
+			request.getSession().setAttribute("literaNO", literaNO);
+			
+			RequestDispatcher dispatcher = request.getRequestDispatcher("/bizinfo/storage_info.jsp"); 
+			dispatcher.forward(request, response);
+			
 		}
+		else if (flag.equals("storageTo")) {
+			String literaNO = request.getParameter("literaNO");
+			String num = request.getParameter("num");
+			request.getSession().setAttribute("literaNO", literaNO);
+			request.getSession().setAttribute("num", num);
+			
+			RequestDispatcher dispatcher = request.getRequestDispatcher("/bizinfo/storage_obj.jsp"); 
+			dispatcher.forward(request, response);
+		}
+		else if (flag.equals("storageMsg")) {
+			String message = "仓位转移操作成功！";
+			request.getSession().setAttribute("message", message);
+			RequestDispatcher dispatcher = request.getRequestDispatcher("/bizinfo/storage_msg.jsp"); 
+			dispatcher.forward(request, response);
+		}
+		//仓库转移
+		//仓库转储
+		else if (flag.equals("zhuanchu")) {
+			String matnr = request.getParameter("matnr") == null ? "" : request.getParameter("matnr").trim();//物料编码
+			String maktx = request.getParameter("maktx") == null ? "" : request.getParameter("maktx").trim();//物料描述
+			String batchNo = request.getParameter("batchNo") == null ? "" : request.getParameter("batchNo").trim();//批次
+			request.getSession().setAttribute("matnr", matnr);
+			request.getSession().setAttribute("maktx", maktx);
+			request.getSession().setAttribute("batchNo", batchNo);
+			
+			RequestDispatcher dispatcher = request.getRequestDispatcher("/bizinfo/zhuanchu_info.jsp"); 
+			dispatcher.forward(request, response);
+		}else if (flag.equals("zhuanchuMsg")) {
+			String matnr = request.getParameter("matnr") == null ? "" : request.getParameter("matnr").trim();
+			String batchNo = request.getParameter("batchNo") == null ? "" : request.getParameter("batchNo").trim();
+			String message = "仓位转储成功！";
+			request.getSession().setAttribute("matnr", matnr);
+			request.getSession().setAttribute("batchNo", batchNo);
+			request.getSession().setAttribute("message", message);
+			RequestDispatcher dispatcher = request.getRequestDispatcher("/bizinfo/zhuanchu_msg.jsp"); 
+			dispatcher.forward(request, response);
+		}
+		//仓库转储
+		/*记账变更*/
+		else if(flag.equals("jzbgMsg")){
+			String message = null;
+			String num = request.getParameter("num") == null ? "" : request.getParameter("num").trim();
+			if (!num.equals("")) {
+				message = "记账变更成功！";
+			}else {
+				message = "记账变更失败！";
+			}
+			request.getSession().setAttribute("message", message);
+			RequestDispatcher dispatcher = request.getRequestDispatcher("/bizinfo/jizhangbiangeng_msg.jsp"); 
+			dispatcher.forward(request, response);
+		}
+		/*记账变更*/
 		/***仓库作业***/
-		
-		
-		
-		
-		
-		
 		
 		
 		/*退出，返回-首页,修改密码*/
