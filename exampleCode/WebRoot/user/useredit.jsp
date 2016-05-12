@@ -51,6 +51,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <![endif]-->
 	 <script  langth="javascript">			
 function save(){
+	alert("目前尚不允许修改用户密码！");return;
 		var userId= $('#userId').val();
 		var userBH= $('#userBH').val();
 		var userName= $('#userName').val();
