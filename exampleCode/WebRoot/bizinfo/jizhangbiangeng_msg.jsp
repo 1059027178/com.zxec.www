@@ -10,9 +10,10 @@
 
 <script>
 	
-function forward(){
-  	window.location.href="MainServlet?flag=3";
-  }		
+function submit1(obj){
+  	obj.disabled=false;
+  	document.form.submit();
+ }		
 function turnon(){
   	window.location.href="MainServlet?flag=3.4";
   }		
@@ -21,18 +22,20 @@ function turnon(){
 </HEAD>
 <BODY>
 <div class="div" style="margin-top:60px;">
-  <form action="MainServlet?flag=3.4"  method ="post">
-	<table class="table_list" style="margin: 0px 0px 0px 60px;line-height:30px;">
+  <form action="MainServlet?flag=2.4"  method ="post">
+	<input type="hidden" name="matnr" id="matnr"  value="<%=request.getSession().getAttribute("matnr1") %>"/>
+  	<input type="hidden" name="batchNo" id="batchNo"  value="<%=request.getSession().getAttribute("batchNo") %>"/>
+  	<table class="table_list" style="margin: 0px 0px 0px 60px;line-height:30px;">
   		<tr >
   		<td>
-  			返回消息：</br>
+  			返回消息：<br />
   			<%=request.getSession().getAttribute("message") == null ? "" : request.getSession().getAttribute("message") %>
   		</td>
   		</tr>
   		<tr>
   			<td >
-  				<input class="button" type="button" style="width:40px;" onclick="turnon()" value="继续"/>
-  				<input class="button" type="button" style="width:40px;"  onclick="forward();" value="返回" />
+  				<input class="button" type="button" style="width:40px;" onclick="submit(this)" value="下架"/>
+  				<input class="button" type="button" style="width:40px;"  onclick="turnon();" value="返回" />
   				<input type="button" class="button" style="width:40px;" onclick="window.location.href='MainServlet?flag=return';" value="首页"/>
   			</td>
   		</tr>

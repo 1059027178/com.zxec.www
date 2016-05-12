@@ -57,28 +57,28 @@ function getcount(){
     				<tr>
     					<td align="center">1</td>
     					<td align="center">A1-1</td>
-    					<td align="center">0000000167</td>
+    					<td align="center"><%=request.getSession().getAttribute("batchNo") == null ? "": request.getSession().getAttribute("batchNo")%></td>
     					<td align="center">5000</td>
     					<td align="center"><input style="width:35px;heigth:70%;" type="text" id="num1" name="num1"  onchange="getcount()"/></td>
     				</tr>
     				<tr>
     					<td align="center">2</td>
     					<td align="center">A1-2</td>
-    					<td align="center">0000000168</td>
+    					<td align="center"><%=request.getSession().getAttribute("batchNo") == null ? "": request.getSession().getAttribute("batchNo")%></td>
     					<td align="center">10000</td>
     					<td align="center"><input style="width:35px;heigth:70%;" type="text" id="num2" name="num2" onchange="getcount()" /></td>
     				</tr>
     				<tr>
     					<td align="center">3</td>
     					<td align="center">A1-3</td>
-    					<td align="center">0000000170</td>
+    					<td align="center"><%=request.getSession().getAttribute("batchNo") == null ? "": request.getSession().getAttribute("batchNo")%></td>
     					<td align="center">2000</td>
     					<td align="center"><input style="width:35px;heigth:70%;" type="text" id="num3" name="num3" onchange="getcount()" /></td>
     				</tr>
     				<tr>
     					<td align="center">4</td>
     					<td align="center">A1-4</td>
-    					<td align="center">0000000171</td>
+    					<td align="center"><%=request.getSession().getAttribute("batchNo") == null ? "": request.getSession().getAttribute("batchNo")%></td>
     					<td align="center">5000</td>
     					<td align="center"><input style="width:35px;heigth:70%;" type="text" id="num4" name="num4" onchange="getcount()" /></td>
     				</tr>
