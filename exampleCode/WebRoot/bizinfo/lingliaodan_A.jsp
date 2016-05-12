@@ -20,12 +20,28 @@ String strDate = dateFormat.format(date);
 	}
 	function query(obj){
 		if(obj == 1){
-			$("#batchNO").attr("value","0000000130");
+			$("#batchNO").attr("value","20160507");
 		}else if(obj == 2){
-			$("#batchNO").attr("value","0000000131");
+			$("#batchNO").attr("value","20160508");
+		}else if(obj == 3){
+			$("#batchNO").attr("value","20160510");
+		}else if(obj == 4){
+			$("#batchNO").attr("value","20160511");
+		}else if(obj == 5){
+			$("#batchNO").attr("value","20160512");
 		}
 		document.jiuhui.submit();
 	}
+	function choose1(){
+  		var bs=$("#tr1").attr("checked");
+  		if(bs=="checked"){
+  			$("#tr1").css("background-color", "white"); 
+  			
+  			//$("#boxs").css("background-color", "#D8D8D8"); 
+  		}else{
+  			$("#tr1").css("background-color", "#D8D8D8"); 
+  		}
+  	}
 </script>
   <head>
   <LINK href="./css/jiuhui.css" type=text/css rel=STYLESHEET>
@@ -43,23 +59,35 @@ String strDate = dateFormat.format(date);
     <div style=" padding-top: 50px;">
 	    <ul>
 	   	 	<li class="li" style="margin:20px 0px 0px 0px;">
-	   	 		<table class="table_list">
+	   	 		<table class="table_list" >
 	   	 			<tr>
 	   	 				<td align="center">序号</td>
 	   	 				<td align="center"><%=request.getSession().getAttribute("type") == null ? "" : request.getSession().getAttribute("type")%></td>
 	   	 			</tr>
-	   	 			<tr onclick="query(1);">
-	   	 				<td align="center">1</td>
+	   	 			<tr onclick="query(1);" >
+	   	 				<td align="center" >1</td>
 	   	 				<td align="center">0000000130</td>
 	   	 			</tr>
 	   	 			<tr onclick="query(2);">																
 	   	 				<td align="center">2</td>
 	   	 				<td align="center">0000000131</td>
 	   	 			</tr>
+	   	 			<tr onclick="query(3);">																
+	   	 				<td align="center">3</td>
+	   	 				<td align="center">0000000140</td>
+	   	 			</tr>
+	   	 			<tr onclick="query(4);">																
+	   	 				<td align="center">4</td>
+	   	 				<td align="center">0000000141</td>
+	   	 			</tr>
+	   	 			<tr onclick="query(5);">																
+	   	 				<td align="center">5</td>
+	   	 				<td align="center">0000000143</td>
+	   	 			</tr>
 	   	 		</table>
 			</li>
 			<li class="li">
-	    		<input  class="button"  type="button"  style="width:25%"  onclick="stoQuy()" value="确定" />
+	    		<!-- <input  class="button"  type="button"  style="width:25%"  onclick="stoQuy()" value="确定" /> -->
 	    		<input  class="button"  type="button"  style="width:25%"  onclick="window.location.href='MainServlet?flag=2.1';" value="返回" />
 	    		<input  class="button"  type="button"  style="width:25%"  onclick="window.location.href='MainServlet?flag=return';" value="首页" />
 	    	</li>

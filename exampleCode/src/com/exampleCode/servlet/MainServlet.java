@@ -306,6 +306,7 @@ public class MainServlet extends HttpServlet {
 		/*下架*/
 		else if (flag.equals("xiajia")) {
 			String matnr = request.getParameter("matnr") == null ? "" : request.getParameter("matnr").trim();
+			String batchNO = request.getParameter("batchNo") == null ? "" : request.getParameter("batchNo").trim();
 			String maktx = null;
 			System.out.println("***发货下架："+matnr);
 			if(matnr.equals("C.9.291400")) maktx = "C2沙剂-规格(25kg/桶)";
@@ -316,6 +317,7 @@ public class MainServlet extends HttpServlet {
 			
 			request.getSession().setAttribute("matnr", matnr);
 			request.getSession().setAttribute("maktx", maktx);
+			request.getSession().setAttribute("batchNo", batchNO);
 			request.getSession().setAttribute("type", "下架");
 			RequestDispatcher dispatcher = request.getRequestDispatcher("/bizinfo/xiajia_pick.jsp"); 
 			dispatcher.forward(request, response);
@@ -400,11 +402,28 @@ public class MainServlet extends HttpServlet {
 			if (!batchNO.equals("")) {
 				request.getSession().setAttribute("batchNO", batchNO);
 			}
-			
 			RequestDispatcher dispatcher = request.getRequestDispatcher("/bizinfo/lingliaodan_B.jsp"); 
 			dispatcher.forward(request, response);
 			
 		}else if(flag.equals("shengchanC")){
+			String matnr = request.getParameter("matnr") == null ? "" : request.getParameter("matnr").trim();
+			String maktx = null;
+			if (matnr.equals("C.9.291400")) {
+				maktx = "C2沙剂-规格(25kg/桶)";
+			}
+			else if (matnr.equals("C.9.291470")) {
+				maktx = "Pro Cr23 三价铬保护剂规格(20L/桶)";
+			}
+			else if (matnr.equals("C.6.040601")) {
+				maktx = "ABS-GP-22 颜色:本色 玻纤:/ 其他:/";
+			}
+			request.getSession().setAttribute("matnr", matnr);
+			request.getSession().setAttribute("maktx", maktx);
+			String batchNO = request.getParameter("batchNO") == null ? "" : request.getParameter("batchNO").trim();
+			if (!batchNO.equals("")) {
+				request.getSession().setAttribute("batchNO", batchNO);
+			}
+			System.out.println("***matnr**"+matnr+"**maktx**"+maktx+"**batchNO**"+batchNO+"**");
 			RequestDispatcher dispatcher = request.getRequestDispatcher("/bizinfo/lingliaodan_C.jsp"); 
 			dispatcher.forward(request, response);
 			
@@ -511,12 +530,16 @@ public class MainServlet extends HttpServlet {
 		else if(flag.equals("jzbgMsg")){
 			String message = null;
 			String num = request.getParameter("num") == null ? "" : request.getParameter("num").trim();
+			String batchNo = request.getParameter("batchNo") == null ? "" : request.getParameter("batchNo").trim();
+			String matnr1 = request.getParameter("matnr1") == null ? "" : request.getParameter("matnr1").trim();
 			if (!num.equals("")) {
 				message = "记账变更成功！";
 			}else {
 				message = "记账变更失败！";
 			}
 			request.getSession().setAttribute("message", message);
+			request.getSession().setAttribute("batchNo", batchNo);
+			request.getSession().setAttribute("matnr1", matnr1);
 			RequestDispatcher dispatcher = request.getRequestDispatcher("/bizinfo/jizhangbiangeng_msg.jsp"); 
 			dispatcher.forward(request, response);
 		}

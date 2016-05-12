@@ -40,37 +40,46 @@ function getcount(){
     	
     	<ul>
     		<li class="li">
-    			物料编码：<input name="matnr" style="width:60%;heigth:70%;" class="text"  readonly=readonly type="text" id="matnr" value = "<%=request.getSession().getAttribute("matnr") == null ? "": request.getSession().getAttribute("matnr")%>" />
+    			物料编码：
+    			<input name="matnr" style="width:60%;heigth:70%;" class="text"  readonly=readonly type="text" id="matnr" 
+    			value = "<%=request.getSession().getAttribute("matnr") == null ? "": request.getSession().getAttribute("matnr")%>" />
     		</li>
     		<li class="li">
-    			物料描述：<input name="maktx" readonly=readonly style="width:60%;heigth:70%;background-color:#D8D8D8;"  type="text"  id="maktx" value = "<%=request.getSession().getAttribute("maktx") == null ? "": request.getSession().getAttribute("maktx")%>"/>
+    			物料描述：
+    			<input name="maktx" readonly=readonly style="width:60%;heigth:70%;background-color:#D8D8D8;"  type="text"  id="maktx" 
+    			value = "<%=request.getSession().getAttribute("maktx") == null ? "": request.getSession().getAttribute("maktx")%>"/>
     		</li>
     		<li class="li">
-    			数量合计：<input style="width:45%;heigth:70%;background-color:#D8D8D8;" type="text" id="num" name="num" />
+    			数量合计：
+    			<input style="width:45%;heigth:70%;background-color:#D8D8D8;" type="text" id="num" name="num" />
     		</li>
     		<li class="li">
     			<table class="table_list">
     				<tr>
-    					<td align="center">序号</td><td align="center">仓位</td><td align="center">批次</td><td align="center">仓位数量</td><td align="center">选择数量</td>
+    					<td align="center">序号</td>
+    					<td align="center">仓位</td>
+    					<td align="center">批次</td>
+    					<td align="center">仓位数量</td>
+    					<td align="center">选择数量</td>
     				</tr>
     				<tr>
     					<td align="center">1</td>
     					<td align="center">A1-3</td>
-    					<td align="center">0000000130</td>
+    					<td align="center"><%=request.getSession().getAttribute("batchNO") == null ? "": request.getSession().getAttribute("batchNO")%></td>
     					<td align="center">4000</td>
     					<td align="center"><input style="width:35px;heigth:70%;" type="text" id="num1" name="num1"  onchange="getcount()"/></td>
     				</tr>
     				<tr>
     					<td align="center">2</td>
     					<td align="center">A1-5</td>
-    					<td align="center">0000000130</td>
+    					<td align="center"><%=request.getSession().getAttribute("batchNO") == null ? "": request.getSession().getAttribute("batchNO")%></td>
     					<td align="center">10000</td>
     					<td align="center"><input style="width:35px;heigth:70%;" type="text" id="num2" name="num2" onchange="getcount()" /></td>
     				</tr>
     				<tr>
     					<td align="center">3</td>
     					<td align="center">A1-4</td>
-    					<td align="center">0000000130</td>
+    					<td align="center"><%=request.getSession().getAttribute("batchNO") == null ? "": request.getSession().getAttribute("batchNO")%></td>
     					<td align="center">6000</td>
     					<td align="center"><input style="width:35px;heigth:70%;" type="text" id="num3" name="num3" onchange="getcount()" /></td>
     				</tr>

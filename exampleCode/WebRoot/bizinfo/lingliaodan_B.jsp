@@ -1,83 +1,109 @@
-<%@ page language="java" contentType="text/html; charset=GBK" %> 
-<%
-String path = request.getContextPath();
-String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
-%>
-<html>
+<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page import="java.util.List" %>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<HEAD>
+<TITLE><%=request.getSession().getAttribute("type")%></TITLE>
+<META http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<link href="./css/jiuhui_list.css" rel="stylesheet" />
 <script src="./js/jquery.js"></script>  
-<script src="./js/jquery-ui-bootstrap/assets/js/jquery-ui-1.10.0.custom.min.js" type="text/javascript"></script>  
-<script src="./js/jquery-ui-bootstrap/assets/js/jquery-ui-datepicker.zh-cn.js" type="text/javascript"></script>   
-<script language="javascript" src="./js/jiuhui.js"></script>
-<script type="text/javascript">
+<script>
 function stoQuy(){
-	document.jiuhui.submit();
+	document.listform.submit();
 }
-
+function submit(obj){
+	alert(obj);return;
+	if(obj == 1){
+		$("#matnr").attr("value","C.9.291400");
+	}
+	else if(obj == 2){
+		$("#matnr").attr("value","C.9.291470");
+		
+	}
+	else if(obj == 3){
+		$("#matnr").attr("value","C.6.040601");
+		
+	}
+	var matnr = $("#matnr").val();
+	alert(matnr);
+	//document.listform.submit();
+}
 </script>
-  <head>
-  <LINK href="./css/jiuhui.css" type=text/css rel=STYLESHEET>
-    <title><%=request.getSession().getAttribute("type")%></title>
-	<meta http-equiv="pragma" content="no-cache">
-	<meta http-equiv="cache-control" content="no-cache">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no, target-densitydpi=medium-dpi" />
-  </head>
-  <body>
-  <form name="jiuhui"  id="jiuhui" method="post" action="MainServlet?flag=shengchanC">
-  		<input name="aufnr"  type="hidden" value="<%=request.getSession().getAttribute("aufnr") == null ? "" : request.getSession().getAttribute("aufnr")%>" />
-    	<div style=" padding-top: 50px;">
-    	
-    	<ul>
-    		<li class="li">
-    			<table class="table_list">
-    				<tr>
-    					<td align="center">–Ú∫≈</td><td align="center">ŒÔ¡œ</td><td align="center">µ•Œª</td><td align="center">≈˙¥Œ</td><td align="center"> ˝¡ø</td><td align="center">“—º≈‰ ˝¡ø</td>
-    				</tr>
-    				<tr >
-    					<td align="center">1</td>
-    					<td align="center">C.9.291400</td>
-    					<td align="center">PC</td>
-    					<% String batchNO = request.getSession().getAttribute("batchNO") == null ? "" : request.getSession().getAttribute("batchNO").toString(); %>
-    					<%if(batchNO.equals("")){ %>
-    					<td align="center">0000000130</td>
-    					<%} else{%>
-    					<td align="center"><%=batchNO %></td>
-    					<%} %>
-    					<td align="center">20000</td>
-    					<%HttpSession httpSession = request.getSession(); %>
-    					<td align="center"><input value="<%=httpSession.getAttribute("num") == null ? "" : httpSession.getAttribute("num")%>" readonly=readonly style="width:35px;heigth:70%;background-color:#D8D8D8;" type="text" id="num1" name="num1" /></td>
-    				</tr>
-    				<tr>
-    					<td align="center">2</td>
-    					<td align="center">C.9.291470</td>
-    					<td align="center">PC</td>
-    					<td align="center"><%=batchNO %></td>
-    					<td align="center">10000</td>
-    					<td align="center">
-    					<input value="<%=httpSession.getAttribute("num") == null ? "" : httpSession.getAttribute("num")%>" readonly=readonly style="width:35px;heigth:70%;background-color:#D8D8D8;" type="text" id="num1" name="num1" />
-    					</td>
-    				</tr>
-    				<tr>
-    					<td align="center">3</td>
-    					<td align="center">C.9.291470</td>
-    					<td align="center">PC</td>
-    					<td align="center"><%=batchNO %></td>
-    					<td align="center">5000</td>
-    					<td align="center">
-    					<input value="<%=httpSession.getAttribute("num") == null ? "" : httpSession.getAttribute("num")%>" readonly=readonly style="width:35px;heigth:70%;background-color:#D8D8D8;" type="text" id="num1" name="num1" />
-    					</td>
-    				</tr>
-    			</table>
-    		</li>
-     		<li class="li">
-    				<input  class="button"  type="button"  style="width:25%"  onclick="stoQuy()" value="π˝’À">
-    				<input  class="button"  type="button"  style="width:25%"  onclick="window.location.href='MainServlet?flag=shengchanA';" value="∑µªÿ">
-    				<input  class="button" 	type="button"  style="width:25%"  onclick="window.location.href='MainServlet?flag=return';" value=" ◊“≥">
-    		</li>
-    	</ul>
-    	</div>
-    </form>
-  </body>
- <script type="text/javascript">
-  document.getElementById("num1").focus();
-  </script>
+<style type="text/css">
+    body {
+      padding-top: 40px;
+      padding-bottom: 0px;
+      padding-left: 30px;
+    }
+    .sidebar-nav {
+      padding: 0;
+    }
+  </style>
+</HEAD>
+<BODY>
+<% String batchNO = request.getSession().getAttribute("batchNO") == null ? "" : request.getSession().getAttribute("batchNO").toString(); %>
+<div class="div" >
+	<form name="listform" id="listform" method="post" action="MainServlet?flag=shengchanC">
+		<input name="aufnr" type="hidden" value="<%=request.getSession().getAttribute("aufnr") == null ? "" : request.getSession().getAttribute("aufnr")%>" />
+		<input name="batchNO" type="hidden" value="<%=batchNO%>" />
+		<input name="matnr" type="hidden" id="matnr" />
+		<table class="table_list" style="width:100%">
+			<colgroup>
+				<col width="10%" />
+				<col width="25%" />
+				<col width="10%" />
+				<col width="25%" />
+				<col width="15%" />
+				<col width="20%" />
+			</colgroup>
+			<tr bordercolor="#000000" class="tr_list_1" style="line-height: 30px;">
+				<td class="td_list">Â∫èÂè∑</td>
+				<td class="td_list">Áâ©Êñô</td>
+				<td class="td_list">Âçï‰Ωç</td>
+				<td class="td_list">ÊâπÊ¨°</td>
+				<td class="td_list">Êï∞Èáè</td>
+				<td class="td_list">Â∑≤Êã£ÈÖç</td>
+			</tr>
+			<tr class="tr_list_2" style="line-height: 20px;" onclick="submit(1)">
+				<td class="td_list">1</td>
+				<td class="td_list">C.9.291400</td>
+				<td class="td_list">PC</td>
+				<td class="td_list"><%=batchNO %></td>
+				<td class="td_list">20000</td>
+				<%HttpSession httpSession = request.getSession(); %>
+				<td class="td_list"><%=httpSession.getAttribute("num") == null ? "" : httpSession.getAttribute("num")%></td>
+			</tr>
+			<tr class="tr_list_2" style="line-height: 20px;" onclick="submit(2)">
+				<td class="td_list">2</td>
+				<td class="td_list">C.9.291470</td>
+				<td class="td_list">PC</td>
+				<td class="td_list"><%=batchNO %></td>
+				<td class="td_list">10000</td>
+				<td class="td_list"><%=httpSession.getAttribute("num") == null ? "" : httpSession.getAttribute("num")%>
+				</td>
+			</tr>
+			<tr class="tr_list_2" style="line-height: 20px;" onclick="submit(3)">
+				<td class="td_list">3</td>
+				<td class="td_list">C.6.040601</td>
+				<td class="td_list">PC</td>
+				<td class="td_list"><%=batchNO %></td>
+				<td class="td_list">5000</td>
+				<td class="td_list"><%=httpSession.getAttribute("num") == null ? "" : httpSession.getAttribute("num")%>
+				</td>
+			</tr>
+			<tr>
+				<td colspan="3" style="line-height: 40px;">
+				<input class="button" type="button" style="width:25%" onclick="stoQuy()" value="ËøáË¥¶" /> 
+				<input class="button" type="button" style="width:25%" onclick="window.location.href='MainServlet?flag=shengchanA';" value="ËøîÂõû" /> 
+				<input class="button" type="button" style="width:25%" onclick="window.location.href='MainServlet?flag=return';" value="È¶ñÈ°µ" />
+				</td>
+			</tr>
+		</table>
+	</form>
+</div>
+</body>
+<script type="text/javascript">
+document.getElementById("num1").focus();
+</script>
 </html>

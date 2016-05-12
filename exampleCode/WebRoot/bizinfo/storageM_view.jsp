@@ -37,7 +37,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	  		//var produceDate=str[10];//供应商生产日期
 	  		//var produceBatchNo=str[11];//供应商批次号
 	  		$("#matnr").attr("value",matnr);
-	  		$("#lgort").attr("value",storageLocation);
+	  		//$("#lgort").attr("value",storageLocation);
 	  		$("#batchNo").attr("value",batchNo);
 	  		
 	  		if(matnr == "C.9.291400"){
@@ -100,7 +100,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   				批&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;次：<input name="batchNo" class="text" readonly=readonly style="background-color:#D8D8D8;margin-left: 2px;"  type="text"  id="batchNo">
   			</li>
   			<li class="li">
-  				仓&nbsp;库&nbsp;&nbsp;号：<input name="lgort" type="text" class="text3" id="lgort">
+  				仓&nbsp;库&nbsp;&nbsp;号：<input name="lgort" type="text" class="text3" id="lgort"  value="311">
   			</li>
   			<li class="li">
   				<input type ="button" valign="center" class="button" onclick="submit1(this);" style="width:40px;height:25px;" value="确定"/>
