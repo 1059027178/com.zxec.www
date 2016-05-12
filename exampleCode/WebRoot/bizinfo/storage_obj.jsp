@@ -63,10 +63,10 @@ function stoQuy1(){
     			目标仓位 <input name="toLiteraNO" style="width:60%;heigth:70%;" class="text3"   type="text" id="toLiteraNO" value="A2-4" />
     		</li>
      		<li class="li">
-    			<input  class="button"  type="button"  style="width:25%"  onclick="stoQuy()" value="保存">
-    			<input  class="button"  type="button"  style="width:25%"  onclick="stoQuy1()" value="全下架">
-    			<input  class="button"  type="button"  style="width:25%"  onclick="window.location.href='MainServlet?flag=storageInfo';" value="返回">
-    			<input  class="button" 	type="button"  style="width:25%"  onclick="window.location.href='MainServlet?flag=return';" value="首页">
+    			<input  class="button"  type="button"  style="width:20%"  onclick="stoQuy()" value="保存">
+    			<input  class="button"  type="button"  style="width:20%"  onclick="stoQuy1()" value="全下架">
+    			<input  class="button"  type="button"  style="width:20%"  onclick="window.location.href='MainServlet?flag=storageInfo';" value="返回">
+    			<input  class="button" 	type="button"  style="width:20%"  onclick="window.location.href='MainServlet?flag=return';" value="首页">
     		</li>
     	</ul>
     	</div>

@@ -10,10 +10,9 @@
 <script src="./js/jquery.js"></script>  
 <script>
 function stoQuy(){
-	document.listform.submit();
+	window.location.href="MainServlet?flag=shengchanD";
 }
 function submit(obj){
-	alert(obj);return;
 	if(obj == 1){
 		$("#matnr").attr("value","C.9.291400");
 	}
@@ -26,8 +25,8 @@ function submit(obj){
 		
 	}
 	var matnr = $("#matnr").val();
-	alert(matnr);
-	//document.listform.submit();
+	//alert(matnr);
+	document.listform.submit();
 }
 </script>
 <style type="text/css">
@@ -45,7 +44,6 @@ function submit(obj){
 <% String batchNO = request.getSession().getAttribute("batchNO") == null ? "" : request.getSession().getAttribute("batchNO").toString(); %>
 <div class="div" >
 	<form name="listform" id="listform" method="post" action="MainServlet?flag=shengchanC">
-		<input name="aufnr" type="hidden" value="<%=request.getSession().getAttribute("aufnr") == null ? "" : request.getSession().getAttribute("aufnr")%>" />
 		<input name="batchNO" type="hidden" value="<%=batchNO%>" />
 		<input name="matnr" type="hidden" id="matnr" />
 		<table class="table_list" style="width:100%">
@@ -93,10 +91,10 @@ function submit(obj){
 				</td>
 			</tr>
 			<tr>
-				<td colspan="3" style="line-height: 40px;">
-				<input class="button" type="button" style="width:25%" onclick="stoQuy()" value="过账" /> 
-				<input class="button" type="button" style="width:25%" onclick="window.location.href='MainServlet?flag=shengchanA';" value="返回" /> 
-				<input class="button" type="button" style="width:25%" onclick="window.location.href='MainServlet?flag=return';" value="首页" />
+				<td colspan="4" style="line-height: 40px;">
+				<input style="text-align: center;" class="button" type="button" style="width:25%" onclick="stoQuy()" value="过账" /> 
+				<input style="text-align: center;" class="button" type="button" style="width:25%" onclick="window.location.href='MainServlet?flag=shengchanA';" value="返回" /> 
+				<input style="text-align: center;" class="button" type="button" style="width:25%" onclick="window.location.href='MainServlet?flag=return';" value="首页" />
 				</td>
 			</tr>
 		</table>
