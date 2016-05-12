@@ -141,6 +141,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   		document.form.submit();
   	}else{
   		alert("请填写物料箱数！");
+  		document.getElementById("boxs").focus();
   	}
   }
   function reset(){

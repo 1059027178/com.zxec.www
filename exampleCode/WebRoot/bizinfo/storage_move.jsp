@@ -30,7 +30,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   function submit1(obj){
   var no = document.getElementById("literaNO").value;
   if( no == ""){
-  	alert("请填写仓位号");return;
+  	alert("请填写仓位号");
+  	document.getElementById("literaNO").focus();
+  	return;
   }
   	obj.disabled=false;
   	document.form.submit();
@@ -44,7 +46,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   	<div>
   		<ul>
   			<li style="height:15px;list-style-type:none;">
-  				仓&nbsp;位&nbsp;号：<input name="literaNO" type="text" style="width:50%;height:20px;"  id="literaNO" >
+  				仓&nbsp;位&nbsp;号：<input name="literaNO" id="literaNO"  type="text" style="width:50%;height:20px;"  >
   			</li>
   			<li class="li" style="margin-top: 20px;">
   				<input type ="button" valign="center" class="button" onclick="submit1(this);" style="width:40px;height:25px;" value="确定"/>
@@ -59,6 +61,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 </form>
   </body>
     <script type="text/javascript">
-  document.getElementById("str").focus();
+  document.getElementById("literaNO").focus();
   </script>
 </html>
