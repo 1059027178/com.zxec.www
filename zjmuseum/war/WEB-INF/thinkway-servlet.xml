@@ -1,0 +1,675 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN 2.0//EN" "http://www.springframework.org/dtd/spring-beans-2.0.dtd">
+
+<beans>
+<!-- **********************************基础SPRING系统************************************** -->
+    
+	<bean id="authenticator" class="com.thinkway.cms.presentation.web.authenticate.AuthenticatorImpl" />
+	<!-- 
+	<bean id="viewResolver" class="org.springframework.web.servlet.view.ResourceBundleViewResolver">
+		<property name="basename" value="views" />
+	</bean>
+	 -->
+   <bean id="messageSource" class="org.springframework.context.support.ResourceBundleMessageSource">
+        <property name="basename"><value>messages</value></property>
+    </bean>
+    
+    <bean id="propertyConfigurer" class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+        <property name="locations">
+            <list>
+                <value>classpath:appenv.properties</value>
+            </list>
+        </property>
+    </bean>
+    
+    
+	<bean id="defaultHandlerMapping" class="org.springframework.web.servlet.handler.BeanNameUrlHandlerMapping">
+		<property name="interceptors"><list><ref bean="secureInterceptor"/></list></property>			
+	</bean>
+    <bean id="secureInterceptor" class="com.thinkway.cms.presentation.web.interceptors.SecureInterceptor"/>
+    
+    <!-- ========================== 表单验证工厂 =============================== -->  
+    <bean id="validatorFactory" class="org.springmodules.commons.validator.DefaultValidatorFactory">
+      <property name="validationConfigLocations">
+        <list>
+           <value>/WEB-INF/validator-rules.xml</value>
+           <value>/WEB-INF/validation.xml</value>
+        </list>
+      </property>
+	</bean>
+	
+	<bean id="beanValidator" class="org.springmodules.commons.validator.DefaultBeanValidator">
+      <property name="validatorFactory"><ref bean="validatorFactory" /></property>
+	</bean>
+	
+<!-- **********************************twerp360业务逻辑系统************************************** -->	
+	
+    <!-- ========================== 通用页面 =============================== -->	
+	<bean name="/errorHandle.do" class="com.thinkway.cms.presentation.web.interceptors.ErrorController">
+		<property name="viewName" value="/WEB-INF/jsp/common/error_page.jsp"/>
+	</bean>
+	
+	<!-- ========================== 用户登录/登出 =============================== -->	
+	<bean name="/loginForm.do" class="com.thinkway.cms.presentation.web.controller.user.UserLoginController">
+		<property name="successView" value="/WEB-INF/jsp/transfer.jsp" />
+		<property name="failureView" value="/WEB-INF/jsp/common/errres_page.jsp"></property>
+		<property name="userService" ref="userService"/>	
+		<property name="permission" value="901"></property>
+		<property name="tokenNeed" value="N"></property>
+		<property name="authenticator" ref="authenticator"/>			
+	</bean>	
+	
+	<bean name="/index.do" class="com.thinkway.cms.presentation.web.controller.user.IndexLoginController">
+		<property name="viewName" value="/WEB-INF/jsp/login.jsp"/>	
+		<property name="successView" value="/WEB-INF/jsp/transfer.jsp" />
+		<property name="permission" value="901"></property>
+		<property name="tokenNeed" value="N"></property>
+		<property name="userService" ref="userService"/>	
+		<property name="authenticator" ref="authenticator"/>
+	</bean>
+	
+    <bean name="/authFileUpload.do" class="com.thinkway.cms.presentation.web.controller.bizinfo.AuthFileUploadController">
+		<property name="commandName" value="fileUploadForm" />	
+		<property name="formView" value="/WEB-INF/jsp/bizinfo/authfile_upload.jsp" />		
+		<property name="sessionForm" value="true"></property>
+		<property name="maxUploadSize" value="1048576" />
+		<property name="uploadDir" value="${app.uploadpath}" />
+		<property name="permission" value="1000"></property>
+		<property name="tokenNeed" value="N"></property>
+		<property name="authenticator" ref="authenticator"/>	
+	</bean>  
+	
+	
+	<bean name="/userAJAX.do" class="org.springframework.web.servlet.mvc.multiaction.MultiActionController">
+		<property name="methodNameResolver" ref="paramResolver"></property>
+		<property name="delegate" ref="UserAJAXJsonController"></property>
+	</bean>
+	
+	<bean id="UserAJAXJsonController" class="com.thinkway.cms.presentation.controller.restapi.UserAJAXController">
+		<property name="userService" ref="userService"></property>
+		<property name="permission" value="901"></property>
+		<property name="maxUploadSize" value="104857600" />
+		<property name="uploadDir" value="${app.uploadpath}" />
+		<property name="tokenNeed" value="N"></property>
+		<property name="authenticator" ref="authenticator"/>
+	</bean>
+	
+	<!-- main view控制器 -->
+	<bean name="/main.do" class="com.thinkway.cms.presentation.web.controller.user.MainController">
+		<property name="viewName" value="/WEB-INF/jsp/one.jsp"/>	
+		<property name="view1" value="/WEB-INF/jsp/two1.jsp"/>	
+		<property name="view2" value="/WEB-INF/jsp/two2.jsp"/>	
+		<property name="view3" value="/WEB-INF/jsp/two3.jsp"/>	
+		<property name="view4" value="/WEB-INF/jsp/two4.jsp"/>	
+		<property name="view5" value="/WEB-INF/jsp/two5.jsp"/>	
+		<property name="viewAdmin" value="/WEB-INF/jsp/user/user_list.jsp"/>	
+		<property name="permission" value="1000"></property>
+		<property name="tokenNeed" value="N"></property>
+		<property name="userService" ref="userService"/>	
+		<property name="authenticator" ref="authenticator"/>
+	</bean>
+	
+	
+	<bean name="/userAdd.do" class="com.thinkway.cms.presentation.web.controller.user.UserAddController">
+		<property name="viewName" value="/WEB-INF/jsp/user/user_add.jsp"/>	
+		<property name="permission" value="1001"></property>
+		<property name="tokenNeed" value="N"></property>
+		<property name="userService" ref="userService"/>	
+		<property name="authenticator" ref="authenticator"/>
+	</bean>
+	
+	<bean name="/userEdit.do" class="com.thinkway.cms.presentation.web.controller.user.UserEditController">
+		<property name="viewName" value="/WEB-INF/jsp/user/user_edit.jsp"/>	
+		<property name="permission" value="1001"></property>
+		<property name="tokenNeed" value="N"></property>
+		<property name="userService" ref="userService"/>	
+		<property name="authenticator" ref="authenticator"/>
+	</bean>
+	<!-- 手持上修改密码 -->
+	<bean name="/userscedit.do" class="com.thinkway.cms.presentation.web.controller.user.UsersceditController">
+		<property name="viewName" value="/WEB-INF/jsp/user/useredit.jsp"/>	
+		<property name="permission" value="1000"></property>
+		<property name="tokenNeed" value="N"></property>
+		<property name="userService" ref="userService"/>	
+		<property name="authenticator" ref="authenticator"/>
+	</bean>
+	
+	<bean name="/userList.do" class="com.thinkway.cms.presentation.web.controller.user.UserListController">
+		<property name="viewName" value="/WEB-INF/jsp/user/user_list.jsp"/>	
+		<property name="permission" value="1001"></property>
+		<property name="tokenNeed" value="N"></property>
+		<property name="userService" ref="userService"/>	
+		<property name="authenticator" ref="authenticator"/>
+	</bean>
+	
+	
+	 <!-- User json rest api控制器 -->
+     <bean name="/userJson.do" class="org.springframework.web.servlet.mvc.multiaction.MultiActionController">
+     <property name="methodNameResolver" ref="paramResolver"></property>
+     <property name="delegate" ref="UserJsonController"></property>
+    </bean>
+    
+    <bean id="UserJsonController" class="com.thinkway.cms.presentation.controller.restapi.UserJsonController">
+		<property name="userService" ref="userService"></property>
+		<property name="permission" value="901"></property>
+		<property name="maxUploadSize" value="104857600" />
+		<property name="uploadDir" value="${app.uploadpath}" />
+		<property name="tokenNeed" value="N"></property>
+		<property name="authenticator" ref="authenticator"/>
+    </bean>
+    
+    <bean id="paramResolver" class="org.springframework.web.servlet.mvc.multiaction.ParameterMethodNameResolver">
+    <property name="paramName" value="showType"></property>
+    </bean>
+	<bean name="/imageSet.do" class="com.thinkway.cms.presentation.web.controller.user.ImageController" />	
+	
+	<bean name="/logout.do" class="com.thinkway.cms.presentation.web.controller.user.UserLogoutController">
+		<property name="userService" ref="userService"/>
+		<property name="viewName" value="/WEB-INF/jsp/login.jsp"></property>
+		<property name="permission" value="901"></property>
+		<property name="tokenNeed" value="N"></property>
+		<property name="authenticator" ref="authenticator"/>
+	</bean>
+	
+	<!-- 交货单拣配 -->
+<bean name="/delordpicAdd.do" class="com.thinkway.cms.presentation.web.controller.delordpic.DelOrdPicAddController">
+	<property name="viewName" value="/WEB-INF/jsp/delordpic/delordpic_Msg.jsp"/>
+	<property name="view" value="/WEB-INF/jsp/delordpic/delordpic_view.jsp"/>
+	<property name="permission" value="1000"></property>
+	<property name="tokenNeed" value="N"></property>
+	<property name="userService" ref="userService"></property>
+	<property name="delordpicService" ref="delordpicService"></property>
+	<property name="dellockuserService" ref="dellockuserService"></property>
+	<property name="authenticator" ref="authenticator"/>
+</bean>
+
+	<bean name="/delordList.do" class="com.thinkway.cms.presentation.web.controller.delordpic.DelOrdListController">
+	<property name="viewName" value="/WEB-INF/jsp/delordpic/delord_List.jsp"/>
+	<property name="view" value="/WEB-INF/jsp/delordpic/delordpic_Msg.jsp"/>
+	<property name="permission" value="1000"></property>
+	<property name="tokenNeed" value="N"></property>
+	<property name="userService" ref="userService"></property>
+	<property name="dellockuserService" ref="dellockuserService"></property>
+	<property name="authenticator" ref="authenticator"/>
+</bean>
+
+	<bean name="/delordView.do" class="com.thinkway.cms.presentation.web.controller.delordpic.DelOrdViewController">
+	<property name="viewName" value="/WEB-INF/jsp/delordpic/delord_View.jsp"/>
+	<property name="view" value="/WEB-INF/jsp/delordpic/delordpic_Msg.jsp"/>
+	<property name="permission" value="1000"></property>
+	<property name="tokenNeed" value="N"></property>
+	<property name="userService" ref="userService"></property>
+	<property name="dellockuserService" ref="dellockuserService"></property>
+	<property name="authenticator" ref="authenticator"/>
+</bean>
+
+	<bean name="/matlgpView.do" class="com.thinkway.cms.presentation.web.controller.delordpic.MatLgpViewController">
+	<property name="viewName" value="/WEB-INF/jsp/delordpic/matlgp_View.jsp"/>
+	<property name="permission" value="1000"></property>
+	<property name="tokenNeed" value="N"></property>
+	<property name="userService" ref="userService"></property>
+	<property name="dellockuserService" ref="dellockuserService"></property>
+	<property name="authenticator" ref="authenticator"/>
+</bean>
+
+	<bean name="/matlgpFifoView.do" class="com.thinkway.cms.presentation.web.controller.delordpic.MatLgpFifoViewController">
+	<property name="viewName" value="/WEB-INF/jsp/delordpic/matlgpfifo_View.jsp"/>
+	<property name="permission" value="1000"></property>
+	<property name="tokenNeed" value="N"></property>
+	<property name="userService" ref="userService"></property>
+	<property name="dellockuserService" ref="dellockuserService"></property>
+	<property name="authenticator" ref="authenticator"/>
+</bean>
+<bean name="/delordpicJson.do" class="org.springframework.web.servlet.mvc.multiaction.MultiActionController">
+	<property name="methodNameResolver" ref="paramResolver"></property>
+	<property name="delegate" ref="delordpicJsonController"></property>
+</bean>
+
+<bean id="delordpicJsonController" class="com.thinkway.cms.presentation.controller.restapi.DelOrdPicJsonController">
+	<property name="userService" ref="userService"></property>
+	<property name="permission" value="901"></property>
+	<property name="maxUploadSize" value="104857600" />
+	<property name="uploadDir" value="${app.uploadpath}" />
+	<property name="tokenNeed" value="N"></property>
+	<property name="authenticator" ref="authenticator"/>
+</bean>
+    
+<!-- 交货单发货 -->
+	<bean name="/deliveryAdd.do" class="com.thinkway.cms.presentation.web.controller.delivery.DeliveryAddController">
+	<property name="viewName" value="/WEB-INF/jsp/delivery/delivery_Add.jsp"/>
+	<property name="permission" value="1000"></property>
+	<property name="tokenNeed" value="N"></property>
+	<property name="userService" ref="userService"></property>
+	<property name="authenticator" ref="authenticator"/>
+</bean>
+
+	<bean name="/deliveryView.do" class="com.thinkway.cms.presentation.web.controller.delivery.DeliveryViewController">
+	<property name="viewName" value="/WEB-INF/jsp/delivery/delivery_View.jsp"/>
+	<property name="msg" value="/WEB-INF/jsp/delivery/delivery_Msg.jsp"/>
+	<property name="permission" value="1000"></property>
+	<property name="tokenNeed" value="N"></property>
+	<property name="userService" ref="userService"></property>
+	<property name="authenticator" ref="authenticator"/>
+</bean>
+
+<bean name="/deliveryCrt.do" class="com.thinkway.cms.presentation.web.controller.delivery.DeliveryCrtController">
+	<property name="viewName" value="/WEB-INF/jsp/delivery/delivery_Msg.jsp"/>
+	<property name="permission" value="1000"></property>
+	<property name="tokenNeed" value="N"></property>
+	<property name="userService" ref="userService"></property>
+	<property name="deliveryService" ref="deliveryService"></property>
+	<property name="authenticator" ref="authenticator"/>
+</bean>
+
+
+<bean name="/deliveryJson.do" class="org.springframework.web.servlet.mvc.multiaction.MultiActionController">
+	<property name="methodNameResolver" ref="paramResolver"></property>
+	<property name="delegate" ref="deliveryJsonController"></property>
+</bean>
+
+<bean id="deliveryJsonController" class="com.thinkway.cms.presentation.controller.restapi.DeliveryJsonController">
+	<property name="userService" ref="userService"></property>
+	<property name="permission" value="901"></property>
+	<property name="maxUploadSize" value="104857600" />
+	<property name="uploadDir" value="${app.uploadpath}" />
+	<property name="tokenNeed" value="N"></property>
+	<property name="authenticator" ref="authenticator"/>
+</bean>
+	
+<!-- 物料查询-->
+<bean name="/matquyQuery.do" class="com.thinkway.cms.presentation.web.controller.matquy.MatQuyQueryController">
+	<property name="viewName" value="/WEB-INF/jsp/matquy/matquy_Query.jsp"/>
+	<property name="permission" value="1000"></property>
+	<property name="tokenNeed" value="N"></property>
+	<property name="userService" ref="userService"></property>
+	<property name="authenticator" ref="authenticator"/>
+</bean>
+
+<bean name="/matquyList.do" class="com.thinkway.cms.presentation.web.controller.matquy.MatQuyListController">
+	<property name="viewName" value="/WEB-INF/jsp/matquy/matquy_List.jsp"/>
+	<property name="permission" value="1000"></property>
+	<property name="tokenNeed" value="N"></property>
+	<property name="userService" ref="userService"></property>
+	<property name="authenticator" ref="authenticator"/>
+</bean>
+
+<bean name="/matquyJson.do" class="org.springframework.web.servlet.mvc.multiaction.MultiActionController">
+	<property name="methodNameResolver" ref="paramResolver"></property>
+	<property name="delegate" ref="matquyJsonController"></property>
+</bean>
+
+<bean id="matquyJsonController" class="com.thinkway.cms.presentation.controller.restapi.MatQuyJsonController">
+	<property name="userService" ref="userService"></property>
+	<property name="permission" value="901"></property>
+	<property name="maxUploadSize" value="104857600" />
+	<property name="uploadDir" value="${app.uploadpath}" />
+	<property name="tokenNeed" value="N"></property>
+	<property name="authenticator" ref="authenticator"/>
+</bean>
+    
+<!--库存查询 -->
+<bean name="/stoquyQuery.do" class="com.thinkway.cms.presentation.web.controller.stoquy.StoQuyQueryController">
+	<property name="viewName" value="/WEB-INF/jsp/stoquy/stoquy_Query.jsp"/>
+	<property name="permission" value="1000"></property>
+	<property name="tokenNeed" value="N"></property>
+	<property name="userService" ref="userService"></property>
+	<property name="authenticator" ref="authenticator"/>
+</bean>
+
+<bean name="/stoquyList.do" class="com.thinkway.cms.presentation.web.controller.stoquy.StoQuyListController">
+	<property name="viewName" value="/WEB-INF/jsp/stoquy/stoquy_List.jsp"/>
+	<property name="matnrviewName" value="/WEB-INF/jsp/stoquy/stoquy_matnrList.jsp"/>
+	<property name="permission" value="1000"></property>
+	<property name="tokenNeed" value="N"></property>
+	<property name="userService" ref="userService"></property>
+	<property name="authenticator" ref="authenticator"/>
+</bean>
+
+<bean name="/stoquyJson.do" class="org.springframework.web.servlet.mvc.multiaction.MultiActionController">
+	<property name="methodNameResolver" ref="paramResolver"></property>
+	<property name="delegate" ref="stoquyJsonController"></property>
+</bean>
+
+<bean id="stoquyJsonController" class="com.thinkway.cms.presentation.controller.restapi.StoQuyJsonController">
+	<property name="userService" ref="userService"></property>
+	<property name="permission" value="901"></property>
+	<property name="maxUploadSize" value="104857600" />
+	<property name="uploadDir" value="${app.uploadpath}" />
+	<property name="tokenNeed" value="N"></property>
+	<property name="authenticator" ref="authenticator"/>
+</bean>
+
+<!-- 转储单查询 -->
+<bean name="/dumquyQuery.do" class="com.thinkway.cms.presentation.web.controller.dumquy.DumQuyQueryController">
+	<property name="viewName" value="/WEB-INF/jsp/dumquy/dumquy_Query.jsp"/>
+	<property name="permission" value="1000"></property>
+	<property name="tokenNeed" value="N"></property>
+	<property name="userService" ref="userService"></property>
+	<property name="authenticator" ref="authenticator"/>
+</bean>
+
+<bean name="/dumquyView.do" class="com.thinkway.cms.presentation.web.controller.dumquy.DumQuyViewController">
+	<property name="viewName" value="/WEB-INF/jsp/dumquy/dumquy_View.jsp"/>
+	<property name="permission" value="1000"></property>
+	<property name="tokenNeed" value="N"></property>
+	<property name="userService" ref="userService"></property>
+	<property name="authenticator" ref="authenticator"/>
+</bean>
+
+<bean name="/dumquyJson.do" class="org.springframework.web.servlet.mvc.multiaction.MultiActionController">
+	<property name="methodNameResolver" ref="paramResolver"></property>
+	<property name="delegate" ref="dumquyJsonController"></property>
+</bean>
+
+<bean id="dumquyJsonController" class="com.thinkway.cms.presentation.controller.restapi.DumQuyJsonController">
+	<property name="userService" ref="userService"></property>
+	<property name="permission" value="901"></property>
+	<property name="maxUploadSize" value="104857600" />
+	<property name="uploadDir" value="${app.uploadpath}" />
+	<property name="tokenNeed" value="N"></property>
+	<property name="authenticator" ref="authenticator"/>
+</bean>
+
+<!-- 仓位查询-->
+<bean name="/lgpquyQuery.do" class="com.thinkway.cms.presentation.web.controller.lgpquy.LgpQuyQueryController">
+	<property name="viewName" value="/WEB-INF/jsp/lgpquy/lgpquy_Query.jsp"/>
+	<property name="permission" value="1000"></property>
+	<property name="tokenNeed" value="N"></property>
+	<property name="userService" ref="userService"></property>
+	<property name="authenticator" ref="authenticator"/>
+</bean>
+
+<bean name="/lgpquyList.do" class="com.thinkway.cms.presentation.web.controller.lgpquy.LgpQuyListController">
+	<property name="viewName" value="/WEB-INF/jsp/lgpquy/lgpquy_List.jsp"/>
+	<property name="permission" value="1000"></property>
+	<property name="tokenNeed" value="N"></property>
+	<property name="userService" ref="userService"></property>
+	<property name="authenticator" ref="authenticator"/>
+</bean>
+
+<bean name="/lgpquyJson.do" class="org.springframework.web.servlet.mvc.multiaction.MultiActionController">
+	<property name="methodNameResolver" ref="paramResolver"></property>
+	<property name="delegate" ref="lgpquyJsonController"></property>
+</bean>
+
+<bean id="lgpquyJsonController" class="com.thinkway.cms.presentation.controller.restapi.LgpQuyJsonController">
+	<property name="userService" ref="userService"></property>
+	<property name="permission" value="901"></property>
+	<property name="maxUploadSize" value="104857600" />
+	<property name="uploadDir" value="${app.uploadpath}" />
+	<property name="tokenNeed" value="N"></property>
+	<property name="authenticator" ref="authenticator"/>
+</bean>
+
+
+	<!-- 生产订单收货 -->
+	<bean name="/receiptAdd.do" class="com.thinkway.cms.presentation.web.controller.bizinfo.ReceiptAddController">
+		<property name="viewName" value="/WEB-INF/jsp/bizinfo/receipt_add.jsp"/>
+		<property name="permission" value="1000"></property>
+		<property name="tokenNeed" value="N"></property>
+		<property name="userService" ref="userService"></property>
+		<property name="authenticator" ref="authenticator"/>
+	</bean>
+	<bean name="/receiptView.do" class="com.thinkway.cms.presentation.web.controller.bizinfo.ReceiptViewController">
+		<property name="viewName" value="/WEB-INF/jsp/bizinfo/receipt_view.jsp"/>
+		<property name="permission" value="1000"></property>
+		<property name="tokenNeed" value="N"></property>
+		<property name="userService" ref="userService"></property>
+		<property name="authenticator" ref="authenticator"/>
+	</bean>	
+	<bean name="/receiptEdit.do" class="com.thinkway.cms.presentation.web.controller.bizinfo.ReceiptEditController">
+		<property name="viewName" value="/WEB-INF/jsp/bizinfo/receipt_edit.jsp"/>
+		<property name="permission" value="1000"></property>
+		<property name="tokenNeed" value="N"></property>
+		<property name="userService" ref="userService"></property>
+		<property name="authenticator" ref="authenticator"/>
+	</bean>
+	<bean name="/receiptList.do" class="com.thinkway.cms.presentation.web.controller.bizinfo.ReceiptListController">
+		<property name="viewName" value="/WEB-INF/jsp/bizinfo/receipt_list.jsp"/>
+		<property name="permission" value="1000"></property>
+		<property name="tokenNeed" value="N"></property>
+		<property name="userService" ref="userService"></property>
+		<property name="authenticator" ref="authenticator"/>
+	</bean>
+	
+	<bean name="/receiptJson.do" class="org.springframework.web.servlet.mvc.multiaction.MultiActionController">
+		<property name="methodNameResolver" ref="paramResolver"></property>
+		<property name="delegate" ref="ReceiptJsonController"></property>
+	</bean>
+	
+	
+	<bean id="ReceiptJsonController" class="com.thinkway.cms.presentation.controller.restapi.ReceiptJsonController">
+		<property name="userService" ref="userService"></property>
+		<property name="hrminfoService" ref="hrminfoService"></property>
+		<property name="permission" value="901"></property>
+		<property name="maxUploadSize" value="104857600" />
+		<property name="uploadDir" value="${app.uploadpath}" />
+		<property name="tokenNeed" value="N"></property>
+		<property name="authenticator" ref="authenticator"/>
+	</bean>
+	<!-- 上架 -->
+	<bean name="/groundingAdd.do" class="com.thinkway.cms.presentation.web.controller.bizinfo.GroundingAddController">
+		<property name="viewName" value="/WEB-INF/jsp/bizinfo/grounding_add.jsp"/>
+		<property name="permission" value="1000"></property>
+		<property name="tokenNeed" value="N"></property>
+		<property name="userService" ref="userService"></property>
+		<property name="authenticator" ref="authenticator"/>
+	</bean>
+	
+	
+	<bean name="/groundingView.do" class="com.thinkway.cms.presentation.web.controller.bizinfo.GroundingViewController">
+		<property name="viewName" value="/WEB-INF/jsp/bizinfo/grounding_view.jsp"/>
+		<property name="permission" value="1000"></property>
+		<property name="tokenNeed" value="N"></property>
+		<property name="userService" ref="userService"></property>
+		<property name="authenticator" ref="authenticator"/>
+	</bean>
+	<bean name="/groundingEdit.do" class="com.thinkway.cms.presentation.web.controller.bizinfo.GroundingEditController">
+		<property name="viewName" value="/WEB-INF/jsp/bizinfo/grounding_edit.jsp"/>
+		<property name="permission" value="1000"></property>
+		<property name="tokenNeed" value="N"></property>
+		<property name="userService" ref="userService"></property>
+		<property name="authenticator" ref="authenticator"/>
+	</bean>
+	<bean name="/groundingList.do" class="com.thinkway.cms.presentation.web.controller.bizinfo.GroundingListController">
+		<property name="viewName" value="/WEB-INF/jsp/bizinfo/grounding_list.jsp"/>
+		<property name="permission" value="1000"></property>
+		<property name="tokenNeed" value="N"></property>
+		<property name="userService" ref="userService"></property>
+		<property name="authenticator" ref="authenticator"/>
+	</bean>
+	
+
+	<!-- 仓位冻结 -->
+	<bean name="/repertoryAdd.do" class="com.thinkway.cms.presentation.web.controller.bizinfo.RepertoryAddController">
+		<property name="viewName" value="/WEB-INF/jsp/bizinfo/repertory_add.jsp"/>
+		<property name="permission" value="1000"></property>
+		<property name="tokenNeed" value="N"></property>
+		<property name="userService" ref="userService"></property>
+		<property name="authenticator" ref="authenticator"/>
+	</bean>
+	<bean name="/repertoryEdit.do" class="com.thinkway.cms.presentation.web.controller.bizinfo.RepertoryEditController">
+		<property name="viewName" value="/WEB-INF/jsp/bizinfo/repertory_edit.jsp"/>
+		<property name="permission" value="1000"></property>
+		<property name="tokenNeed" value="N"></property>
+		<property name="userService" ref="userService"></property>
+		<property name="authenticator" ref="authenticator"/>
+	</bean>
+	<bean name="/repertoryView.do" class="com.thinkway.cms.presentation.web.controller.bizinfo.RepertoryViewController">
+		<property name="viewName" value="/WEB-INF/jsp/bizinfo/repertory_view.jsp"/>
+		<property name="view" value="/WEB-INF/jsp/bizinfo/repertory_list.jsp"/>
+		<property name="msg" value="/WEB-INF/jsp/bizinfo/repertory_edit.jsp"/>
+		<property name="permission" value="1000"></property>
+		<property name="tokenNeed" value="N"></property>
+		<property name="userService" ref="userService"></property>
+		<property name="authenticator" ref="authenticator"/>
+	</bean>
+	<bean name="/repertoryList.do" class="com.thinkway.cms.presentation.web.controller.bizinfo.RepertoryListController">
+		<property name="viewName" value="/WEB-INF/jsp/bizinfo/repertory_list.jsp"/>
+		<property name="permission" value="1000"></property>
+		<property name="tokenNeed" value="N"></property>
+		<property name="userService" ref="userService"></property>
+		<property name="authenticator" ref="authenticator"/>
+	</bean>
+	<!-- 仓位转移 -->
+	<bean name="/storageMView.do" class="com.thinkway.cms.presentation.web.controller.bizinfo.StorageMViewController">
+		<property name="viewName" value="/WEB-INF/jsp/bizinfo/storageM_view.jsp"/>
+		<property name="permission" value="1000"></property>
+		<property name="tokenNeed" value="N"></property>
+		<property name="userService" ref="userService"></property>
+		<property name="authenticator" ref="authenticator"/>
+	</bean>
+	<bean name="/storageMList.do" class="com.thinkway.cms.presentation.web.controller.bizinfo.StorageMListController">
+		<property name="viewName" value="/WEB-INF/jsp/bizinfo/storageM_list.jsp"/>
+		<property name="permission" value="1000"></property>
+		<property name="tokenNeed" value="N"></property>
+		<property name="userService" ref="userService"></property>
+		<property name="authenticator" ref="authenticator"/>
+	</bean>
+	<bean name="/storageMAdd.do" class="com.thinkway.cms.presentation.web.controller.bizinfo.StorageMAddController">
+		<property name="viewName" value="/WEB-INF/jsp/bizinfo/storageM_add.jsp"/>
+		<property name="permission" value="1000"></property>
+		<property name="tokenNeed" value="N"></property>
+		<property name="userService" ref="userService"></property>
+		<property name="authenticator" ref="authenticator"/>
+	</bean>
+	<bean name="/storageMEdit.do" class="com.thinkway.cms.presentation.web.controller.bizinfo.StorageMEditController">
+		<property name="viewName" value="/WEB-INF/jsp/bizinfo/storageM_edit.jsp"/>
+		<property name="permission" value="1000"></property>
+		<property name="tokenNeed" value="N"></property>
+		<property name="userService" ref="userService"></property>
+		<property name="authenticator" ref="authenticator"/>
+	</bean>
+	<!-- 记账变更 -->
+	<bean name="/lubuView.do" class="com.thinkway.cms.presentation.web.controller.bizinfo.LubuViewController">
+		<property name="viewName" value="/WEB-INF/jsp/bizinfo/lubu_view.jsp"/>
+		<property name="permission" value="1000"></property>
+		<property name="tokenNeed" value="N"></property>
+		<property name="userService" ref="userService"></property>
+		<property name="authenticator" ref="authenticator"/>
+	</bean>
+	<bean name="/lubuList.do" class="com.thinkway.cms.presentation.web.controller.bizinfo.LubuListController">
+		<property name="viewName" value="/WEB-INF/jsp/bizinfo/lubu_list.jsp"/>
+		<property name="permission" value="1000"></property>
+		<property name="tokenNeed" value="N"></property>
+		<property name="userService" ref="userService"></property>
+		<property name="authenticator" ref="authenticator"/>
+	</bean>
+	<bean name="/lubuEdit.do" class="com.thinkway.cms.presentation.web.controller.bizinfo.LubuEditController">
+		<property name="viewName" value="/WEB-INF/jsp/bizinfo/lubu_edit.jsp"/>
+		<property name="permission" value="1000"></property>
+		<property name="tokenNeed" value="N"></property>
+		<property name="userService" ref="userService"></property>
+		<property name="authenticator" ref="authenticator"/>
+	</bean>
+	<bean name="/delOrdPre.do" class="com.thinkway.cms.presentation.web.controller.delordpic.DelOrdPicPreController">
+		<property name="viewName" value="/WEB-INF/jsp/delordpic/delord_pre.jsp"/>
+		<property name="permission" value="1000"></property>
+		<property name="tokenNeed" value="N"></property>
+		<property name="userService" ref="userService"></property>
+		<property name="authenticator" ref="authenticator"/>
+	</bean>
+	
+	<bean name="/dumpView.do" class="com.thinkway.cms.presentation.web.controller.bizinfo.DumpViewController">
+		<property name="viewName" value="/WEB-INF/jsp/bizinfo/dump_view.jsp"/>
+		<property name="permission" value="1000"></property>
+		<property name="tokenNeed" value="N"></property>
+		<property name="userService" ref="userService"></property>
+		<property name="authenticator" ref="authenticator"/>
+	</bean>
+	<bean name="/dumpCheck.do" class="com.thinkway.cms.presentation.web.controller.bizinfo.DumpCheckController">
+		<property name="radio1Name" value="/WEB-INF/jsp/bizinfo/dumpradio1_List.jsp"/>
+		<property name="radio2Name" value="/WEB-INF/jsp/bizinfo/dumpradio2_View.jsp"/>
+		<property name="radio3Name" value="/WEB-INF/jsp/bizinfo/dumpradio3_View.jsp"/>
+		<property name="permission" value="1000"></property>
+		<property name="tokenNeed" value="N"></property>
+		<property name="userService" ref="userService"></property>
+		<property name="authenticator" ref="authenticator"/>
+	</bean>
+	<bean name="/dumpAdd.do" class="com.thinkway.cms.presentation.web.controller.bizinfo.DumpAddController">
+		<property name="viewName" value="/WEB-INF/jsp/bizinfo/dump_Msg.jsp"/>
+		<property name="permission" value="1000"></property>
+		<property name="tokenNeed" value="N"></property>
+		<property name="userService" ref="userService"></property>
+		<property name="authenticator" ref="authenticator"/>
+	</bean>
+	
+	<!-- hrminfo -->
+
+
+<bean name="/hrminfoAdd.do" class="com.thinkway.cms.presentation.web.controller.bizinfo.hrminfoAddController">
+	<property name="viewName" value="/WEB-INF/jsp/bizinfo/hrminfo_add.jsp"/>
+	<property name="permission" value="1001"></property>
+	<property name="tokenNeed" value="N"></property>
+	<property name="hrminfoService" ref="hrminfoService"/>
+	<property name="userService" ref="userService"></property>
+	<property name="authenticator" ref="authenticator"/>
+</bean>
+
+
+<bean name="/hrminfoEdit.do" class="com.thinkway.cms.presentation.web.controller.bizinfo.hrminfoEditController">
+	<property name="viewName" value="/WEB-INF/jsp/bizinfo/hrminfo_edit.jsp"/>
+	<property name="permission" value="1001"></property>
+	<property name="tokenNeed" value="N"></property>
+	<property name="hrminfoService" ref="hrminfoService"/>
+	<property name="userService" ref="userService"></property>
+	<property name="authenticator" ref="authenticator"/>
+</bean>
+<bean name="/hrminfoList.do" class="com.thinkway.cms.presentation.web.controller.bizinfo.hrminfoListController">
+	<property name="viewName" value="/WEB-INF/jsp/bizinfo/hrminfo_list.jsp"/>
+	<property name="permission" value="1001"></property>
+	<property name="tokenNeed" value="N"></property>
+	<property name="hrminfoService" ref="hrminfoService"/>
+	<property name="userService" ref="userService"></property>
+	<property name="authenticator" ref="authenticator"/>
+</bean>
+
+
+<bean name="/hrminfoJson.do" class="org.springframework.web.servlet.mvc.multiaction.MultiActionController">
+	<property name="methodNameResolver" ref="paramResolver"></property>
+	<property name="delegate" ref="hrminfoJsonController"></property>
+</bean>
+
+
+<bean id="hrminfoJsonController" class="com.thinkway.cms.presentation.controller.restapi.hrminfoJsonController">
+	<property name="userService" ref="userService"></property>
+	<property name="hrminfoService" ref="hrminfoService"></property>
+	<property name="permission" value="901"></property>
+	<property name="maxUploadSize" value="104857600" />
+	<property name="uploadDir" value="${app.uploadpath}" />
+	<property name="tokenNeed" value="N"></property>
+	<property name="authenticator" ref="authenticator"/>
+</bean>
+
+<!-- 生产订单冲销（兴瑞） -->
+	<bean name="/reversalAdd.do" class="com.thinkway.cms.presentation.web.controller.bizinfo.ReversalAddController">
+	<property name="viewName" value="/WEB-INF/jsp/bizinfo/reversal_add.jsp"/>
+	<property name="permission" value="1000"></property>
+	<property name="tokenNeed" value="N"></property>
+	<property name="userService" ref="userService"></property>
+	<property name="authenticator" ref="authenticator"/>
+</bean>
+
+<bean name="/reversalCrt.do" class="com.thinkway.cms.presentation.web.controller.bizinfo.ReversalCrtController">
+	<property name="viewName" value="/WEB-INF/jsp/bizinfo/reversal_msg.jsp"/>
+	<property name="permission" value="1000"></property>
+	<property name="tokenNeed" value="N"></property>
+	<property name="userService" ref="userService"></property>
+	<property name="authenticator" ref="authenticator"/>
+</bean>
+
+
+<bean name="/reversalJson.do" class="org.springframework.web.servlet.mvc.multiaction.MultiActionController">
+	<property name="methodNameResolver" ref="paramResolver"></property>
+	<property name="delegate" ref="reversalJsonController"></property>
+</bean>
+
+<bean id="reversalJsonController" class="com.thinkway.cms.presentation.controller.restapi.ReversalJsonController">
+	<property name="userService" ref="userService"></property>
+	<property name="permission" value="901"></property>
+	<property name="maxUploadSize" value="104857600" />
+	<property name="uploadDir" value="${app.uploadpath}" />
+	<property name="tokenNeed" value="N"></property>
+	<property name="authenticator" ref="authenticator"/>
+</bean>
+</beans>
