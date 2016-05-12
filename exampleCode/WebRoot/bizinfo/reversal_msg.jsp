@@ -8,7 +8,7 @@
   <head>
   <LINK href="./css/jiuhui.css" type=text/css rel=STYLESHEET>
     <script language="javascript" src="./js/jiuhui.js"></script>
-    <title>物料凭证创建</title>
+    <title>PO收货冲销</title>
     
 	<meta http-equiv="pragma" content="no-cache">
 	<meta http-equiv="cache-control" content="no-cache">

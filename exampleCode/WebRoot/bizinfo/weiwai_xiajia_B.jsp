@@ -56,21 +56,21 @@ function getcount(){
     				<tr>
     					<td align="center">1</td>
     					<td align="center">A1-1</td>
-    					<td align="center">0000000130</td>
+    					<td align="center">20160507</td>
     					<td align="center">10000</td>
     					<td align="center"><input style="width:35px;heigth:70%;" type="text" id="num1" name="num1"  onchange="getcount()"/></td>
     				</tr>
     				<tr>
     					<td align="center">2</td>
     					<td align="center">A1-2</td>
-    					<td align="center">0000000130</td>
+    					<td align="center">20160507</td>
     					<td align="center">10000</td>
     					<td align="center"><input style="width:35px;heigth:70%;" type="text" id="num2" name="num2" onchange="getcount()" /></td>
     				</tr>
     				<tr>
     					<td align="center">3</td>
     					<td align="center">A1-3</td>
-    					<td align="center">0000000131</td>
+    					<td align="center">20160507</td>
     					<td align="center">5000</td>
     					<td align="center"><input style="width:35px;heigth:70%;" type="text" id="num3" name="num3" onchange="getcount()" /></td>
     				</tr>

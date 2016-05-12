@@ -394,10 +394,10 @@ public class MainServlet extends HttpServlet {
 			dispatcher.forward(request, response);
 		}
 		else if(flag.equals("shengchanB")){
-			String matnr = "C.9.291400";
-			String maktx = "C2沙剂-规格(25kg/桶)";
-			request.getSession().setAttribute("matnr", matnr);
-			request.getSession().setAttribute("maktx", maktx);
+//			String matnr = "C.9.291400";
+//			String maktx = "C2沙剂-规格(25kg/桶)";
+//			request.getSession().setAttribute("matnr", matnr);
+//			request.getSession().setAttribute("maktx", maktx);
 			String batchNO = request.getParameter("batchNO") == null ? "" : request.getParameter("batchNO").trim();
 			if (!batchNO.equals("")) {
 				request.getSession().setAttribute("batchNO", batchNO);
@@ -423,7 +423,7 @@ public class MainServlet extends HttpServlet {
 			if (!batchNO.equals("")) {
 				request.getSession().setAttribute("batchNO", batchNO);
 			}
-			System.out.println("***matnr**"+matnr+"**maktx**"+maktx+"**batchNO**"+batchNO+"**");
+//			System.out.println("***matnr**"+matnr+"**maktx**"+maktx+"**batchNO**"+batchNO+"**");
 			RequestDispatcher dispatcher = request.getRequestDispatcher("/bizinfo/lingliaodan_C.jsp"); 
 			dispatcher.forward(request, response);
 			
