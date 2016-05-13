@@ -70,8 +70,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	  		var batchNo=str[7];//批次号
 	  		//var environmentalFlag=str[8];//环保标识
 	  		//var checkOut=str[9];//检验
-	  		//var produceDate=str[10];//供应商生产日期
-	  		//var produceBatchNo=str[11];//供应商批次号
+	  		var produceDate=str[10];//供应商生产日期
+	  		var produceBatchNo=str[11];//供应商批次号
 	  		$("#aufnr").attr("value",aufnr);
 	  		$("#lineItem").attr("value",lineItem);
 	  		$("#matnr").attr("value",matnr);
@@ -79,6 +79,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	  		$("#lgort").attr("value",storageLocation);
 	  		$("#batchNo").attr("value",batchNo);
 	  		$("#unit").attr("value",unit);
+	  		$("#produceDate").attr("value",produceDate);
+	  		$("#produceBatchNo").attr("value",produceBatchNo);
 	  		
 	  		if(matnr == "C.9.291400"){
 	  			$("#maktx").attr("value","C2沙剂-规格(25kg/桶)");
@@ -175,6 +177,12 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   			</li>
   			<li class="li">
   				批&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;次：<input name="batchNo" class="text" readonly=readonly value="" style="width:80px;background-color:#D8D8D8;"  type="text"  id="batchNo">
+  			</li>
+  			<li class="li">
+  				生产日期：<input name="produceDate" style="height:20px;" readonly=readonly type="text" class="text"  id="produceDate">
+  			</li>
+  			<li class="li">
+  				生产批次：<input name="produceBatchNo" style="height:20px;" readonly=readonly type="text" class="text"  id="produceBatchNo">
   			</li>
   			<li class="li">
   				总&nbsp;数&nbsp; 量：<input name="wemng" value="" type="text" class="text1" id="wemng" >
