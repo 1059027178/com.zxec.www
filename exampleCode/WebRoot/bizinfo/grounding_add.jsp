@@ -169,7 +169,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   				/<input name="boxs" style="width:32px;height:20px;" type="text" value="<%=request.getSession().getAttribute("boxs") == null ? "" : request.getSession().getAttribute("boxs")%>" id="boxs" onblur="acount();">
   			</li>
   			<li class="li">
-  				批&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;次：<input name=batchNo class="text" readonly=readonly value="<%=request.getSession().getAttribute("batchNo") == null ? "" : request.getSession().getAttribute("batchNo")%>" style="width:80px;background-color:#D8D8D8;"  type="text"  id="batchNo">
+  				批&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;次：
+  				<input name="batchNo" readonly=readonly  style="margin-left:-1px;height:20px;background-color:#D8D8D8;"  type="text" class="text" id="batchNo">
   			</li>
   			<li class="li">
   				总&nbsp;数&nbsp; 量：<input name="wemng" readonly=readonly value="<%=request.getSession().getAttribute("wemng") == null ? "" : request.getSession().getAttribute("wemng")%>" type="text" class="text1" id="wemng" >
