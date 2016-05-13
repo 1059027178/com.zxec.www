@@ -10,7 +10,7 @@
 <script src="./js/jquery.js"></script>  
 <script>
 function stoQuy(){
-	document.getElementById("listform").action="MainServlet?flag=shengchanD";
+	document.getElementById("listform").action="MainServlet?flag=shengchanE";
 	document.listform.submit();
 }
 function submit(obj){
@@ -57,7 +57,10 @@ function submit(obj){
 	<form name="listform" id="listform" method="post" >
 		<input name="batchNO" type="hidden" value="<%=batchNO%>" />
 		<input name="matnr" type="hidden" id="matnr" />
-		<input name="num" type="hidden"  id="num" value="<%=httpSession.getAttribute("num") == null ? "" : httpSession.getAttribute("num")%>" />
+		<input name="num1" type="hidden"  id="num1" value="<%=httpSession.getAttribute("num1") == null ? "" : httpSession.getAttribute("num1")%>" />
+		<input name="num2" type="hidden"  id="num2" value="<%=httpSession.getAttribute("num2") == null ? "" : httpSession.getAttribute("num2")%>" />
+		<input name="num3" type="hidden"  id="num3" value="<%=httpSession.getAttribute("num3") == null ? "" : httpSession.getAttribute("num3")%>" />
+		<input name="type" type="hidden" id="type"  value="<%=request.getSession().getAttribute("type") == null ? "" : request.getSession().getAttribute("type")%>"/>
 		<table class="table_list" style="width:100%">
 			<colgroup>
 				<col width="10%" />
@@ -81,7 +84,7 @@ function submit(obj){
 				<td class="td_list">PC</td>
 				<td class="td_list"><%=batchNO %></td>
 				<td class="td_list">20000</td>
-				<td class="td_list" ><%=httpSession.getAttribute("num") == null ? "" : httpSession.getAttribute("num")%>
+				<td class="td_list" ><%=httpSession.getAttribute("num1") == null ? "" : httpSession.getAttribute("num1")%>
 				</td>
 			</tr>
 			<tr class="tr_list_2" style="line-height: 25px;" >
@@ -90,7 +93,7 @@ function submit(obj){
 				<td class="td_list">PC</td>
 				<td class="td_list"><%=batchNO %></td>
 				<td class="td_list">10000</td>
-				<td class="td_list"><%=httpSession.getAttribute("num") == null ? "" : httpSession.getAttribute("num")%>
+				<td class="td_list"><%=httpSession.getAttribute("num2") == null ? "" : httpSession.getAttribute("num2")%>
 				</td>
 			</tr>
 			<tr class="tr_list_2" style="line-height: 25px;">
@@ -99,7 +102,7 @@ function submit(obj){
 				<td class="td_list">PC</td>
 				<td class="td_list"><%=batchNO %></td>
 				<td class="td_list">5000</td>
-				<td class="td_list"><%=httpSession.getAttribute("num") == null ? "" : httpSession.getAttribute("num")%>
+				<td class="td_list"><%=httpSession.getAttribute("num3") == null ? "" : httpSession.getAttribute("num3")%>
 				</td>
 			</tr>
 			<tr>

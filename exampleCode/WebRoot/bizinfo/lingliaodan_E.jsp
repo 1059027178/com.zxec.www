@@ -8,7 +8,7 @@
   <head>
   <LINK href="./css/jiuhui.css" type=text/css rel=STYLESHEET>
     <script language="javascript" src="./js/jiuhui.js"></script>
-    <title>物料凭证创建</title>
+    <title>领料单过账</title>
     
 	<meta http-equiv="pragma" content="no-cache">
 	<meta http-equiv="cache-control" content="no-cache">
@@ -30,22 +30,20 @@
   <body>
   <div>
   <%HttpSession session2 = request.getSession(); %>
-  <form action="MainServlet?flag=3.4" method="post" name="form">
-  	<input name="matnr"  type="hidden" value="<%=request.getSession().getAttribute("matnr") == null ? "" : request.getSession().getAttribute("matnr")%>" />
- 	<input name="num1"  type="hidden" value="<%=session2.getAttribute("num1") == null ? "" : session2.getAttribute("num1")%>" />
- 	<input name="num2"  type="hidden" value="<%=session2.getAttribute("num2") == null ? "" : session2.getAttribute("num2")%>" />
- 	<input name="num3"  type="hidden" value="<%=session2.getAttribute("num3") == null ? "" : session2.getAttribute("num3")%>" />
+  <form name="form" id="form" action="MainServlet?flag=shengchanA" method="post" >
+  	<%String type = request.getSession().getAttribute("type") == null ? "" : request.getSession().getAttribute("type").toString();%>
+  	<input  id="type1" type="hidden" name="type1" value="<%=type%>"/>
  	<ul>
- 		<li class="li" style="margin: 20px 0px 0px 30px;line-height:30px;">
+ 		<li class="li" style="margin: 20px 0px 0px 30px;line-height:20px;">
  				返回消息：
  		</li>
  		<li class="li" style="margin: 0px 0px 0px 30px;line-height:30px;">
+ 			<br>
  			<%=request.getSession().getAttribute("message") == null ? "" : request.getSession().getAttribute("message").toString().trim()%>
-			<%-- <%session2.invalidate(); %> --%>
+			<%session2.invalidate(); request.getSession().invalidate();%>
 		</li>
  		<li class="li" style="margin: 20px 0px 0px 0px;">
- 			<input type="button" onclick="submit1(this);"  style="width:42px;height:25px;" class="button" value="记账变更" />
- 			<input type="button" onclick="window.location.href='MainServlet?flag=shengchanB';"  style="width:40px;height:25px;" class="button" value="继续" />
+ 			<input type="button"  onclick="submit1(this)" style="width:40px;height:25px;" class="button" value="继续" />
  			<input type="button" onclick="forward();"  style="width:40px;height:25px;" class="button" value="返回" />
  			<input type="button"  style="width:40px;height:25px;" onclick="window.location.href='MainServlet?flag=return';" value="首页">
  		</li>
