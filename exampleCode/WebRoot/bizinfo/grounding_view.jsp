@@ -50,23 +50,23 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		    }
 		}); */
 	}
-  	function keyDown() {
-       var keycode = event.keyCode;
-       var realkey = String.fromCharCode(event.keyCode);
-      // alert("按键码: " + keycode + " 字符: " + realkey);
-       if(keycode=='13'){
-       		getNlpla();
-       }
-   }
-   document.onkeydown = keyDown;
-
+	function getLgber(){
+		var nlpla=$("#nlpla").val();
+		//alert(nlpla.substr(0,1));
+		if(nlpla == "" || nlpla == null){
+			alert("请输入仓位号！");return;
+		}else{
+			$("#lgber").attr("value",nlpla.substr(0,1));
+		}
+		
+	}
   function forward(){
   	window.location.href="MainServlet?flag=1.2";
   }
   function submit1(obj){
-  	/* var nlpla=$("#nlpla").val();
+  	var nlpla=$("#nlpla").val();
 	var lgber=$("#lgber").val();
-	var lgtyp=$("#lgtyp").val();
+	//var lgtyp=$("#lgtyp").val();
 	if(nlpla=='' || nlpla==null){
 		alert("请输入仓位号！");
 		return;
@@ -75,7 +75,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		alert("请输入存储区！");
 		return;
 	}
-	if(lgtyp=='' || lgtyp==null){
+	/* if(lgtyp=='' || lgtyp==null){
 		alert("请输入存储类型！");
 		return;
 	} */
@@ -89,7 +89,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	<input name="matnr" type="hidden" value="<%=request.getSession().getAttribute("matnr") == null ? "" : request.getParameter("matnr").trim()%>"/>
      <ul>
      	<li class="li" style="margin:20px 0px 0px 0px;">
-     	上架仓位：<input name="nlpla" class="text" style="background-color:white;" onchange="getNlpla()" type="text"  id="nlpla" value="A1-1">
+     	上架仓位：<input name="nlpla" class="text" style="background-color:white;" onchange="getLgber()" type="text"  id="nlpla" value="A1-1">
      	</li>
 		<li class="li" style="margin:20px 0px 0px 0px;">
 		存 储 区：&nbsp;<input name="lgber" class="text" style="background-color:#D8D8D8;" readonly= readonly type="text"  id="lgber" value="A1"/> 
