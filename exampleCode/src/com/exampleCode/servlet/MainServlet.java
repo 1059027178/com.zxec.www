@@ -406,7 +406,7 @@ public class MainServlet extends HttpServlet {
 			dispatcher.forward(request, response);
 			
 		}else if(flag.equals("shengchanC")){
-			String matnr = request.getParameter("matnr") == null ? "" : request.getParameter("matnr").trim();
+			String matnr = request.getParameter("matnr") == null ? "" : request.getParameter("matnr");
 			String maktx = null;
 			if (matnr.equals("C.9.291400")) {
 				maktx = "C2沙剂-规格(25kg/桶)";
@@ -423,7 +423,7 @@ public class MainServlet extends HttpServlet {
 			if (!batchNO.equals("")) {
 				request.getSession().setAttribute("batchNO", batchNO);
 			}
-//			System.out.println("***matnr**"+matnr+"**maktx**"+maktx+"**batchNO**"+batchNO+"**");
+			System.out.println("***matnr**"+matnr+"**maktx**"+maktx+"**batchNO**"+batchNO+"**");
 			RequestDispatcher dispatcher = request.getRequestDispatcher("/bizinfo/lingliaodan_C.jsp"); 
 			dispatcher.forward(request, response);
 			
@@ -433,7 +433,9 @@ public class MainServlet extends HttpServlet {
 			System.out.println("***领料单领取数量：num："+num);
 			HttpSession session = request.getSession();
 			String message = null;
-			if (!num.equals("")) {
+			//String num2 = session.getAttribute("num") == null ? "" : request.getParameter("num").toString();
+			
+			if (!num.equals("") ) {
 				session.setAttribute("num", num);
 				message = "转储单创建成功！";
 			}else {

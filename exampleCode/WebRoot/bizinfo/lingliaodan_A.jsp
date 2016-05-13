@@ -43,6 +43,11 @@ String strDate = dateFormat.format(date);
   		}
   	}
 </script>
+<style>
+	a:link{
+		text-decoration:none;
+	}
+</style>
   <head>
   <LINK href="./css/jiuhui.css" type=text/css rel=STYLESHEET>
     <title><%=request.getSession().getAttribute("type")%></title>
@@ -64,25 +69,25 @@ String strDate = dateFormat.format(date);
 	   	 				<td align="center">ÐòºÅ</td>
 	   	 				<td align="center"><%=request.getSession().getAttribute("type") == null ? "" : request.getSession().getAttribute("type")%></td>
 	   	 			</tr>
-	   	 			<tr onclick="query(1);" >
+	   	 			<tr style="line-height: 20px;" >
 	   	 				<td align="center" >1</td>
-	   	 				<td align="center">0000000130</td>
+	   	 				<td align="center"><a href="javascript:query(1);">0000000130</a></td>
 	   	 			</tr>
-	   	 			<tr onclick="query(2);">																
+	   	 			<tr style="line-height: 20px;" >																
 	   	 				<td align="center">2</td>
-	   	 				<td align="center">0000000131</td>
+	   	 				<td align="center"><a href="javascript:query(2);">0000000131</a></td>
 	   	 			</tr>
-	   	 			<tr onclick="query(3);">																
+	   	 			<tr style="line-height: 20px;" >																
 	   	 				<td align="center">3</td>
-	   	 				<td align="center">0000000140</td>
+	   	 				<td align="center"><a href="javascript:query(3);">0000000140</a></td>
 	   	 			</tr>
-	   	 			<tr onclick="query(4);">																
+	   	 			<tr style="line-height: 20px;" >																
 	   	 				<td align="center">4</td>
-	   	 				<td align="center">0000000141</td>
+	   	 				<td align="center"><a href="javascript:query(4);">0000000141</a></td>
 	   	 			</tr>
-	   	 			<tr onclick="query(5);">																
+	   	 			<tr style="line-height: 20px;" >																
 	   	 				<td align="center">5</td>
-	   	 				<td align="center">0000000143</td>
+	   	 				<td align="center"><a href="javascript:query(5);">0000000143</a></td>
 	   	 			</tr>
 	   	 		</table>
 			</li>

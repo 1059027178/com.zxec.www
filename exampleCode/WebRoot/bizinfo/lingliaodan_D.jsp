@@ -41,7 +41,7 @@
  			物料编号为<%=request.getSession().getAttribute("matnr") == null ? "" : request.getSession().getAttribute("matnr")%>
  			<br>
  			<%=request.getSession().getAttribute("message") == null ? "" : request.getSession().getAttribute("message").toString().trim()%>
-			
+			<%-- <%session2.invalidate(); %> --%>
 		</li>
  		<li class="li" style="margin: 20px 0px 0px 0px;">
  			<input type="button" onclick="submit1(this);"  style="width:42px;height:25px;" class="button" value="记账变更" />

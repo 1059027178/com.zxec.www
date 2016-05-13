@@ -10,9 +10,11 @@
 <script src="./js/jquery.js"></script>  
 <script>
 function stoQuy(){
-	window.location.href="MainServlet?flag=shengchanD";
+	document.getElementById("listform").action="MainServlet?flag=shengchanD";
+	document.listform.submit();
 }
 function submit(obj){
+	//alert("11111");return;
 	if(obj == 1){
 		$("#matnr").attr("value","C.9.291400");
 	}
@@ -25,9 +27,17 @@ function submit(obj){
 		
 	}
 	var matnr = $("#matnr").val();
-	//alert(matnr);
+	//alert(matnr);return;
+	document.getElementById("listform").action="MainServlet?flag=shengchanC";
 	document.listform.submit();
 }
+
+/* $(function(){
+	$('tr').click(function(){
+	submit(obj);
+	//这里写单击tr执行的操作
+	});
+}); */
 </script>
 <style type="text/css">
     body {
@@ -41,11 +51,13 @@ function submit(obj){
   </style>
 </HEAD>
 <BODY>
+<%HttpSession httpSession = request.getSession(); %>
 <% String batchNO = request.getSession().getAttribute("batchNO") == null ? "" : request.getSession().getAttribute("batchNO").toString(); %>
 <div class="div" >
-	<form name="listform" id="listform" method="post" action="MainServlet?flag=shengchanC">
+	<form name="listform" id="listform" method="post" >
 		<input name="batchNO" type="hidden" value="<%=batchNO%>" />
 		<input name="matnr" type="hidden" id="matnr" />
+		<input name="num" type="hidden"  id="num" value="<%=httpSession.getAttribute("num") == null ? "" : httpSession.getAttribute("num")%>" />
 		<table class="table_list" style="width:100%">
 			<colgroup>
 				<col width="10%" />
@@ -63,27 +75,27 @@ function submit(obj){
 				<td class="td_list">数量</td>
 				<td class="td_list">已拣配</td>
 			</tr>
-			<tr class="tr_list_2" style="line-height: 20px;" onclick="submit(1)">
+			<tr class="tr_list_2" style="line-height: 25px;" >
 				<td class="td_list">1</td>
-				<td class="td_list">C.9.291400</td>
+				<td class="td_list"><a href="javascript:submit(1);">C.9.291400</a></td>
 				<td class="td_list">PC</td>
 				<td class="td_list"><%=batchNO %></td>
 				<td class="td_list">20000</td>
-				<%HttpSession httpSession = request.getSession(); %>
-				<td class="td_list"><%=httpSession.getAttribute("num") == null ? "" : httpSession.getAttribute("num")%></td>
+				<td class="td_list" ><%=httpSession.getAttribute("num") == null ? "" : httpSession.getAttribute("num")%>
+				</td>
 			</tr>
-			<tr class="tr_list_2" style="line-height: 20px;" onclick="submit(2)">
+			<tr class="tr_list_2" style="line-height: 25px;" >
 				<td class="td_list">2</td>
-				<td class="td_list">C.9.291470</td>
+				<td class="td_list"><a href="javascript:submit(2);">C.9.291470</a></td>
 				<td class="td_list">PC</td>
 				<td class="td_list"><%=batchNO %></td>
 				<td class="td_list">10000</td>
 				<td class="td_list"><%=httpSession.getAttribute("num") == null ? "" : httpSession.getAttribute("num")%>
 				</td>
 			</tr>
-			<tr class="tr_list_2" style="line-height: 20px;" onclick="submit(3)">
+			<tr class="tr_list_2" style="line-height: 25px;">
 				<td class="td_list">3</td>
-				<td class="td_list">C.6.040601</td>
+				<td class="td_list"><a href="javascript:submit(3);">C.6.040601</a></td>
 				<td class="td_list">PC</td>
 				<td class="td_list"><%=batchNO %></td>
 				<td class="td_list">5000</td>
