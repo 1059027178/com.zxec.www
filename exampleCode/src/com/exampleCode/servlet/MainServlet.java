@@ -2,6 +2,8 @@ package com.exampleCode.servlet;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -9,6 +11,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+
+import com.exampleCode.make.SelectDAO;
+import com.exampleCode.model.PositionsInfo;
 
 public class MainServlet extends HttpServlet {
 
@@ -590,6 +595,26 @@ public class MainServlet extends HttpServlet {
 		}
 		/*记账变更*/
 		/***仓库作业***/
+		/***查询***/
+		/*物料查询*/
+		else if(flag.equals("selectWuLiao")){
+			System.out.println("***物料查询操作开始***");
+			String matnr = request.getParameter("matnr") == null ? "" : request.getParameter("matnr").trim();//物料编码
+			String lgort = request.getParameter("lgort") == null ? "" : request.getParameter("lgort").trim();//库存地点
+			String charg = request.getParameter("charg") == null ? "" : request.getParameter("charg").trim();//批次
+			System.out.println("***物料查询：matnr="+matnr);
+			System.out.println("***物料查询：lgort="+lgort);
+			System.out.println("***物料查询：charg="+charg);
+			List<PositionsInfo>  resultList = new SelectDAO().selectWuLiaoInfo(matnr, lgort, charg,"");
+			request.setAttribute("resultList", resultList);
+			
+			RequestDispatcher dispatcher = request.getRequestDispatcher("/selectlist/item_query_list.jsp"); 
+			dispatcher.forward(request, response);
+			
+			System.out.println("***物料查询操作结束***");
+		}
+		/*物料查询*/
+		/***查询***/
 		
 		
 		/*退出，返回-首页,修改密码*/
