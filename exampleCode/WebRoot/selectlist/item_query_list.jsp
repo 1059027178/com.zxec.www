@@ -57,13 +57,16 @@ document.onkeydown = keyDown;
   			</td>
   		</tr>
   		<%}else{ %>
-  		<tr>
-    		<td align="center">序号</td>
-    		<td align="center">仓位</td>
-    		<td align="center">批次</td>
-    		<td align="center">仓位数量</td>
-    		<td align="center">选择数量</td>
-    	</tr>
+  		<tr bordercolor="#000000" class="tr_list_1">
+    		<td class="td_list">序号</td>
+			<td class="td_list">仓位</td>
+    		<td class="td_list">批次</td>
+		</tr>
+		<tr bordercolor="#000000" class="tr_list_1">
+			<td class="td_list" >库存地点</td>
+			<td class="td_list">数量</td>
+			<td class="td_list">单位</td>
+		</tr>
   		<%for(int i = 0; i > list.size(); i++){ 
   			PositionsInfo info = new PositionsInfo();
   			info = (PositionsInfo)list.get(i);
