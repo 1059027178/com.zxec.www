@@ -31,10 +31,11 @@ function matQuy(){
    		var saomiao=document.getElementById("saomiao").value;
    		var str=saomiao.split("/");
 		if(saomiao.length!=0){
-		 	document.getElementById("matnr").value=str[1];
-		 	document.getElementById("lgort").value=str[7];
-		 	document.getElementById("charg").value=str[4];
-		 	jQuery.ajax({
+		 	document.getElementById("matnr").value=str[3];
+		 	document.getElementById("lgort").value=str[6];
+		 	document.getElementById("charg").value=str[7];
+		 	document.getElementById("werks").value="3100";
+		 	/* jQuery.ajax({
 				url:'/matquyJson.do',
 		 		async:false,
 		 		type:"post",
@@ -46,7 +47,7 @@ function matQuy(){
 		        error:function(){       
 			       alert("系统异常，请联系管理员");
 			    }
-			});
+			}); */
 		 	//document.getElementById("saomiao").value="";
 		}
    }
@@ -55,6 +56,7 @@ function matQuy(){
   		document.getElementById("lgort").value="";
   		document.getElementById("charg").value="";
   		document.getElementById("werks").value="";
+  		document.getElementById("saomiao").value="";
   }
   	function keyDown() {
        var keycode = event.keyCode;
@@ -85,30 +87,30 @@ function matQuy(){
   </head>
   
   <body>
-    <form name="jiuhui"  id="jiuhui" action="/matquyList.do">
+    <form name="jiuhui"  id="jiuhui" action="MainServlet?flag=selectWuLiao" method = "post">
         <div class="div" style=" padding-top: 50px;">
     	<ul>
     		<li class="li">
     			<input style="width:70%;heigth=20%" type="text" id="saomiao" onchange="js()" name="saomiao"  value=""/>
     		</li>
     		<li class="li">
-    			物料编码：<input  type="text" class="text" style="width:90px;background-color:white;" id="matnr" name="matnr"  value=""/>
+    			物料编码：<input  type="text" class="text" style="width:103px;background-color:white;" id="matnr" name="matnr"  value=""/>
     		</li>
     		<li class="li">
-    			库存地点：<input  type="text" class="text" style="width:90px;background-color:white;" id="lgort" name="lgort"  value=""/>
+    			库存地点：<input  type="text" class="text" style="width:103px;background-color:white;" id="lgort" name="lgort"  value=""/>
     		</li>
     		<li class="li">
-    			批  &nbsp;&nbsp; 次：<input  type="text" class="text" style="width:90px;background-color:white;" id="charg" name="charg"  value=""/>
+    			批<span style="width: 20px;"></span>次：<input  type="text" class="text" style="width:103px;background-color:white;" id="charg" name="charg"  value=""/>
     		</li>
     		<li class="li">
-    		工  &nbsp;&nbsp; 厂：<input  type="text" class="text" id="werks" style="width:90px;background-color:white;" name="werks"  value=""/></td>
+    		工<span style="width: 20px;"></span>厂：<input  type="text" class="text" id="werks" style="width:103px;background-color:white;" name="werks"  value=""/>
     		</li>
     <li class="li"></li>
      <li class="li">
     				<input  class="button"  type="button"  style="width:20%" onclick="matQuy()" value="查询">
     				<input  class="button"  type="button" style="width:20%"  onclick="reset();" value="重置">
-    				<input  class="button"  type="button" style="width:20%" onclick="window.location.href='MainServlet?flag=4';" value="返回"></td>
-    				 <input  class=button type="button" style="width:20%" onclick="window.location.href='MainServlet?flag=return';" value="首页">
+    				<input  class="button"  type="button" style="width:20%" onclick="window.location.href='MainServlet?flag=4';" value="返回">
+    				<input  class=button type="button" style="width:20%" onclick="window.location.href='MainServlet?flag=return';" value="首页">
  		</li>
     	</ul>
     	</div>

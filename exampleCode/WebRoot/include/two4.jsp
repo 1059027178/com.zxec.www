@@ -58,7 +58,7 @@
     	<input  class=button type="button" style="width:200px" onclick="window.location.href='MainServlet?flag=4.2';" value="4.2 仓位查询" />
      </td>
     </tr>
-    <tr>
+   <!--  <tr>
     <td>
     	<input  class=button type="button" style="width:200px" onclick="window.location.href='MainServlet?flag=4.3';" value="4.3 库存查询" />
      </td>
@@ -67,7 +67,7 @@
     <td>
     	<input  class=button type="button" style="width:200px" onclick="window.location.href='MainServlet?flag=4.4';" value="4.4 转储单查询" />
     </td>
-    </tr>
+    </tr> -->
     <tr>
     <td>
     	<input  class=button type="button" style="width:95px;heigth:20px" onclick="window.location.href='MainServlet?flag=exit';" value="退出" />
