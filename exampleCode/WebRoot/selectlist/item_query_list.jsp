@@ -67,11 +67,40 @@ $(function(){
 		//每页的显示的列表项数目
 		var items_per_page = 4;
 		var max_elem = Math.min((page_index+1) * items_per_page, length);
-		$("#Searchresult").html("");//必须要有
+		$("#main").html("");//必须要有
 		// 获取加载元素
 		for(var i = page_index * items_per_page ; i < max_elem ; i++){
 			/* $("#Searchresult").append($("#hiddenresult .show:eq("+i+")").clone()); */
-			$("#Searchresult").append($("#hiddenresult:eq("+i+")").clone());
+			$("#tempnum").Attr("value",i);
+			
+			<% 
+				int i = Integer.getInteger(request.getParameter("tempnum")) == null ? 0 : Integer.getInteger(request.getParameter("tempnum"));
+				System.out.println("**********"+i);
+				PositionsInfo info = (PositionsInfo)list.get(i);
+			%>
+			<%-- var html = 
+			"<tr class="tr_list_2" >"+
+				"<td class="td_list" ><%=s + 1 %></td>"+
+				"<td class="td_list"><%=info.getLiteraNO() %></td>"+
+				"<td class="td_list"><%=info.getBatchNO() %></td>"+
+			"</tr>"+
+			"<tr class="tr_list_2" >"+
+				"<td class="td_list"><%=info.getStorageLocation() %></td>"+
+				"<td class="td_list"><%=info.getNumber() %></td>"+
+				"<td class="td_list"><%=info.getUnit() %></td>"+
+			"</tr>"; --%>
+			var html = 
+			"<tr class='tr_list_2' >"+
+				"<td class='td_list' ><%=i+1%></td>"+
+				"<td class='td_list'><%=info.getLiteraNO() %></td>"+
+				"<td class='td_list'><%=info.getBatchNO() %></td>"+
+			"</tr>"+
+			"<tr class='tr_list_2' >"+
+				"<td class='td_list'><%=info.getStorageLocation() %></td>"+
+				"<td class='td_list'><%=info.getNumber() %></td>"+
+				"<td class='td_list'><%=info.getUnit() %></td>"+
+			"</tr>";
+			$("#main").html(html);
 		}
 		//阻止单击事件
 		return false;	
@@ -100,8 +129,9 @@ $(function(){
 	</script>
 </div>
 <!-- 分页测试 -->
+<input type="hidden" id="tempnum" name= "tempnum"/>
 <div class="div" style="margin-top:60px;">
-  <form action="MainServlet?flag=2.4"  method ="post">
+  <form action="MainServlet?flag=2.4"  method ="post" name="submit">
 	<%-- <input type="hidden" name="matnr" id="matnr"  value="<%=request.getSession().getAttribute("matnr1") %>"/>
   	<input type="hidden" name="batchNo" id="batchNo"  value="<%=request.getSession().getAttribute("batchNo") %>"/> --%>
   	<table class="table_list" style="margin: 0px 0px 0px 20px;line-height:20px;" id="tableList">
@@ -132,8 +162,8 @@ $(function(){
 			<td class="td_list">数量</td>
 			<td class="td_list">单位</td>
 		</tr>
-		<tbody id="group_one">
-		<%for(int i = 0 ; i < list.size() ; i++){
+		<tbody id="main" >
+		<%-- <%for(int i = 0 ; i < list.size() ; i++){
 			PositionsInfo info = (PositionsInfo)list.get(i);
 		%>
 		<tr class="tr_list_2" >
@@ -146,7 +176,7 @@ $(function(){
 			<td class="td_list"><%=info.getNumber() %></td>
 			<td class="td_list"><%=info.getUnit() %></td>
 		</tr>
-		<%}%>
+		<%}%> --%>
 		</tbody>					
   		<tr>
   			<td  colspan="6">
