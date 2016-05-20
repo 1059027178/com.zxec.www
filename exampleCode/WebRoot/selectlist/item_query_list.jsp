@@ -67,23 +67,11 @@ $(function(){
 		//每页的显示的列表项数目
 		var items_per_page = 4;
 		var max_elem = Math.min((page_index+1) * items_per_page, length);
-		$("#tr_list_1").html("");//必须要有
+		$("#Searchresult").html("");//必须要有
 		// 获取加载元素
 		for(var i = page_index * items_per_page ; i < max_elem ; i++){
-			<%int index = 0;%>
-			<%=index%> = i;
-			<% PositionsInfo info = (PositionsInfo)list.get(index);%>
-			var html = "<tr class='tr_list_2' >"+
-							"<td class='td_list'><%=index + 1 %></td>"+
-							"<td class='td_list'><%=info.getLiteraNO() %></td>"+
-							"<td class='td_list'><%=info.getBatchNO() %></td>"+
-						"</tr>"+
-						"<tr class='tr_list_2' >"+
-							"<td class='td_list' ><%=info.getStorageLocation() %></td>"+
-							"<td class='td_list"><%=info.getNumber() %></td>"+
-							"<td class='td_list'><%=info.getUnit() %></td>"+
-						"</tr>";
-			$("#tr_list_1").append(html);
+			/* $("#Searchresult").append($("#hiddenresult .show:eq("+i+")").clone()); */
+			$("#Searchresult").append($("#hiddenresult:eq("+i+")").clone());
 		}
 		//阻止单击事件
 		return false;	
@@ -116,7 +104,7 @@ $(function(){
   <form action="MainServlet?flag=2.4"  method ="post">
 	<%-- <input type="hidden" name="matnr" id="matnr"  value="<%=request.getSession().getAttribute("matnr1") %>"/>
   	<input type="hidden" name="batchNo" id="batchNo"  value="<%=request.getSession().getAttribute("batchNo") %>"/> --%>
-  	<table class="table_list" style="margin: 0px 0px 0px 20px;line-height:20px;">
+  	<table class="table_list" style="margin: 0px 0px 0px 20px;line-height:20px;" id="tableList">
   		<colgroup>
 			<col width="15%"/>
 			<col width="20%"/>
@@ -144,16 +132,27 @@ $(function(){
 			<td class="td_list">数量</td>
 			<td class="td_list">单位</td>
 		</tr>
-		<tbody id="tr_list_1"></tbody>
-		<%-- <%for(int i = 0 ; i < list.size() ; i++){%>
+		<tbody id="group_one">
+		<%for(int i = 0 ; i < list.size() ; i++){
+			PositionsInfo info = (PositionsInfo)list.get(i);
+		%>
 		<tr class="tr_list_2" >
-			
+			<td class="td_list" ><%=i + 1 %></td>
+			<td class="td_list"><%=info.getLiteraNO() %></td>
+			<td class="td_list"><%=info.getBatchNO() %></td>
 		</tr>
-		<%}%> --%>
+		<tr class="tr_list_2" >
+			<td class="td_list"><%=info.getStorageLocation() %></td>
+			<td class="td_list"><%=info.getNumber() %></td>
+			<td class="td_list"><%=info.getUnit() %></td>
+		</tr>
+		<%}%>
+		</tbody>					
   		<tr>
   			<td  colspan="6">
-  				<input name="fanye" class="button" type="button" style="width:40px;height:20px;" onclick="lastPage()" value="上一页"/>
-  				<input name="fanye" class="button" type="button" style="width:40px;height:20px;" onclick="nextPage()" value="下一页"/>
+  				<input name="fanye" class="button" type="button" style="width:40px;height:20px;" onclick="page.prePage();" value="上一页"/>
+  				<input name="fanye" class="button" type="button" style="width:40px;height:20px;" onclick="page.nextPage();" value="下一页"/>
+  				
   				<input class="button" type="button" style="width:40px;height:20px"  onclick="turnon();" value="返回" />
   				<!-- <input type="button" class="button" style="width:40px;height:20px" onclick="window.location.href='MainServlet?flag=return';" value="首页"/> -->
   			</td>
