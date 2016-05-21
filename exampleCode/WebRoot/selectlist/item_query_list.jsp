@@ -20,7 +20,6 @@
 <style type="text/css">
     body {
       padding-top: 40px;
-      padding-bottom: 0px;
     }
     .sidebar-nav {
       padding: 0;
@@ -44,14 +43,21 @@ function keyDown() {
        }
 }
 document.onkeydown = keyDown;	
-//-------------------------------分页
+</script>
+<!----------------分页----------------->
+<script type="text/javascript">
 $(function(){
 	//总数目
 	var length = <%=list.size()%>;
-	//从表单获取分页元素参数
+	//设置分页元素参数
 	var optInit = getOptionsFromForm();
 	$("#Pagination").pagination(length, optInit);
 	
+	$(function(){
+		var opt = getOptionsFromForm();
+		// 重新创建分页参数
+		$("#Pagination").pagination(length, opt);
+	});
 	//-----------------------------------
 	function getOptionsFromForm(){
 		var opt = {callback: pageselectCallback}; //回调函数：默认无执行效果
@@ -64,32 +70,16 @@ $(function(){
 	}
 	//-------------------------------
 	function pageselectCallback(page_index , jq){
-		//每页的显示的列表项数目
-		var items_per_page = 4;
+	
+		var items_per_page = 4;//每页的显示的列表项数目
+		
 		var max_elem = Math.min((page_index+1) * items_per_page, length);
-		$("#SearchMain").html("");//必须要有
+		
+		$(".tbody").hide();
 		// 获取加载元素
-		for(var i = page_index * items_per_page ; i < max_elem ; i++){
-			/* $("#Searchresult").append($("#hiddenresult .show:eq("+i+")").clone()); */
-			$("#SearchMain").append($("#hiddenMain:eq("+i+")").clone());
-			<%-- $("#tempnum").Attr("value",i);
-			<% 
-				int i = Integer.getInteger(request.getParameter("tempnum")) == null ? 0 : Integer.getInteger(request.getParameter("tempnum"));
-				System.out.println("**********"+i);
-				PositionsInfo info = (PositionsInfo)list.get(i);
-			%>
-			var html = 
-			"<tr class='tr_list_2' >"+
-				"<td class='td_list' ><%=i+1%></td>"+
-				"<td class='td_list'><%=info.getLiteraNO() %></td>"+
-				"<td class='td_list'><%=info.getBatchNO() %></td>"+
-			"</tr>"+
-			"<tr class='tr_list_2' >"+
-				"<td class='td_list'><%=info.getStorageLocation() %></td>"+
-				"<td class='td_list'><%=info.getNumber() %></td>"+
-				"<td class='td_list'><%=info.getUnit() %></td>"+
-			"</tr>";
-			$("#main").html(html); --%>
+		for(var i=page_index*items_per_page;i<max_elem;i++){
+		
+			$(".tbody:eq("+i+")").show();
 		}
 		//阻止单击事件
 		return false;	
@@ -98,39 +88,18 @@ $(function(){
 </script>
 </HEAD>
 <BODY>
-<!-- 分页测试 -->
-<div id="Pagination" class="pagination" style="left: 50px;line-height: 20px;font-size: 12px;position:static;"><!-- 这里显示分页 --></div>
-
-<div id="Searchresult">分页初始化完成后这里的内容会被替换。</div>
-<div id="hiddenresult" style="display:none;">
-	<!-- 列表元素 -->
-    <script type="text/javascript">
-		var html = "";
-		for(var i=1; i<101; i+=1){
-			html += 
-			'<dl class="show">'+
-				'<dt><strong>这是标题'+i+'</strong></dt>'+
-				'<dd>这是标题'+i+'下的内容1</dd>'+
-				'<dd>这是标题'+i+'下的内容2</dd>'+
-			'</dl>';	
-		}
-		document.getElementById("hiddenresult").innerHTML = html;
-	</script>
-</div>
-<!-- 分页测试 -->
-<input type="hidden" id="tempnum" name= "tempnum"/>
 <div class="div" style="margin-top:60px;">
-  <form action="MainServlet?flag=2.4"  method ="post" name="submit">
+  <form action="MainServlet?flag=2.4"  method ="post" >
 	<%-- <input type="hidden" name="matnr" id="matnr"  value="<%=request.getSession().getAttribute("matnr1") %>"/>
   	<input type="hidden" name="batchNo" id="batchNo"  value="<%=request.getSession().getAttribute("batchNo") %>"/> --%>
-  	<table class="table_list" style="margin: 0px 0px 0px 20px;line-height:20px;" id="tableList">
+  	<table class="table_list" style="margin: 0px 0px 0px 20px;line-height:20px;" >
   		<colgroup>
-			<col width="15%"/>
 			<col width="20%"/>
-			<col width="15%"/>
-			<col width="15%"/>
 			<col width="20%"/>
-			<col width="15%"/>
+			<col width="20%"/>
+			<col width="20%"/>
+			<col width="20%"/>
+			<col width="20%"/>
 		</colgroup>
 		<thead>
   		<%if(list == null || list.size() == 0 ) {%>
@@ -142,40 +111,40 @@ $(function(){
   			</td>
   		</tr>
   		<%}else{ %>
-  		<tr bordercolor="#000000" class="tr_list_1" >
+  		<tr bordercolor="#000000" class="tr_list_1" align="center">
     		<td class="td_list">序号</td>
 			<td class="td_list">仓位</td>
     		<td class="td_list">批次</td>
 		</tr>
-		<tr bordercolor="#000000" class="tr_list_1" >
+		<tr bordercolor="#000000" class="tr_list_1" align="center">
 			<td class="td_list" >库存地点</td>
 			<td class="td_list">数量</td>
 			<td class="td_list">单位</td>
 		</tr>
 		</thead>
-		<tr id="SearchMain"></tr>
-		<tbody id="hiddenMain"  style="display: none;">
-		<%for(int i = 0 ; i < list.size() ; i++){
+		<%
+			for(int i = 0 ; i < list.size() ; i++){
 			PositionsInfo info = (PositionsInfo)list.get(i);
 		%>
-		<tr class="tr_list_2" >
+		<tbody class="tbody" style="display: none;">
+		<tr class="tr_list_2"  align="center">
 			<td class="td_list" ><%=i + 1 %></td>
 			<td class="td_list"><%=info.getLiteraNO() %></td>
 			<td class="td_list"><%=info.getBatchNO() %></td>
 		</tr>
-		<tr class="tr_list_2" >
+		<tr class="tr_list_2" align="center">
 			<td class="td_list"><%=info.getStorageLocation() %></td>
 			<td class="td_list"><%=info.getNumber() %></td>
 			<td class="td_list"><%=info.getUnit() %></td>
 		</tr>
+		</tbody>
 		<%}%>
-		</tbody>					
   		<tr>
-  			<td  colspan="6">
-  				<input name="fanye" class="button" type="button" style="width:40px;height:20px;" onclick="page.prePage();" value="上一页"/>
-  				<input name="fanye" class="button" type="button" style="width:40px;height:20px;" onclick="page.nextPage();" value="下一页"/>
+  			<td colspan="1"></td>
+  			<td  colspan="2">
+  				<div id="Pagination" class="pagination" style="line-height: 15px;font-size:12px;"><!-- 这里显示分页 --></div>
   				
-  				<input class="button" type="button" style="width:40px;height:20px"  onclick="turnon();" value="返回" />
+  				<input class="button" type="button" style="width:40px;height:23px"  onclick="turnon();" value="返回" />
   				<!-- <input type="button" class="button" style="width:40px;height:20px" onclick="window.location.href='MainServlet?flag=return';" value="首页"/> -->
   			</td>
   		</tr>
