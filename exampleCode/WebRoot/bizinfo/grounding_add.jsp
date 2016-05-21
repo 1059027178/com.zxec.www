@@ -154,8 +154,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   <input type="hidden" name="lineItem" id="lineItem"  value="<%=request.getSession().getAttribute("lineItem") %>" />
   	<div>
   		<ul>
-  			<li style="height:15px;list-style-type:none;">
-  				<input name="str" type="text" style="width:70%;height:20px;"  id="str" onchange="js()">
+  			<li style="height:15px;list-style-type:none;padding:0; margin:0;}">
+  				<input name="str" style="height:20px;" type="text" style="white-space:nowrap;width:80%;"  id="str" onchange="js()">
   			</li>
   			<li class="li">
   				物料编码：<input name="matnr" class="text"  readonly=readonly type="text" id="matnr" value="<%=request.getSession().getAttribute("matnr") == null ? "" : request.getSession().getAttribute("matnr")%>">
@@ -166,11 +166,11 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   			<!-- <li class="li">尾箱标识：<input type="checkbox" onclick="choose1();" id="bs" style="width:20px;height:20px;" name="bs"></li> -->
   			<li class="li">
   				箱数量/箱数：<input name="everyBagNumber" readonly=readonly style="width:50px;background-color:#D8D8D8;height:20px;"  type="text"  id="everyBagNumber" value="<%=request.getSession().getAttribute("everyBagNumber") == null ? "" : request.getSession().getAttribute("everyBagNumber")%>">
-  				/<input name="boxs" style="width:32px;height:20px;" type="text" value="<%=request.getSession().getAttribute("boxs") == null ? "" : request.getSession().getAttribute("boxs")%>" id="boxs" onblur="acount();">
+  				/<input name="boxs" style="width:25px;height:20px;" type="text" value="<%=request.getSession().getAttribute("boxs") == null ? "" : request.getSession().getAttribute("boxs")%>" id="boxs" onblur="acount();">
   			</li>
   			<li class="li">
   				批&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;次：
-  				<input name="batchNo" readonly=readonly  style="margin-left:-1px;height:20px;background-color:#D8D8D8;"  type="text" class="text" id="batchNo">
+  				<input name="batchNo" readonly=readonly  style="margin-left:-1px;height:20px;background-color:#D8D8D8;"  type="text" class="text" id="batchNo" value="<%=request.getSession().getAttribute("batchNo") == null ? "" : request.getSession().getAttribute("batchNo")%>" >
   			</li>
   			<li class="li">
   				总&nbsp;数&nbsp; 量：<input name="wemng" readonly=readonly value="<%=request.getSession().getAttribute("wemng") == null ? "" : request.getSession().getAttribute("wemng")%>" type="text" class="text1" id="wemng" >

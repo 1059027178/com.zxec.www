@@ -22,7 +22,7 @@ function turnon(){
 <BODY>
 <div class="div" style="margin-top:60px;">
   <form action="MainServlet?flag=1.2"  method ="post">
-    	<table class="table_list" style="margin: 0px 0px 0px 60px;line-height:30px;">
+    	<table class="table_list" style="margin: 0px 0px 0px 25px;line-height:30px;">
     		<tr >
     		<td>
     			返回消息：</br>

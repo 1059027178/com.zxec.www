@@ -25,7 +25,40 @@ function getcount(){
   	if(num2=="") num2=0;
   	if(num3=="") num3=0;
   	if(num4=="") num4=0;
+  	if(parseFloat(num1) > 5000){
+		$("#num1").attr("value","");
+		alert("领料数量大于库存");return;
+	}
+	if(parseFloat(num2) > 10000){
+		$("#num2").attr("value","");
+		alert("领料数量大于库存");return;
+	}
+	if(parseFloat(num3) > 2000){
+		$("#num3").attr("value","");
+		alert("领料数量大于库存");return;
+	}
+	if(parseFloat(num4) > 5000){
+		$("#num4").attr("value","");
+		alert("领料数量大于库存");return;
+	}
+  	
   	$("#num").attr("value",parseFloat(num1)+parseFloat(num2)+parseFloat(num3)+parseFloat(num4));
+  	//供应商生产日期控制
+	if(num1 != 5000 && parseFloat(num2) != 0){
+		$("#num2").attr("value","");
+		alert("上一仓位未领完！");
+		return;
+	}
+	if(num2 != 10000 && parseFloat(num3) != 0){
+		$("#num3").attr("value","");
+		alert("上一仓位未领完！");
+		return;
+	}
+	if(num3 != 2000 && num4 != ""){
+		$("#num4").attr("value","");
+		alert("上一仓位未领完！");
+		return;
+	}
 }
 </script>
   <head>
@@ -37,7 +70,7 @@ function getcount(){
   </head>
   <body>
   <form name="jiuhui"  id="jiuhui" method="post" action="MainServlet?flag=xiajiaSave">
-    	<div style=" padding-top: 50px;">
+    	<div style="margin-left: -15px;">
     	
     	<ul>
     		<li class="li">
@@ -59,14 +92,14 @@ function getcount(){
     					<td align="center">A1-1</td>
     					<td align="center"><%=request.getSession().getAttribute("batchNo") == null ? "": request.getSession().getAttribute("batchNo")%></td>
     					<td align="center">5000</td>
-    					<td align="center"><input style="width:35px;heigth:70%;" type="text" id="num1" name="num1"  onchange="getcount()"/></td>
+    					<td align="center"><input style="width:35px;heigth:70%;" type="text" id="num1" name="num1"  onchange="getcount()" /></td>
     				</tr>
     				<tr>
     					<td align="center">2</td>
     					<td align="center">A1-2</td>
     					<td align="center"><%=request.getSession().getAttribute("batchNo") == null ? "": request.getSession().getAttribute("batchNo")%></td>
     					<td align="center">10000</td>
-    					<td align="center"><input style="width:35px;heigth:70%;" type="text" id="num2" name="num2" onchange="getcount()" /></td>
+    					<td align="center"><input style="width:35px;heigth:70%;" type="text" id="num2" name="num2" onchange="getcount()"/></td>
     				</tr>
     				<tr>
     					<td align="center">3</td>

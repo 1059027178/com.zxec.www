@@ -65,7 +65,7 @@ String strDate = dateFormat.format(date);
   <form name="jiuhui"  id="jiuhui" method="post" action="MainServlet?flag=shengchanA">
     <div style=" padding-top: 50px;">
 	    <ul>
-	   	 	<li class="li" style="margin:20px 0px 0px 0px;">工 &nbsp;&nbsp;  &nbsp;&nbsp;  &nbsp;厂: <input name="werks" class="text" style="background-color:white;" type="text"  id="werks" value="3100"></li>
+	   	 	<li class="li" style="margin:20px 0px 0px 0px;">工 &nbsp;&nbsp;&nbsp;厂: <input name="werks" class="text" style="background-color:white;" type="text"  id="werks" value="3100"></li>
 			<li class="li" style="margin:20px 0px 0px 0px;">库存地点：<input name="lgort" class="text" style="background-color:white;" type="text"  id="lgort" value="3107"/> </li>
 	    	<!-- <li class="li"><input style="width:85%;heigth=70%" type="text" id="saomiao" name="saomiao"  value="" onchange="js()"/> -->
 			<li class="li" style="margin:20px 0px 10px 0px;">制单日期：<input name="date" class="text" style="background-color:white;" type="text"  id="date" value="<%=strDate%>"/></li>

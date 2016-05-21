@@ -63,7 +63,7 @@ String strDate = dateFormat.format(date);
   	<input name="batchNO"  type="hidden" id="batchNO"/>
     <div style=" padding-top: 50px;">
 	    <ul>
-	   	 	<li class="li" style="margin:20px 0px 0px 0px;">
+	   	 	<li class="li" >
 	   	 		<table class="table_list" >
 	   	 			<tr>
 	   	 				<td align="center">ÐòºÅ</td>
