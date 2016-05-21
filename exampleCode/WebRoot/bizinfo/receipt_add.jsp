@@ -158,7 +158,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   	<div>
   		<ul>
   			<li style="height:15px;list-style-type:none;padding:0; margin:0;}">
-  				<input name="str" style="height:20px;" type="text" style="white-space:nowrap;width:70%;"  id="str" onchange="js()">
+  				<input name="str" style="height:20px;" type="text" style="white-space:nowrap;width:85%;"  id="str" onchange="js()">
   			</li>
   			<li class="li">
   				采购订单：<input name="aufnr" style="width:80px;height:20px;" size="5" readonly=readonly class="text"  type="text"  id="aufnr" />
@@ -173,7 +173,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   			<!-- <li class="li">尾箱标识：<input type="checkbox" onclick="choose1();" id="bs" style="width:20px;height:20px;" name="bs"></li> -->
   			<li class="li">
   				箱数量/箱数：<input name="everyBagNumber" readonly=readonly style="width:50px;background-color:#D8D8D8;height:20px;"  type="text"  id="everyBagNumber" value="">
-  				/<input name="boxs" style="width:32px;height:20px;" type="text" value="" id="boxs" onblur="acount();">
+  				/<input name="boxs" style="width:25px;height:20px;" type="text" value="" id="boxs" onblur="acount();">
   			</li>
   			<li class="li">
   				批&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;次：
@@ -187,7 +187,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   			</li>
   			<li class="li">
   				总&nbsp;数&nbsp; 量：<input name="wemng" value="" type="text" class="text1" id="wemng" >
-  				<input name="unit" style="width:35px;height:20px;" value="" class="text2" readonly=readonly type="text"  id="unit"/>
+  				<input name="unit" style="width:34px;height:20px;" value="" class="text2" readonly=readonly type="text"  id="unit"/>
 			</li>
   			<li class="li">
   				库存地点：<input name="lgort" class="text3" type="text" id="lgort">

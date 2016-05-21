@@ -43,7 +43,7 @@
 	<input name="unit" 	   		 type="hidden" value="<%=request.getSession().getAttribute("unit")== null ? "" : request.getSession().getAttribute("unit") 	%>" />
   
  	<ul>
- 		<li class="li" style="margin: 20px 0px 0px 30px;line-height:30px;">
+ 		<li class="li" style="margin: 20px 0px 0px 0px;line-height:30px;">
  				返回消息：
  		</li>
  		<li class="li" style="margin: 0px 0px 0px 30px;line-height:30px;">

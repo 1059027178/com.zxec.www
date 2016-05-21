@@ -20,10 +20,36 @@ function getcount(){
 	var num1=$("#num1").val();
 	var num2=$("#num2").val();
 	var num3=$("#num3").val();
+	var num4=$("#num4").val();
   	if(num1=="") num1=0;
   	if(num2=="") num2=0;
   	if(num3=="") num3=0;
+  	if(num4=="") num4=0;
+  	if(parseFloat(num1) > 4000){
+		$("#num1").attr("value","");
+		alert("领料数量大于库存");return;
+	}
+	if(parseFloat(num2) > 10000){
+		$("#num2").attr("value","");
+		alert("领料数量大于库存");return;
+	}
+	if(parseFloat(num3) > 6000){
+		$("#num3").attr("value","");
+		alert("领料数量大于库存");return;
+	}
+  	
   	$("#num").attr("value",parseFloat(num1)+parseFloat(num2)+parseFloat(num3));
+  	//供应商生产日期控制
+	if(num1 != 4000 && parseFloat(num2) != 0){
+		$("#num2").attr("value","");
+		alert("上一仓位未领完！");
+		return;
+	}
+	if(num2 != 10000 && parseFloat(num3) != 0){
+		$("#num3").attr("value","");
+		alert("上一仓位未领完！");
+		return;
+	}
 }
 </script>
   <head>
@@ -36,13 +62,12 @@ function getcount(){
   <body>
   <form name="jiuhui"  id="jiuhui" method="post" action="MainServlet?flag=shengchanD">
   		<input name="aufnr"  type="hidden" value="<%=request.getSession().getAttribute("aufnr") == null ? "" : request.getSession().getAttribute("aufnr")%>" />
-    	<div style=" padding-top: 50px;">
+    	<div style="margin-left: -15px;">
     	
     	<ul>
     		<li class="li">
     			物料编码：
-    			<input name="matnr" style="width:60%;heigth:70%;" class="text"  readonly=readonly type="text" id="matnr" 
-    			value = "<%=request.getSession().getAttribute("matnr") == null ? "": request.getSession().getAttribute("matnr")%>" />
+    			<input name="matnr" style="width:60%;heigth:70%;" class="text"  readonly=readonly type="text" id="matnr" value = "<%=request.getSession().getAttribute("matnr") == null ? "": request.getSession().getAttribute("matnr")%>" />
     		</li>
     		<li class="li">
     			物料描述：
@@ -53,6 +78,7 @@ function getcount(){
     			数量合计：
     			<input style="width:45%;heigth:70%;background-color:#D8D8D8;" type="text" id="num" name="num" />
     		</li>
+    		
     		<li class="li">
     			<table class="table_list">
     				<tr>

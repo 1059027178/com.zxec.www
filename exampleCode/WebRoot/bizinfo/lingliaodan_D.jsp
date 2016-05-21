@@ -35,17 +35,17 @@
  	<input name="num1"  type="hidden" value="<%=session2.getAttribute("num1") == null ? "" : session2.getAttribute("num1")%>" />
  	<input name="num2"  type="hidden" value="<%=session2.getAttribute("num2") == null ? "" : session2.getAttribute("num2")%>" />
  	<input name="num3"  type="hidden" value="<%=session2.getAttribute("num3") == null ? "" : session2.getAttribute("num3")%>" />
- 	<ul>
- 		<li class="li" style="margin: 20px 0px 0px 30px;line-height:30px;">
+ 	<ul style="margin-top:20px;">
+ 		<li class="li" style="line-height: 25px;">
  				返回消息：
  		</li>
- 		<li class="li" style="margin: 0px 0px 0px 30px;line-height:30px;">
+ 		<li class="li" style="line-height: 25px;">
  			<%=request.getSession().getAttribute("message") == null ? "" : request.getSession().getAttribute("message").toString().trim()%>
 			<%-- <%session2.invalidate(); %> --%>
 		</li>
- 		<li class="li" style="margin: 20px 0px 0px 0px;">
- 			<input type="button" onclick="submit1(this);"  style="width:42px;height:25px;" class="button" value="记账变更" />
- 			<input type="button" onclick="window.location.href='MainServlet?flag=shengchanB';"  style="width:40px;height:25px;" class="button" value="继续" />
+ 		<li class="li" style="line-height: 25px;margin-left: -25px;">
+ 			<input type="button" onclick="submit1(this);"  style="width:45px;height:25px;" class="button" value="记账变更" />
+ 			<input type="button" onclick="window.location.href='MainServlet?flag=shengchanB';"  style="height:25px;" class="button" value="继续" />
  			<input type="button" onclick="forward();"  style="width:40px;height:25px;" class="button" value="返回" />
  			<input type="button"  style="width:40px;height:25px;" onclick="window.location.href='MainServlet?flag=return';" value="首页">
  		</li>
