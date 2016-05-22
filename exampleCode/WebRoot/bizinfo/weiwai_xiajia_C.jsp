@@ -39,7 +39,7 @@
   <div>
   <form action="MainServlet?flag=weiwaiD" method="post" name="form">
  	<ul>
- 		<li class="li" style="margin: 20px 0px 0px 30px;line-height:20px;">
+ 		<li class="li" style="line-height:20px;">
  			<%=request.getSession().getAttribute("message") == null ? "" : request.getSession().getAttribute("message").toString().trim()%>
  			<br/>
  			<%=request.getSession().getAttribute("aufnr") == null ? "" : request.getSession().getAttribute("aufnr").toString().trim()%>
@@ -54,10 +54,10 @@
     		数量合计：<input style="width:45%;heigth:70%;background-color:#D8D8D8;" type="text" id="num" name="num" value = "<%=request.getSession().getAttribute("num") == null ? "": request.getSession().getAttribute("num")%>"/>
     	</li>
     	<li class="li">
-    		供&nbsp;应&nbsp;商&nbsp;：<input style="width:60%;heigth:70%;" type="text" id="shipper" name="shipper" value = "G100030"/>
+    		供应商<span style="width:14px"></span>：<input style="width:60%;heigth:70%;" type="text" id="shipper" name="shipper" value = "G100030"/>
     	</li>
     	<li class="li">
-    		PO&nbsp;&nbsp;号&nbsp;&nbsp;&nbsp;：<input style="width:60%;heigth:70%;" type="text" id="PONO" name="PONO" value="4500121943" />
+    		PO号<span style="width:24px"></span>：<input style="width:60%;heigth:70%;" type="text" id="PONO" name="PONO" value="4500121943" />
     	</li>
     	<li class="li">
     		库存地点：<input style="width:45%;heigth:70%;background-color:#D8D8D8;" readonly=readonly  type="text" id="kucunDidian" name="kucunDidian" value = "3107"/>
@@ -65,8 +65,8 @@
     	<li class="li">
     		移动类型：<input style="width:45%;heigth:70%;background-color:#D8D8D8;" readonly=readonly  type="text" id="moveClass" name="moveClass" value = "541"/>
     	</li>
- 		<li class="li" style="margin: 20px 0px 0px 0px;">
- 			<input type="button" onclick="submit1(this);"  style="width:50px;height:25px;" class="button" value="发货过账" />
+ 		<li class="li" style="margin: 20px 0px 0px -15px;">
+ 			<input type="button" onclick="submit1(this);"  style="width:60px;height:25px;" class="button" value="发货过账" />
  			<input type="button" onclick="forward();"  style="width:40px;height:25px;" class="button" value="返回" />
  			<input type="button"  style="width:40px;height:25px;" onclick="window.location.href='MainServlet?flag=return';" value="首页">
  		</li>

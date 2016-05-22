@@ -595,26 +595,62 @@ public class MainServlet extends HttpServlet {
 		}
 		/*记账变更*/
 		/***仓库作业***/
-		/***查询***/
+/***查询***/
 		/*物料查询*/
 		else if(flag.equals("selectWuLiao")){
 			System.out.println("***物料查询操作开始***");
 			String matnr = request.getParameter("matnr") == null ? "" : request.getParameter("matnr").trim();//物料编码
 			String lgort = request.getParameter("lgort") == null ? "" : request.getParameter("lgort").trim();//库存地点
 			String charg = request.getParameter("charg") == null ? "" : request.getParameter("charg").trim();//批次
+			String lgpla = request.getParameter("lgpla") == null ? "" : request.getParameter("lgpla").trim();//仓位号
 			System.out.println("***物料查询：matnr="+matnr);
 			System.out.println("***物料查询：lgort="+lgort);
 			System.out.println("***物料查询：charg="+charg);
-			List<PositionsInfo>  resultList = new SelectDAO().selectWuLiaoInfo(matnr, lgort, charg,"");
+			System.out.println("***物料查询：lgpla="+lgpla);
+			List<PositionsInfo>  resultList = new SelectDAO().selectWuLiaoInfo(matnr, lgort, charg,lgpla);
 			request.setAttribute("resultList", resultList);
+			request.setAttribute("matnr", matnr);
 			
 			RequestDispatcher dispatcher = request.getRequestDispatcher("/selectlist/item_query_list.jsp"); 
 			dispatcher.forward(request, response);
 			
 			System.out.println("***物料查询操作结束***");
 		}
-		/*物料查询*/
-		/***查询***/
+	/*物料查询*/
+	/*仓位查询*/
+		else if(flag.equals("selectCangwei")){
+			System.out.println("***仓位查询操作开始***");
+			String lgpla = request.getParameter("lgpla") == null ? "" : request.getParameter("lgpla").trim();//仓位号
+			System.out.println("***仓位查询：lgpla="+lgpla);
+			List<PositionsInfo>  resultList = new SelectDAO().selectWuLiaoInfo("", "", "",lgpla);
+			
+			request.setAttribute("resultList", resultList);
+			request.setAttribute("lgpla", lgpla);
+			
+			RequestDispatcher dispatcher = request.getRequestDispatcher("/selectlist/item_query_list_2.jsp"); 
+			dispatcher.forward(request, response);
+			
+			System.out.println("***仓位查询操作结束***");
+		}
+		else if(flag.equals("selectWuLiao1")){
+			System.out.println("***仓位详情查询操作开始***");
+			String matnr = request.getParameter("matnr") == null ? "" : request.getParameter("matnr").trim();//物料编码
+			String lgpla = request.getParameter("lgpla") == null ? "" : request.getParameter("lgpla").trim();//仓位号
+			
+			System.out.println("***物料查询：matnr="+matnr);
+			System.out.println("***物料查询：lgpla="+lgpla);
+			
+			List<PositionsInfo>  resultList = new SelectDAO().selectWuLiaoInfo(matnr, "", "",lgpla);
+			request.setAttribute("resultList", resultList);
+			request.setAttribute("matnr", matnr);
+			
+			RequestDispatcher dispatcher = request.getRequestDispatcher("/selectlist/item_query_list_3.jsp"); 
+			dispatcher.forward(request, response);
+			
+			System.out.println("***仓位详情查询操作结束***");
+		}
+	/*仓位查询*/
+/***查询***/
 		
 		
 		/*退出，返回-首页,修改密码*/

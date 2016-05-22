@@ -42,7 +42,6 @@ function getcount(){
 		alert("领料数量大于库存");return;
 	}
   	
-  	$("#num").attr("value",parseFloat(num1)+parseFloat(num2)+parseFloat(num3)+parseFloat(num4));
   	//供应商生产日期控制
 	if(num1 != 5000 && parseFloat(num2) != 0){
 		$("#num2").attr("value","");
@@ -59,6 +58,7 @@ function getcount(){
 		alert("上一仓位未领完！");
 		return;
 	}
+  	$("#num").attr("value",parseFloat(num1)+parseFloat(num2)+parseFloat(num3)+parseFloat(num4));
 }
 </script>
   <head>

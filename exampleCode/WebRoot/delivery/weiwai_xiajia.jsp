@@ -61,18 +61,18 @@ function stoQuy(){
     			<input style="width:82%;heigth:70%;" type="text" id="saomiao" name="saomiao"  value="" onchange="js()"/>
     		</li>
     		<li class="li">
-    			物料编码：<input name="matnr" style="width:60%;heigth:70%;" class="text"  readonly=readonly type="text" id="matnr"/>
+    			物料编码：<input name="matnr" style="width:50%;heigth:70%;" class="text"  readonly=readonly type="text" id="matnr"/>
     		</li>
     		<li class="li">
-    			批&nbsp;次&nbsp;号&nbsp;：<input name="batchNo" readonly=readonly style="width:60%;heigth:70%;background-color:#D8D8D8;"  type="text"  id="batchNo" />
+    			批&nbsp;次&nbsp;号：<input name="batchNo" readonly=readonly style="width:50%;heigth:70%;background-color:#D8D8D8;"  type="text"  id="batchNo" />
     		</li>
     		<li class="li">
-    			供应商生产日期：<input style="width:45%;heigth:70%;background-color:#D8D8D8;" type="text" id="date" name="date" />
+    			供应商生产日期：<input style="width:30%;heigth:70%;background-color:#D8D8D8;" type="text" id="date" name="date" />
     		</li>
     		<li class="li">
-    			仓&nbsp;库&nbsp;号&nbsp;：<input style="width:30%;heigth:70%;background-color:#D8D8D8;" type="text" id="no" name="no"  value="311"/>
+    			仓&nbsp;库&nbsp;号：<input style="width:30%;heigth:70%;background-color:#D8D8D8;" type="text" id="no" name="no"  value="311"/>
     		</li>
-     		<li class="li">
+     		<li class="li" style="margin-top: 20px;">
     				<input  class="button"  type="button"  style="width:25%"  onclick="stoQuy()" value="确定">
     				<input  class="button"  type="button"  style="width:25%"  onclick="window.location.href='MainServlet?flag=2';" value="返回">
     				<input  class="button" 	type="button"  style="width:25%"  onclick="window.location.href='MainServlet?flag=return';" value="首页">

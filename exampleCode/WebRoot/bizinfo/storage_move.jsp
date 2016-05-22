@@ -42,7 +42,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   }
   </script>
   <body>
-  <form name="form" action="MainServlet?flag=storageInfo" method="post" style="margin-top:50px;">
+  <form name="form" action="MainServlet?flag=storageInfo" method="post" style="margin-top:70px;margin-left: -20px;">
   	<div>
   		<ul>
   			<li style="height:15px;list-style-type:none;">
@@ -50,8 +50,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   			</li>
   			<li class="li" style="margin-top: 20px;">
   				<input type ="button" valign="center" class="button" onclick="submit1(this);" style="width:40px;height:25px;" value="确定"/>
-  				<input class="button"  type="button"  onclick="forward();" style="width:30px;height:25px;" value="返回"/>
-  				<input class="button"  type="button"  onclick="reset();"   style="width:30px;height:25px;" value="清除"/>
+  				<input class="button"  type="button"  onclick="forward();" style="width:40px;height:25px;" value="返回"/>
+  				<input class="button"  type="button"  onclick="reset();"   style="width:40px;height:25px;" value="清除"/>
   				<input type ="button" class="button" style="width:40px;height:25px;" onclick="window.location.href='MainServlet?flag=return';" value="首页">
   			</li>
   			

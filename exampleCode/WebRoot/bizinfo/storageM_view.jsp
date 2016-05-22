@@ -88,7 +88,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   	<div>
   		<ul>
   			<li style="height:15px;list-style-type:none;">
-  				<input name="str" type="text" style="width:70%;height:20px;"  id="str" onchange="js()">
+  				<input name="str" type="text" style="width:80%;height:20px;"  id="str" onchange="js()">
   			</li>
   			<li class="li">
   				物料编码：<input name="matnr" class="text"  readonly=readonly type="text" id="matnr" >
@@ -97,15 +97,15 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   				物料描述：<input name="maktx" class="text"  readonly=readonly type="text" id="maktx" >
   			</li>
   			<li class="li">
-  				批&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;次：<input name="batchNo" class="text" readonly=readonly style="background-color:#D8D8D8;margin-left: 2px;"  type="text"  id="batchNo">
+  				批次<span style="width:27px;"></span>：<input name="batchNo" class="text" readonly=readonly style="background-color:#D8D8D8;margin-left: 2px;"  type="text"  id="batchNo">
   			</li>
   			<li class="li">
-  				仓&nbsp;库&nbsp;&nbsp;号：<input name="lgort" type="text" class="text3" id="lgort"  value="311">
+  				仓库号<span style="width:15px;"></span>：<input name="lgort" type="text" class="text3" id="lgort"  value="311">
   			</li>
-  			<li class="li">
+  			<li class="li" style="margin:10px 0px 0px -15px；">
   				<input type ="button" valign="center" class="button" onclick="submit1(this);" style="width:40px;height:25px;" value="确定"/>
-  				<input class="button"  type="button"  onclick="forward();" style="width:30px;height:25px;" value="返回"/>
-  				<input class="button"  type="button"  onclick="reset();"   style="width:30px;height:25px;" value="重置"/>
+  				<input class="button"  type="button"  onclick="forward();" style="width:40px;height:25px;" value="返回"/>
+  				<input class="button"  type="button"  onclick="reset();"   style="width:40px;height:25px;" value="重置"/>
   				<input type ="button" class="button" style="width:40px;height:25px;" onclick="window.location.href='MainServlet?flag=return';" value="首页">
   			</li>
   			

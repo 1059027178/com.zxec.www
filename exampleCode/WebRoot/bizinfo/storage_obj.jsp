@@ -42,13 +42,13 @@ function stoQuy1(){
     	<div style=" padding-top: 50px;">
     	<ul>
     		<li class="li">
-    			源 仓 位&nbsp; <input name="literaNO" style="width:60%;heigth:70%;" class="text"  readonly=readonly type="text" id="literaNO" value = "<%=request.getSession().getAttribute("literaNO") == null ? "": request.getSession().getAttribute("literaNO")%>" />
+    			源 仓 位 <input name="literaNO" style="width:60%;heigth:70%;" class="text"  readonly=readonly type="text" id="literaNO" value = "<%=request.getSession().getAttribute("literaNO") == null ? "": request.getSession().getAttribute("literaNO")%>" />
     		</li>
     		<li class="li">
     			物料编码 <input name="matnr" style="width:60%;heigth:70%;" class="text"  readonly=readonly type="text" id="matnr" value = "C.9.291400" />
     		</li>
     		<li class="li">
-    			批 次 号&nbsp; <input name="batchNO" style="width:60%;heigth:70%;" class="text"  readonly=readonly type="text" id="batchNO" value = "20160507" />
+    			批 次 号 <input name="batchNO" style="width:60%;heigth:70%;" class="text"  readonly=readonly type="text" id="batchNO" value = "20160507" />
     		</li>
     		<li class="li">
     			特殊库存 <input name="tskucun" style="width:60%;heigth:70%;" class="text"  readonly=readonly type="text" id="num" value = "" />
@@ -62,9 +62,9 @@ function stoQuy1(){
     		<li class="li">
     			目标仓位 <input name="toLiteraNO" style="width:60%;heigth:70%;" class="text3"   type="text" id="toLiteraNO" value="A2-4" />
     		</li>
-     		<li class="li">
+     		<li class="li" style="margin:10px 0px 0px -20px;">
     			<input  class="button"  type="button"  style="width:20%"  onclick="stoQuy()" value="保存">
-    			<input  class="button"  type="button"  style="width:20%"  onclick="stoQuy1()" value="全下架">
+    			<input  class="button"  type="button"  style="width:25%"  onclick="stoQuy1()" value="全下架">
     			<input  class="button"  type="button"  style="width:20%"  onclick="window.location.href='MainServlet?flag=storageInfo';" value="返回">
     			<input  class="button" 	type="button"  style="width:20%"  onclick="window.location.href='MainServlet?flag=return';" value="首页">
     		</li>

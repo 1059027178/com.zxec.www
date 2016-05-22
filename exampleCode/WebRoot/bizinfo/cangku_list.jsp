@@ -29,11 +29,11 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   }
   </script>
   <body>
-  <div class="div" style="margin-top:60px;">
+  <div class="div" style="margin-top:50px;margin-left: -20px;">
   <form name="form" action="MainServlet" method="post">
 	<input name="radioValue" type="hidden" value="<%=request.getSession().getAttribute("radioValue") == null ? "" : request.getParameter("radioValue").trim()%>"/>
     <ul>
-     	<li class="li" style="margin:0px 0px 0px 0px;">
+     	<li class="li" >
 		<table class="table_list" style="line-height:20px;">
 			<tr>
 				<td align="center" >序号</td><td align="center">存储类型</td><td align="center">仓位号</td>
