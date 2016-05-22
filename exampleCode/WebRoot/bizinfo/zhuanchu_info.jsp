@@ -96,24 +96,23 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   			<li class="li">
   				物料描述：<input name="maktx" class="text"  readonly=readonly type="text" id="maktx" value="<%=request.getSession().getAttribute("maktx") == null ? "" : request.getSession().getAttribute("maktx")%>">
   			</li>
-  			<li class="li" style="line-height:30px;">
-  				批&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;次：<input style="margin-left: 2px;" name="batchNo" class="text"  readonly=readonly type="text" id="batchNo" value="<%=request.getSession().getAttribute("batchNo") == null ? "" : request.getSession().getAttribute("batchNo")%>">
+  			<li class="li">
+  				批次<span style="width:27px;"></span>：<input style="margin-left: 2px;" name="batchNo" class="text"  readonly=readonly type="text" id="batchNo" value="<%=request.getSession().getAttribute("batchNo") == null ? "" : request.getSession().getAttribute("batchNo")%>">
   			</li>
   			<li class="li">
   				转储数量：<input class="text" type="text" name ="num" id="num" style="background: white;"/>
   			</li>
   			<li class="li">
   				库存地点：<input name="lgort" type="text" class="text" id="lgort" style="width: 41px; " value="3107">
-  				到
-  				<input name="lgort1" type="text" class="text" id="lgort1" style="margin-left: 5px;width: 41px;;background:white;">
+  				到<input name="lgort1" type="text" class="text" id="lgort1" style="margin-left: 2px;width: 41px;;background:white;">
   			</li>
   			<li class="li">
   				移动类型：<input name="moveClass" type="text" class="text"  id="moveClass" style="background: white;" value="311">
   			</li>
-  			<li class="li" style="margin-top: 20px;">
+  			<li class="li" style="margin: 20px 0px 0px -15px;">
   				<input type ="button" valign="center" class="button" onclick="submit1(this);" style="width:40px;height:25px;" value="确定"/>
-  				<input class="button"  type="button"  onclick="forward();" style="width:30px;height:25px;" value="返回"/>
-  				<input class="button"  type="button"  onclick="reset();"   style="width:30px;height:25px;" value="重置"/>
+  				<input class="button"  type="button"  onclick="forward();" style="width:40px;height:25px;" value="返回"/>
+  				<input class="button"  type="button"  onclick="reset();"   style="width:40px;height:25px;" value="重置"/>
   				<input type ="button" class="button" style="width:40px;height:25px;" onclick="window.location.href='MainServlet?flag=return';" value="首页">
   			</li>
   		</ul>

@@ -67,23 +67,15 @@ function matQuy(){
        }
    }
    document.onkeydown = keyDown;
-
-
   </script>
   <head>
   <LINK href="./css/jiuhui.css" type=text/css rel=STYLESHEET>
-    
     <title>物料查询</title>
-    
 	<meta http-equiv="pragma" content="no-cache">
 	<meta http-equiv="cache-control" content="no-cache">
 	<meta http-equiv="expires" content="0">    
 	<meta http-equiv="keywords" content="keyword1,keyword2,keyword3">
 	<meta http-equiv="description" content="This is my page">
-	<!--
-	<link rel="stylesheet" type="text/css" href="styles.css">
-	-->
-
   </head>
   
   <body>
@@ -91,7 +83,7 @@ function matQuy(){
         <div class="div" style=" padding-top: 50px;">
     	<ul>
     		<li class="li">
-    			<input style="width:70%;heigth=20%" type="text" id="saomiao" onchange="js()" name="saomiao"  value=""/>
+    			<input style="width:82%;heigth=20%" type="text" id="saomiao" onchange="js()" name="saomiao"  value=""/>
     		</li>
     		<li class="li">
     			物料编码：<input  type="text" class="text" style="width:103px;background-color:white;" id="matnr" name="matnr"  value=""/>
@@ -100,10 +92,10 @@ function matQuy(){
     			库存地点：<input  type="text" class="text" style="width:103px;background-color:white;" id="lgort" name="lgort"  value=""/>
     		</li>
     		<li class="li">
-    			批<span style="width: 20px;"></span>次：<input  type="text" class="text" style="width:103px;background-color:white;" id="charg" name="charg"  value=""/>
+    			批<span style="width: 28px;"></span>次：<input  type="text" class="text" style="width:103px;background-color:white;" id="charg" name="charg"  value=""/>
     		</li>
     		<li class="li">
-    		工<span style="width: 20px;"></span>厂：<input  type="text" class="text" id="werks" style="width:103px;background-color:white;" name="werks"  value=""/>
+    		工<span style="width: 28px;"></span>厂：<input  type="text" class="text" id="werks" style="width:103px;background-color:white;" name="werks"  value=""/>
     		</li>
     <li class="li"></li>
      <li class="li">

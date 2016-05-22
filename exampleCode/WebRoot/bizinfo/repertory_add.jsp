@@ -35,15 +35,17 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
  function submit1(obj){
   	var lgnum = document.getElementById("lgnum").value;
   	var nlpla = document.getElementById("nlpla").value;
+  	if($("#radioValue").val() == 3){
+  		document.form.submit();return;
+  	}
   	if(lgnum == ""){
   		alert("请输入仓库号！");return;
   	}
   	if(nlpla == ""){
-  		alert("请输入仓位号！");return;
+  		alert("请扫描仓位二维码！");return;
   	}
   	//alert(document.getElementById("radioValue").value);return;
   	obj.disabled=false;
-  	document.form.submit();
   }
   function forward(){
   	window.location.href="MainServlet?flag=3";
@@ -60,14 +62,14 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   <div>
     
 	<ul>
-		<li class="li" >仓库号：<input name="lgnum" style="background-color:white;"  class="text" type="text"  id="lgnum" value="3107">
+     	<li class="li">仓位号：<input name="nlpla" class="text" style="background-color:white;" type="text"  id="nlpla"  value=""/>
 		</li>
-     	<li class="li">仓位号：<input name="nlpla" class="text" style="background-color:white;" type="text"  id="nlpla"  value="A1-3"/>
+		<li class="li" >仓库号：<input name="lgnum" style="background-color:white;"  class="text" type="text"  id="lgnum" value="311">
 		</li>
      	<li class="li"><input name="radio" style="width:20px;" checked=checked type="radio" id="radio1" value="1" onclick="getValue(this.value)"/>出入库冻结</li>
      	<li class="li"><input name="radio" style="width:20px;" type="radio" id="radio2" value="2" onclick="getValue(this.value)"/>出入库解冻</li>
      	<li class="li"><input name="radio" style="width:20px;" type="radio" id="radio3" value="3" onclick="getValue(this.value)"/>查看所有冻结仓位</li>
-		<li class="li" >
+		<li class="li" style="margin-top: 20px;">
 		<input class="button" type="button" onclick="submit1(this)" value="确定">
 		<input class="button" type="button" onclick="forward()" value="返回">
 		<input class="button" type="button" onclick="window.location.href='MainServlet?flag=return';" value="首页">
@@ -77,6 +79,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 </form>
   </body>
    <script type="text/javascript">
-  document.getElementById("lgnum").focus();
+  document.getElementById("nlpla").focus();
   </script>
 </html>

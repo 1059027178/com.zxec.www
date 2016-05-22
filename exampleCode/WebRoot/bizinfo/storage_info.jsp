@@ -27,7 +27,6 @@ function stoQuy(){
     body {
       padding-top: 40px;
       padding-bottom: 0px;
-      padding-left: 30px;
     }
     .sidebar-nav {
       padding: 0;
@@ -39,8 +38,8 @@ function stoQuy(){
 	<form  id="listform" name="listform" method="post" action="MainServlet?flag=storageTo">
 			<table class="table_list" style="width:100%">
 				<colgroup>
-						<col width="40%"/>
-						<col width="25%"/>
+						<col width="35%"/>
+						<col width="30%"/>
 						<col width="25%"/>
 						<col width="10%"/>
 					</colgroup>
@@ -49,27 +48,28 @@ function stoQuy(){
 						仓 位：<input name="literaNO" style="width:50%;heigth:20px;background-color:#D8D8D8;" class="text"  readonly=readonly type="text" id="literaNO" value = "<%=request.getSession().getAttribute("literaNO") == null ? "": request.getSession().getAttribute("literaNO")%>" />
 					</td>
 				</tr>
-				<tr bordercolor="#000000" class="tr_list_1">
+				<tr style="height: 10px;"></tr>
+				<tr bordercolor="#000000" class="tr_list_1"  align="center">
     				<td class="td_list">序号</td>
 					<td class="td_list">物料编码</td>
     				<td class="td_list">数量</td>
 				</tr>
-				<tr bordercolor="#000000" class="tr_list_1">
-					<td class="td_list" >描述</td>
+				<tr bordercolor="#000000" class="tr_list_1" align="center">
+					<td class="td_list">描述</td>
 					<td class="td_list">批次</td>
 					<td class="td_list">下架</td>
 				</tr>
-				<tr class="tr_list_2" >
+				<tr class="tr_list_2" align="center">
 					<td class="td_list">1</td>
 					<td class="td_list">C.9.291400</td>
 					<td class="td_list">10000</td>
 				</tr>
-				<tr class="tr_list_2" >
+				<tr class="tr_list_2" align="center">
 					<td class="td_list" >C2沙剂-规格(25kg/桶)</td>
-					<td class="td_list">20160507</td>
-					<td class="td_list"><input style="width:35px;height: 13px;" type="text" id="num" name="num" /></td>
+					<td class="td_list" >20160507</td>
+					<td class="td_list" ><input style="width:35px;height: 15px;" type="text" id="num" name="num" /></td>
 				</tr>
-				
+			<tr style="height: 20px;"></tr>
 			<tr >
 				<td colspan="3" style="line-height: 40px;">
 					<input  class="button"  type="button"  style="width:25%"  onclick="stoQuy()" value="确定" />

@@ -4,12 +4,12 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%
 	List list = (List) request.getAttribute("resultList");
-
+	
 %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <HEAD>
-<TITLE>物料详细</TITLE>
+<TITLE>仓位查询</TITLE>
 <META http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 <link href="./css/jiuhui_list.css" rel="stylesheet"/>
@@ -32,9 +32,8 @@ function submit1(obj){
   	document.form.submit();
 }		
 function turnon(){
-  	window.location.href="MainServlet?flag=4.1";
+  	window.location.href="MainServlet?flag=4.2";
 }
-  
 function keyDown() {
        var keycode = event.keyCode;
        var realkey = String.fromCharCode(event.keyCode);
@@ -62,7 +61,7 @@ $(function(){
 	//-----------------------------------
 	function getOptionsFromForm(){
 		var opt = {callback: pageselectCallback}; //回调函数：默认无执行效果
-		opt.items_per_page = 4;		//每页显示的条目数(可选参数，默认是10)
+		opt.items_per_page = 2;		//每页显示的条目数(可选参数，默认是10)
 		opt.num_display_entries = 0;//连续分页主体部分显示的分页条目数(可选参数，默认是10)
 		opt.num_edge_entries = 0;	//两侧显示的首尾分页的条目数(可选参数，默认是0)
 		opt.prev_text = "上一页";	//“前一页”分页按钮上显示的文字(字符串参数，可选，默认是"Prev")
@@ -72,7 +71,7 @@ $(function(){
 	//-------------------------------
 	function pageselectCallback(page_index , jq){
 	
-		var items_per_page = 4;//每页的显示的列表项数目
+		var items_per_page = 2;//每页的显示的列表项数目
 		
 		var max_elem = Math.min((page_index+1) * items_per_page, length);
 		
@@ -87,23 +86,24 @@ $(function(){
 	}
 });
 </script>
+<script type="text/javascript">
+function ToMore(obj){
+	var itemNO = obj.innerHTML;//获取当前a标签中的值
+	
+	document.getElementById("matnr").value = itemNO;
+	
+	 document.getElementById("argform").submit();
+	 
+	 //document.getElementByName("argsubmit").click();
+}
+</script>
 </HEAD>
 <BODY>
-<div class="div" >
-  <form action="MainServlet?flag=2.4"  method ="post" >
-	<%-- <input type="hidden" name="matnr" id="matnr"  value="<%=request.getSession().getAttribute("matnr1") %>"/>
-  	<input type="hidden" name="batchNo" id="batchNo"  value="<%=request.getSession().getAttribute("batchNo") %>"/> --%>
-  	
-  	<input  type="text" class="text" name="matnr" id="matnr"  value="<%=request.getAttribute("matnr") %>" style="margin: 0px 10px 10px 15px;height: 16px;background-color:#D8D8D8;" readonly="readonly"/>
+<div class="div">
+  <form action="MainServlet?flag=selectWuLiao1"  method ="post"  id="argform">
+	<input type="hidden" name="matnr" id="matnr"/>
+  	<input type="hidden" name="lgpla" id="lgpla"  value="<%=request.getAttribute("lgpla") %>"/>
   	<table class="table_list" style="line-height:15px;" >
-  		<colgroup>
-			<col width="20%"/>
-			<col width="20%"/>
-			<col width="20%"/>
-			<col width="20%"/>
-			<col width="20%"/>
-			<col width="20%"/>
-		</colgroup>
 		<thead>
   		<%if(list == null || list.size() == 0 ) {%>
   		<tr>
@@ -114,37 +114,38 @@ $(function(){
   			</td>
   		</tr>
   		<%}else{ %>
-  		<tr bordercolor="#000000" class="tr_list_1" align="center">
-    		<td class="td_list">序号</td>
-			<td class="td_list">仓位</td>
-    		<td class="td_list">批次</td>
+		<tr bordercolor="#000000" class="tr_list_1">
+			<td class="td_list" style="padding-left:15px;">物料编码</td>
 		</tr>
-		<tr bordercolor="#000000" class="tr_list_1" align="center">
-			<td class="td_list" >库存地点</td>
-			<td class="td_list">数量</td>
-			<td class="td_list">单位</td>
+  		<tr bordercolor="#000000" class="tr_list_1" >
+			<td class="td_list" style="padding-left:15px;">物料描述</td>
+		</tr>
+  		<tr bordercolor="#000000" class="tr_list_1" >
+			<td class="td_list" style="padding-left:15px;">数量</td>
 		</tr>
 		</thead>
 		<%
 			for(int i = 0 ; i < list.size() ; i++){
 			PositionsInfo info = (PositionsInfo)list.get(i);
 		%>
-		<tbody class="tbody" style="display: none;">
-		<tr class="tr_list_2"  align="center">
-			<td class="td_list" ><%=i + 1 %></td>
-			<td class="td_list"><%=info.getLiteraNO() %></td>
-			<td class="td_list"><%=info.getBatchNO() %></td>
+		<tbody class="tbody" style="display: none;" align="left">
+		<tr class="tr_list_2">
+			<td class="td_list" style="padding-left:15px;">
+				<a href="javascript:;" onclick="ToMore(this);"><%=info.getItemNO() %></a>
+			</td>
 		</tr>
-		<tr class="tr_list_2" align="center">
-			<td class="td_list"><%=info.getStorageLocation() %></td>
-			<td class="td_list"><%=info.getNumber() %></td>
-			<td class="td_list"><%=info.getUnit() %></td>
+		<tr class="tr_list_2"  >
+			<td class="td_list" style="padding-left:15px;"><%=info.getItemDescription() %></td>
+		</tr>
+		<tr class="tr_list_2" >
+			<td class="td_list" style="padding-left:15px;"><%=info.getNumber() %></td>
 		</tr>
 		</tbody>
 		<%}%>
-  		<tr >
-  			<td colspan="3">
+  		<tr>
+  			<td colspan="2">
   				<div id="Pagination" class="pagination" style="line-height: 15px;font-size:12px;margin-left:15px;"><!-- 这里显示分页 --></div>
+  				<input type="submit" name="argsubmit" style="display:none"/>
   				<input class="button" type="button" style="width:40px;height:30px"  onclick="turnon();" value="返回" />
   				<!-- <input type="button" class="button" style="width:40px;height:20px" onclick="window.location.href='MainServlet?flag=return';" value="首页"/> -->
   			</td>

@@ -32,7 +32,7 @@ function submit1(obj){
   	document.form.submit();
 }		
 function turnon(){
-  	window.location.href="MainServlet?flag=4.1";
+  	window.location.href="MainServlet?flag=4.2";
 }
   
 function keyDown() {
@@ -62,7 +62,7 @@ $(function(){
 	//-----------------------------------
 	function getOptionsFromForm(){
 		var opt = {callback: pageselectCallback}; //回调函数：默认无执行效果
-		opt.items_per_page = 4;		//每页显示的条目数(可选参数，默认是10)
+		opt.items_per_page = 2;		//每页显示的条目数(可选参数，默认是10)
 		opt.num_display_entries = 0;//连续分页主体部分显示的分页条目数(可选参数，默认是10)
 		opt.num_edge_entries = 0;	//两侧显示的首尾分页的条目数(可选参数，默认是0)
 		opt.prev_text = "上一页";	//“前一页”分页按钮上显示的文字(字符串参数，可选，默认是"Prev")
@@ -72,7 +72,7 @@ $(function(){
 	//-------------------------------
 	function pageselectCallback(page_index , jq){
 	
-		var items_per_page = 4;//每页的显示的列表项数目
+		var items_per_page = 2;//每页的显示的列表项数目
 		
 		var max_elem = Math.min((page_index+1) * items_per_page, length);
 		
@@ -90,16 +90,13 @@ $(function(){
 </HEAD>
 <BODY>
 <div class="div" >
-  <form action="MainServlet?flag=2.4"  method ="post" >
-	<%-- <input type="hidden" name="matnr" id="matnr"  value="<%=request.getSession().getAttribute("matnr1") %>"/>
-  	<input type="hidden" name="batchNo" id="batchNo"  value="<%=request.getSession().getAttribute("batchNo") %>"/> --%>
+  <form  method ="post" >
+  	<%-- <input type="hidden" name="batchNo" id="batchNo"  value="<%=request.getSession().getAttribute("batchNo") %>"/> --%>
   	
-  	<input  type="text" class="text" name="matnr" id="matnr"  value="<%=request.getAttribute("matnr") %>" style="margin: 0px 10px 10px 15px;height: 16px;background-color:#D8D8D8;" readonly="readonly"/>
+	<input  type="text" class="text" name="matnr" id="matnr"  value="<%=request.getAttribute("matnr") %>" style="margin: 0px 10px 10px 0px;height: 16px;background-color:#D8D8D8;" readonly="readonly"/>
+		
   	<table class="table_list" style="line-height:15px;" >
   		<colgroup>
-			<col width="20%"/>
-			<col width="20%"/>
-			<col width="20%"/>
 			<col width="20%"/>
 			<col width="20%"/>
 			<col width="20%"/>
@@ -143,8 +140,9 @@ $(function(){
 		</tbody>
 		<%}%>
   		<tr >
-  			<td colspan="3">
+  			<td  colspan="3">
   				<div id="Pagination" class="pagination" style="line-height: 15px;font-size:12px;margin-left:15px;"><!-- 这里显示分页 --></div>
+  				
   				<input class="button" type="button" style="width:40px;height:30px"  onclick="turnon();" value="返回" />
   				<!-- <input type="button" class="button" style="width:40px;height:20px" onclick="window.location.href='MainServlet?flag=return';" value="首页"/> -->
   			</td>

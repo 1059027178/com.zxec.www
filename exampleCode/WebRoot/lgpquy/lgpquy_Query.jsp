@@ -3,7 +3,6 @@
 String path = request.getContextPath();
 String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
 %>
-
 <html>
 <script language="javascript" src="./js/jiuhui.js"></script>
 <script type="text/javascript">
@@ -22,48 +21,38 @@ function lgpQuy(){
 }
 function reset(){
 	document.getElementById("lgpla").value=""; 
-	document.getElementById("lgnum").value=""; 
+	/* document.getElementById("lgnum").value=""; */ 
 }
 </script>
-
   <head>
   <LINK href="./css/jiuhui.css" type=text/css rel=STYLESHEET>
-    
     <title>≤÷Œª≤È—Ø</title>
-    
 	<meta http-equiv="pragma" content="no-cache">
 	<meta http-equiv="cache-control" content="no-cache">
 	<meta http-equiv="expires" content="0">    
 	<meta http-equiv="keywords" content="keyword1,keyword2,keyword3">
 	<meta http-equiv="description" content="This is my page">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no, target-densitydpi=medium-dpi" />
-	<!--
-	<link rel="stylesheet" type="text/css" href="styles.css">
-	-->
-
   </head>
-  
   <body>
-    <form name="jiuhui"  id="jiuhui" action="/lgpquyList.do">
-    	<div style=" padding-top: 70px;">
+    <form name="jiuhui"  id="jiuhui" action="MainServlet?flag=selectCangwei" method="post">
+    	<div style=" padding: 90px 0px 20px 0px;">
     	<ul>
-    	<li class="li"></li>
-    		<li class="li">
-    			≤÷Œª∫≈£∫<input style="width:60%" type="text" id="lgpla" name="lgpla"  value=""/>
+    		<li class="li" style="margin-bottom: 20px;">
+    			≤÷Œª∫≈£∫<input style="width:60%;height:25px;" type="text" id="lgpla" name="lgpla"  value=""/>
     		</li>
     		<li class="li">
-    			≤÷ø‚∫≈£∫<input style="width:60%" type="text" id="lgnum" name="lgnum"  value=""/>
+    			≤÷ø‚∫≈£∫<input style="width:60%;height:25px;" type="text" id="lgnum" name="lgnum"  value="311"/>
     		</li>
-    		<li class="li"></li>
-    			<li class="li" align="left">
-    				<input  class="button"  type="button" style="width:20%"  onclick="lgpQuy()" value="≤È—Ø">
-    				<input  class="button"  type="button" style="width:20%"  onclick="reset();" value="«Â≥˝">
-    				<input  class="button"  type="button" style="width:20%"  onclick="window.location.href='MainServlet?flag=4';" value="∑µªÿ">
-    				<input  class=button type="button" style="width:20%" onclick="window.location.href='MainServlet?flag=return';" value=" ◊“≥">
+    			<li class="li" style="margin:20px 0px 0px -20px;">
+    				<input  class="button"  type="button" style="width:22%"  onclick="lgpQuy()" value="≤È—Ø">
+    				<input  class="button"  type="button" style="width:22%"  onclick="reset();" value="«Â≥˝">
+    				<input  class="button"  type="button" style="width:22%"  onclick="window.location.href='MainServlet?flag=4';" value="∑µªÿ">
+    				<input  class=button type="button" style="width:22%" onclick="window.location.href='MainServlet?flag=return';" value=" ◊“≥">
     		</li>
     	</ul>
+    	</div>
     </form>
-    
   </body>
  <script type="text/javascript">
   document.getElementById("lgpla").focus();

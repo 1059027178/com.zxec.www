@@ -91,16 +91,16 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   	<div>
      <ul>
      <li class="li"></li>
-		<li class="li">物料代码：从&nbsp;<input onchange="js(1)" name="matnr" class="text" style="width:90px;background-color:white;" type="text" id="matnr" value="<%=request.getParameter("matnr")   == null ? "": request.getParameter("matnr")%>">	
+		<li class="li">物料代码：从<input onchange="js(1)" name="matnr" class="text" style="width:90px;background-color:white;" type="text" id="matnr" value="<%=request.getParameter("matnr")   == null ? "": request.getParameter("matnr")%>">	
  		</li>
-		<li class="li" style="margin-left: 50px;">到&nbsp;<input onchange="js(2)" name="matnr1" class="text" style="width:90px;background-color:white;" type="text" id="matnr1" value="">	
+		<li class="li" style="margin-left: 70px;">到<input onchange="js(2)" name="matnr1" class="text" style="width:90px;background-color:white;" type="text" id="matnr1" value="">	
  		</li>
- 		<li class="li" >数&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;量：<input name="num" class="text" style="width:90px;background-color:white;margin-left:12px;" type="text" id="num" value="<%=request.getParameter("num")   == null ? "": request.getParameter("num")%>"></li>
-		<li class="li" style="line-height:20px;">库存地点：<input name="kucundidian" id= "kucundidian" style="width:90px;background-color:white;margin-left:13px;" value="3107"/></li>
-		<li class="li" style="line-height:20px;">移动类型：<input name="yidongleixing" id= "yidongleixing" style="width:90px;background-color:white;margin-left:13px;" value="309"/></li>
+ 		<li class="li" >数&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;量：<input name="num" class="text" style="width:90px;background-color:white;margin-left:14px;" type="text" id="num" value="<%=request.getParameter("num")   == null ? "": request.getParameter("num")%>"></li>
+		<li class="li" style="line-height:20px;">库存地点：<input name="kucundidian" id= "kucundidian" style="width:90px;background-color:white;margin-left:14px;" value="3107"/></li>
+		<li class="li" style="line-height:20px;">移动类型：<input name="yidongleixing" id= "yidongleixing" style="width:90px;background-color:white;margin-left:14px;" value="309"/></li>
 		<li class="li" style="margin: 20px 0px 0px 0px;">
 		<input type="button" class="button" style="width:40px;height:25px;" type="button" onclick="submit1(this)" value="确定">
-		<input type="button" class="button" style="width:30px;height:25px;" type="button" onclick="forward()"value="返回">
+		<input type="button" class="button" style="width:40px;height:25px;" type="button" onclick="forward()"value="返回">
 		<input type="button" class="button" style="width:40px;height:25px;" onclick="window.location.href='MainServlet?flag=return';" value="首页">
 		</li>
 </ul>
