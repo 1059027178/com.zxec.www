@@ -70,7 +70,7 @@ String strDate = dateFormat.format(date);
 	    	<!-- <li class="li"><input style="width:85%;heigth=70%" type="text" id="saomiao" name="saomiao"  value="" onchange="js()"/> -->
 			<li class="li" style="margin:20px 0px 10px 0px;">制单日期：<input name="date" class="text" style="background-color:white;" type="text"  id="date" value="<%=strDate%>"/></li>
 	     	<li class="li">
-	    		<input  class="button"  type="button"  style="width:25%"  onclick="stoQuy()" value="确定" />
+	    		<input  class="button"  type="button"  style="width:25%;margin:10px 0px 0px -28px;"  onclick="stoQuy()" value="确定" />
 	    		<input  class="button"  type="button"  style="width:25%"  onclick="window.location.href='MainServlet?flag=2';" value="返回" />
 	    		<input  class="button"  type="button"  style="width:25%"  onclick="window.location.href='MainServlet?flag=return';" value="首页" />
 	    	</li>

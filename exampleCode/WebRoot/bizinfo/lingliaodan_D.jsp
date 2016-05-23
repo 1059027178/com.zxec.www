@@ -28,7 +28,7 @@
   	}
   </script>
   <body>
-  <div>
+  <div style="margin-top:70px;">
   <%HttpSession session2 = request.getSession(); %>
   <form action="MainServlet?flag=3.4" method="post" name="form">
   	<input name="matnr"  type="hidden" value="<%=request.getSession().getAttribute("matnr") == null ? "" : request.getSession().getAttribute("matnr")%>" />
@@ -44,7 +44,7 @@
 			<%-- <%session2.invalidate(); %> --%>
 		</li>
  		<li class="li" style="line-height: 25px;margin-left: -25px;">
- 			<input type="button" onclick="submit1(this);"  style="width:45px;height:25px;" class="button" value="记账变更" />
+ 			<input type="button" onclick="submit1(this);"  style="width:60px;height:25px;margin-top:20px;" class="button" value="记账变更" />
  			<input type="button" onclick="window.location.href='MainServlet?flag=shengchanB';"  style="height:25px;" class="button" value="继续" />
  			<input type="button" onclick="forward();"  style="width:40px;height:25px;" class="button" value="返回" />
  			<input type="button"  style="width:40px;height:25px;" onclick="window.location.href='MainServlet?flag=return';" value="首页">

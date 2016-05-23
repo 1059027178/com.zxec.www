@@ -61,7 +61,7 @@ function submit(obj){
 		<input name="num2" type="hidden"  id="num2" value="<%=httpSession.getAttribute("num2") == null ? "" : httpSession.getAttribute("num2")%>" />
 		<input name="num3" type="hidden"  id="num3" value="<%=httpSession.getAttribute("num3") == null ? "" : httpSession.getAttribute("num3")%>" />
 		<input name="type" type="hidden" id="type"  value="<%=request.getSession().getAttribute("type") == null ? "" : request.getSession().getAttribute("type")%>"/>
-		<table class="table_list" style="line-height: 15px;" align="center">
+		<table class="table_list" style="line-height: 15px;" align="center" width="100%">
 			<colgroup>
 				<col width="10%" />
 				<col width="25%" />
@@ -115,7 +115,7 @@ function submit(obj){
 			</tr>
 			<tr>
 				<td colspan="6" style="line-height: 40px;">
-				<input style="text-align: center;" class="button" type="button" style="width:25%" onclick="stoQuy()" value="过账" /> 
+				<input style="text-align: center;margin-top:15px;" class="button" type="button" style="width:25%" onclick="stoQuy()" value="过账" /> 
 				<input style="text-align: center;" class="button" type="button" style="width:25%" onclick="window.location.href='MainServlet?flag=shengchanA';" value="返回" /> 
 				<input style="text-align: center;" class="button" type="button" style="width:25%" onclick="window.location.href='MainServlet?flag=return';" value="首页" />
 				</td>

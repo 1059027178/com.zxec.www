@@ -20,9 +20,9 @@ function turnon(){
 
 </HEAD>
 <BODY>
-<div class="div" style="margin-top:60px;">
+<div class="div" style="margin-top:90px;">
   <form action="MainServlet?flag=3.4"  method ="post">
-	<table class="table_list" style="margin: 0px 0px 0px 60px;line-height:30p;width:100%;">
+	<table class="table_list" style="margin: 0px 0px 0px 30px;line-height:30p;width:100%;">
   		<tr >
   		<td>
   			返回消息：</br>
@@ -31,7 +31,7 @@ function turnon(){
   		</tr>
   		<tr>
   			<td >
-  				<input class="button" type="button" style="width:40px;" onclick="turnon()" value="继续"/>
+  				<input class="button" type="button" style="width:40px;margin:20px 0px 0px 0px;" onclick="turnon()" value="继续"/>
   				<input class="button" type="button" style="width:40px;"  onclick="forward();" value="返回" />
   				<input type="button" class="button" style="width:40px;" onclick="window.location.href='MainServlet?flag=return';" value="首页"/>
   			</td>

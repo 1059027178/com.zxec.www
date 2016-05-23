@@ -47,6 +47,9 @@ String strDate = dateFormat.format(date);
 	a:link{
 		text-decoration:none;
 	}
+	body{
+		margin-left:-15px;
+	}
 </style>
   <head>
   <LINK href="./css/jiuhui.css" type=text/css rel=STYLESHEET>

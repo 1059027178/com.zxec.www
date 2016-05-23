@@ -83,6 +83,11 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   	document.form.submit();
   }
   </script>
+  <style>
+  	body{
+  		margin-top:50px;
+  	}
+  </style>
   <body>
   <div>
   <form name="form" action="MainServlet?flag=groundingEdit" method="post">
@@ -92,12 +97,12 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
      	上架仓位：<input name="nlpla" class="text" style="background-color:white;" onchange="getLgber()" type="text"  id="nlpla" value="A1-1">
      	</li>
 		<li class="li" style="margin:20px 0px 0px 0px;">
-		存 储 区：&nbsp;<input name="lgber" class="text" style="background-color:#D8D8D8;" readonly= readonly type="text"  id="lgber" value="A1"/> 
+		存储区<span style="margin-left:14px;"></span>：<input name="lgber" class="text" style="background-color:#D8D8D8;" readonly= readonly type="text"  id="lgber" value="A1"/> 
 		</li>
 		<li class="li" style="margin:20px 0px 0px 0px;">
 		存储类型：<input name="lgtyp" class="text" style="background-color:#D8D8D8;" readonly= readonly type="text"  id="lgtyp" value="Z10"/>
 		</li>
-		<li class="li" style="margin:20px 0px 0px 0px;">
+		<li class="li" style="margin:20px 0px 0px -15px;">
 			<input class="button" type="button" onclick="submit1(this);" value="确定"/>
 			<input class="button" type="button" onclick="forward();" value="返回"/>
 			<input type="button" class="button" onclick="window.location.href='MainServlet?flag=return';" value="首页">

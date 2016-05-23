@@ -111,7 +111,7 @@ function getcount(){
     			</table>
     		</li>
      		<li class="li">
-    				<input  class="button"  type="button"  style="width:25%"  onclick="stoQuy()" value="确定">
+    				<input  class="button"  type="button"  style="width:25%;margin-left:-20px;"  onclick="stoQuy()" value="确定">
     				<input  class="button"  type="button"  style="width:25%"  onclick="window.location.href='MainServlet?flag=shengchanB';" value="返回">
     				<input  class="button" 	type="button"  style="width:25%"  onclick="window.location.href='MainServlet?flag=return';" value="首页">
     		</li>

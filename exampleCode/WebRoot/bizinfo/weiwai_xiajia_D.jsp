@@ -28,7 +28,7 @@
   	}
   </script>
   <body>
-  <div>
+  <div style="margin-left:-30px;">
   <form action="MainServlet?flag=2.3" method="post" name="form">
  	<ul>
  		<li class="li" style="margin: 20px 0px 0px 30px;line-height:30px;">

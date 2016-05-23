@@ -44,7 +44,7 @@ function reset(){
     		<li class="li">
     			²Ö¿âºÅ£º<input style="width:60%;height:25px;" type="text" id="lgnum" name="lgnum"  value="311"/>
     		</li>
-    			<li class="li" style="margin:20px 0px 0px -20px;">
+    			<li class="li" style="margin:20px 0px 0px -25px;">
     				<input  class="button"  type="button" style="width:22%"  onclick="lgpQuy()" value="²éÑ¯">
     				<input  class="button"  type="button" style="width:22%"  onclick="reset();" value="Çå³ý">
     				<input  class="button"  type="button" style="width:22%"  onclick="window.location.href='MainServlet?flag=4';" value="·µ»Ø">

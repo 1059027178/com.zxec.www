@@ -72,7 +72,7 @@ function stoQuy(){
     		<li class="li">
     			仓&nbsp;库&nbsp;号：<input style="width:30%;heigth:70%;background-color:#D8D8D8;" type="text" id="no" name="no"  value="311"/>
     		</li>
-     		<li class="li" style="margin-top: 20px;">
+     		<li class="li" style="margin: 20px 0px 0px -15px;">
     				<input  class="button"  type="button"  style="width:25%"  onclick="stoQuy()" value="确定">
     				<input  class="button"  type="button"  style="width:25%"  onclick="window.location.href='MainServlet?flag=2';" value="返回">
     				<input  class="button" 	type="button"  style="width:25%"  onclick="window.location.href='MainServlet?flag=return';" value="首页">
