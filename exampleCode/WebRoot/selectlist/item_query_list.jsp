@@ -13,7 +13,7 @@
 <META http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 <link href="./css/jiuhui_list.css" rel="stylesheet"/>
-<script src="./js/jquery.js"></script>
+<!-- <script src="./js/jquery.js"></script> -->
 <script src="./jquery.pagination_2/demo/lib/jquery.min.js"></script>
 <script src="./jquery.pagination_2/jquery.pagination.js"></script>
 <!-- <script src="./js/jquery-ui-bootstrap/assets/js/jquery-ui-1.10.0.custom.min.js" type="text/javascript"/> -->  
@@ -54,11 +54,6 @@ $(function(){
 	var optInit = getOptionsFromForm();
 	$("#Pagination").pagination(length, optInit);
 	
-	$(function(){
-		var opt = getOptionsFromForm();
-		// 重新创建分页参数
-		$("#Pagination").pagination(length, opt);
-	});
 	//-----------------------------------
 	function getOptionsFromForm(){
 		var opt = {callback: pageselectCallback}; //回调函数：默认无执行效果
