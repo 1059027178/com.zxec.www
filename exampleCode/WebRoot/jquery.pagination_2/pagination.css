@@ -6,6 +6,7 @@
     text-decoration: none;
 	border: solid 1px #AAE;
 	color: #15B;
+	background:#fff;
 }
 
 .pagination a, .pagination span {
@@ -16,10 +17,16 @@
 	margin-bottom: 5px;
 	min-width:1em;
 	text-align:center;
+	
+	border:1px solid #006600; 
+	font-family:"微软雅黑";
+	font-size:10px;
+	
+	
 }
 
 .pagination .current {
-    background: #26B;
+    background: #DCDCDC;
     color: #fff;
 	border: solid 1px #AAE;
 }
@@ -27,5 +34,9 @@
 .pagination .current.prev, .pagination .current.next{
 	color:#999;
 	border-color:#999;
-	background:#fff;
+	
+	
+	border:1px solid #006600; 
+	font-family:"微软雅黑";
+	font-size:10px;
 }
