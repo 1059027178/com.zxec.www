@@ -33,7 +33,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   }
   </script>
   <body>
-  <div class="div" style="margin-top:60px;">
+  <div class="div" style="margin:60px 0px 0px -15px;">
   <form name="form" action="MainServlet?flag=3.1" method="post">
     <ul>
      	<li class="li" style="margin:20px 0px 0px 30px;line-height:30px;">

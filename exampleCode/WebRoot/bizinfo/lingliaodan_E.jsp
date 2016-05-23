@@ -33,17 +33,16 @@
   <form name="form" id="form" action="MainServlet?flag=shengchanA" method="post" >
   	<%String type = request.getSession().getAttribute("type") == null ? "" : request.getSession().getAttribute("type").toString();%>
   	<input  id="type1" type="hidden" name="type1" value="<%=type%>"/>
- 	<ul>
- 		<li class="li" style="margin: 20px 0px 0px 30px;line-height:20px;">
- 				返回消息：
+ 	<ul style="margin: 70px 0px 0px 30px;">
+ 		<li class="li" style="line-height:20px;">
+ 		返回消息：
  		</li>
- 		<li class="li" style="margin: 0px 0px 0px 30px;line-height:30px;">
- 			<br>
+ 		<li class="li" style="line-height:30px;">
  			<%=request.getSession().getAttribute("message") == null ? "" : request.getSession().getAttribute("message").toString().trim()%>
 			<%session2.invalidate(); request.getSession().invalidate();%>
 		</li>
- 		<li class="li" style="margin: 20px 0px 0px 0px;">
- 			<input type="button"  onclick="submit1(this)" style="width:40px;height:25px;" class="button" value="继续" />
+ 		<li class="li" >
+ 			<input type="button"  onclick="submit1(this)" style="width:40px;height:25px;margin:20px 0px 0px -25px;" class="button" value="继续" />
  			<input type="button" onclick="forward();"  style="width:40px;height:25px;" class="button" value="返回" />
  			<input type="button"  style="width:40px;height:25px;" onclick="window.location.href='MainServlet?flag=return';" value="首页">
  		</li>

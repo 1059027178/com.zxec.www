@@ -46,7 +46,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				<td align="center">1</td><td align="center">Z01</td><td align="center"><%=request.getSession().getAttribute("nlpla") == null ? "" : request.getParameter("nlpla").trim()%></td>
 			</tr>
 		</table>
-		<li class="li"	>
+		<li class="li"	style="margin:20px 0px 0px -10px;">
 			<input class="button" type="button" onclick="submit1(this);" value="确定"/>
 			<input class="button" type="button" onclick="forward();" value="返回"/>
 			<input type="button" class="button" onclick="window.location.href='MainServlet?flag=return';" value="首页">

@@ -25,7 +25,7 @@ function stoQuy(){
 </script>
 <style type="text/css">
     body {
-      padding-top: 40px;
+      padding-top: 60px;
       padding-bottom: 0px;
     }
     .sidebar-nav {
@@ -45,7 +45,7 @@ function stoQuy(){
 					</colgroup>
 				<tr>
 					<td colspan="3" style="line-height: 40px;">
-						仓 位：<input name="literaNO" style="width:50%;heigth:20px;background-color:#D8D8D8;" class="text"  readonly=readonly type="text" id="literaNO" value = "<%=request.getSession().getAttribute("literaNO") == null ? "": request.getSession().getAttribute("literaNO")%>" />
+						<span style="margin:0px 0px 10px 10px;"></span>仓 位：<input name="literaNO" style="width:50%;heigth:20px;background-color:#D8D8D8;" class="text"  readonly=readonly type="text" id="literaNO" value = "<%=request.getSession().getAttribute("literaNO") == null ? "": request.getSession().getAttribute("literaNO")%>" />
 					</td>
 				</tr>
 				<tr style="height: 10px;"></tr>
@@ -69,10 +69,11 @@ function stoQuy(){
 					<td class="td_list" >20160507</td>
 					<td class="td_list" ><input style="width:35px;height: 15px;" type="text" id="num" name="num" /></td>
 				</tr>
-			<tr style="height: 20px;"></tr>
+				<tr ><td style="height:20px;"></td></tr>
 			<tr >
 				<td colspan="3" style="line-height: 40px;">
-					<input  class="button"  type="button"  style="width:25%"  onclick="stoQuy()" value="确定" />
+					<span style="margin:0px 0px 10px 10px;"></span>
+					<input  class="button"  type="button"  style="width:25%;"  onclick="stoQuy()" value="确定" />
     				<input  class="button"  type="button"  style="width:25%"  onclick="window.location.href='MainServlet?flag=3.2';" value="返回" />
     				<input  class="button" 	type="button"  style="width:25%"  onclick="window.location.href='MainServlet?flag=return';" value="首页" />
     			</td>

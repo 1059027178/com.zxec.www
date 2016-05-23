@@ -99,7 +99,7 @@ function matQuy(){
     		</li>
     <li class="li"></li>
      <li class="li">
-    				<input  class="button"  type="button"  style="width:20%" onclick="matQuy()" value="查询">
+    				<input  class="button"  type="button"  style="width:20%;margin:10px 0px 0px -25px;" onclick="matQuy()" value="查询">
     				<input  class="button"  type="button" style="width:20%"  onclick="reset();" value="重置">
     				<input  class="button"  type="button" style="width:20%" onclick="window.location.href='MainServlet?flag=4';" value="返回">
     				<input  class=button type="button" style="width:20%" onclick="window.location.href='MainServlet?flag=return';" value="首页">

@@ -148,14 +148,18 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   	$('.input').val("");
   }
   </script>
-  
+  <style>
+  	body{ 
+  		margin-left:-40px;
+  	}
+  </style>
   <body>
   <form name=form action="MainServlet?flag=reversalCrt"  method="post">
   <input type="hidden" name="sonum" id="sonum" >
   	<div>
   		<ul>
-  			<li style="height:15px;list-style-type:none;padding:0; margin:0;}">
-  				<input name="str" style="height:20px;" type="text" style="white-space:nowrap;width:80%;"  id="str" onchange="js()">
+  			<li style="height:15px;list-style-type:none;padding:0; margin-left:-20px;">
+  				<input name="str" style="height:20px;" type="text" style="white-space:nowrap;width:85%;"  id="str" onchange="js()">
   			</li>
   			<li class="li">
   				采购订单：<input name="aufnr" style="width:80px;height:20px;" size="5" readonly=readonly class="text"  type="text"  id="aufnr" />
@@ -169,27 +173,32 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   			</li>
   			<!-- <li class="li">尾箱标识：<input type="checkbox" onclick="choose1();" id="bs" style="width:20px;height:20px;" name="bs"></li> -->
   			<li class="li">
-  				箱数量/箱数：<input name="everyBagNumber" readonly=readonly style="width:50px;background-color:#D8D8D8;height:20px;"  type="text"  id="everyBagNumber" value="">
-  				/<input name="boxs" style="width:25px;height:20px;" type="text" value="" id="boxs" onblur="acount();">
+  				箱数量/箱数：<input name="everyBagNumber" readonly=readonly style="width:40px;background-color:#D8D8D8;height:20px;"  type="text"  id="everyBagNumber" value="">
+  				/<input name="boxs" style="width:35px;height:20px;" type="text" value="" id="boxs" onblur="acount();">
   			</li>
   			<li class="li">
-  				批&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;次：
-  				<input name="batchNo" readonly=readonly  style="margin-left:-1px;height:20px;background-color:#D8D8D8;"  type="text" class="text" id="batchNo">
+  				批次<span style="margin-left:28px;"></span>：<input name="batchNo" readonly=readonly  style="height:20px;background-color:#D8D8D8;"  type="text" class="text" id="batchNo">
+  			</li>
+  			<!-- <li class="li">
+  				生产日期：<input name="produceDate" style="height:20px;" readonly=readonly type="text" class="text"  id="produceDate">
   			</li>
   			<li class="li">
-  				总&nbsp;数&nbsp; 量：<input name="wemng" value="" type="text" class="text1" id="wemng" >
+  				生产批次：<input name="produceBatchNo" style="height:20px;" readonly=readonly type="text" class="text"  id="produceBatchNo">
+  			</li> -->
+  			<li class="li">
+  				总数量<span style="margin-left:14px;"></span>：<input name="wemng" value="" type="text" class="text1" id="wemng" >
   				<input name="unit" style="width:34px;height:20px;" value="" class="text2" readonly=readonly type="text"  id="unit"/>
 			</li>
   			<li class="li">
   				库存地点：<input name="lgort" class="text3" type="text" id="lgort">
   			</li>
   			<li class="li">
-  				特殊库存：<input name="sobkz1" style="height:20px;" readonly=readonly type="text" class="text"  id="sobkz1">
+  				特殊库存：<input name="sobkz" style="height:20px;" readonly=readonly type="text" class="text"  id="sobkz">
   			</li>
   			<li class="li">
-  				<input type="button" valign="center" class="button" onclick="submit1(this);" style="width:40px;height:25px;" value="确定"/>
-  				<input  class="button"  type="button" onclick="forward();" style="width:30px;height:25px;" value="返回"/>
-  				<input  class="button" type="button" onclick="reset();" style="width:30px;height:25px;" value="重置"/>
+  				<input type="button" valign="center" class="button" onclick="submit1(this);" style="width:40px;height:25px;margin:10px 0px 0px -28px;" value="确定"/>
+  				<input  class="button"  type="button" onclick="forward();" style="width:40px;height:25px;" value="返回"/>
+  				<input  class="button" type="button" onclick="reset();" style="width:40px;height:25px;" value="重置"/>
   				<input type="button" class="button" style="width:40px;height:25px;" onclick="window.location.href='MainServlet?flag=return';" value="首页">
   			</li>
   		</ul>

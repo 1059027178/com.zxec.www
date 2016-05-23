@@ -46,12 +46,12 @@
  		<li class="li" style="margin: 20px 0px 0px 0px;line-height:30px;">
  				返回消息：
  		</li>
- 		<li class="li" style="margin: 0px 0px 0px 30px;line-height:30px;">
+ 		<li class="li" style="line-height:30px;">
  			<%=request.getSession().getAttribute("message") == null ? "" : request.getSession().getAttribute("message").toString().trim()%>
  			<br>
  			<%=request.getSession().getAttribute("type") == null ? "" : request.getSession().getAttribute("type").toString().trim()%>
 		</li>
- 		<li class="li" style="margin: 20px 0px 0px 0px;">
+ 		<li class="li" style="margin: 20px 0px 0px -15px;">
  			<input type="button" onclick="submit1(this);"  style="width:40px;height:25px;" class="button" value="下架" />
  			<input type="button" onclick="forward();"  style="width:40px;height:25px;" class="button" value="返回" />
  			<input type="button"  style="width:40px;height:25px;" onclick="window.location.href='MainServlet?flag=return';" value="首页">

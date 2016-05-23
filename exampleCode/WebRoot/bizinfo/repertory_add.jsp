@@ -46,6 +46,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   	}
   	//alert(document.getElementById("radioValue").value);return;
   	obj.disabled=false;
+  	document.form.submit();
   }
   function forward(){
   	window.location.href="MainServlet?flag=3";
@@ -59,7 +60,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   <body>
   <form name="form" action="MainServlet?flag=cangwei" method="post">
   	<input name="radioValue" type="hidden" id="radioValue" value="1"/>
-  <div>
+  	<div>
     
 	<ul>
      	<li class="li">仓位号：<input name="nlpla" class="text" style="background-color:white;" type="text"  id="nlpla"  value=""/>
@@ -69,13 +70,13 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
      	<li class="li"><input name="radio" style="width:20px;" checked=checked type="radio" id="radio1" value="1" onclick="getValue(this.value)"/>出入库冻结</li>
      	<li class="li"><input name="radio" style="width:20px;" type="radio" id="radio2" value="2" onclick="getValue(this.value)"/>出入库解冻</li>
      	<li class="li"><input name="radio" style="width:20px;" type="radio" id="radio3" value="3" onclick="getValue(this.value)"/>查看所有冻结仓位</li>
-		<li class="li" style="margin-top: 20px;">
+		<li class="li" style="margin: 30px 0px 0px -15px;">
 		<input class="button" type="button" onclick="submit1(this)" value="确定">
 		<input class="button" type="button" onclick="forward()" value="返回">
 		<input class="button" type="button" onclick="window.location.href='MainServlet?flag=return';" value="首页">
 		</li>
 	</ul>
-</div>
+	</div>
 </form>
   </body>
    <script type="text/javascript">

@@ -42,13 +42,13 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   }
   </script>
   <body>
-  <form name="form" action="MainServlet?flag=storageInfo" method="post" style="margin-top:70px;margin-left: -20px;">
+  <form name="form" action="MainServlet?flag=storageInfo" method="post" style="margin-top:90px;">
   	<div>
   		<ul>
   			<li style="height:15px;list-style-type:none;">
   				仓&nbsp;位&nbsp;号：<input name="literaNO" id="literaNO"  type="text" style="width:50%;height:20px;"  >
   			</li>
-  			<li class="li" style="margin-top: 20px;">
+  			<li class="li" style="margin: 40px 0px 0px -15px;">
   				<input type ="button" valign="center" class="button" onclick="submit1(this);" style="width:40px;height:25px;" value="确定"/>
   				<input class="button"  type="button"  onclick="forward();" style="width:40px;height:25px;" value="返回"/>
   				<input class="button"  type="button"  onclick="reset();"   style="width:40px;height:25px;" value="清除"/>

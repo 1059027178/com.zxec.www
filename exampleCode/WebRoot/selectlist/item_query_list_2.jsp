@@ -105,10 +105,12 @@ function ToMore(obj){
   	<table class="table_list" style="line-height:15px;" >
 		<thead>
   		<%if(list == null || list.size() == 0 ) {%>
+  		<tr style="height:80px;"></tr>
   		<tr>
-  			<td>
-  				<span>查询结果为空！</span>
-  				<input type="button" class="button" style="width:40px;height:20px" onclick="window.location.href='MainServlet?flag=return';" value="首页"/>
+  			<td align="left" >
+  				<span style="margin-left:40px;">查询结果为空！</span>
+  				<br />
+  				<input type="button" class="button" style="width:40px;height:20px;margin-top:50px;margin-left:40px;" onclick="window.location.href='MainServlet?flag=return';" value="首页"/>
   				<input class="button" type="button" style="width:40px;height:20px"  onclick="turnon();" value="返回" />
   			</td>
   		</tr>
