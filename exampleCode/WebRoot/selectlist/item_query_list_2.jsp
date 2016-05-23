@@ -92,15 +92,14 @@ function ToMore(obj){
 	
 	document.getElementById("matnr").value = itemNO;
 	
-	 document.getElementById("argform").submit();
-	 
-	 //document.getElementByName("argsubmit").click();
+	 //document.getElementById("argform").submit();
+	 document.getElementById("argsubmit").click();
 }
 </script>
 </HEAD>
 <BODY>
 <div class="div">
-  <form action="MainServlet?flag=selectWuLiao1"  method ="post"  id="argform">
+  <form name="form" action="MainServlet?flag=selectWuLiao1"  method ="post" >
 	<input type="hidden" name="matnr" id="matnr"/>
   	<input type="hidden" name="lgpla" id="lgpla"  value="<%=request.getAttribute("lgpla") %>"/>
   	<table class="table_list" style="line-height:15px;" >
@@ -131,7 +130,7 @@ function ToMore(obj){
 		<tbody class="tbody" style="display: none;" align="left">
 		<tr class="tr_list_2">
 			<td class="td_list" style="padding-left:15px;">
-				<a href="javascript:;" onclick="ToMore(this);"><%=info.getItemNO() %></a>
+				<a href="#" onclick="ToMore(this);"><%=info.getItemNO() %></a>
 			</td>
 		</tr>
 		<tr class="tr_list_2"  >
@@ -145,8 +144,8 @@ function ToMore(obj){
   		<tr>
   			<td colspan="2">
   				<div id="Pagination" class="pagination" style="line-height: 15px;font-size:12px;margin-left:15px;"><!-- 这里显示分页 --></div>
-  				<input type="submit" name="argsubmit" style="display:none"/>
-  				<input class="button" type="button" style="width:40px;height:30px"  onclick="turnon();" value="返回" />
+  				<input  class="button" type="button" name="argsubmit" id="argsubmit" onclick="submit1(this);" style="display:none" />
+  				<input class="button" type="button" style="width:50px;height:30px"  onclick="turnon();" value="返回" />
   				<!-- <input type="button" class="button" style="width:40px;height:20px" onclick="window.location.href='MainServlet?flag=return';" value="首页"/> -->
   			</td>
   		</tr>
