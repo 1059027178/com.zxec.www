@@ -82,7 +82,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	  		$("#produceDate").attr("value",produceDate);
 	  		$("#produceBatchNo").attr("value",produceBatchNo);
 	  		
-	  		if(matnr == "C.9.291400"){
+	  		
+	  		getMaktx(matnr);
+	  		/* if(matnr == "C.9.291400"){
 	  			$("#maktx").attr("value","C2沙剂-规格(25kg/桶)");
 	  		}
 	  		else if(matnr == "C.6.040501"){
@@ -96,27 +98,29 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	  		}
 	  		else if(matnr == "C.6.040802"){
 	  			$("#maktx").attr("value","ABS规格(4330C 颜色:本色 玻纤:/ 其他:/)");
-	  		}
+	  		}else{
+	  			$("#maktx").attr("value","ABS规格(4330C 颜色:本色 玻纤:/ 其他:/)");
+	  		} */
 	  		
-	  		if(bs=='X'){
+	  		/* if(bs=='X'){
 	  			$("#bs").attr("checked","checked");
 	  			
 	  		}else{
 	  			$("#bs").removeAttr("checked");//
-	  		}
+	  		} */
 	  		//choose1();尾箱标识功能
-	  		//getMaktx(matnr);
   		}
   	}
   	function getMaktx(matnr){
   		if(matnr=='' || matnr==null)return;
 		jQuery.ajax({
-			url:'/receiptJson.do',
+			url:'MainServlet?flag=getMaktx',
 	 		async:false,
 	 		type:"post",
 	 		data:{"showType":"getMaktx","matnr":matnr},
 	 		dataType:'json',
 	 		success:function(data){
+	 			//alert(data.maktx);
 	 			$("#maktx").attr("value",data.maktx);
 	 		},
 	        error:function(){       
@@ -174,7 +178,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   			<li class="li">
   				物料描述：<input name="maktx" class="text"  readonly=readonly type="text" id="maktx" value="">
   			</li>
-  			<!-- <li class="li">尾箱标识：<input type="checkbox" onclick="choose1();" id="bs" style="width:20px;height:20px;" name="bs"></li> -->
+  			<!-- <li class="li">尾箱标识：<input type="checkbox" onclick="choose1();" id="bs" style="width:20px;height:20px;" name=""></li> -->
   			<li class="li">
   				箱数量/箱数：<input name="everyBagNumber" readonly=readonly style="width:40px;background-color:#D8D8D8;height:20px;"  type="text"  id="everyBagNumber" value="">
   				/<input name="boxs" style="width:35px;height:20px;" type="text" value="" id="boxs" onblur="acount();">

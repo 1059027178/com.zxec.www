@@ -8,6 +8,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 Date date = new Date();
 SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
 String strDate = dateFormat.format(date);
+
+String type = request.getSession().getAttribute("type") == null ? "" : request.getSession().getAttribute("type").toString();
 %>
 <html>
 <script src="./js/jquery.js"></script>  
@@ -18,18 +20,14 @@ String strDate = dateFormat.format(date);
 	function stoQuy(){
 		document.jiuhui.submit();
 	}
-	function query(obj){
-		if(obj == 1){
-			$("#batchNO").attr("value","20160507");
-		}else if(obj == 2){
-			$("#batchNO").attr("value","20160508");
-		}else if(obj == 3){
-			$("#batchNO").attr("value","20160510");
-		}else if(obj == 4){
-			$("#batchNO").attr("value","20160511");
-		}else if(obj == 5){
-			$("#batchNO").attr("value","20160512");
-		}
+	function query(line){
+		//alert(line);return;
+		var valueTd =document.getElementById ("box").rows [line].cells[1];
+		//领料单号
+		var bills = valueTd.getElementsByTagName("a")[0].innerHTML;
+		//alert(bills);return;
+		document.getElementById("bills").value = bills;
+		
 		document.jiuhui.submit();
 	}
 	function choose1(){
@@ -63,40 +61,43 @@ String strDate = dateFormat.format(date);
   </head>
   <body>
   <form name="jiuhui"  id="jiuhui" method="post" action="MainServlet?flag=shengchanB">
-  	<input name="batchNO"  type="hidden" id="batchNO"/>
+  	<input name="bills"  type="hidden" id="bills"/>
+  	<%  
+  	   String[] bills = null;
+  	   int size = 0;
+  	   if(type.equals("生产领料单")){
+  	   		size = 6;
+  	   		bills = new String[size];
+  	   		for(int i = 0 ; i < size ; i++){
+  	   			bills[i] = "0000000"+ (130 + i);
+  	   		}
+  	   }else{
+  	   		size = 4;
+  	   		bills = new String[size];
+  	   		for(int i = 0 ; i < size ; i++){
+  	   			bills[i] = "0000000" + (380 + i);
+  	   		}
+  	   }
+  	%>
     <div style=" padding-top: 50px;">
 	    <ul>
 	   	 	<li class="li" >
-	   	 		<table class="table_list" >
-	   	 			<tr>
-	   	 				<td align="center">序号</td>
-	   	 				<td align="center"><%=request.getSession().getAttribute("type") == null ? "" : request.getSession().getAttribute("type")%></td>
-	   	 			</tr>
+	   	 		<table class="table_list"  id = "box">
+	   	 		<tr>
+	   	 			<td align="center">序号</td>
+	   	 			<td align="center"><%=type%></td>
+	   	 		</tr>
+	   	 		<%for(int s = 0 ; s < size ; s++ ){ %>
 	   	 			<tr style="line-height: 20px;" >
-	   	 				<td align="center" >1</td>
-	   	 				<td align="center"><a href="javascript:query(1);">0000000130</a></td>
+	   	 				<td align="center" ><%=s + 1 %></td>
+	   	 				<td align="center"><a href="javascript:query(<%=s + 1%>);"><%=bills[s] %></a></td>
 	   	 			</tr>
-	   	 			<tr style="line-height: 20px;" >																
-	   	 				<td align="center">2</td>
-	   	 				<td align="center"><a href="javascript:query(2);">0000000131</a></td>
-	   	 			</tr>
-	   	 			<tr style="line-height: 20px;" >																
-	   	 				<td align="center">3</td>
-	   	 				<td align="center"><a href="javascript:query(3);">0000000140</a></td>
-	   	 			</tr>
-	   	 			<tr style="line-height: 20px;" >																
-	   	 				<td align="center">4</td>
-	   	 				<td align="center"><a href="javascript:query(4);">0000000141</a></td>
-	   	 			</tr>
-	   	 			<tr style="line-height: 20px;" >																
-	   	 				<td align="center">5</td>
-	   	 				<td align="center"><a href="javascript:query(5);">0000000143</a></td>
-	   	 			</tr>
+	   	 		<%} %>
 	   	 		</table>
 			</li>
 			<li class="li">
 	    		<!-- <input  class="button"  type="button"  style="width:25%"  onclick="stoQuy()" value="确定" /> -->
-	    		<input  class="button"  type="button"  style="width:25%"  onclick="window.location.href='MainServlet?flag=2.1';" value="返回" />
+	    		<input  class="button"  type="button"  style="width:25%;margin-left:-12px;"  onclick="window.location.href='MainServlet?flag=2.1';" value="返回" />
 	    		<input  class="button"  type="button"  style="width:25%"  onclick="window.location.href='MainServlet?flag=return';" value="首页" />
 	    	</li>
 	    </ul>

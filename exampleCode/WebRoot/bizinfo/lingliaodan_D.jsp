@@ -31,10 +31,11 @@
   <div style="margin-top:70px;">
   <%HttpSession session2 = request.getSession(); %>
   <form action="MainServlet?flag=3.4" method="post" name="form">
-  	<input name="matnr"  type="hidden" value="<%=request.getSession().getAttribute("matnr") == null ? "" : request.getSession().getAttribute("matnr")%>" />
+  	<%-- <input name="matnr"  type="hidden" value="<%=request.getSession().getAttribute("matnr") == null ? "" : request.getSession().getAttribute("matnr")%>" />
+ 	
  	<input name="num1"  type="hidden" value="<%=session2.getAttribute("num1") == null ? "" : session2.getAttribute("num1")%>" />
  	<input name="num2"  type="hidden" value="<%=session2.getAttribute("num2") == null ? "" : session2.getAttribute("num2")%>" />
- 	<input name="num3"  type="hidden" value="<%=session2.getAttribute("num3") == null ? "" : session2.getAttribute("num3")%>" />
+ 	<input name="num3"  type="hidden" value="<%=session2.getAttribute("num3") == null ? "" : session2.getAttribute("num3")%>" /> --%>
  	<ul style="margin-top:20px;">
  		<li class="li" style="line-height: 25px;">
  				返回消息：

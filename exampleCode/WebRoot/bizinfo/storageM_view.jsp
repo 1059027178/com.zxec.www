@@ -40,23 +40,27 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	  		//$("#lgort").attr("value",storageLocation);
 	  		$("#batchNo").attr("value",batchNo);
 	  		
-	  		if(matnr == "C.9.291400"){
-	  			$("#maktx").attr("value","C2沙剂-规格(25kg/桶)");
-	  		}
-	  		else if(matnr == "C.6.040501"){
-	  			$("#maktx").attr("value","ABS 规格(730 颜色:本色 玻纤:无 其他:/)");
-	  		}
-	  		else if(matnr == "C.6.040601"){
-	  			$("#maktx").attr("value","ABS-GP-22 颜色:本色 玻纤:/ 其他:/");
-	  		}
-	  		else if(matnr == "C.6.040701"){
-	  			$("#maktx").attr("value","ABS规格(710 颜色:白色 玻纤:/ 其他:锦湖日丽710)");
-	  		}
-	  		else if(matnr == "C.6.040802"){
-	  			$("#maktx").attr("value","ABS规格(4330C 颜色:本色 玻纤:/ 其他:/)");
-	  		}
+	  		getMaktx(matnr);
   		}
   	}
+  	function getMaktx(matnr){
+  		if(matnr=='' || matnr==null)return;
+		jQuery.ajax({
+			url:'MainServlet?flag=getMaktx',
+	 		async:false,
+	 		type:"post",
+	 		data:{"showType":"getMaktx","matnr":matnr},
+	 		dataType:'json',
+	 		success:function(data){
+	 			//alert(data.maktx);
+	 			$("#maktx").attr("value",data.maktx);
+	 		},
+	        error:function(){       
+		       alert("系统异常，请联系管理员");
+		    }
+		});
+	
+	}
   	function keyDown() {
        var keycode = event.keyCode;
        var realkey = String.fromCharCode(event.keyCode);
