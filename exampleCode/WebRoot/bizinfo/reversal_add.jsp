@@ -79,7 +79,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	  		$("#batchNo").attr("value",batchNo);
 	  		$("#unit").attr("value",unit);
 	  		$("#sobkz").attr("value","Z-00");
-	  		
+	  		/* 
 	  		if(matnr == "C.9.291400"){
 	  			$("#maktx").attr("value","C2沙剂-规格(25kg/桶)");
 	  		}
@@ -102,19 +102,20 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	  		}else{
 	  			$("#bs").removeAttr("checked");//
 	  		}
-	  		choose1();
+	  		choose1(); */
 	  		getMaktx(matnr);
   		}
   	}
   	function getMaktx(matnr){
   		if(matnr=='' || matnr==null)return;
 		jQuery.ajax({
-			url:'/receiptJson.do',
+			url:'MainServlet?flag=getMaktx',
 	 		async:false,
 	 		type:"post",
 	 		data:{"showType":"getMaktx","matnr":matnr},
 	 		dataType:'json',
 	 		success:function(data){
+	 			//alert(data.maktx);
 	 			$("#maktx").attr("value",data.maktx);
 	 		},
 	        error:function(){       

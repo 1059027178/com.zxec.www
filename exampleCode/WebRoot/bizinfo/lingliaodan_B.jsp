@@ -1,5 +1,7 @@
+<%@page import="com.exampleCode.model.BillsInfo"%>
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ page import="java.util.List" %>
+<%List list = (List)request.getAttribute("resultList");  %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <HEAD>
@@ -13,21 +15,28 @@ function stoQuy(){
 	document.getElementById("listform").action="MainServlet?flag=shengchanE";
 	document.listform.submit();
 }
-function submit(obj){
-	//alert("11111");return;
-	if(obj == 1){
-		$("#matnr").attr("value","C.9.291400");
-	}
-	else if(obj == 2){
-		$("#matnr").attr("value","C.9.291470");
-		
-	}
-	else if(obj == 3){
-		$("#matnr").attr("value","C.6.040601");
-		
-	}
-	var matnr = $("#matnr").val();
+function submit(obj,line){
+	var itemNO = obj.innerHTML;//获取当前a标签中的值
+	//alert(itemNO);return;
+	//物料编码
+	$("#matnr").attr("value",itemNO);
 	//alert(matnr);return;
+	//已捡配数量
+	var valueTd =document.getElementById ("box").rows [line].cells[2];
+	var useNumber = valueTd.innerHTML;
+	if(useNumber == "KG"){
+		valueTd =document.getElementById ("box").rows [line+1].cells[2];
+		useNumber = valueTd.innerHTML;
+	}else if (useNumber == "NaN"){
+		useNumber = "0";
+	}
+	document.getElementById("useNumber").value = useNumber;
+	//最大数量
+	var valueTd2 =document.getElementById ("box").rows [line].cells[1];
+	var maxNumber = valueTd2.innerHTML;
+	document.getElementById("maxNumber").value = maxNumber;
+	//alert(maxnum);return;
+	
 	document.getElementById("listform").action="MainServlet?flag=shengchanC";
 	document.listform.submit();
 }
@@ -51,17 +60,21 @@ function submit(obj){
   </style>
 </HEAD>
 <BODY>
-<%HttpSession httpSession = request.getSession(); %>
-<% String batchNO = request.getSession().getAttribute("batchNO") == null ? "" : request.getSession().getAttribute("batchNO").toString(); %>
+
 <div class="div" >
 	<form name="listform" id="listform" method="post" >
-		<input name="batchNO" type="hidden" value="<%=batchNO%>" />
+		<div style="display: none;">
 		<input name="matnr" type="hidden" id="matnr" />
-		<input name="num1" type="hidden"  id="num1" value="<%=httpSession.getAttribute("num1") == null ? "" : httpSession.getAttribute("num1")%>" />
+		<!-- <input name="useNumber" type="hidden" id="useNumber" /> -->
+		<input name="useNumber"  id="useNumber" type="hidden" />
+		<input name="maxNumber"  id="maxNumber"  type="hidden"/>
+		</div>
+		<%-- <input name="num1" type="hidden"  id="num1" value="<%=httpSession.getAttribute("num1") == null ? "" : httpSession.getAttribute("num1")%>" />
 		<input name="num2" type="hidden"  id="num2" value="<%=httpSession.getAttribute("num2") == null ? "" : httpSession.getAttribute("num2")%>" />
 		<input name="num3" type="hidden"  id="num3" value="<%=httpSession.getAttribute("num3") == null ? "" : httpSession.getAttribute("num3")%>" />
 		<input name="type" type="hidden" id="type"  value="<%=request.getSession().getAttribute("type") == null ? "" : request.getSession().getAttribute("type")%>"/>
-		<table class="table_list" style="line-height: 15px;" align="center" width="100%">
+		 --%>
+		<table class="table_list" style="line-height: 15px;" align="center" width="100%" id = "box">
 			<colgroup>
 				<col width="10%" />
 				<col width="25%" />
@@ -80,39 +93,23 @@ function submit(obj){
 				<td class="td_list">数量</td>
 				<td class="td_list">已拣配</td>
 			</tr>
+			<%	
+				for(int i = 0 ; i < list.size() ; i ++){ 
+				BillsInfo info = (BillsInfo)list.get(i);
+			%>
 			<tr class="tr_list_2" >
-				<td class="td_list">1</td>
-				<td class="td_list"><a href="javascript:submit(1);">C.9.291400</a></td>
+				<td class="td_list"><%=i+1%></td>
+				<td class="td_list"><a href="#" onclick="submit(this,<%=i+3%>);"><%=info.getItemNO()%></a></td>
 				<td class="td_list">KG</td>
 			</tr>
 			<tr class="tr_list_2">
-				<td class="td_list"><%=batchNO %></td>
-				<td class="td_list">20000</td>
-				<td class="td_list" ><%=httpSession.getAttribute("num1") == null ? "" : httpSession.getAttribute("num1")%>
-				</td>
+				<td class="td_list"><%=info.getBatchNO()%></td>
+				<td class="td_list"><%=info.getNumber()%></td>
+				<td class="td_list"><%=info.getUseNumber()%></td>
+				
 			</tr>
-			<tr class="tr_list_2" >
-				<td class="td_list">2</td>
-				<td class="td_list"><a href="javascript:submit(2);">C.9.291470</a></td>
-				<td class="td_list">KG</td>
-			</tr>
-			<tr class="tr_list_2">
-				<td class="td_list"><%=batchNO %></td>
-				<td class="td_list">10000</td>
-				<td class="td_list"><%=httpSession.getAttribute("num2") == null ? "" : httpSession.getAttribute("num2")%>
-				</td>
-			</tr>
-			<tr class="tr_list_2">
-				<td class="td_list">3</td>
-				<td class="td_list"><a href="javascript:submit(3);">C.6.040601</a></td>
-				<td class="td_list">KG</td>
-			</tr>
-			<tr class="tr_list_2">
-				<td class="td_list"><%=batchNO %></td>
-				<td class="td_list">5000</td>
-				<td class="td_list"><%=httpSession.getAttribute("num3") == null ? "" : httpSession.getAttribute("num3")%>
-				</td>
-			</tr>
+				
+			<%} %>
 			<tr>
 				<td colspan="6" style="line-height: 40px;">
 				<input style="text-align: center;margin-top:15px;" class="button" type="button" style="width:25%" onclick="stoQuy()" value="过账" /> 

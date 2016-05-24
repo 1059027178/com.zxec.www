@@ -56,7 +56,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		if(nlpla == "" || nlpla == null){
 			alert("请输入仓位号！");return;
 		}else{
-			$("#lgber").attr("value",nlpla.substr(0,1));
+			$("#lgber").attr("value",nlpla.substr(0,2));
 		}
 		
 	}

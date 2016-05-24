@@ -28,6 +28,9 @@ public class PositionsInfo {
 
 	private String supplierProductDate ;  /*供应商生产日期*/
 
+	private String zhuanyishuliang; /*转移数量*/
+	private String zhuanyicangwei; /*转移仓位*/
+
 	public String getStorageLocation() {
 		return storageLocation;
 	}
@@ -114,6 +117,22 @@ public class PositionsInfo {
 
 	public void setSupplierProductDate(String supplierProductDate) {
 		this.supplierProductDate = supplierProductDate;
+	}
+
+	public String getZhuanyishuliang() {
+		return zhuanyishuliang;
+	}
+
+	public void setZhuanyishuliang(String zhuanyishuliang) {
+		this.zhuanyishuliang = zhuanyishuliang;
+	}
+
+	public String getZhuanyicangwei() {
+		return zhuanyicangwei;
+	}
+
+	public void setZhuanyicangwei(String zhuanyicangwei) {
+		this.zhuanyicangwei = zhuanyicangwei;
 	}
 	
 }

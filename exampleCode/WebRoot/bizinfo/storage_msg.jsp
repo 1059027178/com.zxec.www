@@ -11,7 +11,7 @@
 <script>
 	
 function forward(){
-  	window.location.href="MainServlet?flag=storageTo";
+  	window.location.href="MainServlet?flag=3";
   }		
 function turnon(){
   	window.location.href="MainServlet?flag=3.2";

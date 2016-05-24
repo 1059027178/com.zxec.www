@@ -54,10 +54,10 @@
     		数量合计：<input style="width:45%;heigth:70%;background-color:#D8D8D8;" type="text" id="num" name="num" value = "<%=request.getSession().getAttribute("num") == null ? "": request.getSession().getAttribute("num")%>"/>
     	</li>
     	<li class="li">
-    		供应商<span style="width:14px"></span>：<input style="width:60%;heigth:70%;" type="text" id="shipper" name="shipper" value = "G100030"/>
+    		供应商<span style="width:14px"></span>：<input style="width:60%;heigth:70%;" type="text" id="shipper" name="shipper" value = ""/>
     	</li>
     	<li class="li">
-    		PO号<span style="width:24px"></span>：<input style="width:60%;heigth:70%;" type="text" id="PONO" name="PONO" value="4500121943" />
+    		PO号<span style="width:24px"></span>：<input style="width:60%;heigth:70%;" type="text" id="PONO" name="PONO" value="" />
     	</li>
     	<li class="li">
     		库存地点：<input style="width:45%;heigth:70%;background-color:#D8D8D8;" readonly=readonly  type="text" id="kucunDidian" name="kucunDidian" value = "3107"/>
