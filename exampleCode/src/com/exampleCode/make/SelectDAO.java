@@ -21,9 +21,9 @@ public class SelectDAO {
 	}*/
 	/**
 	 * @author YangYang: 插入表数据
-	 * @param useNumber
-	 * @param dingdaohao
-	 * @param wuliaohao
+	 * @param  useNumber  已领用数量
+	 * @param  dingdaohao 订单号
+	 * @param  wuliaohao  物料号
 	 * @return
 	 */
 	public boolean writeUseNumber(String useNumber,String dingdaohao,String wuliaohao){
@@ -34,7 +34,7 @@ public class SelectDAO {
 		
 		Statement ps = null;
 
-		String sql = "update BillsInfo_Table set useNumber = '"+useNumber+ "' where itemNO = '"+wuliaohao+"'";
+		String sql = "update BillsInfo_Table set useNumber = '"+useNumber+ "' where itemNO = '"+wuliaohao+"' and billsNO = '"+dingdaohao+"'";
 		
 		System.out.println("***数据库操作：sql= "+sql);
 		try {

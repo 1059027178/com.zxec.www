@@ -452,6 +452,8 @@ public class MainServlet extends HttpServlet {
 			String useNumber = request.getParameter("useNumber") == null ? "" : request.getParameter("useNumber").trim();
 			String maxNumber = request.getParameter("maxNumber") == null ? "" : request.getParameter("maxNumber").trim();
 			
+			
+			
 			List<PositionsInfo> resultList = new SelectDAO().selectWuLiaoInfo(matnr, "", "", "");
 			request.setAttribute("useNumber", useNumber);
 			request.setAttribute("maxNumber", maxNumber);
@@ -466,7 +468,7 @@ public class MainServlet extends HttpServlet {
 			String num 	 = request.getParameter("num") == null ? "" : request.getParameter("num").toString();
 			String matnr = request.getParameter("num") == null ? "" : request.getParameter("matnr").toString();
 			String bills = httpSession.getAttribute("bills") == null ? "" : httpSession.getAttribute("bills").toString();
-
+			
 			//数据插入表中
 			boolean msg = new SelectDAO().writeUseNumber(num, bills, matnr);
 			String message = "";

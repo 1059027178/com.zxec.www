@@ -25,7 +25,7 @@ function stoQuy(){
 	document.listform.action="MainServlet?flag=storageMsg";
 	document.listform.submit();
 }
-function submit(obj,line){
+function ToMore(obj,line){
 	var itemNO = obj.innerHTML;//获取当前a标签中的值
 	//alert(itemNO);return;
 	//物料编码
@@ -50,7 +50,7 @@ function submit(obj,line){
     body {
       padding-top:10px;
       padding-bottom: 0px;
-      padding-left:20px;
+      margin-left:10px;
     }
     .sidebar-nav {
       padding: 0;
@@ -101,7 +101,11 @@ function submit(obj,line){
 				%>
 				<tr class="tr_list_2" >
 					<td class="td_list"><%=i+1 %></td>
-					<td class="td_list"  align="center"><a href="#" onclick="submit(this,<%=i+1%>);"><%=info.getItemNO()%></a></td>
+					<td class="td_list"  align="center">
+					<span onclick="ToMore(this,<%=i+1%>)" style="background-color: #D8D8D8;"><%=info.getItemNO()%></span>
+					<%-- <a href="#" onclick="submit(this,<%=i+1%>);"><%=info.getItemNO()%></a> --%>
+					<%-- <a href="javascript:ToMore(this,<%=i+1 %>);" ><%=info.getItemNO()%></a> --%>
+					</td>
 					<td class="td_list"  align="center" ><%=info.getNumber() %>
 					<input type="hidden" id = "<%=i+1%>" value="<%=info.getNumber() %>"/>
 					</td>
@@ -129,7 +133,7 @@ function submit(obj,line){
 				</tr> -->
 			<tr >
 				<td colspan="3" >
-					<input  class="button"  type="button"  style="width:25%;margin:6px 0px 0px -4px;"  onclick="stoQuy()" value="确定" />
+					<input  class="button"  type="button"  style="width:25%;margin:6px 0px 0px 0px;"  onclick="stoQuy()" value="确定" />
     				<input  class="button"  type="button"  style="width:25%"  onclick="window.location.href='MainServlet?flag=3.2';" value="返回" />
     				<input  class="button" 	type="button"  style="width:25%"  onclick="window.location.href='MainServlet?flag=return';" value="首页" />
     			</td>

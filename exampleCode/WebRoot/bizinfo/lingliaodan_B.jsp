@@ -6,21 +6,26 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <HEAD>
 <TITLE><%=request.getSession().getAttribute("type")%></TITLE>
-<META http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<link href="./css/jiuhui_list.css" rel="stylesheet" />
-<script src="./js/jquery.js"></script>  
+<META http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<link href="./css/jiuhui_list.css" rel="stylesheet"/>
+<script src="./js/jquery.js"></script>
+<script src="./jquery.pagination_2/demo/lib/jquery.min.js"></script>
+<script src="./jquery.pagination_2/jquery.pagination.js"></script>
+<!-- <script src="./js/jquery-ui-bootstrap/assets/js/jquery-ui-1.10.0.custom.min.js" type="text/javascript"/> -->  
+<link href="./jquery.pagination_2/pagination.css" rel="stylesheet"/>
 <script>
 function stoQuy(){
 	document.getElementById("listform").action="MainServlet?flag=shengchanE";
 	document.listform.submit();
 }
-function submit(obj,line){
+function ToMore(obj,line){
+	//alert("111");return;
 	var itemNO = obj.innerHTML;//获取当前a标签中的值
 	//alert(itemNO);return;
 	//物料编码
 	$("#matnr").attr("value",itemNO);
-	//alert(matnr);return;
+	//alert(itemNO);return;
 	//已捡配数量
 	var valueTd =document.getElementById ("box").rows [line].cells[2];
 	var useNumber = valueTd.innerHTML;
@@ -28,19 +33,26 @@ function submit(obj,line){
 		valueTd =document.getElementById ("box").rows [line+1].cells[2];
 		useNumber = valueTd.innerHTML;
 	}else if (useNumber == "NaN"){
-		useNumber = "0";
+		useNumber = "";
 	}
+	//$("#useNumber").attr("value",useNumber);
 	document.getElementById("useNumber").value = useNumber;
 	//最大数量
 	var valueTd2 =document.getElementById ("box").rows [line].cells[1];
 	var maxNumber = valueTd2.innerHTML;
+	
+	//$("#maxNumber").attr("value",maxNumber);
 	document.getElementById("maxNumber").value = maxNumber;
 	//alert(maxnum);return;
 	
 	document.getElementById("listform").action="MainServlet?flag=shengchanC";
-	document.listform.submit();
+	document.getElementById("argsubmit").click();
+	//document.listform.submit();
 }
-
+function submit1(obj){
+  	obj.disabled=false;
+  	document.listform.submit();
+}	
 /* $(function(){
 	$('tr').click(function(){
 	submit(obj);
@@ -62,7 +74,7 @@ function submit(obj,line){
 <BODY>
 
 <div class="div" >
-	<form name="listform" id="listform" method="post" >
+	<form name="listform" id="listform" method="post"  >
 		<div style="display: none;">
 		<input name="matnr" type="hidden" id="matnr" />
 		<!-- <input name="useNumber" type="hidden" id="useNumber" /> -->
@@ -99,7 +111,11 @@ function submit(obj,line){
 			%>
 			<tr class="tr_list_2" >
 				<td class="td_list"><%=i+1%></td>
-				<td class="td_list"><a href="#" onclick="submit(this,<%=i+3%>);"><%=info.getItemNO()%></a></td>
+				<td class="td_list">
+					<%-- <input  class="button" type="button"  onclick="ToMore(this,<%=i+3%>)" value="<%=info.getItemNO()%>" /> --%>
+					<%-- <span onclick="ToMore(this,<%=i+3%>);" style="background-color: #D8D8D8;"><%=info.getItemNO()%></span> --%>
+				<span onclick="javascript:ToMore(this,<%=i+3 %>)"  style="background-color:#D8D8D8;"><%=info.getItemNO()%></span>
+				</td>
 				<td class="td_list">KG</td>
 			</tr>
 			<tr class="tr_list_2">
@@ -112,6 +128,7 @@ function submit(obj,line){
 			<%} %>
 			<tr>
 				<td colspan="6" style="line-height: 40px;">
+				<input  class="button" type="button" name="argsubmit" id="argsubmit" onclick="submit1(this);" style="display:none" />
 				<input style="text-align: center;margin-top:15px;" class="button" type="button" style="width:25%" onclick="stoQuy()" value="过账" /> 
 				<input style="text-align: center;" class="button" type="button" style="width:25%" onclick="window.location.href='MainServlet?flag=shengchanA';" value="返回" /> 
 				<input style="text-align: center;" class="button" type="button" style="width:25%" onclick="window.location.href='MainServlet?flag=return';" value="首页" />

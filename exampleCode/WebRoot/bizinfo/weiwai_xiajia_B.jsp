@@ -152,9 +152,9 @@ $(function(){
     		</li>
      		<li class="li">
      			<%if(list.size() <= 4){ %>
-     				<div id="Pagination"  class="pagination" style="line-height: 9px;font-size:12px;margin-left:5px;margin-bottom: -7px;display: none;"><!-- 这里显示分页 --></div>
+     				<div id="Pagination"  class="pagination" style="line-height: 9px;font-size:12px;margin-left:5px;margin-bottom: -11px;display: none;"><!-- 这里显示分页 --></div>
     				<%}else{ %>
-    				<div id="Pagination"  class="pagination" style="line-height: 9px;font-size:12px;margin-left:5px;margin-bottom: -7px;"><!-- 这里显示分页 --></div>
+    				<div id="Pagination"  class="pagination" style="line-height: 9px;font-size:12px;margin-left:5px;margin-bottom: -9px;"><!-- 这里显示分页 --></div>
     			<%} %>
     				<input  class="button"  type="button"  style="width:25%;margin:0px 0px 0px -25px;"  onclick="stoQuy()" value="确定">
     				<input  class="button"  type="button"  style="width:25%"  onclick="window.location.href='MainServlet?flag=2.3';" value="返回">

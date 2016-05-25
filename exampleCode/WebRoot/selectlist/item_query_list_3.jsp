@@ -143,9 +143,9 @@ $(function(){
 		<%}%>
   		<tr >
   			<td  colspan="3">
-  				<div id="Pagination" class="pagination" style="line-height: 15px;font-size:12px;margin-left:15px;"><!-- 这里显示分页 --></div>
+  				<div id="Pagination" class="pagination" style="line-height: 10px;font-size:12px;margin-left:15px;"><!-- 这里显示分页 --></div>
   				
-  				<input class="button" type="button" style="width:50px;height:30px"  onclick="turnon();" value="返回" />
+  				<input class="button" type="button" style="width:50px;height:24px"  onclick="turnon();" value="返回" />
   				<!-- <input type="button" class="button" style="width:40px;height:20px" onclick="window.location.href='MainServlet?flag=return';" value="首页"/> -->
   			</td>
   		</tr>
