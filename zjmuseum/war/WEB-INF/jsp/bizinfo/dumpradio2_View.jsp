@@ -49,9 +49,9 @@
 <BODY>
 <div class="div">
 	<form  id="thinkway" name="thinkway" method="post" action="/dumpAdd.do">
-		 <input type="hidden" name="matnr" id="matnr" value="${matnr}">
+		<input type="hidden" name="matnr" id="matnr" value="${matnr}">
 		<input type="hidden" name="charg" id="charg" value="${charg}">
-		<input type="hidden" name="charg" id="charg" value="${maktx}">
+		<input type="hidden" name="maktx" id="maktx" value="${maktx}">
 		<input type="hidden" name="sobkz" id="sobkz" value="${sobkz}">
 		<input type="hidden" name="sonum" id="sonum" value="${sonum}">
 		<input type="hidden" name="meins" id="meins" value="${meins}">
@@ -77,20 +77,21 @@
 				</tr>
 				<tr>
 					<td >库存地点:</td>
-					<td  ><input name="lgort_from" type="text" style="width:25%"  id="lgort_from" value="">到<input name="lgort_to" type="text" style="width:25%"  id="lgort_to" value=""></td>	</tr>
-				<tr>
+					<td  ><input name="lgort_from" type="text" style="width:25%"  id="lgort_from" value="3107">到<input name="lgort_to" type="text" style="width:25%"  id="lgort_to" value=""></td>
+				</tr>
+				<%-- <tr>
 					<td >特殊库存:</td>
 					<td  >${sobkz}${sonum}</td>
-				</tr>
+				</tr> --%>
 				<tr>
 					<td >移动类型:</td>
-					<td  ><input name="bwart" size="3" style="width:35%" type="text"  id="bwart"></td>
+					<td  ><input name="bwart" size="3" style="width:35%" type="text"  id="bwart" value="311"></td>
 				</tr>
 					<tr>
 					<td align="center" colspan="2">
-							<input type="submit" style="width:40px;" onclick="return validateForm()" value="过账"></input>
-							<input type="button" style="width:40px;" value="返回" onclick="window.location.href='/dumpView.do';"></input>
-							<input type="button" style="width:40px;" onclick="window.location.href='/main.do';" value="首页">
+							<input type="submit" style="width:40px;" onclick="return validateForm()" value="过账"/>
+							<input type="button" style="width:40px;" value="返回" onclick="window.location.href='/dumpView.do';"/>
+							<input type="button" style="width:40px;" onclick="window.location.href='/main.do';" value="首页"/>
 					</td>
 				</tr>
 			</table>

@@ -32,7 +32,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	<script src="/js/jquery-ui-bootstrap/assets/js/jquery-ui-datepicker.zh-cn.js" type="text/javascript"></script>    
 	<link href="/css/jiuhui.css" rel="stylesheet">
 	<script type="text/javascript">
-	function keyDown() {
+	/* function keyDown() {
        var keycode = event.keyCode;
        var realkey = String.fromCharCode(event.keyCode);
       // alert("按键码: " + keycode + " 字符: " + realkey);
@@ -40,7 +40,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
        		getNlpla();
        }
    }
-   document.onkeydown = keyDown;
+   document.onkeydown = keyDown; */
  function submit1(obj){
   	
   	obj.disabled=false;
@@ -57,13 +57,16 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   <div>
     
 	<ul>
-		<li class="li" >仓库号:<input name="lgnum" style="background-color:white;" class="text" type="text"  id="lgnum">
+     	<li class="li">仓位号:<input name="nlpla" class="text" style="background-color:white;" type="text"  id="nlpla" />
 		</li>
-     	<li class="li">仓位号:<input name="nlpla" class="text" style="background-color:white;" type="text"  id="nlpla" > </input>
+		<li class="li" >仓库号:<input name="lgnum" style="background-color:white;" class="text" type="text"  id="lgnum" value="311" />
 		</li>
-     	<li class="li"><input name="radio" style="width:20px;" checked=checked type="radio" id="radio1" value="1">出入库冻结</input></li>
-     	<li class="li"><input name="radio" style="width:20px;" type="radio" id="radio2" value="2" >出入库解冻</input></li>
-     	<li class="li"><input name="radio" style="width:20px;" type="radio" id="radio3" value="3" >查看所有冻结仓位</input></li>
+     	<li class="li"><input name="radio" style="width:20px;" checked=checked type="radio" id="radio1" value="1">出入库冻结</input>
+     	</li>
+     	<li class="li"><input name="radio" style="width:20px;" type="radio" id="radio2" value="2" >出入库解冻</input>
+     	</li>
+     	<li class="li"><input name="radio" style="width:20px;" type="radio" id="radio3" value="3" >查看所有冻结仓位</input>
+     	</li>
 		<li class="li">
 		<input class="button" type="button" onclick="submit1(this)" value="确定">
 		<input  class="button" type="button" onclick="forward()" value="返回">
@@ -76,6 +79,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 </form>
   </body>
    <script type="text/javascript">
-  document.getElementById("lgnum").focus();
+  document.getElementById("nlpla").focus();
   </script>
 </html>

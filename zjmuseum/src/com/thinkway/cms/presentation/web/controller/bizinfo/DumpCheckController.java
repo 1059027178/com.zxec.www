@@ -88,19 +88,19 @@ public class DumpCheckController implements Controller , AuthenticateController{
 		}	
 		String matnr = SapUtil.null2String(request.getParameter("matnr"));//物料编码
 		String charg = SapUtil.null2String(request.getParameter("charg"));//批次号
-		String sobkz = SapUtil.null2String(request.getParameter("sobkz"));//特殊库存标识
 		String lgort = SapUtil.null2String(request.getParameter("lgort"));//库存地点
 		String sonum = SapUtil.null2String(request.getParameter("sonum"));
-		String radio = SapUtil.null2String(request.getParameter("radio"));
 		String lgnum = SapUtil.null2String(request.getParameter("lgnum"));//仓库号/混合仓库
-		String lgpla = SapUtil.null2String(request.getParameter("lgpla"));//仓位
 		String maktx = SapUtil.null2String(request.getParameter("maktx"));
 		String werks = SapUtil.null2String(request.getParameter("werks"));
 		String meins = SapUtil.null2String(request.getParameter("meins"));
 		String xzsl = SapUtil.null2String(request.getParameter("xzsl"));
-		System.out.println("radio:"+radio);
+//		String sobkz = SapUtil.null2String(request.getParameter("sobkz"));//特殊库存标识
+//		String radio = SapUtil.null2String(request.getParameter("radio"));
+//		String lgpla = SapUtil.null2String(request.getParameter("lgpla"));//仓位
+//		System.out.println("radio:"+radio);
+//		receipt.setSobkz(sobkz);
 		receipt.setMatnr(matnr);
-		receipt.setSobkz(sobkz);
 		receipt.setLgort(lgort);
 		receipt.setCharg(charg);
 		receipt.setSonum(sonum);
@@ -109,7 +109,20 @@ public class DumpCheckController implements Controller , AuthenticateController{
 		model.put("lgort", lgort);
 		model.put("werks", werks);
 		model.put("xzsl", xzsl);
-		if(radio.equals("1")){
+		//qy:2016.06.14
+		model.put("matnr", matnr);
+		model.put("maktx", maktx);
+		model.put("charg", charg);
+		model.put("lgort", lgort);
+		model.put("sonum", sonum);
+		model.put("meins", meins);
+//		model.put("sobkz", sobkz);
+//		model.put("bwart", bwart);
+//		model.put("werks", werks);
+//		model.put("werks", werks);
+		return new ModelAndView(getRadio2Name(),model);
+		//qy:2016.06.14
+		/*if(radio.equals("1")){
 			PaginatedListHelper paginaredList=new PaginatedListHelper();
 			String currentPage=ParamUtils.getParameter(request, "page", "1");
 			paginaredList.setObjectsPerPage(5);
@@ -210,7 +223,7 @@ public class DumpCheckController implements Controller , AuthenticateController{
 //			model.put("werks", werks);
 //			model.put("werks", werks);
 			return new ModelAndView(getRadio3Name(),model);
-		}
+		}*/
 	
 		
 			

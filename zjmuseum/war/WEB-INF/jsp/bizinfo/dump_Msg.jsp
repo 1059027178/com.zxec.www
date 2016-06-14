@@ -53,15 +53,15 @@
 		<input type="hidden" name="werks" style="width:70%"  id="werks" value="${werks }"/>
 		<input type="hidden" name="radio" style="width:70%"  id="radio" value="2"/>
     	<table class="table_list">
-    		<tr style="width:100%;heigth=50%">
+    		<tr style="width:100%;heigth:50%">
     			<td align="middle">
     				返回消息：${type} ${message}
     			</td>
     		</tr>
-    		<tr style="width:100%;heigth=20%">
-    			<td align="center"><%if(radio.equals("1")){ %>
-    				<input type="button" style="width:40px;" onclick="zhuangcu();" value="转储"><%}else{ %>
-    				<input type="button" style="width:40px;" onclick="shangjia();" value="上架"><%} %>
+    		<tr style="width:100%;heigth:20%">
+    			<td align="center"><%-- <%if(radio.equals("1")){ %> --%>
+    				<%-- <input type="button" style="width:40px;" onclick="zhuangcu();" value="转储"><%}else{ %> --%>
+    				<input type="button" style="width:40px;" onclick="" value="下架"><%-- <%} %> --%>
     				<input type="button" style="width:40px;" onclick="window.location.href='/dumpView.do';"  value="返回">
     				<input type="button" style="width:40px;height:25px;" onclick="window.location.href='/main.do';" value="首页">
     			</td>

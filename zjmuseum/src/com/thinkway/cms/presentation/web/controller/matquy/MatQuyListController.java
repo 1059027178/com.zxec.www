@@ -113,7 +113,7 @@ public class MatQuyListController implements Controller , AuthenticateController
 //			JCO.ParameterList   inputtable= bapi.getTableParameterList();//输入表的处理
 	    	parameterList.setValue(matnr,"I_MATNR");//物料编码
 	    	parameterList.setValue(lgort,"I_LGORT");//库存地点 
-	    	parameterList.setValue(charg,"I_CHARG");//仓位 
+	    	parameterList.setValue(charg,"I_CHARG");//批次
 	    	parameterList.setValue(werks,"I_WERKS");//工厂
 	    	parameterList.setValue(user.getUserName(),"I_UID");//用户名字
 				myConnection.execute(bapi);

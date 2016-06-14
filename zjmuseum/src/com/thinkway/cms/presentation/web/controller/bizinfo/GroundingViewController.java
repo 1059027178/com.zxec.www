@@ -90,7 +90,7 @@ public class GroundingViewController implements Controller , AuthenticateControl
 		String objno = SapUtil.null2String(request.getParameter("objno"));//工牌号
 		String boxs = SapUtil.null2String(request.getParameter("boxs"));//箱数
 		String sonum = SapUtil.null2String(request.getParameter("sonum"));//特殊库存编码
-//		String werks = SapUtil.null2String(request.getParameter("werks"));//工厂
+		String werks = SapUtil.null2String(request.getParameter("werks"));//工厂
 		//String aufnr = SapUtil.null2String(request.getParameter("aufnr"));
 		
 		//grounding.setAufnr(aufnr);
@@ -121,7 +121,8 @@ public class GroundingViewController implements Controller , AuthenticateControl
 		
 	    myConnection.connect(); 
 	    //out.println("连接SAP成功");
-		String functionName="ZFM_BC_02_12";//函数的名字
+//		String functionName="ZFM_BC_02_12";//函数的名字
+		String functionName="ZFM_BC_02_13";//函数的名字
 	    JCO.Repository myRepository = new JCO.Repository("Repository",myConnection); //只是一個名字
 	    IFunctionTemplate ft = myRepository.getFunctionTemplate(functionName);
 	    //從這個函數範本獲得該SAP函數的物件
@@ -137,7 +138,7 @@ public class GroundingViewController implements Controller , AuthenticateControl
 		System.out.println("aufnr:"+aufnr+"---wemng:"+wemng+"---charg:"+charg+"---sobkz:"+sobkz+"---lgort:"+lgort+"---meins:"+meins);
 		//IT_ITEM.appendRow();		
 		parameterList.setValue(loginUser.getUserName(),"I_UID");		
-//		parameterList.setValue(werks,"I_WERKS");
+		parameterList.setValue(werks,"I_WERKS");
 		parameterList.setValue(lgort,"I_LGORT");
 		parameterList.setValue(matnr,"I_MATNR");
 		parameterList.setValue(wemng,"I_MENGE");

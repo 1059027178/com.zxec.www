@@ -86,37 +86,50 @@ public class LubuEditController implements Controller , AuthenticateController{
 		try{
 		//out.println(aufnr+"/"+iquan+"/"+gmein);
 		JCO.Client myConnection =null;
-		myConnection =SapUtil.getSAPconEn();
+		myConnection =SapUtil.getSAPcon();
 	    myConnection.connect(); 
 	    //out.println("连接SAP成功");
-		String functionName="ZFM_BC_13_21";//函数的名字
+//		String functionName="ZFM_BC_13_21";//函数的名字
+		String functionName="ZFM_BC_13_22";//函数的名字
 	    JCO.Repository myRepository = new JCO.Repository("Repository",myConnection); //只是一個名字
 	    IFunctionTemplate ft = myRepository.getFunctionTemplate(functionName);
 	    //從這個函數範本獲得該SAP函數的物件
 	    JCO.Function bapi = ft.getFunction();
     	JCO.ParameterList  parameterList=bapi.getImportParameterList();//获得输入表的参数
-		JCO.ParameterList   inputtable= bapi.getTableParameterList();//输入表的处理
+//		JCO.ParameterList   inputtable= bapi.getTableParameterList();//输入表的处理
 		
-		//JCO.Table  IT_ITEM=inputtable.getTable("IT_ITEM");
-		//if(!aufnr.isEmpty()&&!iquan.isEmpty()&&!gmein.isEmpty()){
-		String str=SapUtil.null2String(request.getParameter("check"));
+		/*String str=SapUtil.null2String(request.getParameter("check"));
 		String[] lonstr=str.split(",");
-		
 		System.out.println("str:"+str);
 		//System.out.println("aufnr:"+aufnr+"---wemng:"+wemng+"---charg:"+charg+"---sobkz:"+sobkz+"---lgort:"+lgort+"---meins:"+meins);
 		//IT_ITEM.appendRow();	
-		
 		parameterList.setValue(loginUser.getUserName(),"I_UID");			
 		//parameterList.setValue(aufnr,"I_AUFNR");					
 		parameterList.setValue(lonstr[3],"I_UBNUM");
-		parameterList.setValue(lonstr[2],"I_LGNUM");
-		
+		parameterList.setValue(lonstr[2],"I_LGNUM");*/
+
+		String matnr_B = SapUtil.null2String(request.getParameter("matnr"));
+		String matnr_F = SapUtil.null2String(request.getParameter("matnr1"));
+		String wemng   = SapUtil.null2String(request.getParameter("num"));
+		String lgort   = SapUtil.null2String(request.getParameter("lgort"));
+		String charg   = SapUtil.null2String(request.getParameter("charg"));
+		String meins   = SapUtil.null2String(request.getParameter("meins"));
+		String werks   = SapUtil.null2String(request.getParameter("werks"));
+
+		parameterList.setValue(loginUser.getUserId(),"I_UID");	
+		parameterList.setValue(loginUser.getUserName(),"I_PID");
+		parameterList.setValue(matnr_B,"I_MATNR_B");			
+		parameterList.setValue(matnr_F,"I_MATNR_F");			
+		parameterList.setValue(wemng,"I_WEMNG");			
+		parameterList.setValue(meins,"I_MEINS");			
+		parameterList.setValue(lgort,"I_LGORT");			
+		parameterList.setValue(charg,"I_CHARG");			
+		parameterList.setValue(werks,"I_WERKS");
 		
 		myConnection.execute(bapi);
 		
 		JCO.ParameterList  outs = bapi.getExportParameterList();//输出参数和结构处理
 		JCO.ParameterList  outtab = bapi.getTableParameterList();//输出参数和结构处理
-		
 		
 		JCO.Structure stu01 = outs.getStructure("ES_RETURN");
 		String type=stu01.getString("MSGTY");
@@ -131,8 +144,6 @@ public class LubuEditController implements Controller , AuthenticateController{
 			//message="必要信息不完整";
 		//}
 		}catch(Exception e){
-			
-			
 			message=e.getMessage();
 			e.printStackTrace();
 		}

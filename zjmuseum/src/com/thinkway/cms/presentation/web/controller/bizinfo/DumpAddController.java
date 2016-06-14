@@ -87,15 +87,61 @@ public class DumpAddController implements Controller , AuthenticateController{
 			model.put("loginUser",loginUser);			
 		}	
 		String matnr = SapUtil.null2String(request.getParameter("matnr"));//物料编码
-		String maktx = SapUtil.null2String(request.getParameter("maktx"));//物料编码
-		String meins = SapUtil.null2String(request.getParameter("meins"));//物料编码
+		String maktx = SapUtil.null2String(request.getParameter("maktx"));//物料描述
+		String meins = SapUtil.null2String(request.getParameter("meins"));//单位
 		String sonum = SapUtil.null2String(request.getParameter("sonum"));
 		String sobkz = SapUtil.null2String(request.getParameter("sobkz"));
 		String werks = SapUtil.null2String(request.getParameter("werks"));
 		String lgort = SapUtil.null2String(request.getParameter("lgort"));
 		String charg = SapUtil.null2String(request.getParameter("charg"));
 		
-		if(radio.equals("1")){
+		String menge = SapUtil.null2String(request.getParameter("menge"));
+		String lgort_from = SapUtil.null2String(request.getParameter("lgort_from"));
+		String lgort_to = SapUtil.null2String(request.getParameter("lgort_to"));
+		String bwart = SapUtil.null2String(request.getParameter("bwart"));
+		System.out.println("charg:"+charg);
+		JCO.Client myConnection =null;
+		myConnection =SapUtil.getSAPcon();
+	    myConnection.connect(); 
+		String functionName="ZFM_BC_06_11";//函数的名字
+	    JCO.Repository myRepository = new JCO.Repository("Repository",myConnection); //只是一個名字
+	    IFunctionTemplate ft = myRepository.getFunctionTemplate(functionName);
+//	    //從這個函數範本獲得該SAP函數的物件
+	    JCO.Function bapi = ft.getFunction();
+    	JCO.ParameterList  parameterList=bapi.getImportParameterList();//获得输入表的参数
+//		JCO.ParameterList   inputtable= bapi.getTableParameterList();//输入表的处理
+		parameterList.setValue(matnr,"I_MATNR");//物料编码
+    	parameterList.setValue(bwart,"I_BWART");
+//    	parameterList.setValue(lgort,"I_LGORT");
+    	parameterList.setValue(charg,"I_CHARG");
+    	parameterList.setValue(menge,"I_MENGE");
+    	parameterList.setValue(meins,"I_MEINS");
+    	parameterList.setValue(sobkz,"I_SOBKZ");
+    	parameterList.setValue(sonum,"I_SONUM");
+    	parameterList.setValue(lgort_to,"I_LGORT_TO");
+    	parameterList.setValue(lgort_from,"I_LGORT_FROM");
+    	myConnection.execute(bapi);
+		JCO.ParameterList  outs = bapi.getExportParameterList();//输出参数和结构处理
+		JCO.ParameterList  outtab = bapi.getTableParameterList();//输出参数和结构处理
+		
+		 //如果参数是一个结构，用参数名获得一个对应类型的结构对象
+        JCO.Structure ES_RETURN = outs.getStructure("ES_RETURN");
+        String etype=ES_RETURN.getString("MSGTY");
+        message=ES_RETURN.getString("MESSAGE");
+
+		if(null!=myConnection){
+			SapUtil.releaseClient(myConnection);
+		}
+		model.put("matnr", matnr);
+		model.put("maktx", maktx);
+		model.put("charg", charg);
+		model.put("lgort", lgort);
+		model.put("sobkz", sobkz);
+		model.put("sonum", sonum);
+		model.put("meins", meins);
+//		model.put("bwart", bwart);
+//		model.put("werks", werks);
+		/*if(radio.equals("1")){
 			int maxxuhao=ParamUtils.getIntParameter(request, "maxxuhao",1);//最大序列号
 			int xzsl=0;
 			for(int i=0;i<=maxxuhao;i++){
@@ -190,27 +236,16 @@ public class DumpAddController implements Controller , AuthenticateController{
 			if(null!=myConnection){
 				SapUtil.releaseClient(myConnection);
 			}
+		}*/
+
+		} catch (Exception e) {
+			message = e.getMessage();
+			e.printStackTrace();
 		}
-
-		model.put("matnr", matnr);
-		model.put("maktx", maktx);
-		model.put("charg", charg);
-		model.put("lgort", lgort);
-		model.put("sobkz", sobkz);
-		model.put("sonum", sonum);
-//		model.put("bwart", bwart);
-		model.put("meins", meins);
-//		model.put("werks", werks);
-//		model.put("werks", werks);
-				}catch(Exception e){
-					message=e.getMessage();
-					e.printStackTrace();
-				}
-			model.put("message", message);
-			model.put("radio", radio);
-			return new ModelAndView(getViewName(),model);
+		model.put("message", message);
+		model.put("radio", radio);
+		return new ModelAndView(getViewName(), model);
 	}
-
 	
 	public UserService getUserService() {
 		return userService;

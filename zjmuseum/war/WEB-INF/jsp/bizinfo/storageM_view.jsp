@@ -48,9 +48,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   <form name="form" action="/storageMList.do">
   <div style="margin:0px;padding:0;">
      <ul>
-     <li class="li">仓库号：<input name="lgnum" class="text" style="background-color:white;" type="text" id="lgnum">	
- 		</li>
  	<li class="li">仓位号：<input name="lgpla" class="text" style="background-color:white;" type="text" id="lgpla">	
+ 		</li>
+     <li class="li">仓库号：<input name="lgnum" class="text" style="background-color:white;" type="text" id="lgnum" value="311">	
  		</li>
  	<li class="li"></li>
 <li class="li">
@@ -64,6 +64,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 </form>
   </body>
    <script type="text/javascript">
-  document.getElementById("lgnum").focus();
+  document.getElementById("lgpla").focus();
   </script>
 </html>

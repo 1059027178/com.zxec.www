@@ -53,37 +53,29 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   		//alert(parseFloat(meng)*parseFloat(boxs));
   		$("#wemng").attr("value",parseFloat(meng)*parseFloat(boxs));
   	}
+  	//PO/行项目/供应商/物料编码/每袋数量/单位/库存地点/批次号/环保标识/检验/供应商生产日期/供应商批次号/库存类别
   	function js(){
   		var lonstr=$("#str").val();
   		var str=lonstr.split("/");
   		//alert(str.length);
   		if(str.length>0){
-	  		var aufnr=str[0];
-	  		var matnr=str[1];
-	  		var bs=str[2];
-	  		var meng=str[3];
-	  		var charg=str[4];
-	  		var sobkz=str[5];
-	  		var sonum=str[6];
-	  		var lgort=str[7];
-	  		var meins=str[8];
-	  		//$("#aufnr").attr("value",aufnr);
+	  		//var aufnr=str[0];//采购订单
+	  		//var hang=str[1];//行项目
+	  		var matnr=str[3];//物料编码
+	  		var meng=str[4];//每袋数量
+	  		var meins=str[5];//单位
+	  		var lgort=str[6];//库存地点
+	  		var charg=str[7];//批次号
+	  		var sobkz=str[12];//库存类别
+	  		
 	  		$("#matnr").attr("value",matnr);
-	  		$("#sonum").attr("value",sonum);
 	  		$("#meng").attr("value",meng);
-	  		//$("#wemng").attr("value",wemng);
 	  		$("#charg").attr("value",charg);
 	  		$("#meins").attr("value",meins);
-	  		$("#sobkz").attr("value",sobkz);
 	  		$("#lgort").attr("value",lgort);
+	  		$("#sobkz").attr("value",sobkz);
 	  		
-	  		if(bs=='X'){
-	  			$("#bs").attr("checked","checked");
-	  			
-	  		}else{
-	  			$("#bs").removeAttr("checked");//
-	  		}
-	  		choose1();
+	  		//choose1();
 	  		getMaktx(matnr);
   		}
   	}
@@ -133,13 +125,13 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   			<li style="height:15px;list-style-type:none;"><input name="str" type="text" style="width:70%;height:20px;"  id="str" onchange="js()"></li>
   			<li class="li">物料编码：<input name="matnr" class="text"  readonly=readonly type="text" id="matnr" value="${receiptObj.matnr}"></li>
   			<li class="li">物料描述：<input name="maktx" class="text"  readonly=readonly type="text" id="maktx" value="${receiptObj.maktx}"></li>
-  			<li class="li">尾箱标识：<input type="checkbox" onclick="choose1();" id="bs" style="width:20px;height:20px;" name="bs"></li>
-  			<li class="li">箱数量/箱数：<input name="meng" readonly=readonly style="width:50px;background-color:#D8D8D8;height:20px;"  type="text"  id="meng" value="${receiptObj.meng}">/<input name="boxs" style="width:30px;height:20px;" type="text" value="${receiptObj.boxs}" id="boxs" onblur="acount();"></li>
+  			<!-- <li class="li">尾箱标识：<input type="checkbox" onclick="choose1();" id="bs" style="width:20px;height:20px;" name="bs"></li> -->
+  			<li class="li">袋数量/袋数：<input name="meng" readonly=readonly style="width:50px;background-color:#D8D8D8;height:20px;"  type="text"  id="meng" value="${receiptObj.meng}">/<input name="boxs" style="width:30px;height:20px;" type="text" value="${receiptObj.boxs}" id="boxs" onblur="acount();"></li>
   			<li class="li">批&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;次：<input name="charg" class="text" readonly=readonly value="${receiptObj.charg}" style="width:80px;background-color:#D8D8D8;"  type="text"  id="charg"></li>
-  			<li class="li">总&nbsp;&nbsp; 数量：<input name="wemng" value="${receiptObj.wemng}" type="text" class="text1" id="wemng" ><input name="meins" value="PCS" class="text2" readonly=readonly type="text"  id="meins"> </input></li>
+  			<li class="li">总&nbsp;&nbsp; 数量：<input name="wemng" value="${receiptObj.wemng}" type="text" class="text1" id="wemng" ><input name="meins" value="KG" class="text2" readonly=readonly type="text"  id="meins"> </input></li>
   			<li class="li">库存地点：<input name="lgort" type="text"  value="${receiptObj.lgort}" class="text3" id="lgort"></li>
-  			<li class="li">特殊库存：<input name="sobkz"  value="${receiptObj.sobkz}" readonly=readonly type="text" class="text"  id="sobkz"></li>
-  		<!--  	<li class="li">源仓&nbsp; &nbsp;位：<input name="i_nlpla" class="text" readonly= readonly type="text"  id="i_nlpla" value=""></li>-->
+  			<li class="li">库存类别：<input name="sobkz"  value="${receiptObj.sobkz}" readonly=readonly type="text" class="text"  id="sobkz"></li>
+  		 	<!-- <li class="li">源仓&nbsp; &nbsp;位：<input name="i_nlpla" class="text" readonly= readonly type="text"  id="i_nlpla" value=""></li> -->
   			<li class="li"><input type="button" valign="center" class="button" onclick="submit1(this);" style="width:40px;height:25px;" value="确定"/>
   			<input  class="button"  type="button" onclick="forward();" style="width:30px;height:25px;" value="返回"/>
   			<input  class="button" type="button" onclick="reset();" style="width:30px;height:25px;" value="重置"/>

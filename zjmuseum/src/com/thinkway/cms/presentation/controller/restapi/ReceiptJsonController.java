@@ -159,6 +159,7 @@ public void setAuthenticator(Authenticator authenticator) {
 	public ModelAndView getPlnum(HttpServletRequest request, HttpServletResponse response) throws Exception {
 
 		//最新动态
+		System.out.println("ZFM_BC_03_14");
 		String matnr=SapUtil.null2String(request.getParameter("matnr"));
 		String message="";	
 		try{
@@ -167,7 +168,8 @@ public void setAuthenticator(Authenticator authenticator) {
 			myConnection =SapUtil.getSAPcon();
 		    myConnection.connect(); 
 		    //out.println("连接SAP成功");
-			String functionName="ZFM_BC_03_12";//函数的名字
+//			String functionName="ZFM_BC_03_12";//函数的名字
+			String functionName="ZFM_BC_03_14";//函数的名字
 		    JCO.Repository myRepository = new JCO.Repository("Repository",myConnection); //只是一個名字
 		    IFunctionTemplate ft = myRepository.getFunctionTemplate(functionName);
 		    //從這個函數範本獲得該SAP函數的物件
