@@ -1,6 +1,7 @@
 package com.qianyang.test;
 
 import javax.servlet.http.HttpServletRequest;
+
 import com.sap.mw.jco.IFunctionTemplate;
 import com.sap.mw.jco.JCO;
 import com.sap.mw.jco.JCO.Repository;
@@ -15,7 +16,8 @@ public class TestSAP {
 		JCO.Client myClient = SapUtil.getSAPcon();
 		myClient.connect();
 		//函数名
-		String functionName="ZFM_BC_09_11";
+//		String functionName="ZFM_BC_09_11";
+		String functionName="ZFM_BC_COMMON_01";//函数的名字
 		
 	    JCO.Repository myRepository = new Repository("Repository",myClient); //只是一個名字
 	    

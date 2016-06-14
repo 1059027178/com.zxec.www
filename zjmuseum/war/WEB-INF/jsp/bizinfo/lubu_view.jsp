@@ -35,24 +35,65 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		  	window.location.href="/main.do?two=4";
 		  }
 	function submit1(obj){
+		var str = $("#matnr").val();
+		str += $("#matnr1").val();
+		str += $("#num").val();
+		if(str == "" || str == null){
+			alert("请填写记账变更信息！");
+		}
 	  	obj.disabled=false;
 	  	document.form.submit();
 	  }
 	  function reset(){
 	  	$('.input').val("");
 	  }
+	function js(obj){
+	 	var lonstr = "";
+	 	if(obj == 1){
+	 		lonstr=$("#matnr").val();
+	 	}
+	 	if(obj == 2){
+	 		lonstr=$("#matnr1").val();
+	 	}
+	  	var str=lonstr.split("/");
+	  	
+	  	if(str.length>0){
+	  	
+		  	var matnr=str[3];//物料编码
+		  	
+		  	if(obj == 1){
+		  		$("#matnr").attr("value",matnr);
+		  		$("#charg").attr("value",str[7]);//初始批次号
+		  	}
+		  	if(obj == 2){
+		  		$("#matnr1").attr("value",matnr);
+		  	}
+		  	$("#meins").attr("value",str[5]);//单位
+		  	$("#lgort").attr("value",str[6]);//库存地点
+	  	}
+  	}
 	</script>
   </head>
   
   <body>
-  <form name="form" action="/lubuList.do">
+  <!-- <form name="form" action="/lubuList.do"> -->
+  <form name="form" action="/lubuEdit.do">
+  	<input type="hidden" name="charg" id = "charg" />
+  	<input type="hidden" name="meins" id = "meins" />
+  	<input type="hidden" name="werks" id = "werks" value="3100"/>
   <div>
      <ul>
      <li class="li"></li>
-		<li class="li">仓 库 号：<input name="lgnum" class="text" style="width:90px;background-color:white;" type="text" id="lgnum">	
+     	<li class="li">物料代码：从<input onchange="js(1)" name="matnr" class="text" style="width:90px;background-color:white;" type="text" id="matnr" value=""></li>
+		<li class="li" style="margin-left: 70px;">到<input onchange="js(2)" name="matnr1" class="text" style="width:90px;background-color:white;" type="text" id="matnr1" value=""></li>
+ 		<li class="li">数<span style="width:28px;"></span>量：<input name="num" class="text" style="width:90px;background-color:white;margin-left:14px;" type="text" id="num" value=""></li>
+		<li class="li" style="line-height:20px;">库存地点：<input name="lgort" id= "lgort" style="width:90px;background-color:white;margin-left:14px;" value=""/></li>
+		<li class="li" style="line-height:20px;">移动类型：<input name="yidongleixing" id= "yidongleixing" style="width:90px;background-color:white;margin-left:14px;" value="309"/></li>
+		
+		<!-- <li class="li">仓 库 号：<input name="lgnum" class="text" style="width:90px;background-color:white;" type="text" id="lgnum">	
  		</li>
 		<li class="li">移动类型：<input name="bwlvs" class="text" style="width:90px;background-color:white;" type="text" id="bwlvs">	
- 		</li>
+ 		</li> -->
  		<li class="li"></li>
 		<li class="li">
 		<input type="button" class="button" style="width:40px;height:25px;" type="button" onclick="submit1(this)" value="确定">
@@ -65,6 +106,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 </form>
   </body>
     <script type="text/javascript">
-  document.getElementById("lgnum").focus();
+  document.getElementById("matnr").focus();
   </script>
 </html>

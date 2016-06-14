@@ -69,6 +69,7 @@ public class GroundingEditController implements Controller , AuthenticateControl
 
 	public ModelAndView handleRequest(HttpServletRequest request,
 			HttpServletResponse response) throws Exception {
+
 		// TODO Auto-generated method stub
 		Map<Object, Object> model = new HashMap<Object, Object>();	
 		String loginUserId = request.getSession().getAttribute(SessionManager.USER_ID)==null?null:request.getSession().getAttribute(SessionManager.USER_ID).toString();
@@ -98,7 +99,8 @@ public class GroundingEditController implements Controller , AuthenticateControl
 
 
 			JCO.Client myConnection =null;
-			myConnection =SapUtil.getSAPconEn();
+//			myConnection =SapUtil.getSAPconEn();
+			myConnection =SapUtil.getSAPcon();
 			
 		    myConnection.connect(); 
 		    //out.println("连接SAP成功");
@@ -118,19 +120,18 @@ public class GroundingEditController implements Controller , AuthenticateControl
 			System.out.println("aufnr:"+aufnr+"---wemng:"+wemng+"---charg:"+charg+"---sobkz:"+sobkz+"---lgort:"+lgort+"---meins:"+meins);
 			//IT_ITEM.appendRow();		
 			parameterList.setValue(loginUser.getUserName(),"I_UID");			
-			//parameterList.setValue(aufnr,"I_AUFNR");	
-			parameterList.setValue(nltyp,"I_NLTYP");
-			parameterList.setValue(nlpla,"I_NLPLA");
+			//parameterList.setValue(aufnr,"I_AUFNR");
 			
 			parameterList.setValue(matnr,"I_MATNR");
 			parameterList.setValue(werks,"I_WERKS");
-			parameterList.setValue(wemng,"I_MENGE");
-			parameterList.setValue(charg,"I_CHARG");
-			parameterList.setValue(sobkz,"I_SOBKZ");
 			parameterList.setValue(lgort,"I_LGORT");
+			parameterList.setValue(charg,"I_CHARG");
+			parameterList.setValue(wemng,"I_MENGE");
 			parameterList.setValue(meins,"I_MEINS");
+			parameterList.setValue(sobkz,"I_SOBKZ");
 			parameterList.setValue(sonum,"I_SONUM");
-			
+			parameterList.setValue(nltyp,"I_NLTYP");
+			parameterList.setValue(nlpla,"I_NLPLA");
 			myConnection.execute(bapi);
 			
 			JCO.ParameterList  outs = bapi.getExportParameterList();//输出参数和结构处理

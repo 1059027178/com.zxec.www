@@ -234,7 +234,7 @@
 	<property name="authenticator" ref="authenticator"/>
 </bean>
     
-<!-- 交货单发货 -->
+<!-- 发货 -->
 	<bean name="/deliveryAdd.do" class="com.thinkway.cms.presentation.web.controller.delivery.DeliveryAddController">
 	<property name="viewName" value="/WEB-INF/jsp/delivery/delivery_Add.jsp"/>
 	<property name="permission" value="1000"></property>
@@ -244,7 +244,7 @@
 </bean>
 
 	<bean name="/deliveryView.do" class="com.thinkway.cms.presentation.web.controller.delivery.DeliveryViewController">
-	<property name="viewName" value="/WEB-INF/jsp/delivery/delivery_View.jsp"/>
+	<property name="viewName" value="/WEB-INF/jsp/delivery/delivery_List.jsp"/>
 	<property name="msg" value="/WEB-INF/jsp/delivery/delivery_Msg.jsp"/>
 	<property name="permission" value="1000"></property>
 	<property name="tokenNeed" value="N"></property>

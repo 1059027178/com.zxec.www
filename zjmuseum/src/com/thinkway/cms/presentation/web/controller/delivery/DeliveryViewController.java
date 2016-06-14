@@ -20,6 +20,7 @@ import com.sap.mw.jco.IFunctionTemplate;
 import com.sap.mw.jco.JCO;
 import com.thinkway.SapUtil;
 import com.thinkway.cms.business.domains.Delivery;
+import com.thinkway.cms.business.domains.Mat;
 import com.thinkway.cms.business.domains.User;
 import com.thinkway.cms.business.service.iface.DeliveryService;
 import com.thinkway.cms.business.service.iface.UserService;
@@ -75,14 +76,18 @@ public class DeliveryViewController implements Controller , AuthenticateControll
 		// TODO Auto-generated method stub
 		Map<Object, Object> model = new HashMap<Object, Object>();	
 		String loginUserId = request.getSession().getAttribute(SessionManager.USER_ID)==null?null:request.getSession().getAttribute(SessionManager.USER_ID).toString();
-		User user=null;
+		User user = null;
 		if(loginUserId==null||loginUserId.equals("")){
 			//insert code here
 		}else{
 			user = userService.getUser(loginUserId);			
 			model.put("loginUser",user);			
 		}	
-		String vbeln=ParamUtils.getParameter(request, "vbeln");//获取发货单号
+		String matnr=ParamUtils.getParameter(request, "matnr","");//物料编码
+		String lgort=ParamUtils.getParameter(request, "lgort","");//库存地点
+		String charg=ParamUtils.getParameter(request, "charg","");//批次
+		String werks=ParamUtils.getParameter(request, "werks","");//工厂
+		String meins=ParamUtils.getParameter(request, "meins","");//单位
 		PaginatedListHelper paginaredList=new PaginatedListHelper();
 		String currentPage=ParamUtils.getParameter(request, "page", "1");
 		paginaredList.setObjectsPerPage(5);
@@ -90,67 +95,70 @@ public class DeliveryViewController implements Controller , AuthenticateControll
 		
 
 //	//从SAP获取交货单数量的值
-	    List<Delivery> iList = new ArrayList<Delivery>();
+	    List<Mat> iList = new ArrayList<Mat>();
+	    List<Mat> matList = new ArrayList<Mat>();
 	    
-	    JCO.Client myConnection =null;
-		myConnection =SapUtil.getSAPcon();
-	    myConnection.connect(); 
-		String functionName="ZFM_BC_05_11";//函数的名字
-	    JCO.Repository myRepository = new JCO.Repository("Repository",myConnection); //只是一個名字
-	    IFunctionTemplate ft = myRepository.getFunctionTemplate(functionName);
-//	    //從這個函數範本獲得該SAP函數的物件
-	    JCO.Function bapi = ft.getFunction();
-    	JCO.ParameterList  parameterList=bapi.getImportParameterList();//获得输入表的参数
-//		JCO.ParameterList   inputtable= bapi.getTableParameterList();//输入表的处理
-    	parameterList.setValue(vbeln,"I_VBELN");
-    	parameterList.setValue(user.getUserName(),"I_UID");//用户名字
-    	
-		myConnection.execute(bapi);
-//			
-		JCO.ParameterList  outs = bapi.getExportParameterList();//输出参数和结构处理
-		JCO.ParameterList  outtab = bapi.getTableParameterList();//输出参数和结构处理
-		JCO.Table  ET_LIPS=outtab.getTable("ET_LIPS");
-		JCO.Structure struc=outs.getStructure("ES_RETURN");
-		paginaredList.setFullListSize(ET_LIPS.getNumRows());
-		int j=0;
-		int pageNum=ET_LIPS.getNumRows()/5;
-		if(ET_LIPS.getNumRows()%5>0){
-			pageNum++;
-		}
-		 for (int i = (Integer.parseInt(currentPage)-1)*5; i < ET_LIPS.getNumRows(); i++) {
-			 	ET_LIPS.setRow(i);
-			 	Delivery delivery=new Delivery();
-//				    delivery.setXuhao(i+1+"");
-//				    delivery.setPosnr(ET_LIPS.getString("POSNR")); //行项目号 
-			    delivery.setVbeln(vbeln);//发货单号
-			    delivery.setMatnr(ET_LIPS.getString("MATNR")); //物料号 
-			    delivery.setLfimg(ET_LIPS.getString("LFIMG"));//实际已交货量（按销售单位）
-			    delivery.setVrmke(ET_LIPS.getString("VRKME"));	//销售单位 
-			    delivery.setMaktx(ET_LIPS.getString("MAKTX"));	//物料描述 
-			    iList.add(delivery);
-			    j++;
-			    if(j==5){
-			    	break;
-			    }
-            }
-		 	
-			if(null!=myConnection){
-				SapUtil.releaseClient(myConnection);
-			}
+	    Mat mat=new Mat();
+	    mat.setMatnr(matnr); //物料号 
+	    matList.add(mat);
+	    
+		 JCO.Client myConnection =null;
+			myConnection =SapUtil.getSAPcon();
+		    myConnection.connect(); 
+			String functionName="ZFM_BC_09_11";//函数的名字
+		    JCO.Repository myRepository = new JCO.Repository("Repository",myConnection); //只是一個名字
+		    IFunctionTemplate ft = myRepository.getFunctionTemplate(functionName);
+//		    //從這個函數範本獲得該SAP函數的物件
+		    JCO.Function bapi = ft.getFunction();
+	    	JCO.ParameterList  parameterList=bapi.getImportParameterList();//获得输入表的参数
+//			JCO.ParameterList   inputtable= bapi.getTableParameterList();//输入表的处理
+	    	parameterList.setValue(matnr,"I_MATNR");//物料编码
+	    	parameterList.setValue(lgort,"I_LGORT");//库存地点 
+	    	parameterList.setValue(charg,"I_CHARG");//批次
+	    	parameterList.setValue(werks,"I_WERKS");//工厂
+	    	parameterList.setValue(user.getUserName(),"I_UID");//用户名字
+				myConnection.execute(bapi);
+//				
+				JCO.ParameterList  outs = bapi.getExportParameterList();//输出参数和结构处理
+				JCO.ParameterList  outtab = bapi.getTableParameterList();//输出参数和结构处理
+				JCO.Table  ET_LQUA=outtab.getTable("ET_LQUA");
+				int pageNum=ET_LQUA.getNumRows()/5;
+				if(ET_LQUA.getNumRows()%5>0){
+					pageNum++;
+				}
+				paginaredList.setFullListSize(ET_LQUA.getNumRows());
+				int j=0;
+				 for (int i = (Integer.parseInt(currentPage)-1)*5; i < ET_LQUA.getNumRows(); i++) {
+					 	ET_LQUA.setRow(i);
+					 	mat=new Mat();
+					 	mat.setXuhao(i+1+"");
+					 	mat.setCharg(ET_LQUA.getString("CHARG"));//批次
+					 	mat.setLgpla(ET_LQUA.getString("LGPLA"));//仓位
+					 	mat.setSobkz(ET_LQUA.getString("SOBKZ"));//特殊标识
+					 	mat.setLgort(ET_LQUA.getString("LGORT"));//库存地点
+					 	mat.setVerme(ET_LQUA.getString("VERME"));//数量
+					 	mat.setMeins(ET_LQUA.getString("MEINS"));//单位
+					    iList.add(mat);
+					    j++;
+					    if(j==5){
+					    	break;
+					    }
+		            }
+		   
+					if(null!=myConnection){
+						SapUtil.releaseClient(myConnection);
+					}
 			paginaredList.setList(iList);
-			model.put("deliveryList", iList);	
-			model.put("vbeln", vbeln);
+			model.put("matList", iList);	
 			model.put("page", currentPage);
 			model.put("pageNum", pageNum);
-			String type=struc.getString("MSGTY");
-			String message=struc.getString("MESSAGE");
-			model.put("type", type);	
-		    model.put("message", message);	
-		    if(type.equals("E")){
-		    	return new ModelAndView(getMsg(),model);
-		    }
-		    	
-			return new ModelAndView(getViewName(),model);
+			model.put("mat", matList);	
+			model.put("matnr", matnr);
+			model.put("lgort", lgort);
+			model.put("charg", charg);
+			model.put("werks", werks);
+			model.put("meins", meins);
+		return new ModelAndView(getViewName(),model);
 		
 	}
 

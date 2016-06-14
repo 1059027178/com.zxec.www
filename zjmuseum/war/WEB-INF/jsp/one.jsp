@@ -44,27 +44,22 @@
 <table class="table_border">
   	<tr>
   	<td >
-    	<input  class=button  style="width:200px"type="button"  onclick="window.location.href='/main.do?two=1';" value="1.收货">
+    	<input  class=button  style="width:200px"type="button"  onclick="window.location.href='/main.do?two=1';" value="1.PO收货">
     </td>
     </tr>
     <tr>
     <td >
-    	<input  class=button style="width:200px" type="button"  onclick="window.location.href='/main.do?two=2';" value="2.拣配下架">
-     </td>
-    </tr>
-    <tr>
-    <td >
-    	<input  class=button  style="width:200px" type="button"  onclick="window.location.href='/main.do?two=3';" value="3.发货">
+    	<input  class=button  style="width:200px" type="button"  onclick="window.location.href='/main.do?two=3';" value="2.发货">
     </td>
     </tr>
     <tr>
     <td >
-    	<input  class=button style="width:200px" type="button"  onclick="window.location.href='/main.do?two=4';" value="4.仓库作业">
+    	<input  class=button style="width:200px" type="button"  onclick="window.location.href='/main.do?two=4';" value="3.仓库作业">
      </td>
     </tr>
     <tr>
     <td >
-    	<input  class=button style="width:200px" type="button"  onclick="window.location.href='/main.do?two=5';" value="5.查询">
+    	<input  class=button style="width:200px" type="button"  onclick="window.location.href='/main.do?two=5';" value="4.查询">
      </td>
     </tr>
     <tr>

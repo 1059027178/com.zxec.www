@@ -51,10 +51,30 @@
 <BODY>	
 <from name="thinkway" id="thinkway" action="/main.do">
 <table style="width:100%" class="table_border">
-  	<tr>
-  	<td>
+  	<!-- <tr>
+  		<td>
     	<input  class=button type="button" style="width:200px" onclick="window.location.href='/deliveryAdd.do';" value="1.交货单发货">
-      </td>
+      	</td>
+    </tr> -->
+    <tr>
+  		<td>
+    	<input  class=button type="button" style="width:200px"  value="1.生产调拔单领料">
+      	</td>
+    </tr>
+    <tr>
+  		<td>
+    	<input  class=button type="button" style="width:200px"  value="2.研发领料">
+      	</td>
+    </tr>
+    <tr>
+  		<td>
+    	<input  class=button type="button" style="width:200px"  value="3.委外发料">
+    	</td>
+    </tr>
+    <tr>
+  		<td>
+    	<input  class=button type="button" style="width:200px" onclick="window.location.href='/deliveryAdd.do';" value="4.下架">
+    	</td>
     </tr>
     <tr>
     <td>

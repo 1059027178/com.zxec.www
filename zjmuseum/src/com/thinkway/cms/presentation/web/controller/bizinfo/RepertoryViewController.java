@@ -75,11 +75,11 @@ public class RepertoryViewController implements Controller , AuthenticateControl
 		// TODO Auto-generated method stub
 		Map<Object, Object> model = new HashMap<Object, Object>();	
 		String loginUserId = request.getSession().getAttribute(SessionManager.USER_ID)==null?null:request.getSession().getAttribute(SessionManager.USER_ID).toString();
-		
+		User loginUser = new User();
 		if(loginUserId==null||loginUserId.equals("")){
 			//insert code here
 		}else{
-			User loginUser = userService.getUser(loginUserId);			
+			loginUser = userService.getUser(loginUserId);			
 			model.put("loginUser",loginUser);			
 		}	
 		String nlpla=SapUtil.null2String(request.getParameter("nlpla"));
@@ -100,14 +100,17 @@ public class RepertoryViewController implements Controller , AuthenticateControl
 		    JCO.Client myConnection =null;
 			myConnection =SapUtil.getSAPcon();
 		    myConnection.connect(); 
-			String functionName="ZFM_BC_07_31";//函数的名字
+//			String functionName="ZFM_BC_07_31";//函数的名字
+			String functionName="ZFM_BC_07_32";//函数的名字
 		    JCO.Repository myRepository = new JCO.Repository("Repository",myConnection); //只是一個名字
 		    IFunctionTemplate ft = myRepository.getFunctionTemplate(functionName);
 //		    //從這個函數範本獲得該SAP函數的物件
 		    JCO.Function bapi = ft.getFunction();
 	    	JCO.ParameterList  parameterList=bapi.getImportParameterList();//获得输入表的参数
-//			JCO.ParameterList   inputtable= bapi.getTableParameterList();//输入表的处理
-	    	//parameterList.setValue(ssvbeln,"I_RULE");
+			JCO.ParameterList   inputtable= bapi.getTableParameterList();//输入表的处理
+	    	parameterList.setValue(loginUser.getUserName(),"I_UID");
+	    	parameterList.setValue(lgnum,"I_LGNUM");
+	    	parameterList.setValue("Z01","I_LGTYP");
 			myConnection.execute(bapi);
 //				
 			JCO.ParameterList  outs = bapi.getExportParameterList();//输出参数和结构处理

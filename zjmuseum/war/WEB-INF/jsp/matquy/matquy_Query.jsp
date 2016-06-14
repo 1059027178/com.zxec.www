@@ -31,14 +31,14 @@ function matQuy(){
    		var saomiao=document.getElementById("saomiao").value;
    		var str=saomiao.split("/");
 		if(saomiao.length!=0){
-		 	document.getElementById("matnr").value=str[1];
-		 	document.getElementById("lgort").value=str[7];
-		 	document.getElementById("charg").value=str[4];
+		 	document.getElementById("matnr").value=str[3];//物料编码
+		 	document.getElementById("lgort").value=str[6];//库存地点
+		 	document.getElementById("charg").value=str[7];//批次号
 		 	jQuery.ajax({
 				url:'/matquyJson.do',
 		 		async:false,
 		 		type:"post",
-		 		data:{"showType":"getWerks","lgort":str[7]},
+		 		data:{"showType":"getWerks","lgort":str[6]},
 		 		dataType:'json',
 		 		success:function(data){
 		 			$("#werks").attr("value",data.werks);
@@ -89,7 +89,7 @@ function matQuy(){
         <div class="div" style=" padding-top: 50px;">
     	<ul>
     		<li class="li">
-    			<input style="width:70%;heigth=20%" type="text" id="saomiao" onchange="js()" name="saomiao"  value=""/>
+    			<input style="width:70%;heigth:20%" type="text" id="saomiao" onchange="js()" name="saomiao"  value=""/>
     		</li>
     		<li class="li">
     			物料编码：<input  type="text" class="text" style="width:90px;background-color:white;" id="matnr" name="matnr"  value=""/>
