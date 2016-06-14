@@ -1,8 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" %> 
 <%@ include file="../include/const.jsp"%>
-<jsp:useBean id="LiangxinUtil" class="com.thinkway.LiangxinUtil" scope="page" />
+<jsp:useBean id="SapUtil" class="com.thinkway.SapUtil" scope="page" />
 <%			
-	String radio = LiangxinUtil.null2String((String)request.getAttribute("radio"));//物料编码 
+	String radio = SapUtil.null2String((String)request.getAttribute("radio"));//物料编码 
 	System.out.println(radio);
 %>
 

@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" %> 
-<jsp:useBean id="LiangxinUtil" class="com.thinkway.LiangxinUtil" scope="page" />
+<jsp:useBean id="SapUtil" class="com.thinkway.SapUtil" scope="page" />
 
 
 <html>

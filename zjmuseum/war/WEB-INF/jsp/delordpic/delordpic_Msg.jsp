@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" %> 
 <%@ include file="../include/const.jsp"%>
-<jsp:useBean id="LiangxinUtil" class="com.thinkway.LiangxinUtil" scope="page" />
+<jsp:useBean id="SapUtil" class="com.thinkway.SapUtil" scope="page" />
 
 
 <html>
