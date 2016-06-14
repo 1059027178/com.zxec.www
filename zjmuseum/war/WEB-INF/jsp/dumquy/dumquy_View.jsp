@@ -2,13 +2,13 @@
 <%@ taglib uri="http://displaytag.sf.net" prefix="display"%>
 <%@ include file="../include/const.jsp"%>
 <%@ page import="java.util.List" %>
-<%@ page import="com.thinkway.LiangxinUtil" %>
+<%@ page import="com.thinkway.SapUtil" %>
 <%@ page import="com.thinkway.cms.business.domains.Dum" %>
 <%
-	int pageNo=LiangxinUtil.getIntValue((String)request.getAttribute("page"));
+	int pageNo=SapUtil.getIntValue((String)request.getAttribute("page"));
 	int pageNum=(Integer)request.getAttribute("pageNum");
-	String tanum=LiangxinUtil.null2String((String)request.getAttribute("tanum"));
-	String lgnum=LiangxinUtil.null2String((String)request.getAttribute("lgnum"));
+	String tanum=SapUtil.null2String((String)request.getAttribute("tanum"));
+	String lgnum=SapUtil.null2String((String)request.getAttribute("lgnum"));
 	
 %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">

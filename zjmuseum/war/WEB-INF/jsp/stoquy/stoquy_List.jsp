@@ -2,16 +2,16 @@
 <%@ taglib uri="http://displaytag.sf.net" prefix="display"%>
 <%@ include file="../include/const.jsp"%>
 <%@ page import="java.util.List" %>
-<%@ page import="com.thinkway.LiangxinUtil" %>
+<%@ page import="com.thinkway.SapUtil" %>
 <%@ page import="com.thinkway.cms.business.domains.Sto" %>
 <%
-	int pageNo=LiangxinUtil.getIntValue((String)request.getAttribute("page"));
+	int pageNo=SapUtil.getIntValue((String)request.getAttribute("page"));
 	int pageNum=(Integer)request.getAttribute("pageNum");
-	String werks=LiangxinUtil.null2String((String)request.getAttribute("werks")); 
-	String lgort=LiangxinUtil.null2String((String)request.getAttribute("lgort"));
-	String matnr=LiangxinUtil.null2String((String)request.getAttribute("matnr"));
-	String charg=LiangxinUtil.null2String((String)request.getAttribute("charg")); 
-	String pici=LiangxinUtil.null2String((String)request.getAttribute("pici")); 
+	String werks=SapUtil.null2String((String)request.getAttribute("werks")); 
+	String lgort=SapUtil.null2String((String)request.getAttribute("lgort"));
+	String matnr=SapUtil.null2String((String)request.getAttribute("matnr"));
+	String charg=SapUtil.null2String((String)request.getAttribute("charg")); 
+	String pici=SapUtil.null2String((String)request.getAttribute("pici")); 
 %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">

@@ -2,22 +2,22 @@
 <%@ taglib uri="http://displaytag.sf.net" prefix="display"%>
 <%@ include file="../include/const.jsp"%>
 <%@ page import="java.util.List" %>
-<%@ page import="com.thinkway.LiangxinUtil" %>
+<%@ page import="com.thinkway.SapUtil" %>
 <%@ page import="com.thinkway.cms.business.domains.Dump" %>
 <%
-	int pageNo=LiangxinUtil.getIntValue((String)request.getAttribute("page"));
+	int pageNo=SapUtil.getIntValue((String)request.getAttribute("page"));
 	int pageNum=(Integer)request.getAttribute("pageNum");
-			String matnr = LiangxinUtil.null2String((String)request.getAttribute("matnr"));//物料编码
-			String charg = LiangxinUtil.null2String((String)request.getAttribute("charg"));//批次号
-			String sobkz = LiangxinUtil.null2String((String)request.getAttribute("sobkz"));//特殊库存标识
-			String lgort = LiangxinUtil.null2String((String)request.getAttribute("lgort"));//库存地点
-			String sonum = LiangxinUtil.null2String((String)request.getAttribute("sonum"));
-			String radio = LiangxinUtil.null2String((String)request.getAttribute("radio"));
-			String lgnum = LiangxinUtil.null2String((String)request.getAttribute("lgnum"));//仓库号/混合仓库
-			String lgpla = LiangxinUtil.null2String((String)request.getAttribute("lgpla"));//仓位
-			String maktx = LiangxinUtil.null2String((String)request.getAttribute("maktx"));
-			String werks = LiangxinUtil.null2String((String)request.getAttribute("werks"));
-			String meins = LiangxinUtil.null2String((String)request.getAttribute("meins"));
+			String matnr = SapUtil.null2String((String)request.getAttribute("matnr"));//物料编码
+			String charg = SapUtil.null2String((String)request.getAttribute("charg"));//批次号
+			String sobkz = SapUtil.null2String((String)request.getAttribute("sobkz"));//特殊库存标识
+			String lgort = SapUtil.null2String((String)request.getAttribute("lgort"));//库存地点
+			String sonum = SapUtil.null2String((String)request.getAttribute("sonum"));
+			String radio = SapUtil.null2String((String)request.getAttribute("radio"));
+			String lgnum = SapUtil.null2String((String)request.getAttribute("lgnum"));//仓库号/混合仓库
+			String lgpla = SapUtil.null2String((String)request.getAttribute("lgpla"));//仓位
+			String maktx = SapUtil.null2String((String)request.getAttribute("maktx"));
+			String werks = SapUtil.null2String((String)request.getAttribute("werks"));
+			String meins = SapUtil.null2String((String)request.getAttribute("meins"));
 		 %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">

@@ -2,16 +2,16 @@
 <%@ taglib uri="http://displaytag.sf.net" prefix="display"%>
 <%@ page import="com.thinkway.cms.business.domains.User"%>
 <%@ include file="../include/const.jsp"%>
-<%@ page import="com.thinkway.LiangxinUtil" %>
+<%@ page import="com.thinkway.SapUtil" %>
 <%@ page import="java.util.List" %>
 <%@ page import="com.thinkway.cms.business.domains.DelOrdPic" %>
 <%
-	int pageNo=LiangxinUtil.getIntValue((String)request.getAttribute("page"));
+	int pageNo=SapUtil.getIntValue((String)request.getAttribute("page"));
 	int pageNum=(Integer)request.getAttribute("pageNum");
-	String werks=LiangxinUtil.null2String((String)request.getAttribute("werks"));
-	String lgort=LiangxinUtil.null2String((String)request.getAttribute("lgort"));
-	String wadat=LiangxinUtil.null2String((String)request.getAttribute("wadat"));
-	String vbeln=LiangxinUtil.null2String((String)request.getAttribute("vbeln"));
+	String werks=SapUtil.null2String((String)request.getAttribute("werks"));
+	String lgort=SapUtil.null2String((String)request.getAttribute("lgort"));
+	String wadat=SapUtil.null2String((String)request.getAttribute("wadat"));
+	String vbeln=SapUtil.null2String((String)request.getAttribute("vbeln"));
 %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -114,28 +114,28 @@
 			%>
 				<tr <% if(i%2==1){ %>class="tr_list_2"<%}else{ %>class="tr_list_1"<%} %>>
 					<td class="td_list" rowspan=2>
-						<%=LiangxinUtil.null2String(pic.getXuhao()) %>
+						<%=SapUtil.null2String(pic.getXuhao()) %>
 					</td>
 					<td class="td_list">
 					<%
-						if(LiangxinUtil.getDoubleValue(pic.getLfimg())>pic.getRfmng()){
+						if(SapUtil.getDoubleValue(pic.getLfimg())>pic.getRfmng()){
 					%>
-					<a href="/matlgpfifoView.do?vbeln=<%=vbeln %>&wadat=<%=wadat %>&lgort=<%=lgort %>&werks=<%=werks %>&matnr=<%=LiangxinUtil.null2String(pic.getMatnr()) %>&posnr=<%=LiangxinUtil.null2String(pic.getPosnr()) %>&lfimg=<%=pic.getLfimg() %>&maktx=<%=LiangxinUtil.null2String(pic.getMaktx()) %>" >
-						<%=LiangxinUtil.null2String(pic.getMatnr()) %>
+					<a href="/matlgpfifoView.do?vbeln=<%=vbeln %>&wadat=<%=wadat %>&lgort=<%=lgort %>&werks=<%=werks %>&matnr=<%=SapUtil.null2String(pic.getMatnr()) %>&posnr=<%=SapUtil.null2String(pic.getPosnr()) %>&lfimg=<%=pic.getLfimg() %>&maktx=<%=SapUtil.null2String(pic.getMaktx()) %>" >
+						<%=SapUtil.null2String(pic.getMatnr()) %>
 					<%}else{ %>
-						<%=LiangxinUtil.null2String(pic.getMatnr()) %>
+						<%=SapUtil.null2String(pic.getMatnr()) %>
 					<%} %>
 						 
 					</td>
 					<td class="td_list">
 						
-						<%=LiangxinUtil.null2String(pic.getCharg()) %>
+						<%=SapUtil.null2String(pic.getCharg()) %>
 					</td>
 				</tr>
 				<tr <% if(i%2==1){ %>class="tr_list_2"<%}else{ %>class="tr_list_1"<%} %>>
 					<td class="td_list">
 						
-						<%=LiangxinUtil.null2String(pic.getLfimg()) %>
+						<%=SapUtil.null2String(pic.getLfimg()) %>
 					</td>
 					<td class="td_list">
 						<%=pic.getRfmng() %>
