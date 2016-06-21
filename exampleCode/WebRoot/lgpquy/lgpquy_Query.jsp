@@ -48,13 +48,13 @@ function reset(){
     				<input  class="button"  type="button" style="width:22%"  onclick="lgpQuy()" value="查询">
     				<input  class="button"  type="button" style="width:22%"  onclick="reset();" value="清除">
     				<input  class="button"  type="button" style="width:22%"  onclick="window.location.href='MainServlet?flag=4';" value="返回">
-    				<input  class=button type="button" style="width:22%" onclick="window.location.href='MainServlet?flag=return';" value="首页">
+    				<input  class="button" 	type="button" style="width:22%"  onclick="window.location.href='MainServlet?flag=return';" value="首页">
     		</li>
     	</ul>
     	</div>
     </form>
   </body>
  <script type="text/javascript">
-  document.getElementById("lgpla").focus();
+  	document.getElementById("lgpla").focus();
   </script>
 </html>
