@@ -1,0 +1,120 @@
+<#assign sec=JspTaglibs["/WEB-INF/security.tld"] />
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+
+<title>角色管理 - Powered By ${systemConfig.systemName}</title>
+<link rel="icon" href="favicon.ico" type="image/x-icon" />
+<#include "/WEB-INF/template/common/include.ftl"> 
+<script src="${base}/template/admin/assets/js/jqGrid/jquery.jqGrid.min.js"></script>
+<script src="${base}/template/admin/assets/js/jqGrid/i18n/grid.locale-cn.js"></script>
+<script src="${base}/template/admin/js/layer/layer.js"></script>
+<link href="${base}/template/admin/css/list.css" rel="stylesheet"
+	type="text/css" />
+	<script type="text/javascript" src="${base}/template/admin/js/jqgrid_common.js"></script>
+<script type="text/javascript"
+	src="${base }/template/admin/js/manage/role_list.js"></script>
+<script type="text/javascript"
+	src="${base }/template/admin/js/manage/role.js"></script>
+<#include "/WEB-INF/template/common/include_adm_top.ftl">
+<style>
+body {
+	background: #fff;
+}
+</style>
+<script type="text/javascript" src="${base }/template/admin/js/list.js"></script>
+</head>
+<body class="no-skin list">
+	<#include "/WEB-INF/template/admin/admin_navbar.ftl">
+	<div class="main-container" id="main-container">
+		<script type="text/javascript">
+			try {
+				ace.settings.check('main-container', 'fixed')
+			} catch (e) {
+			}
+		</script>
+		<#include "/WEB-INF/template/admin/admin_sidebar.ftl">
+		<div class="main-content">
+			<#include "/WEB-INF/template/admin/admin_acesettingbox.ftl">
+
+			<div class="breadcrumbs" id="breadcrumbs">
+				<script type="text/javascript">
+					try {
+						ace.settings.check('breadcrumbs', 'fixed')
+					} catch (e) {
+					}
+				</script>
+
+				<ul class="breadcrumb">
+					<li><i class="ace-icon fa fa-home home-icon"></i> <a
+						href="admin!index.action">管理中心</a>
+					</li>
+					<li class="active">角色管理&nbsp;</li>
+				</ul>
+				<!-- /.breadcrumb -->
+			</div>
+
+			<!-- add by welson 0728 -->
+			<div class="page-content">
+				<div class="page-content-area">
+
+					<div class="row">
+						<div class="col-xs-12">
+						<form id="searchform" action="resource!ajlist.action" method="post" role="form">
+							<div class="operateBar">
+						<a id="addButton" class="btn btn-white btn-sm btn-info btn-round">
+							<i class="ace-icon fa fa-pencil-square-o blue"></i>
+							添加角色
+						</a>
+						<a id="editButton" class="btn btn-white btn-sm btn-info btn-round">
+							<i class="ace-icon fa fa-pencil-square-o blue"></i>
+							修改角色
+						</a>
+						<a id="deleteButton" class="btn btn-white btn-sm btn-info btn-round">
+							<i class="ace-icon fa fa-pencil-square-o blue"></i>
+							删除角色
+						</a>
+				
+					<select name="pager.property">
+						<option value="name">
+							角色名称
+						</option>
+					</select>
+					
+					<input type="text" name="pager.keyword" class="input input-sm" id="form-field-icon-1">
+					<button id="searchButton" class="btn btn-white btn-default btn-sm btn-round">
+						<i class="ace-icon fa fa-filter blue"></i>
+						搜索
+					</button>	
+					</div>
+				</form>		
+			
+							<!-- ./ add by welson 0728 -->
+							<table id="grid-table"></table>
+
+							<div id="grid-pager"></div>
+
+							<!-- add by welson 0728 -->
+						</div>
+						<!-- /.col -->
+					</div>
+					<!-- /.row -->
+
+					<!-- PAGE CONTENT ENDS -->
+				</div>
+				<!-- /.col -->
+			</div>
+			<!-- /.row -->
+		</div>
+		<!-- /.page-content-area -->
+		<#include "/WEB-INF/template/admin/admin_footer.ftl">
+	</div>
+	<!-- /.main-container -->
+	<#include "/WEB-INF/template/common/include_adm_bottom.ftl">
+	<!-- ./ add by welson 0728 -->
+
+
+</body>
+</html>

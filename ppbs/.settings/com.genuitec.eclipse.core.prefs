@@ -1,0 +1,5 @@
+#Wed Feb 10 11:03:46 CST 2016
+eclipse.preferences.version=1
+validator.Checked=/
+validator.Revalidate=true
+validator.Unchecked=WebRoot/WEB-INF/template
