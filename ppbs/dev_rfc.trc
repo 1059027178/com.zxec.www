@@ -1,0 +1,24 @@
+
+**** ERROR file opened at 20160315 171234 中国标准时间, SAP-REL 640,0,377 RFC-VER 3  MT-SL
+T:7192 Error in program 'javaw': ======> SAP_CMINIT3 : rc=20 > Connect to SAP gateway failed
+Connect_PM  GWHOST=10.100.100.231, GWSERV=sapgw00, SYSNR=00
+
+LOCATION    CPIC (TCP/IP) on local host
+ERROR       partner not reached (host 10.100.100.231, service 3300)
+TIME        Tue Mar 15 17:12:34 201
+RELEASE     640
+COMPONENT   NI (network interface)
+VERSION     37
+RC          -10
+MODULE      nixxi_r.cpp
+LINE        8840
+DETAIL      NiPConnect2
+SYSTEM CALL SiPeekPendConn
+ERRNO       10060
+ERRNO TEXT  WSAETIMEDOUT: Connection timed out
+COUNTER     1
+
+
+**** ERROR file opened at 20160315 171904 中国标准时间, SAP-REL 640,0,377 RFC-VER 3  MT-SL
+T:12936 Error in program 'javaw': ======> ##.#####,####
+T:12936 Error in program 'javaw': <* RfcReceive [1] : returns 3:RFC_SYS_EXCEPTION

@@ -1,0 +1,129 @@
+package cc.jiuyi.util;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Random;
+import java.util.UUID;
+
+import javax.servlet.http.HttpServletRequest;
+
+import cc.jiuyi.entity.AccessObject;
+
+/**
+ * 工具类 - 公用
+ */
+
+public class CommonUtil {
+
+	/**
+	 * 随机获取UUID字符串(无中划线)
+	 * 
+	 * @return UUID字符串
+	 */
+	public static String getUUID() {
+		String uuid = UUID.randomUUID().toString();
+		return uuid.substring(0, 8) + uuid.substring(9, 13) + uuid.substring(14, 18) + uuid.substring(19, 23) + uuid.substring(24);
+	}
+	
+	/**
+	 * 随机获取字符串
+	 * 
+	 * @param length
+	 *            随机字符串长度
+	 * 
+	 * @return 随机字符串
+	 */
+	public static String getRandomString(int length) {
+		if (length <= 0) {
+			return "";
+		}
+		char[] randomChar = {'0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'q', 'w', 'e', 'r', 't', 'y', 'u', 'i', 'o', 'p', 'a', 's', 'd',
+				'f', 'g', 'h', 'j', 'k', 'l', 'z', 'x', 'c', 'v', 'b', 'n', 'm' };
+		Random random = new Random();
+		StringBuffer stringBuffer = new StringBuffer();
+		for (int i = 0; i < length; i++) {
+			stringBuffer.append(randomChar[Math.abs(random.nextInt()) % randomChar.length]);
+		}
+		return stringBuffer.toString();
+	}
+
+	/**
+	 * 根据指定长度 分隔字符串
+	 * 
+	 * @param str
+	 *            需要处理的字符串
+	 * @param length
+	 *            分隔长度
+	 * 
+	 * @return 字符串集合
+	 */
+	public static List<String> splitString(String str, int length) {
+		List<String> list = new ArrayList<String>();
+		for (int i = 0; i < str.length(); i += length) {
+			int endIndex = i + length;
+			if (endIndex <= str.length()) {
+				list.add(str.substring(i, i + length));
+			} else {
+				list.add(str.substring(i, str.length() - 1));
+			}
+		}
+		return list;
+	}
+
+	/**
+	 * 将字符串List转化为字符串，以分隔符间隔.
+	 * 
+	 * @param list
+	 *            需要处理的List.
+	 *            
+	 * @param separator
+	 *            分隔符.
+	 * 
+	 * @return 转化后的字符串
+	 */
+	public static String toString(List<String> list, String separator) {
+		StringBuffer stringBuffer = new StringBuffer();
+		for (String str : list) {
+			stringBuffer.append(separator + str);
+		}
+		stringBuffer.deleteCharAt(0);
+		return stringBuffer.toString();
+	}
+	/**
+	 * 获取IP地址.
+	 * 
+	 * @param request
+	 *            来自上下文的request对象.
+	 * 
+	 * @return iP地址
+	 */
+	
+	public static String getRemortIP(HttpServletRequest request) {
+		if (request.getHeader("x-forwarded-for") == null) {
+			return request.getRemoteAddr();
+		}
+		return request.getHeader("x-forwarded-for");
+	}
+	
+	//public static boolean 
+	/**
+	 * 
+	 * @param pageNumber  当前页
+	 * @param pagesize    一页显示的数量
+	 * @param count		一共多少数量
+	 */
+	public static List<String> setPage(Integer pageNumber,Integer pagesize,Integer count,List<String> arrList){
+		
+		Integer startresult = (pageNumber - 1) * pagesize;//开始数
+		List<String> strList = new ArrayList<String>();
+		for(int i = startresult;i< arrList.size();i++){
+			if(i == startresult + pagesize) break;
+			String str = (String)arrList.get(i);
+			strList.add(str);
+		}
+		//此时，strList取出的是 <=10行数据 --如果需要当前页是多少 行，则 strList.size() 可以获得
+		return strList;
+		
+	}
+
+}

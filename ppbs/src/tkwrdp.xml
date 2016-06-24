@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<tkwrdp> 
+	<description>System配置文件</description>  
+	<systemConfig> 
+		<systemName> 宁波中骏塑料粒子条码系统</systemName>  
+		<systemVersion>v1.0.0</systemVersion>  
+		<systemDescription>宁波中骏塑料粒子条码系统</systemDescription>  
+		<isInstalled>true</isInstalled>  
+		<platformName>宁波中骏塑料粒子条码系统</platformName>  
+		<platformUrl>http://www.jiuyisoft.com</platformUrl>  
+		<platformLogo>/upload/image/logo.gif</platformLogo>  
+		<hotSearch>宁波中骏塑料粒子条码系统</hotSearch>  
+		<metaKeywords>宁波中骏塑料粒子条码系统</metaKeywords>  
+		<metaDescription>宁波中骏塑料粒子条码系统</metaDescription>  
+		<address>上海市浦东新区张衡路666弄</address>  
+		<phone>021-68860500</phone>  
+		<zipCode>310010</zipCode>  
+		<email>rdp@jiuyisoft.com</email>  
+		<currencyType>CNY</currencyType>  
+		<currencySign>￥</currencySign>  
+		<currencyUnit>元</currencyUnit>  
+		<priceScale>2</priceScale>  
+		<priceRoundType>roundHalfUp</priceRoundType>  
+		<orderScale>2</orderScale>  
+		<orderRoundType>roundHalfUp</orderRoundType>  
+		<certtext>浙ICP备12010764</certtext>  
+		<storeAlertCount>5</storeAlertCount>  
+		<storeFreezeTime>order</storeFreezeTime>  
+		<uploadLimit>1024</uploadLimit>  
+		<isLoginFailureLock>true</isLoginFailureLock>  
+		<loginFailureLockCount>5</loginFailureLockCount>  
+		<loginFailureLockTime>5</loginFailureLockTime>  
+		<isRegister>true</isRegister>  
+		<watermarkImagePath>/upload/image/watermark.jpg</watermarkImagePath>  
+		<watermarkPosition>bottomRight</watermarkPosition>  
+		<watermarkAlpha>50</watermarkAlpha>  
+		<bigProductImageWidth>500</bigProductImageWidth>  
+		<bigProductImageHeight>500</bigProductImageHeight>  
+		<smallProductImageWidth>300</smallProductImageWidth>  
+		<smallProductImageHeight>300</smallProductImageHeight>  
+		<thumbnailProductImageWidth>140</thumbnailProductImageWidth>  
+		<thumbnailProductImageHeight>140</thumbnailProductImageHeight>  
+		<defaultBigProductImagePath>/upload/image/default_big_product_image.jpg</defaultBigProductImagePath>  
+		<defaultSmallProductImagePath>/upload/image/default_small_product_image.jpg</defaultSmallProductImagePath>  
+		<defaultThumbnailProductImagePath>/upload/image/default_thumbnail_product_image.jpg</defaultThumbnailProductImagePath>  
+		<allowedUploadImageExtension>jpg,jpge,bmp,gif,png</allowedUploadImageExtension>  
+		<allowedUploadMediaExtension></allowedUploadMediaExtension>  
+		<allowedUploadFileExtension></allowedUploadFileExtension>  
+		<smtpFromMail>webmaster@jiuyi.cc</smtpFromMail>  
+		<smtpHost>smtp.jiuyisoft.com</smtpHost>  
+		<smtpPort>25</smtpPort>  
+		<smtpUsername>webmaster</smtpUsername>  
+		<smtpPassword>test</smtpPassword>  
+		<sapHost>192.168.0.23</sapHost>  
+		<sapClient>600</sapClient>  
+		<sapSysnr>00</sapSysnr>  
+		<sapUser>DEV08</sapUser>  
+		<sapPasswd>ASDFJKL</sapPasswd>  
+		<sapLang>EN</sapLang>
+		<sapCodePage>8400</sapCodePage> 
+		<pointType>orderAmount</pointType>  
+		<pointScale>1.0</pointScale> 
+	</systemConfig> 
+</tkwrdp>
