@@ -1,0 +1,12 @@
+ th.sortable a {
+	  background: url(/img/arrow_off.png) no-repeat right;
+	  padding-right:20px;
+}
+
+th.desc a {
+	background-image: url(/img/arrow_down.png);
+}
+
+th.asc a {
+	background-image: url(/img/arrow_up.png);
+}
