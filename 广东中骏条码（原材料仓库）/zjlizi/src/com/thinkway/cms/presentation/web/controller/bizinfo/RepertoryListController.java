@@ -96,7 +96,8 @@ public class RepertoryListController implements Controller , AuthenticateControl
 	    JCO.Client myConnection =null;
 		myConnection =SapUtil.getSAPcon();
 	    myConnection.connect(); 
-		String functionName="ZFM_BC_07_31";//函数的名字
+//		String functionName="ZFM_BC_07_31";//函数的名字
+		String functionName="ZFM_BC_07_32";//函数的名字
 	    JCO.Repository myRepository = new JCO.Repository("Repository",myConnection); //只是一個名字
 	    IFunctionTemplate ft = myRepository.getFunctionTemplate(functionName);
 //	    //從這個函數範本獲得該SAP函數的物件
