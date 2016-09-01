@@ -1,0 +1,1 @@
+mysql --default-character-set=utf8  -h localhost -P 3306 -uroot -pzllc,2009 zjmuseum < 2013-10-31_zjmuseum.sql
