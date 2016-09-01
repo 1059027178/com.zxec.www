@@ -50,7 +50,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
      <ul>
  	<li class="li">仓位号：<input name="lgpla" class="text" style="background-color:white;" type="text" id="lgpla">	
  		</li>
-     <li class="li">仓库号：<input name="lgnum" class="text" style="background-color:white;" type="text" id="lgnum" value="311">	
+     <li class="li">仓库号：<input name="lgnum" class="text" style="background-color:white;" type="text" id="lgnum" value="321">	
  		</li>
  	<li class= "li" style="margin-top:10px;"></li>
   	<li class="li">

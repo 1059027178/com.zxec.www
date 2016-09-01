@@ -102,7 +102,7 @@
 		</tr>
 		<tr >
 			<td >库存地点：<span style="margin-left: 15px;"></span>
-			<input name="lgort_from" type="text" style="width: 15%;"  id="lgort_from" value="3107">到<input name="lgort_to" type="text" style="width:15%"  id="lgort_to" value=""/>
+			<input name="lgort_from" type="text" style="width: 15%;"  id="lgort_from" value="3201">到<input name="lgort_to" type="text" style="width:15%"  id="lgort_to" value=""/>
 			</td>
 		</tr>
 		<%-- <tr>

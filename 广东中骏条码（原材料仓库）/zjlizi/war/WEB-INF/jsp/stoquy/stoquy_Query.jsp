@@ -88,10 +88,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     	<div style=" padding-top: 50px;">
     	<ul>
     		<li class="li">
-    			工 &nbsp;&nbsp; 厂: <input style="width:50%;heigth:70%" type="text" id="werks" name="werks"  value="3100"/>
+    			工 &nbsp;&nbsp; 厂: <input style="width:50%;heigth:70%" type="text" id="werks" name="werks"  value="3200"/>
     		</li>
     		<li class="li">
-    			库存地点：<input style="width:50%;heigth:70%" type="text" id="lgort" name="lgort"  value="3107"/>
+    			库存地点：<input style="width:50%;heigth:70%" type="text" id="lgort" name="lgort"  value="3201"/>
     		</li>
     		<li class="li">
     			<input style="width:81.5%;heigth:70%" type="text" id="saomiao" name="saomiao"  value="" onchange="js()"/>

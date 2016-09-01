@@ -60,7 +60,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	 		dataType:'json',
 	 		success:function(data){
 	 			//$("#lgnum").attr("value",data.lgnum);
-	 			$("#lgnum").attr("value","311");
+	 			$("#lgnum").attr("value","321");
 	 			$("#maktx").attr("value",data.maktx);
 	 			$("#werks").attr("value",data.werks);
 	 		},
