@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE sqlMap
+    PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"
+    "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="DelLockUser">
+
+  <!-- Use type aliases to avoid typing the full classname every time. -->
+  <typeAlias alias="DelLockUser" type="com.thinkway.cms.business.domains.DelLockUser"/>
+  
+  <cacheModel id="dellockuser-cache" type="LRU"> 
+	 <flushInterval hours="24"/> 
+	 <flushOnExecute statement="createdellockuser"/> 
+	 <flushOnExecute statement="updatedellockuser"/> 
+	 <property name="size" value="24" /> 
+</cacheModel> 
+
+  <resultMap id="DelLockUserResult" class="DelLockUser">
+    <result property="id" column="id"/>
+    <result property="userid" column="userid"/>
+    <result property="username" column="username"/>
+    <result property="vbeln" column="vbeln"/>
+    <result property="lockdata" column="lockdata"/>
+  </resultMap>
+
+ <select id="getDelLockUser" parameterClass="string" resultClass="DelLockUser" cacheModel="dellockuser-cache">
+ 	select
+      id as id,
+      userid as userid,
+      username as username,
+      vbeln as vbeln,
+      lockdata as lockdata
+    from dellockUser
+    where vbeln = #vbeln#
+ </select>
+ 
+ 
+ 
+ 
+ <!-- whereClause definition-->
+  	<sql id="DelLockUserQueryClause">
+        <dynamic>
+        	<isNotNull prepend="AND" property="id">
+				(A.id = #id#)
+			</isNotNull>
+			<isNotNull prepend="AND" property="userid">
+				(A.userid like '%$userid$%')
+			</isNotNull>
+			<isNotNull prepend="AND" property="username">
+				(A.username like concat('%',#username#,'%'))
+			</isNotNull>
+			<isNotNull prepend="AND" property="lockdata">
+				(A.lockdata like concat('%',#lockdata#,'%'))
+			</isNotNull>
+			<isNotNull prepend="AND" property="vbeln">
+				(A.vbeln = #vbeln#)
+			</isNotNull>
+		</dynamic>
+	</sql>
+	
+  	<sql id="pageSQLDelLockUser">
+	  	ORDER BY $sort$ $sdir$ LIMIT $skip$,$limit$	
+	</sql>
+	
+
+ 	<select id="getDelLockUserCount"  resultClass="int" parameterClass="Map">
+	SELECT COUNT(*) FROM dellockUser A where A.id != ''
+	<include refid="DelLockUserQueryClause" />
+  	</select>	
+ 
+ 
+
+  <!-- Insert example, using the DelLockUser parameter class -->
+  <insert id="createDelLockUser" parameterClass="DelLockUser">
+    insert into dellockUser (
+      userid,
+      username,
+      vbeln,
+      lockdata
+    )values (
+      #userid#,#username#,#vbeln#,#lockdata#
+    )
+  </insert>
+  
+   <delete id="deleteDelLockUserByVbeln" parameterClass="String">
+    
+    delete from dellockUser where vbeln = #vbeln#
+    
+   </delete>
+   
+      <delete id="deleteDelLockUserByUserid" parameterClass="String">
+    
+    delete from dellockUser where userid = #userid#
+    
+   </delete>
+
+<update id="updateDelLockUser" parameterClass="DelLockUser">
+	update dellockUser set
+      userid = #userid#,
+      username = #username#,
+      vbeln = #vbeln#,
+      lockdata = #lockdata#
+    where
+      id = #id#
+</update>
+
+</sqlMap>
