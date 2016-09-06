@@ -45,15 +45,24 @@
     </dataSource>
   </transactionManager> 
   -->
-    <transactionManager type="JDBC" commitRequired="false">
+    <!-- <transactionManager type="JDBC" commitRequired="false">
     <dataSource type="SIMPLE">
       <property name="JDBC.Driver" value="com.microsoft.sqlserver.jdbc.SQLServerDriver"/>
       <property name="JDBC.ConnectionURL" value="jdbc:sqlserver://172.30.12.39:1433;DatabaseName=Tst_ecology20150228"/>
 		<property name="JDBC.Username" value="sa"/>
       <property name="JDBC.Password" value="Tstoa@2015"/>
     </dataSource>
-  </transactionManager> 
-  
+  </transactionManager>  -->
+  <!-- yangyang：云服务器测试机 -->
+    <transactionManager type="JDBC" commitRequired="false">
+    <dataSource type="SIMPLE">
+      <property name="JDBC.Driver" value="com.microsoft.sqlserver.jdbc.SQLServerDriver"/>
+      <property name="JDBC.ConnectionURL" value="jdbc:sqlserver://114.55.29.104:1433;DatabaseName=zjcodeTest"/>
+		<property name="JDBC.Username" value="zjcode"/>
+      <property name="JDBC.Password" value="zjcode"/>
+    </dataSource>
+  </transactionManager>
+  <!-- yangyang:云服务器测试机 --> 
   <!-- List the SQL Map XML files. They can be loaded from the
        classpath, as they are here  -->
   <sqlMap resource="com/thinkway/cms/persistence/sqlmapdao/sql/Sequence.xml"/>
