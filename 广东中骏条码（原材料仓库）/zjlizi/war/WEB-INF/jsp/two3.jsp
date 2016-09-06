@@ -65,27 +65,27 @@ body {
 				value="1.生产调拔单领料">
 			</td>
 		</tr>
-		<tr>
+		<!-- <tr>
 			<td><input class=button type="button" style="width:200px"
 				onclick="window.location.href='/delivery.do?functionType=2';"
 				value="2.研发领料">
 			</td>
-		</tr>
+		</tr> -->
 		<tr>
 			<td><input class=button type="button" style="width:200px"
 				onclick="window.location.href='/delivery.do?functionType=3';"
-				value="3.委外发料">
+				value="2.委外发料">
 			</td>
 		</tr>
 		<tr>
 			<td><input class=button type="button" style="width:200px"
-				onclick="window.location.href='/deliveryAdd.do';" value="4.下架">
+				onclick="window.location.href='/deliveryAdd.do';" value="3.下架">
 			</td>
 		</tr>
 		<tr>
 			<td><input class=button type="button" style="width:200px"
 				onclick="window.location.href='/delivery.do?functionType=4';"
-				value="5.生产成本中心领料">
+				value="4.生产成本中心领料">
 			</td>
 		</tr>
 		<tr>

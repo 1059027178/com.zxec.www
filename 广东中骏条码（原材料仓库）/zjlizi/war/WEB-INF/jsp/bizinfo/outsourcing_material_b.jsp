@@ -60,16 +60,14 @@
 				<input type="hidden" name="lineItem" value="<%=lineItem%>" />
 				<input type=hidden name="purchaseOrder" value="<%=purchaseOrder%>" />
 				<tr>
-					<td>物料编码：<label><%=materialId%></label>
-					</td>
+					<td>物料编码：<label><%=materialId%></label></td>
 
 				</tr>
 				<tr>
 					<td>物料描述：<label><%=materialDescription%></label></td>
 				</tr>
 				<tr>
-					<td>数量合计：<label id="totalAmount"></label>
-					</td>
+					<td>数量合计：<label id="totalAmount"></label></td>
 				</tr>
 				<table class="table_list" style="width:100%;margin-left:20px">
 					<tr class="tr_list_1" bordercolor="#000000">
@@ -84,21 +82,14 @@
 					</tr>
 					<table style="width:80%;margin-left:20px;margin-right:20px">
 						<tr>
-							<td align="center"><input type="button" class="button"
-								style="width:40px;" value="保存" onclick="confirm()"></input>
-								<td align="center"><input type="button" class="button"
-									style="width:40px;" value="返回"
-									onclick="window.location.href='/delivery.do?functionType=3';"></input>
-									<td align="center"><input type="button" class="button"
-										style="width:40px;" value="<<" onclick=" previousPage();" />
-								</td>
-									<td align="center"><input type="button" class="button"
-										style="width:40px;" value=">>" onclick="nextPage();" />
-								</td></td>
+							<td align="center"><input type="button" class="button" style="width:40px;" value="保存" onclick="confirm()"/></td>
+							<td align="center"><input type="button" class="button" style="width:40px;" value="返回" onclick="window.location.href='/delivery.do?functionType=3';"/></td>
+							<td align="center"><input type="button" class="button" style="width:40px;" value="<<" onclick="previousPage();" /></td>
+							<td align="center"><input type="button" class="button" style="width:40px;" value=">>" onclick="nextPage();" /> </td>
 						</tr>
 					</table>
-					</form>
-					</div>
+		</form>
+	</div>
 </BODY>
 <script>
 	var pager = jQuery.extend(true, {}, basePager);
@@ -106,9 +97,7 @@
 	pager.paraArr = new Array("num", "wareHouse", "produceDate", "_turn", "_hidden[class=checkWarehouse]",
 			"enabledAmount", "_text[class=selectAmount]");
 	pager.tableTitle = "tableList";
-	var a =
-<%=materialWarehouseList%>
-	;
+	var a =<%=materialWarehouseList%>;
 	pager.list = a.materialWarehouseList;
 	generateTableList();
 	function confirm() {

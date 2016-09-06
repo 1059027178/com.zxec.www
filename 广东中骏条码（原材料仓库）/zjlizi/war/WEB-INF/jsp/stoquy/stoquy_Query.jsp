@@ -43,6 +43,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	function reset(){
 		$("#matnr").val("");
 		$("#charg").val("");
+		$("#saomiao").focus();
 	}
 	function keyDown() {
 		var keycode = event.keyCode;

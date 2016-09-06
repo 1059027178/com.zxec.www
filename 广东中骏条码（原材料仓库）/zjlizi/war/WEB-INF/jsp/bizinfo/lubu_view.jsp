@@ -71,6 +71,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		  	}
 		  	if(obj == 2){
 		  		$("#matnr1").attr("value",matnr);
+			  	$("#meng").attr("value",str[4]);//每袋数量
 		  		$("#targetBatch").attr("value",str[7]);
 		  		document.getElementById("boxs").focus();
 		  	}
@@ -125,7 +126,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   <form name="form" action="/lubuList.do">
   <!-- <form name="form" action="/lubuEdit.do"> -->
   	<input type="hidden" name="charg" id = "charg" value="${charg }" />
-  	<input type="hidden" name="werks" id = "werks" value="3100"/>
+  	<input type="hidden" name="werks" id = "werks" value="3200"/>
   <div>
      <ul>
      <li class="li"></li>
@@ -141,7 +142,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			<input name="meins" value="KG"  style="width:26px;background-color:#D8D8D8;"  readonly=readonly type="text"  id="meins" />
  		</li>
  		<li class="li" style="line-height:20px;">目标批次：<input name="targetBatch" id= "targetBatch" style="width:90px;background-color:white;margin-left:14px;"/></li>
-		<li class="li" style="line-height:20px;">库存地点：<input name="lgort" id= "lgort" style="width:90px;background-color:white;margin-left:14px;" value="3107"/></li>
+		<li class="li" style="line-height:20px;">库存地点：<input name="lgort" id= "lgort" style="width:90px;background-color:white;margin-left:14px;" value="3201"/></li>
 		<li class="li" style="line-height:20px;">移动类型：<input name="yidongleixing" id= "yidongleixing" style="width:90px;background-color:white;margin-left:14px;" value="309"/></li>
 		
 		<!-- <li class="li">仓 库 号：<input name="lgnum" class="text" style="width:90px;background-color:white;" type="text" id="lgnum">	

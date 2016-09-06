@@ -12,11 +12,6 @@
 				<script type="text/javascript" src="../../../js/json2.js"></script>
 				<script type="text/javascript" src="../../../js/common.js"></script>
 				<LINK href="/css/jiuhui.css" type=text/css rel=STYLESHEET>
-					<style>
-.table_border {
-	margin-left: 10px;
-}
-</style>
 </HEAD>
 <body>
 	<form id="form" name="form" action="/deliveryAdd.do" method="post"
@@ -29,7 +24,7 @@
 								<ul>
 									<li style="height:15px;list-style-type:none;">PO收货冲销:<input
 										class="text3" type="text"
-										style="white-space：nowrap;width:120px;" id="barcodes">
+										style="white-space：nowrap;width:110px;" id="barcodes">
 									</li>
 									<li class="li">采购订单：<input class="text" readonly=readonly
 										type="text" id="purchaseOrder" style="width:85px;"><input
@@ -65,7 +60,9 @@
 										style="width:40px;height:25px;" class="button" id="confirm"
 										value="确定" /> <input class="button" type="button"
 										valign="center" style="width:40px;height:25px;"
-										id="history_back" value="返回" /></li>
+										id="history_back" value="返回" /> <input class="button" type="button"
+										valign="center" style="width:40px;height:25px;"
+										id="reset" value="重置" /></li>
 								</ul>
 							</div>
 		</div>
@@ -87,6 +84,11 @@
 </body>
 <script type="text/javascript">
 	$(function() {
+		$("#reset").click(function(){
+			$(".text").val("");
+			$(".text3").val("");
+			$("#str").focus();
+		});
 		$("#unShelves").click(function() {
 			document.form.submit();
 		});

@@ -34,17 +34,18 @@
 							style="width:120px;">
 						</li>
 						<li class="li">供应商生产日期:<input class="text" readonly=readonly
-							type="text" id="produceDate" style="width:90px;">
+							type="text" id="produceDate" style="width:78px;">
 						</li>
 						<li class="li">仓库号:&emsp;<input type="text" id="warehouse"
-							name="warehouse" value="311"
-							style="white-space：nowrap;width:40px;">
+							name="warehouse" value="321" style="white-space：nowrap;width:40px;">
 						</li>
 						<li class="li"><input type="button" valign="center"
 							style="width:40px;height:25px;" class="button" id="confirm"
 							value="确定" /> <input class="button" type="button"
 							valign="center" style="width:40px;height:25px;" onclick="window.location.href='/main.do?two=3';"
-							value="返回" />
+							value="返回" /> <input class="button" type="button"
+							valign="center" style="width:40px;height:25px;" id="reset"
+							value="重置" />
 						</li>
 					</ul>
 		</div>
@@ -83,6 +84,11 @@
 			if ($("#barcodes").val()) {
 				document.form.submit();
 			}
+		});
+		$("#reset").click(function (){
+			$(".text").val("");
+			$(".text3").val("");
+			$("#str").focus();
 		});
 	});
 </script>

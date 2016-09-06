@@ -40,7 +40,7 @@ function dumQuy(){
     	<ul>
     	<li class="li"></li>
     		<li class="li">
-    			²Ö ¿â ºÅ£º<input type="text" id="lgnum"  style="width:50%;heigth:70%" name="lgnum"  value="311"/>
+    			²Ö ¿â ºÅ£º<input type="text" id="lgnum"  style="width:50%;heigth:70%" name="lgnum"  value="321"/>
     		</li>
     		<li class="li">
     			×ª´¢µ¥ºÅ£º<input type="text" id="tanum"  style="width:50%;heigth:70%" name="tanum"  value=""/>

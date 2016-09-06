@@ -71,11 +71,11 @@ body {
 				type="hidden" name="budat" id="budat"/>
 			<ul>
 				<li class="li">工&emsp;&emsp;厂:<input name="werks" class="text"
-					style="background-color:white;" type="text" id="werks" value="3100" />
+					style="background-color:white;" type="text" id="werks" value="3200" />
 				</li>
 				<li class="li">库存地点:<input name="lgort"
 					style="background-color:white;" class="text" type="text" id="lgort"
-					value="3107" /></li>
+					value="3201" /></li>
 				<li class="li">制单日期:<input style="background-color:white;"
 					class="text" type="text" id="produceDate" />
 				</li>

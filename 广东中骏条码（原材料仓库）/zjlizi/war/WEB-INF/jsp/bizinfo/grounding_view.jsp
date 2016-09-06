@@ -3,7 +3,6 @@
 String path = request.getContextPath();
 String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
 %>
-
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
@@ -84,6 +83,12 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   	obj.disabled=false;
   	document.form.submit();
   }
+  $(function(){
+  	$("#reset").click(function (){
+  		$('.text').val("");
+  		$("#nlpla").focus();
+  	});
+  });
   </script>
   <body>
   <div>
@@ -103,9 +108,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		<li class="li" style="margin:20px 0px 0px 0px;">存储类型：<input name="lgtyp" class="text" style="background-color:#D8D8D8;" readonly= readonly type="text"  id="lgtyp" value="${lgtyp}"/></li>
 
 	
-		<li class="li" style="margin:20px 0px 0px 0px;">
-		<input class="button" type="button" onclick="submit1(this);" value="确定"/>
-		<input class="button" type="button" onclick="forward();" value="返回"/>
+		<li class="li" style="margin:20px 0px 0px -15px;">
+		<input class="button" type="button" onclick="submit1(this);" value="确定"/> <input
+		 class="button" type="button" onclick="forward();" value="返回"/> <input
+		 class="button" type="button" id="reset" value="清除"/> 
 		<input class="button" type=button  onclick="window.location.href='/main.do';" value="首页">
 		</li>
 </tr>
