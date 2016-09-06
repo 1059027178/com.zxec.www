@@ -1,12 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <classpath>
-	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/jdk1.8.0_60"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/zjmuseum library"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/32saplib"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.junit.JUNIT_CONTAINER/3.8.1"/>
-	<classpathentry kind="src" path="src"/>
-	<classpathentry kind="src" path="test"/>
-	<classpathentry kind="src" path="autogen"/>
 	<classpathentry kind="lib" path="lib/ibatis-2.3.0.677.jar" sourcepath="F:/ibatis-2.3.0.677/src/ibatis-src.zip"/>
 	<classpathentry kind="lib" path="lib/mysql-connector-java-5.0.6-bin.jar"/>
 	<classpathentry kind="lib" path="excludelib/jasper-compiler.jar"/>
@@ -48,5 +45,8 @@
 	<classpathentry kind="lib" path="lib/ojdbc5.jar"/>
 	<classpathentry kind="lib" path="lib/sqljdbc4.jar"/>
 	<classpathentry kind="lib" path="lib/ezmorph-1.0.4.jar"/>
+	<classpathentry kind="src" path="autogen"/>
+	<classpathentry kind="src" path="test"/>
+	<classpathentry kind="src" path="src"/>
 	<classpathentry kind="output" path="war/WEB-INF/classes"/>
 </classpath>
