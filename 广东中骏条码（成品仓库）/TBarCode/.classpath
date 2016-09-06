@@ -1,12 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <classpath>
-	<classpathentry kind="src" path="src"/>
-	<classpathentry kind="src" path="test"/>
-	<classpathentry kind="src" path="autogen"/>
-	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/jdk1.6.0_21"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/jdk1.8.0_60"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/32saplib"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.junit.JUNIT_CONTAINER/3.8.1"/>
 	<classpathentry kind="lib" path="lib/ibatis-2.3.0.677.jar" sourcepath="F:/ibatis-2.3.0.677/src/ibatis-src.zip"/>
 	<classpathentry kind="lib" path="lib/mysql-connector-java-5.0.6-bin.jar"/>
-	<classpathentry kind="con" path="org.eclipse.jdt.junit.JUNIT_CONTAINER/3.8.1"/>
 	<classpathentry kind="lib" path="excludelib/jasper-compiler.jar"/>
 	<classpathentry kind="lib" path="excludelib/jsp-api.jar"/>
 	<classpathentry kind="lib" path="excludelib/servlet-api.jar"/>
@@ -42,10 +40,12 @@
 	<classpathentry kind="lib" path="lib/spring-2.0.4.jar" sourcepath="C:/Documents and Settings/Administrator/.m2/repository/org/springframework/spring/2.0.4/spring-2.0.4-sources.jar"/>
 	<classpathentry kind="lib" path="lib/spring-modules-0.5-all.jar"/>
 	<classpathentry kind="lib" path="war/WEB-INF/lib/freemarker-2.3.15.jar"/>
-	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/32saplib"/>
 	<classpathentry kind="lib" path="lib/sapjco.jar"/>
 	<classpathentry kind="lib" path="lib/sapjco3.jar"/>
 	<classpathentry kind="lib" path="lib/ojdbc5.jar"/>
 	<classpathentry kind="lib" path="lib/sqljdbc4.jar"/>
+	<classpathentry kind="src" path="src"/>
+	<classpathentry kind="src" path="test"/>
+	<classpathentry kind="src" path="autogen"/>
 	<classpathentry kind="output" path="war/WEB-INF/classes"/>
 </classpath>
