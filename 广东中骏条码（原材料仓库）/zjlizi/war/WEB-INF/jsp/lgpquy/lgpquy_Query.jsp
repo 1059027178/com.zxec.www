@@ -51,7 +51,7 @@ function reset(){
     			≤÷Œª∫≈£∫<input style="width:60%;height:25px;" type="text" id="lgpla" name="lgpla"  value=""/>
     		</li>
     		<li class="li">
-    			≤÷ø‚∫≈£∫<input style="width:60%;height:25px;" type="text" id="lgnum" name="lgnum"  value="311"/>
+    			≤÷ø‚∫≈£∫<input style="width:60%;height:25px;" type="text" id="lgnum" name="lgnum"  value="321"/>
     		</li>
     		<li class="li" style="margin:20px 0px 0px -15px;">
     			<input  class="button"  type="button" valign="center" style="width:40px;height:25px;"  onclick="lgpQuy()" value="≤È—Ø">

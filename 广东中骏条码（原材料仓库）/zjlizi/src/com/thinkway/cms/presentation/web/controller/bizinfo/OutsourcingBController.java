@@ -74,9 +74,6 @@ public class OutsourcingBController implements Controller, AuthenticateControlle
 		sapRequest.addParameter("I_LGNUM", request.getParameter("warehouse"));
 		sapRequest.addParameter("I_MATNR", request.getParameter("materialId"));
 		sapRequest.addParameter("I_CHARG", request.getParameter("batch"));
-		//		sapRequest.addParameter("I_LGNUM", "311");
-		//		sapRequest.addParameter("I_MATNR", "C.6.520000");
-		//		sapRequest.addParameter("I_CHARG", "0000000067");
 		SAPModel model = SapUtil.OperSAP(sapRequest);
 		if ("E".equals(model.getOuts().getStructure("ES_RETURN").getString("MSGTY"))) {
 			models.put("msgType", "E");

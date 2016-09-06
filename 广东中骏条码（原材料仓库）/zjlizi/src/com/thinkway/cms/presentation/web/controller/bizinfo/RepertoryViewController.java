@@ -110,7 +110,7 @@ public class RepertoryViewController implements Controller , AuthenticateControl
 			JCO.ParameterList   inputtable= bapi.getTableParameterList();//输入表的处理
 	    	parameterList.setValue(loginUser.getUserName(),"I_UID");
 	    	parameterList.setValue(lgnum,"I_LGNUM");
-	    	parameterList.setValue("Z01","I_LGTYP");
+	    	parameterList.setValue("","I_LGTYP");
 			myConnection.execute(bapi);
 //				
 			JCO.ParameterList  outs = bapi.getExportParameterList();//输出参数和结构处理

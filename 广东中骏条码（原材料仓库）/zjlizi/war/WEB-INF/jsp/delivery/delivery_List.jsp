@@ -228,7 +228,7 @@
 					</tr>
 				</table>
 			<%	return;} %>
-			<table class="table_list" style="width:100%;margin-top:40px;" >
+			<table class="table_list" style="width:100%;margin-top:2px;margin-left:2px" >
 				<colgroup>
 					<col width="30%"/>
 					<col width="30%"/>

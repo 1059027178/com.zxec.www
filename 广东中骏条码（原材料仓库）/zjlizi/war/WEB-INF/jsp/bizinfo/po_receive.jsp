@@ -49,7 +49,7 @@
 									</li>
 									<li class="li">总数量：&emsp;<input type="text" class="text"
 										id="totalAmount" style="width:60px;" readonly=readonly name="wemng">
-											<input class="text" readonly=readonly type="text" id="unit"
+											<input class="text" readonly=readonly type="text" id="unit" name="unit"
 											style="width:52px;" >
 									</li>
 									<li class="li">库存地点：<input class="text3" type="text"
@@ -60,7 +60,9 @@
 										style="width:40px;height:25px;" class="button" id="confirm"
 										value="确定" /> <input class="button" type="button"
 										valign="center" style="width:40px;height:25px;"
-										id="history_back" value="返回" /></li>
+										id="history_back" value="返回" /> <input type="button" valign="center"
+										style="width:40px;height:25px;" class="button" id="reset"
+										value="重置" /></li>
 								</ul>
 							</div>
 		</div>
@@ -82,6 +84,11 @@
 </body>
 <script type="text/javascript">
 	$(function() {
+		$("#reset").click(function (){
+			$(".text").val("");
+			$(".text3").val("");
+			$("str").focus();
+		});
 		$("#shelves").click(function() {
 			document.form.submit();
 		});

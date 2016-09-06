@@ -73,7 +73,7 @@ public class GetCostAController implements Controller, AuthenticateController {
 
 	public ModelAndView handleRequest(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		Map<Object, Object> models = new HashMap<Object, Object>();
-		String werks = SapUtil.null2String(request.getParameter("werks"));//工程
+		String werks = SapUtil.null2String(request.getParameter("werks"));//工厂
 		String lgort = SapUtil.null2String(request.getParameter("lgort"));//库存地点
 		String budat = SapUtil.null2String(request.getParameter("budat"));//制单日期
 //		SAPRequest sapRequest = new SAPRequest("ZFM_BC_15_11");//生产调拨单领料

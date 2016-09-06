@@ -71,7 +71,7 @@ public class GetCostCController implements Controller, AuthenticateController {
 		SAPRequest sapRequest = new SAPRequest("ZFM_BC_03_13");
 		sapRequest.addParameter("I_UID", "" + request.getSession().getAttribute(SessionManager.USER_ID));
 		//TODO I_LGNUM全局
-		sapRequest.addParameter("I_LGNUM", "311");
+		sapRequest.addParameter("I_LGNUM", SapUtil.null2String(request.getParameter("lgnum")));
 		String param = SapUtil.null2String(request.getParameter("param"));
 		sapRequest.addParameter("I_MATNR", param.split("@")[0]);
 		sapRequest.addParameter("I_CHARG", param.split("@")[1]);

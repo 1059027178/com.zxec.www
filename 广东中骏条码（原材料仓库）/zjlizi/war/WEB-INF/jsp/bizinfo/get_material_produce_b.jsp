@@ -101,12 +101,13 @@
 <BODY>
 	<div class="div">
 		<form id="form" name="form" method="post" onsubmit="return false;">
-			<input type="hidden" id="page" name="page" value="<%=pageNo%>" /> <input
-				type="hidden" name="werks" value="<%=werks%>"> <input
-				type="hidden" name="budat" value="<%=budat%>"> <input
-				type="hidden" name="lgort" value="<%=lgort%>"><input
-				type="hidden" id="requireTotal" name="requireTotal" /> <input
-				type="hidden" name="materialGettenId" value="<%=materialGettenId%>" />
+			<input type="hidden" id="page" name="page" value="<%=pageNo%>" /> 
+			<input type="hidden" name="werks" value="<%=werks%>"> 
+			<input type="hidden" name="budat" value="<%=budat%>"> 
+			<input type="hidden" name="lgort" value="<%=lgort%>">
+			<input type="hidden" id="requireTotal" name="requireTotal" /> 
+			<input type="hidden" name="materialGettenId" value="<%=materialGettenId%>" />
+			<input type="hidden" name="lgnum" value="321" />
 			<%
 				List<MaterialDetail> list = (List) request.getAttribute("materialDetailList");
 				if (list == null) {

@@ -76,12 +76,12 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     <form name="jiuhui"  id="jiuhui" action="/deliveryView.do">
     	<input type="hidden" id="lgort" name = "lgort" value=""/><!-- 库存地点 -->
     	<input type="hidden" id="meins" name = "meins" value=""/><!-- 单位 -->
-    	<input type="hidden" id="werks" name = "werks" value="3201"/><!-- 工厂 -->
+    	<input type="hidden" id="werks" name = "werks" value="3200"/><!-- 工厂 -->
     	<div style="margin-top:60px;">
     		<ul>
 	    		<!-- <li class="li">交货单号：<input type="text" class="text3" id="vbeln" name="vbeln"  value=""/></li> -->
 	    		<li style="height:15px;list-style-type:none;">
-	    			<input name="str" type="text" style="width:82%;height:20px;"  id="str" onchange="js()" onke/>
+	    			<input name="str" type="text" style="width:82%;height:20px;"  id="str" onchange="js()" />
 	    		</li>
 	  			<li class="li">
 	    			物料编号：<input type="text" class="text3" id="matnr" name="matnr" readonly=readonly  style="background-color:#D8D8D8;" value="${matnr }"/>
@@ -90,7 +90,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	    			批<span style="margin-left:28px;"></span>次：<input type="text" readonly=readonly class="text3" style="background-color:#D8D8D8;" id="charg" name="charg" value="${charg }"/>
 	    		</li>
 	    		<li class="li">
-	    			仓<span style="margin-left:14px;"></span>库号：<input name="lgortNO" type="text" class="text1" id="lgortNO"  value="311" />
+	    			仓<span style="margin-left:14px;"></span>库号：<input name="lgortNO" type="text" id="lgortNO"  value="321" style="width:103px;"/>
 	    		</li>
 	  			<li class= "li" style="margin-top:10px;"></li>
 		  		<li class="li">

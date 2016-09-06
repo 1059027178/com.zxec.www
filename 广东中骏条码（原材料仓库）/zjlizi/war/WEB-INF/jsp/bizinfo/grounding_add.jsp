@@ -23,26 +23,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	<link href="/css/jiuhui.css" rel="stylesheet">
   </head>
   <script type="text/javascript">
-  	function choose1(){
-  		var bs=$("#bs").attr("checked");
-  		if(bs=="checked"){
-  			$("#wemng").css("background-color", "white"); 
-  			$("#wemng").removeAttr("readonly"); //
-  			//alert($("input[id='bs']").val());
-  			$("#boxs").css("background-color", "#D8D8D8"); 
-  			$("#boxs").attr("readonly", "readonly"); //removeAttr
-  			$("#boxs").attr("value",'');
-  			$("#wemng").attr("value",'');
-  		}else{
-  		
-  			$("#boxs").css("background-color", "white"); 
-  			$("#boxs").removeAttr("readonly"); //
-  			$("#wemng").attr("value",'');
-  			$("#wemng").css("background-color", "#D8D8D8"); 
-  			$("#wemng").attr("readonly", "readonly"); //removeAttr
-  		}
-  		
-  	}
   	function acount(){
   		var meng=$("#meng").val();
   		var boxs=$("#boxs").val();
@@ -56,7 +36,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   	function js(){
   		var lonstr=$("#str").val();
   		var str=lonstr.split("/");
-  		//alert(str.length);
   		if(str.length>0){
 	  		//var aufnr=str[0];//采购订单
 	  		//var hang=str[1];//行项目
@@ -74,7 +53,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	  		$("#lgort").attr("value",lgort);
 	  		$("#sobkz").attr("value",sobkz);
 	  		
-	  		//choose1();
 	  		getMaktx(matnr);
 	  		$("#boxs").focus();
   		}
@@ -105,7 +83,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
        }
    }
    document.onkeydown = keyDown;
-   
 	function keyUp(){
        var keycode = event.keyCode;
        var realkey = String.fromCharCode(event.keyCode);
@@ -128,19 +105,28 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   	obj.disabled=false;
   	document.form.submit();
   }
-  function reset(){
-  	$('.input').val("");
-  	document.getElementById("str").focus();
-  }
   $(function (){
 	  $("#boxs").focus(function (){
 	  	acount();
+	  });
+	  $("#reset").on("click",function (){
+	  	document.getElementById("str").value="";
+	  	document.getElementById("matnr").value="";
+	  	document.getElementById("maktx").value="";
+	  	document.getElementById("meng").value="";
+	  	document.getElementById("charg").value="";
+	  	document.getElementById("wemng").value="";
+	  	document.getElementById("lgort").value="";
+	  	document.getElementById("meins").value="";
+	  	document.getElementById("boxs").value="";
+	  	document.getElementById("str").focus();
 	  });
   });
   </script>
   <body>
   <form name=form action="/groundingView.do">
   <%-- <input type="hidden" name="sonum" id="sonum"  value="${receiptObj.sonum}"> --%>
+  <input type="hidden" name="werks" id="werks"  value="3200"><!-- 广东中骏工厂 -->
   	<div style="padding-top: 40px;">
   		<ul>
   			<li style="height:15px;list-style-type:none;"><input name="str" type="text" style="width:70%;height:20px;"  id="str" onchange="js()"/></li>
@@ -148,19 +134,16 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   			<li class="li">物料描述：<input name="maktx" class="text"  readonly=readonly type="text" id="maktx" value="${receiptObj.maktx}"/></li>
   			<li class="li">袋数量/袋数：<input name="meng" readonly=readonly style="width:40px;background-color:#D8D8D8;height:20px;" type="text" id="meng" value="${receiptObj.meng}"/>/<input name="boxs" style="width:35px;height:20px;" type="text" value="${receiptObj.boxs}" id="boxs" onchange="acount();"/></li>
   			<li class="li">批<span style="margin-left:28px;"></span>次：<input name="charg" class="text" readonly=readonly value="${receiptObj.charg}" style="background-color:#D8D8D8;"  type="text"  id="charg"/></li>
-  			<li class="li">总<span style="margin-left:14px;"></span>数量：<input name="wemng" value="${receiptObj.wemng}" type="text" class="text1" id="wemng" /><input name="meins" value="KG" style="width:33px;" class="text2" readonly=readonly type="text"  id="meins"/></li>
+  			<li class="li">总<span style="margin-left:14px;"></span>数量：<input name="wemng" value="${receiptObj.wemng}" type="text" class="text1" id="wemng" /><input name="meins" value="${receiptObj.meins}" style="width:33px;" class="text2" readonly=readonly type="text"  id="meins"/></li>
   			<li class="li">库存地点：<input name="lgort" type="text"  value="${receiptObj.lgort}" class="text3" id="lgort"/></li>
   			<%-- <li class="li">库存类别：<input name="sobkz"  value="${receiptObj.sobkz}" readonly=readonly type="text" class="text"  id="sobkz"></li> --%>
   			<li class="li"><input type="button" valign="center" class="button" onclick="submit1(this);" style="width:40px;height:25px;margin:10px 0px 0px -28px;" value="确定"/>
   			<input  class="button"  type="button" onclick="forward();" style="width:40px;height:25px;" value="返回"/>
   			<input  class="button" type="button" onclick="reset();" style="width:40px;height:25px;" id="reset" value="重置"/>
   			<input type="button" class="button" style="width:40px;height:25px;" onclick="window.location.href='/main.do';" value="首页"/></li>
-  			
   		</ul>
   	</div>
-     
 </form>
- 
   </body>
     <script type="text/javascript">
   document.getElementById("str").focus();

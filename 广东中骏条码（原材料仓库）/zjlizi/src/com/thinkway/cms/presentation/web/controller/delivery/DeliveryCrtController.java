@@ -86,7 +86,7 @@ public class DeliveryCrtController implements Controller,
 		String lgort = ParamUtils.getParameter(request, "lgort", "");// 获取库存地点
 		String charg = ParamUtils.getParameter(request, "charg", "");// 获取批次
 		String meins = ParamUtils.getParameter(request, "meins", "");// 单位
-		String vltyp = "Z01";
+//		String vltyp = "Z01";
 		
 		String size  = ParamUtils.getParameter(request, "size", "");// 	大小
 		if (size.equals("")) size = "0";
@@ -121,13 +121,12 @@ public class DeliveryCrtController implements Controller,
 		parameterList.setValue(lgort, "I_LGORT");// 库存地点
 		parameterList.setValue(charg, "I_CHARG");// 批次
 		parameterList.setValue(meins, "I_MEINS");// 单位
-		parameterList.setValue(vltyp, "I_VLTYP");// 存储类型
+		parameterList.setValue("", "I_VLTYP");// 存储类型
 		
 		parameterList.setValue(vlpla, "I_VLPLA");// 仓位号
 		parameterList.setValue(menge, "I_MENGE");// 数量
 
 		myConnection.execute(bapi);
-		//
 		JCO.ParameterList outs = bapi.getExportParameterList();// 输出参数和结构处理
 		JCO.ParameterList outtab = bapi.getTableParameterList();// 输出参数和结构处理
 
@@ -145,7 +144,6 @@ public class DeliveryCrtController implements Controller,
 		model.put("type", etype);
 		model.put("message", message);
 		return new ModelAndView(getViewName(), model);
-
 	}
 
 	public String getViewName() {

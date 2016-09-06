@@ -105,22 +105,11 @@ public class GroundingViewController implements Controller , AuthenticateControl
 		grounding.setWemng(wemng);
 		grounding.setSonum(sonum);
 		model.put("groundingObj", grounding);
-		/*
 		
-		ShowTypeQuery aQ = new ShowTypeQuery();
-		aQ.setSkip(0);
-		aQ.setLimit(9999);
-		aQ.setSort("showTypeId");
-		aQ.setSdir("ASC");
-		List<ShowType> exshowTypeList = showTypeService.getAllShowTypes(aQ);
-		model.put("exshowTypeList", exshowTypeList);
-		
-		*/
 		JCO.Client myConnection =null;
 		myConnection =SapUtil.getSAPcon();
 		
 	    myConnection.connect(); 
-	    //out.println("连接SAP成功");
 //		String functionName="ZFM_BC_02_12";//函数的名字
 		String functionName="ZFM_BC_02_13";//函数的名字
 	    JCO.Repository myRepository = new JCO.Repository("Repository",myConnection); //只是一個名字
@@ -130,13 +119,7 @@ public class GroundingViewController implements Controller , AuthenticateControl
     	JCO.ParameterList  parameterList=bapi.getImportParameterList();//获得输入表的参数
 		JCO.ParameterList   inputtable= bapi.getTableParameterList();//输入表的处理
 		
-		//JCO.Table  IT_ITEM=inputtable.getTable("IT_ITEM");
-		//if(!aufnr.isEmpty()&&!iquan.isEmpty()&&!gmein.isEmpty()){
-		
-		
-		
 		System.out.println("aufnr:"+aufnr+"---wemng:"+wemng+"---charg:"+charg+"---sobkz:"+sobkz+"---lgort:"+lgort+"---meins:"+meins);
-		//IT_ITEM.appendRow();		
 		parameterList.setValue(loginUser.getUserName(),"I_UID");		
 		parameterList.setValue(werks,"I_WERKS");
 		parameterList.setValue(lgort,"I_LGORT");
@@ -147,13 +130,11 @@ public class GroundingViewController implements Controller , AuthenticateControl
 		parameterList.setValue(sobkz,"I_SOBKZ");
 		parameterList.setValue(sonum,"I_SONUM");
 	
-	
 		myConnection.execute(bapi);
 		
 		JCO.ParameterList  outs = bapi.getExportParameterList();//输出参数和结构处理
 		JCO.ParameterList  outtab = bapi.getTableParameterList();//输出参数和结构处理
 		
-//		System.out.println("ZFM_BC_02_13返回："+outs.getValue("ES_RETURN"));
 		String lgpla=(outs.getValue("E_LGPLA")+"");//仓位
 		String lgtyp=(outs.getValue("E_LGTYP")+"");//仓储类型
 		String lgber=(outs.getValue("E_LGBER")+"");//存储区

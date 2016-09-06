@@ -107,6 +107,7 @@
 			<input type="hidden" name="werks" value="<%=werks%>" /> 
 			<input type="hidden" name="budat" value="<%=budat%>" />
 			<input type="hidden" name="lgort" value="<%=lgort%>" />
+			<input type="hidden" name="lgnum" value="321" />
 			<input type="hidden" id="requireTotal" name="requireTotal" /> 
 			<input type="hidden" name="costGettenId" value="<%=costGettenId%>" />
 			<%

@@ -83,7 +83,8 @@ public class GroundingAddController implements Controller , AuthenticateControll
 		String charg = SapUtil.null2String(request.getParameter("charg"));//批次号
 		String wemng = SapUtil.null2String(request.getParameter("wemng"));//总数量
 		String lgort = SapUtil.null2String(request.getParameter("lgort"));//库存地点
-		
+		String meins = SapUtil.null2String(request.getParameter("unit"));//单位
+		System.out.println("meins="+meins);
 		receipt.setMatnr(matnr);
 		receipt.setWemng(wemng);
 		receipt.setLgort(lgort);
@@ -91,6 +92,7 @@ public class GroundingAddController implements Controller , AuthenticateControll
 		receipt.setMeng(meng);
 		receipt.setBoxs(boxs);
 		receipt.setMaktx(maktx);
+		receipt.setMeins(meins);
 		model.put("receiptObj", receipt);
 		
 		/*
