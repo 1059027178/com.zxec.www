@@ -12,27 +12,6 @@ public class SapUtil {
 	
 	public static final String POOL_NAME = "Sample_Pool";
 	public static final int max_connection = 3;
-//	public static JCO.Client  getSAPcon(){
-//		JCO.Pool pool = JCO.getClientPoolManager().getPool(POOL_NAME);
-//		JCO.Client myConnection = null;
-//		if(pool==null){
-//			Properties logonProperties = new Properties();
-//	        logonProperties.put("jco.client.ashost","192.168.0.50");
-//	        logonProperties.put("jco.client.sysnr","00");  
-//	        logonProperties.put("jco.client.client","668");          
-//	        logonProperties.put("jco.client.user","JIUH");        
-//	        logonProperties.put("jco.client.passwd","zxec12"); 
-//	        logonProperties.put("jco.client.client","666");  
-//	        logonProperties.put("jco.client.user","abap7");        
-//	        logonProperties.put("jco.client.passwd","123456");  
-//	        logonProperties.put("jco.client.lang","zh"); 
-//	        logonProperties.put("jco.client.CodePage","8400"); 
-//	        
-//	        JCO.addClientPool( POOL_NAME, max_connection, logonProperties); // properties
-//       }
-//		myConnection= JCO.getClient(POOL_NAME);
-//		return myConnection;
-//	}
 	/**
 	 * @author YangYang
 	 * @time   2016年05月31日
@@ -67,49 +46,6 @@ public class SapUtil {
 		myConnection= JCO.getClient(POOL_NAME);
 		return myConnection;
 	}
-	
-	/*public static JCO.Client  getSAPcon(){
-		Properties logonProperties = new Properties();
-//		  logonProperties.put("jco.client.ashost","192.168.0.52");//800
-	        logonProperties.put("jco.client.sysnr","00");
-//	        logonProperties.put("jco.client.client","800");
-//	        logonProperties.put("jco.client.user","ABAP7");        
-//	        logonProperties.put("jco.client.passwd","domino"); 
-	        logonProperties.put("jco.client.ashost","192.168.0.50");// 668 666
-	        logonProperties.put("jco.client.client","668"); 
-	        logonProperties.put("jco.client.user","JIUH");        
-	        logonProperties.put("jco.client.passwd","1234567"); 
-//	        logonProperties.put("jco.client.client","666");  
-//	        logonProperties.put("jco.client.user","abap7");        
-//	        logonProperties.put("jco.client.passwd","123456");  
-	        logonProperties.put("jco.client.CodePage","8400"); 
-        JCO.Client myConnection = JCO.createClient( logonProperties );
-		return myConnection;
-	}
-	public static JCO.Client  getSAPconEn(){
-		JCO.Pool pool = JCO.getClientPoolManager().getPool(POOL_NAME);
-		JCO.Client myConnection = null;
-		if(pool==null){
-			Properties logonProperties = new Properties();
-//			 logonProperties.put("jco.client.ashost","192.168.0.52");
-		        logonProperties.put("jco.client.sysnr","00");
-//		        logonProperties.put("jco.client.client","800");
-//		        logonProperties.put("jco.client.user","ABAP7");        
-//		        logonProperties.put("jco.client.passwd","domino"); 
-		        logonProperties.put("jco.client.ashost","192.168.0.50");
-		        logonProperties.put("jco.client.client","668"); 
-		        logonProperties.put("jco.client.user","JIUH");        
-		        logonProperties.put("jco.client.passwd","1234567"); 
-//		        logonProperties.put("jco.client.client","666");  
-//		        logonProperties.put("jco.client.user","abap7");        
-//		        logonProperties.put("jco.client.passwd","123456");  
-		        logonProperties.put("jco.client.CodePage","8400"); 
-	        
-	        JCO.addClientPool( POOL_NAME, max_connection, logonProperties); // properties
-       }
-		myConnection= JCO.getClient(POOL_NAME);
-		return myConnection;
-	}*/
 	public  static void releaseClient(JCO.Client myConnection){
 		if(null!=myConnection){
 			JCO.releaseClient(myConnection);
