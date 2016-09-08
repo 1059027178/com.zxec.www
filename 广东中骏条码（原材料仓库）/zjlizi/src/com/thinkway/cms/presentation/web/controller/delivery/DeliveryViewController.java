@@ -44,6 +44,7 @@ public class DeliveryViewController implements Controller , AuthenticateControll
 	private Authenticator authenticator = null;
 	private long permission = 0L;
 	private String tokenNeed = null;
+	private static int objectsPerPage = 4;
 	public String getTokenNeed() {
 		return tokenNeed;
 	}
@@ -89,11 +90,11 @@ public class DeliveryViewController implements Controller , AuthenticateControll
 		String charg=ParamUtils.getParameter(request, "charg","");//批次
 		String werks=ParamUtils.getParameter(request, "werks","");//工厂
 		String meins=ParamUtils.getParameter(request, "meins","");//单位
-		String lgnum=ParamUtils.getParameter(request, "lgortNO","");//仓库号
+		String lgortNO=ParamUtils.getParameter(request, "lgortNO","");//仓库号
 		
 		PaginatedListHelper paginaredList=new PaginatedListHelper();
 		String currentPage=ParamUtils.getParameter(request, "page", "1");
-		paginaredList.setObjectsPerPage(5);
+		paginaredList.setObjectsPerPage(objectsPerPage);
 		paginaredList.setPageNumber(Integer.parseInt(currentPage));
 		
 
@@ -103,67 +104,68 @@ public class DeliveryViewController implements Controller , AuthenticateControll
 	    
 	    Mat mat=new Mat();
 	    mat.setMatnr(matnr); //物料号 
-	    matList.add(mat);
-	    
-		 JCO.Client myConnection =null;
-			myConnection =SapUtil.getSAPcon();
-		    myConnection.connect(); 
-			String functionName="ZFM_BC_03_13";//函数的名字
-		    JCO.Repository myRepository = new JCO.Repository("Repository",myConnection); //只是一個名字
-		    IFunctionTemplate ft = myRepository.getFunctionTemplate(functionName);
-//		    //從這個函數範本獲得該SAP函數的物件
-		    JCO.Function bapi = ft.getFunction();
-	    	JCO.ParameterList  parameterList=bapi.getImportParameterList();//获得输入表的参数
-//			JCO.ParameterList   inputtable= bapi.getTableParameterList();//输入表的处理
-	    	parameterList.setValue(user.getUserName(),"I_UID");//用户名字
-	    	parameterList.setValue(lgnum,"I_LGNUM");//仓库号
-	    	parameterList.setValue(matnr,"I_MATNR");//物料编码
-	    	parameterList.setValue(charg,"I_CHARG");//批次
-				myConnection.execute(bapi);
-//				
-				JCO.ParameterList  outs = bapi.getExportParameterList();//输出参数和结构处理
-				JCO.ParameterList  outtab = bapi.getTableParameterList();//输出参数和结构处理
-				String maktx=(outs.getValue("E_MAKTX")+"");//获取物料描述
-				JCO.Table  ET_LQUA=outtab.getTable("ET_LQUA");
-				int pageNum=ET_LQUA.getNumRows()/5;
-				if(ET_LQUA.getNumRows()%5>0){
-					pageNum++;
-				}
-				paginaredList.setFullListSize(ET_LQUA.getNumRows());
-				int j=0;
-				 for (int i = (Integer.parseInt(currentPage)-1)*5; i < ET_LQUA.getNumRows(); i++) {
-					 	ET_LQUA.setRow(i);
-					 	mat=new Mat();
-					 	mat.setXuhao(i+1+"");
-					 	mat.setCharg(ET_LQUA.getString("CHARG"));//批次
-					 	mat.setLgpla(ET_LQUA.getString("LGPLA"));//仓位
-//					 	mat.setSobkz(ET_LQUA.getString("SOBKZ"));//特殊标识
-					 	mat.setLgort(ET_LQUA.getString("LGORT"));//库存地点
-					 	mat.setVerme(ET_LQUA.getString("VERME"));//数量
-					 	mat.setMeins(ET_LQUA.getString("MEINS"));//单位
-					 	mat.setProduceDate(ET_LQUA.getString("HSDAT"));//供应商生产日期
-					    iList.add(mat);
-					    j++;
-					    if(j==5){
-					    	break;
-					    }
-		            }
-		   
-					if(null!=myConnection){
-						SapUtil.releaseClient(myConnection);
-					}
-			paginaredList.setList(iList);
-			
-			model.put("matList", iList);	
-			model.put("page", currentPage);
-			model.put("pageNum", pageNum);
-			model.put("mat", matList);	
-			model.put("matnr", matnr);
-			model.put("lgort", lgort);
-			model.put("charg", charg);
-			model.put("werks", werks);
-			model.put("meins", meins);
-			model.put("maktx", maktx);
+		matList.add(mat);
+
+		JCO.Client myConnection = null;
+		myConnection = SapUtil.getSAPcon();
+		myConnection.connect();
+		String functionName = "ZFM_BC_03_13";// 函数的名字
+		JCO.Repository myRepository = new JCO.Repository("Repository",myConnection); // 只是一個名字
+		IFunctionTemplate ft = myRepository.getFunctionTemplate(functionName);
+		// //從這個函數範本獲得該SAP函數的物件
+		JCO.Function bapi = ft.getFunction();
+		JCO.ParameterList parameterList = bapi.getImportParameterList();// 获得输入表的参数
+		// JCO.ParameterList inputtable= bapi.getTableParameterList();//输入表的处理
+		parameterList.setValue(user.getUserName(), "I_UID");// 用户名字
+		parameterList.setValue(lgortNO, "I_LGNUM");// 仓库号
+		parameterList.setValue(matnr, "I_MATNR");// 物料编码
+		parameterList.setValue(charg, "I_CHARG");// 批次
+		myConnection.execute(bapi);
+		
+		JCO.ParameterList outs = bapi.getExportParameterList();// 输出参数和结构处理
+		JCO.ParameterList outtab = bapi.getTableParameterList();// 输出参数和结构处理
+		String maktx = (outs.getValue("E_MAKTX") + "");// 获取物料描述
+		JCO.Table ET_LQUA = outtab.getTable("ET_LQUA");
+		int pageNum = ET_LQUA.getNumRows() / objectsPerPage;
+		if (ET_LQUA.getNumRows() % objectsPerPage > 0) {
+			pageNum++;
+		}
+		paginaredList.setFullListSize(ET_LQUA.getNumRows());
+		int j = 0;
+		for (int i = (Integer.parseInt(currentPage) - 1) * objectsPerPage; i < ET_LQUA.getNumRows(); i++) {
+			ET_LQUA.setRow(i);
+			mat = new Mat();
+			mat.setXuhao(i + 1 + "");
+			mat.setCharg(ET_LQUA.getString("CHARG"));// 批次
+			mat.setLgpla(ET_LQUA.getString("LGPLA"));// 仓位
+			// mat.setSobkz(ET_LQUA.getString("SOBKZ"));//特殊标识
+			mat.setLgort(ET_LQUA.getString("LGORT"));// 库存地点
+			mat.setVerme(ET_LQUA.getString("VERME"));// 数量
+			mat.setMeins(ET_LQUA.getString("MEINS"));// 单位
+			mat.setProduceDate(ET_LQUA.getString("HSDAT"));// 供应商生产日期
+			iList.add(mat);
+			j++;
+			if (j == objectsPerPage) {
+				break;
+			}
+		}
+
+		if (null != myConnection) {
+			SapUtil.releaseClient(myConnection);
+		}
+		paginaredList.setList(iList);
+
+		model.put("matList", iList);
+		model.put("page", currentPage);
+		model.put("pageNum", pageNum);
+		model.put("mat", matList);
+		model.put("matnr", matnr);
+		model.put("lgort", lgort);
+		model.put("lgortNO", lgortNO);
+		model.put("charg", charg);
+		model.put("werks", werks);
+		model.put("meins", meins);
+		model.put("maktx", maktx);
 		return new ModelAndView(getViewName(),model);
 		
 	}
