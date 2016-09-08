@@ -82,10 +82,14 @@ public class DeliveryAddController implements Controller , AuthenticateControlle
 		}	
 		String matnr=SapUtil.null2String(request.getParameter("matnr"));//物料编号
 		String charg=SapUtil.null2String(request.getParameter("charg"));//批次号
-		/*System.out.println(matnr);
-		System.out.println(charg);*/
+		String unit=SapUtil.null2String(request.getParameter("unit"));//单位
+		String lgort=SapUtil.null2String(request.getParameter("lgort"));//库存地点
+		/*System.out.println(unit);
+		System.out.println(lgort);*/
 		model.put("matnr", matnr);
 		model.put("charg", charg);
+		model.put("unit", unit);
+		model.put("lgort", lgort);
 		
 		return new ModelAndView(getViewName(),model);
 		

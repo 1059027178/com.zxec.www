@@ -49,7 +49,7 @@
 									</li>
 									<li class="li">总数量：&emsp;<input type="text" class="text"
 										id="totalAmount" style="width:60px;" name="wemng"> <input
-											class="text" readonly=readonly type="text" id="unit"
+											class="text" readonly=readonly type="text" id="unit" name="unit"
 											style="width:52px;">
 									</li>
 									<li class="li">库存地点：<input class="text3" type="text"
