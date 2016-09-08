@@ -74,8 +74,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   </head>
   <body>
     <form name="jiuhui"  id="jiuhui" action="/deliveryView.do">
-    	<input type="hidden" id="lgort" name = "lgort" value=""/><!-- 库存地点 -->
-    	<input type="hidden" id="meins" name = "meins" value=""/><!-- 单位 -->
+    	<input type="hidden" id="lgort" name = "lgort" value="${lgort }"/><!-- 库存地点 -->
+    	<input type="hidden" id="meins" name = "meins" value="${unit }"/><!-- 单位 -->
     	<input type="hidden" id="werks" name = "werks" value="3200"/><!-- 工厂 -->
     	<div style="margin-top:60px;">
     		<ul>

@@ -9,7 +9,7 @@
 <%-- <%@ taglib prefix="qhcms" uri="/qhcmsfunction" %>   --%>
 <%
 String desp = "展会管理工具";
-String company = "宁波中骏";
+String company = "广东中骏";
 String sysname = "塑料粒子条码系统";
 String warnmsg1 = "请不要在公共电脑或网吧机器上使用本系统。";
 String warnmsg2 = "请不要在公共电脑或网吧机器上使用本系统。";
