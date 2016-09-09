@@ -136,7 +136,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   			<li class="li">尾箱标识：<input type="checkbox" onclick="choose1();" id="bs" style="width:20px;height:20px;" name="bs"></li>
   			<li class="li">箱数量/箱数：<input name="meng" readonly=readonly style="width:50px;background-color:#D8D8D8;height:20px;"  type="text"  id="meng" value="${receiptObj.meng}">/<input name="boxs" style="width:30px;height:20px;" type="text" value="${receiptObj.boxs}" id="boxs" onblur="acount();"></li>
   			<li class="li">批&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;次：<input name="charg" class="text" readonly=readonly value="${receiptObj.charg}" style="width:80px;background-color:#D8D8D8;"  type="text"  id="charg"></li>
-  			<li class="li">总&nbsp;&nbsp; 数量：<input name="wemng" value="${receiptObj.wemng}" type="text" class="text1" id="wemng" ><input name="meins" value="PCS" class="text2" readonly=readonly type="text"  id="meins"> </input></li>
+  			<li class="li">总&nbsp;&nbsp; 数量：<input name="wemng" value="${receiptObj.wemng}" type="text" class="text1" id="wemng" ><input name="meins" value="${receiptObj.meins}" class="text2" readonly=readonly type="text"  id="meins"> </input></li>
   			<li class="li">库存地点：<input name="lgort" type="text"  value="${receiptObj.lgort}" class="text3" id="lgort"></li>
   			<li class="li">特殊库存：<input name="sobkz"  value="${receiptObj.sobkz}" readonly=readonly type="text" class="text"  id="sobkz"></li>
   		<!--  	<li class="li">源仓&nbsp; &nbsp;位：<input name="i_nlpla" class="text" readonly= readonly type="text"  id="i_nlpla" value=""></li>-->
