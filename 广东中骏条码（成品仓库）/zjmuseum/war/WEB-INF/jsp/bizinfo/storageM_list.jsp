@@ -2,13 +2,13 @@
 <%@ taglib uri="http://displaytag.sf.net" prefix="display"%>
 <%@ include file="../include/const.jsp"%>
 <%@ page import="java.util.List" %>
-<%@ page import="com.thinkway.LiangxinUtil" %>
+<%@ page import="com.thinkway.SapUtil" %>
 <%@ page import="com.thinkway.cms.business.domains.StorageM" %>
 <%
-	int pageNo=LiangxinUtil.getIntValue((String)request.getAttribute("page"));
+	int pageNo=SapUtil.getIntValue((String)request.getAttribute("page"));
 	int pageNum=(Integer)request.getAttribute("pageNum");
-	String lgnum=LiangxinUtil.null2String((String)request.getAttribute("lgnum"));
-	String lgpla=LiangxinUtil.null2String((String)request.getAttribute("lgpla"));
+	String lgnum=SapUtil.null2String((String)request.getAttribute("lgnum"));
+	String lgpla=SapUtil.null2String((String)request.getAttribute("lgpla"));
 %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -99,21 +99,21 @@ function nextPage(){
 		%>
 		<tr <% if(i%2==1){ %>class="tr_list_2"<%}else{ %>class="tr_list_1"<%} %> bordercolor="#000000" >
 			<td class="td_list"><%=pic.getXuhao() %></td>
-			<td class="td_list"><%=LiangxinUtil.null2String(pic.getMatnr()) %></td>
-			<td class="td_list"><%=LiangxinUtil.null2String(pic.getSonum()) %></td>
+			<td class="td_list"><%=SapUtil.null2String(pic.getMatnr()) %></td>
+			<td class="td_list"><%=SapUtil.null2String(pic.getSonum()) %></td>
 			
 			
 		</tr>
 		<tr <% if(i%2==1){ %>class="tr_list_2"<%}else{ %>class="tr_list_1"<%} %> bordercolor="#000000" >
 			<td class="td_list">
-			<input name="check" checked=checked type="radio" value="<%=LiangxinUtil.null2String(pic.getMatnr()) %>,<%=LiangxinUtil.null2String(pic.getSobkz()) %>,<%=LiangxinUtil.null2String(pic.getCharg()) %>,<%=LiangxinUtil.null2String(pic.getGesme()) %>,<%=LiangxinUtil.null2String(pic.getLetyp()) %>,<%=lgpla%>,<%=lgnum%>,<%=LiangxinUtil.null2String(pic.getLgort()) %>,<%=LiangxinUtil.null2String(pic.getWerks()) %>,<%=LiangxinUtil.null2String(pic.getSonum()) %>,<%=LiangxinUtil.null2String(pic.getMeins()) %>" /></td>
-			<td class="td_list" colspan=2><%=LiangxinUtil.null2String(pic.getMaktx()) %></td>
+			<input name="check" checked=checked type="radio" value="<%=SapUtil.null2String(pic.getMatnr()) %>,<%=SapUtil.null2String(pic.getSobkz()) %>,<%=SapUtil.null2String(pic.getCharg()) %>,<%=SapUtil.null2String(pic.getGesme()) %>,<%=SapUtil.null2String(pic.getLetyp()) %>,<%=lgpla%>,<%=lgnum%>,<%=SapUtil.null2String(pic.getLgort()) %>,<%=SapUtil.null2String(pic.getWerks()) %>,<%=SapUtil.null2String(pic.getSonum()) %>,<%=SapUtil.null2String(pic.getMeins()) %>" /></td>
+			<td class="td_list" colspan=2><%=SapUtil.null2String(pic.getMaktx()) %></td>
 			
 		</tr>
 		<tr <% if(i%2==1){ %>class="tr_list_2"<%}else{ %>class="tr_list_1"<%} %> bordercolor="#000000" >
-			<td class="td_list"><%=LiangxinUtil.null2String(pic.getCharg()) %></td>
-			<td class="td_list"><%=LiangxinUtil.null2String(pic.getGesme()) %></td>
-			<td class="td_list"><%=LiangxinUtil.null2String(pic.getMeins()) %></td>
+			<td class="td_list"><%=SapUtil.null2String(pic.getCharg()) %></td>
+			<td class="td_list"><%=SapUtil.null2String(pic.getGesme()) %></td>
+			<td class="td_list"><%=SapUtil.null2String(pic.getMeins()) %></td>
 		</tr>
 		
 		<%} %>

@@ -1,17 +1,17 @@
 <%@ page language="java" contentType="text/html; charset=GBK" %> 
 <%@ page import="com.sap.mw.jco.JCO" %>
 <%@ page import="com.sap.mw.jco.IFunctionTemplate" %>
-<jsp:useBean id="LiangxinUtil" class="com.thinkway.LiangxinUtil" scope="page" />
+<jsp:useBean id="SapUtil" class="com.thinkway.SapUtil" scope="page" />
 
 <%
 
-		String aufnr = LiangxinUtil.null2String(request.getParameter("aufnr"));
-		String iquan = LiangxinUtil.null2String(request.getParameter("iquan"));
-		String gmein = LiangxinUtil.null2String(request.getParameter("gmein"));
+		String aufnr = SapUtil.null2String(request.getParameter("aufnr"));
+		String iquan = SapUtil.null2String(request.getParameter("iquan"));
+		String gmein = SapUtil.null2String(request.getParameter("gmein"));
 		String message="";	
 		//out.println(aufnr+"/"+iquan+"/"+gmein);
 		JCO.Client myConnection =null;
-		myConnection =LiangxinUtil.getSAPcon();
+		myConnection =SapUtil.getSAPcon();
 	    myConnection.connect(); 
 	    //out.println("连接SAP成功");
 		String functionName="Z_OI_MM_MATDOCUMENT_CRT";//函数的名字
