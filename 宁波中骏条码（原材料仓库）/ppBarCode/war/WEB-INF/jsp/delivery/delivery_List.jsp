@@ -47,107 +47,112 @@
 		var keycode = event.keyCode;
 		if (keycode == '86') {
 			var inputs = $(this);
-			var check = $(this).next();
+			var check = inputs.next();
 			if (check.val() == 1) {
 				return;
 			}
-      var warehouse = $(this).prev();
-			if (($(this).val() != warehouse.val()) && (!check.val())) {
-				$(this).val("").focus();
+      		var warehouse = inputs.prev();
+			if ((inputs.val() != warehouse.val()) && (!check.val())) {
+				inputs.val("").focus();
 				alert("确认仓位不匹配!");
 			} else {
 				check.val("1");//标记确认
-				$(this).val("").focus();
+				inputs.val("").focus();
 			}
 
-		}
-		else if(keycode=='13'){
-		var inputs = $(this);
-		var check = $(this).next();
-		if (check.val()) {
-			if (false) {
-				$(this).val(pager.list[index].selectAmount); // 使用原越库数
-				$(this).val(pager.list[index].selectAmount);
-				alert("上一仓位为空!");
+		}else if(keycode=='13'){
+			var inputs = $(this);
+			var check = inputs.next();
+			if (check.val()) {
+				if (false) {
+					inputs.val(pager.list[index].selectAmount); // 使用原越库数
+					inputs.val(pager.list[index].selectAmount);
+					alert("上一仓位为空!");
+				} else {
+					var sum = 0,i;
+					<%if(list == null || list.size() == 0) {}else{%>
+						var s = <%=list.get(0).getXuhao()%>;
+			 			var length = <%=list.size()%>;
+				 		for( i = 0; i < length; i++){
+				 			var count = $("#count_"+s).val();//当前输入的值
+				 			var max   = $("#max_"+s).val();//可用库存
+				 			if(!count == "" || !count == "0") {
+					 			if(parseFloat(count) > parseFloat(max)){
+					 				alert("下架数量过大！");
+					 				$("#count_"+s).attr("value","");
+					 				return;
+					 			}
+					 			var str = parseFloat(count) + "";
+					 			if(str == "NaN"){
+					 				alert("请输入数值");
+					 				$("#count_"+s).attr("value","");
+					 				return;
+					 			}
+					 			sum += parseFloat(count);
+					 		}
+					 		s++;
+					 	}
+		 				$("#sum").attr("value",sum); 
+	 				<%}%>
+				}
 			} else {
-				var sum = 0,sum = 0,i;
- 		var length = <%=list.size()+1%>;
- 		for(i = 1 ; i < length; i++){
- 		
- 			var count = $("#count_"+i).val();//当前输入的值
- 			var max   = $("#max_"+i).val();//可用库存
- 			if(count == "") count = "0";
- 			if(parseFloat(count) > parseFloat(max)){
- 				alert("下架数量过大！");
- 				$("#count_"+i).attr("value","");
- 				return;
- 			}
- 			var str = parseFloat(count) + "";
- 			if(str == "NaN"){
- 				alert("请输入数值");
- 				$("#count_"+i).attr("value","");
- 				return;
- 			}
- 			sum += parseFloat(count);
- 		}
- 		$("#sum").attr("value",sum); 
-			}
-		} else {
-			if (check.val() == 1) {
-				return;
-			}
-			 var warehouse = $(this).prev();
-			if (($(this).val() != warehouse.val()) && (!check.val())) {
-				$(this).val("").focus();
-				alert("确认仓位不匹配!");
-			} else {
-				check.val("1");//标记确认
-				$(this).val("").focus();
-			}
+				if (check.val() == 1) {
+					return;
+				}
+				var warehouse = inputs.prev();
+				if ((inputs.val() != warehouse.val()) && (!check.val())) {
+					inputs.val("").focus();
+					alert("确认仓位不匹配!");
+				} else {
+					check.val("1");//标记确认
+					inputs.val("").focus();
+				}
 		}}
 	});
 	$(document).on("change", ".selectAmount", function() {
 		var inputs = $(this);
-		var check = $(this).next();
+		var check = inputs.next();
 		if (check.val()) {
 			if (false) {
-				$(this).val(pager.list[index].selectAmount); // 使用原越库数
-				$(this).val(pager.list[index].selectAmount);
+				inputs.val(pager.list[index].selectAmount); // 使用原越库数
+				inputs.val(pager.list[index].selectAmount);
 				alert("上一仓位为空!");
 			} else {
-				var sum = 0,sum = 0,i;
- 		var length = <%=list.size()+1%>;
- 		for(i = 1 ; i < length; i++){
- 		
- 			var count = $("#count_"+i).val();//当前输入的值
- 			var max   = $("#max_"+i).val();//可用库存
- 			if(count == "") count = "0";
- 			if(parseFloat(count) > parseFloat(max)){
- 				alert("下架数量过大！");
- 				$("#count_"+i).attr("value","");
- 				return;
- 			}
- 			var str = parseFloat(count) + "";
- 			if(str == "NaN"){
- 				alert("请输入数值");
- 				$("#count_"+i).attr("value","");
- 				return;
- 			}
- 			sum += parseFloat(count);
- 		}
- 		$("#sum").attr("value",sum); 
-			}
-		} else {
-			if (check.val() == 1) {
-				return;
-			}
-			 var warehouse = $(this).prev();
-			if (($(this).val() != warehouse.val()) && (!check.val())) {
-				$(this).val("").focus();
+				var sum = 0,i;
+				<%if(list == null || list.size() == 0) {}else{%>
+					var s = <%=list.get(0).getXuhao()%>;
+		 			var length = <%=list.size()%>;
+			 		for( i = 0; i < length; i++){
+			 			var count = $("#count_"+s).val();//当前输入的值
+			 			var max   = $("#max_"+s).val();//可用库存
+			 			if(!count == "" || !count == "0") {
+				 			if(parseFloat(count) > parseFloat(max)){
+				 				alert("下架数量过大！");
+				 				$("#count_"+s).attr("value","");
+				 				return;
+				 			}
+				 			var str = parseFloat(count) + "";
+				 			if(str == "NaN"){
+				 				alert("请输入数值");
+				 				$("#count_"+s).attr("value","");
+				 				return;
+				 			}
+				 			sum += parseFloat(count);
+				 		}
+				 		s++;
+				 	}
+	 				$("#sum").attr("value",sum); 
+	 			<%}%>
+			} 
+		}else {
+			if (check.val() == 1) return;
+			var warehouse = inputs.prev();
+			if ((inputs.val() != warehouse.val()) && (!check.val())) {
+				inputs.val("").focus();
 				alert("确认仓位不匹配!");
 			} else {
 				check.val("1");//标记确认
-				$(this).val("").focus();
+				inputs.val("").focus();
 			}
 		}
 	});
@@ -162,15 +167,19 @@
 </script>
 </HEAD>
 <BODY>
-<div class="div">
+<div class="div" style="margin-left:1px;">
 	<form  id="listForm" name="listForm" method="post" onsubmit="return false;">
 	<div style="display: none;">
 		物料编码：<input type="hidden" id="matnr" name="matnr" value="<%=matnr %>"/>
-		仓库号：<input type="hidden" id="lgort" name="lgort" value="<%=lgort %>"/>
+		库存地点：<input type="hidden" id="lgort" name="lgort" value="<%=lgort %>"/>
+		仓库号：<input type="hidden" id="lgortNO" name="lgortNO" value="${lgortNO }"/>
 		批次号：<input type="hidden" id="charg" name="charg" value="<%=charg %>"/>
 		工厂：<input type="hidden" id="werks" name="werks" value="<%=werks %>"/>
 		单位：<input type="hidden" id="meins" name="meins" value="<%=meins %>"/>
 		页码：<input type="hidden" id="page"  name="page"  value="<%=pageNo %>"/>
+		<%if (list==null || list.size() == 0){}else{ %>
+		起始页码：<input type="hidden" id="beginPage"  name="beginPage"  value="<%=list.get(0).getXuhao()%>"/>
+		<%} %>
 	</div>
 				<%
 					if(list==null){
@@ -228,7 +237,7 @@
 					</tr>
 				</table>
 			<%	return;} %>
-			<table class="table_list" style="width:100%;margin-top:40px;" >
+			<table class="table_list" style="width:100%;" >
 				<colgroup>
 					<col width="30%"/>
 					<col width="30%"/>
@@ -248,12 +257,6 @@
 						合<span style="width:28px;"></span>计：<input type="text" readonly="readonly" style="width:45px;background-color:#D8D8D8;" id="sum"/>
 					</td>
 				</tr>
-				<%-- <tr class="tr_list_1">
-					<td class="td_list" colspan="3" >
-						总计：<input type="text" id="num" style="width:40px;background-color:#D8D8D8;" readonly="readonly"/>
-						<%=meins%>
-					</td>
-				</tr> --%>
 				</table>
 				<table class="table_list" style="width:100%;" >
 				<tr bordercolor="#000000"  class="tr_list_1">
@@ -293,16 +296,15 @@
 						<input type="hidden" name="max_<%=xuhao%>" id="max_<%=xuhao%>" value="<%=verme%>" /><%=verme + meins%>
 					</td>
 					<td class="td_list">
-					<input type="hidden"  value="<%=lgpla %>"/>
+						<input type="hidden"  value="<%=lgpla %>"/>
 						<input type="text" name="count_<%=xuhao%>" id="count_<%=xuhao%>" style="width:30px;" class="selectAmount"/> <%=meins%>
 						<input type="hidden" class="check"/>
 					</td>
 				</tr>
-				
 				<%}%>
 			<tr >
 				<td colspan="3" align="center" >
-					<input  type="button" style="width:47px;margin-left: -30px;text-align:center;" value="上一页" onclick="lastPage();"/>
+					<input  type="button" style="width:47px;margin-left: -40px;margin-top: 5px;text-align:center;" value="上一页" onclick="lastPage();"/>
 					<input  type="button" style="width:40px;" value="返回" onclick="window.location.href='/deliveryAdd.do';"/>
 					<input  type="button" style="width:40px;" onclick="submit1();" value="下架"/>
 					<input  type="button" style="width:47px;text-align:center;" value="下一页" onclick="nextPage();"/>
@@ -313,10 +315,6 @@
 	</div>
 </BODY>
 <script>
-	<%if (list != null){
-		if(list.size() > 0){%>
-			$("#count_1").focus();
-		<%}
-	}%>
+	$("#count_1").focus();
 </script>
 </HTML>
