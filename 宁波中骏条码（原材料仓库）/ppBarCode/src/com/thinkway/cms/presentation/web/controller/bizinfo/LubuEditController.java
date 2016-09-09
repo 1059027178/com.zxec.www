@@ -105,17 +105,12 @@ public class LubuEditController implements Controller , AuthenticateController{
 		parameterList.setValue(loginUser.getUserId(),"I_UID");					
 		parameterList.setValue(ubnum,"I_UBNUM");
 		parameterList.setValue(lgnum,"I_LGNUM");
-		//传入表字段
-		//JCO.Table  IT_ITEM=inputtable.getTable("IT_ITEM");
-		//if(!aufnr.isEmpty()&&!iquan.isEmpty()&&!gmein.isEmpty()){
-		//IT_ITEM.appendRow();
 		JCO.Table IT_LUBQU = inputtable.getTable("IT_LUBQU");
 		IT_LUBQU.appendRow();
 		IT_LUBQU.setValue(lqnum,"LQNUM");//行项目号=（数量）
 		IT_LUBQU.setValue(wemng,"MENGE");//记账变更数量
 		
 		myConnection.execute(bapi);
-		
 		JCO.ParameterList  outs = bapi.getExportParameterList();//输出参数和结构处理
 		JCO.ParameterList  outtab = bapi.getTableParameterList();//输出参数和结构处理
 		
@@ -128,18 +123,13 @@ public class LubuEditController implements Controller , AuthenticateController{
 			SapUtil.releaseClient(myConnection);
 		}
 		System.out.println("type:"+type+"----message:"+message+"----mblnr:"+tanum);
-		//}else{
-			//message="必要信息不完整";
-		//}
 		}catch(Exception e){
 			message=e.getMessage();
 			e.printStackTrace();
 		}
-		
 		model.put("message", message);
 		System.out.println("end:"+SapUtil.getCurrentDateTime());
 		return new ModelAndView(getViewName(),model);
-		
 	}
 
 	public String getViewName() {
