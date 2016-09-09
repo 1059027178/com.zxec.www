@@ -212,7 +212,7 @@
 	<property name="authenticator" ref="authenticator"/>
 </bean>
 
-	<bean name="/matlgpFifoView.do" class="com.thinkway.cms.presentation.web.controller.delordpic.MatLgpFifoViewController">
+	<bean name="/matlgpfifoView.do" class="com.thinkway.cms.presentation.web.controller.delordpic.MatLgpFifoViewController">
 	<property name="viewName" value="/WEB-INF/jsp/delordpic/matlgpfifo_View.jsp"/>
 	<property name="permission" value="1000"></property>
 	<property name="tokenNeed" value="N"></property>
