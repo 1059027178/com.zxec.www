@@ -2,10 +2,10 @@
 <%@ taglib uri="http://displaytag.sf.net" prefix="display"%>
 <%@ include file="../include/const.jsp"%>
 <%@ page import="java.util.List" %>
-<%@ page import="com.thinkway.LiangxinUtil" %>
+<%@ page import="com.thinkway.SapUtil" %>
 <%@ page import="com.thinkway.cms.business.domains.Repertory" %>
 <%
-	int pageNo=LiangxinUtil.getIntValue((String)request.getAttribute("page"));
+	int pageNo=SapUtil.getIntValue((String)request.getAttribute("page"));
 	int pageNum=(Integer)request.getAttribute("pageNum");
 %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
@@ -90,14 +90,14 @@
 			%>
 				<tr <% if(i%2==1){ %>class="tr_list_2"<%}else{ %>class="tr_list_1"<%} %>>
 					<td class="td_list">
-						<%=LiangxinUtil.null2String(pic.getLgnum()) %>
+						<%=SapUtil.null2String(pic.getLgnum()) %>
 					</td>
 					<td class="td_list">
-						<%=LiangxinUtil.null2String(pic.getLgtyp()) %> 
+						<%=SapUtil.null2String(pic.getLgtyp()) %> 
 					</td>
 					<td class="td_list">
 						
-						<%=LiangxinUtil.null2String(pic.getNlpla()) %>
+						<%=SapUtil.null2String(pic.getNlpla()) %>
 					</td>
 				</tr>
 				
