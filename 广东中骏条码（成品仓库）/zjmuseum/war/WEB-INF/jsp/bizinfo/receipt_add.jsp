@@ -150,8 +150,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   			<li class="li">箱数量/箱数：<input name="meng" style="width:40px;background-color:#D8D8D8;height:20px;" readonly=readonly type="text" id="meng"/>/<input name="boxs" style="width:35px;height:20px;" type="text"  id="boxs" onchange="acount();"/></li>
   			<li class="li">批&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;次：<input name="charg" readonly=readonly  type="text" class="text" id="charg"></li>
   			<li class="li">总<span style="margin-left:7px;"></span>数<span style="margin-left:7px;"></span>量：<input name="wemng" type="text" class="text1" id="wemng" /><input name="meins" style="width:33px;" class="text2" readonly=readonly type="text"  id="meins"/></li>
-  			<!-- <li class="li">总&nbsp;数&nbsp;&nbsp;量：<input name="wemng" type="text" class="text1" id="wemng" ><input name="meins" class="text2" readonly=readonly type="text"  id="meins"> </input></li>
-  			 --><li class="li">库存地点：<input name="lgort" class="text3" type="text" id="lgort"></li>
+  			<li class="li">库存地点：<input name="lgort" class="text3" type="text" id="lgort"></li>
   			<li class="li">特殊库存：<input name="sobkz" style="height:20px;" readonly=readonly type="text" class="text"  id="sobkz"></li>
   			<li class="li"><input type="button" style="width:40px;height:25px;margin-left:-30px;" valign="center" class="button" onclick="submit1(this);" value="确定"/>
   			<input  class="button"  type="button" style="width:40px;height:25px;" onclick="forward();" value="返回"/>
