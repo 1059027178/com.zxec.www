@@ -76,6 +76,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 </form>
   </body>
    <script type="text/javascript">
-  document.getElementById("lgnum").focus();
+  document.getElementById("nlpla").focus();
   </script>
 </html>

@@ -61,7 +61,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	 		data:{"showType":"getPlnum","matnr":matnr},
 	 		dataType:'json',
 	 		success:function(data){
-	 			$("#lgnum").attr("value",data.lgnum);
+	 			//$("#lgnum").attr("value",data.lgnum);
 	 			$("#maktx").attr("value",data.maktx);
 	 			$("#werks").attr("value",data.werks);
 	 		},
