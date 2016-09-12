@@ -118,6 +118,7 @@ public class hrminfoServiceImpl implements hrminfoService , Serializable{
 
 		return retVal;
 	}
+	
 	//根据工号获取人员数
 	public int gethrminfoCountsByObjno(String objno) {
 		int retVal = 0;
@@ -135,6 +136,28 @@ public class hrminfoServiceImpl implements hrminfoService , Serializable{
 			}
 		}
 		return retVal;
+	}
+	/**
+	 * 根据工号获取人员信息
+	 * @author qianyang
+	 * @since 2016-09-12
+	 */
+	public hrminfo gethrminfoDataByObjno(String objno) {
+		hrminfo info = new hrminfo();
+		try {
+			txManager.startTx();
+			info = hrminfoDao.gethrminfoDataByObjno(objno);
+			txManager.commitTx();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				txManager.endTx();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		return info;
 	}
 
 	// 删除人员信息

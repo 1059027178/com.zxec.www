@@ -41,6 +41,15 @@
 	A.sex
  from hrminfo A where A.hrminfoId = #hrminfoId#
   </select>
+   <!-- 20160912qy：根据工号获取员工信息 -->
+  <select id="gethrminfoDataByObjno" parameterClass="String" resultClass="hrminfo" cacheModel="hrminfo-cache">
+    select A.hrminfoId,
+	A.objno,
+	A.name,
+	A.department,
+	A.sex
+ from hrminfo A where A.objno = #objno#
+  </select>
   <select id="gethrminfoByObjno" parameterClass="String" resultClass="int" cacheModel="hrminfo-cache">
     select count(1)
  from hrminfo A where A.objno = #objno#

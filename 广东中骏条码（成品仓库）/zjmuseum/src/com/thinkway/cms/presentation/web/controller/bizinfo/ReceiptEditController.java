@@ -22,6 +22,8 @@ import com.thinkway.SapUtil;
 import com.thinkway.cms.business.domains.User;
 import com.thinkway.cms.business.domains.Receipt;
 import com.thinkway.cms.business.service.iface.UserService;
+import com.thinkway.cms.business.service.iface.hrminfoService;
+import com.thinkway.cms.business.service.localimpl.hrminfoServiceImpl;
 import com.thinkway.cms.presentation.web.authenticate.AuthenticateController;
 import com.thinkway.cms.presentation.web.authenticate.Authenticator;
 import com.thinkway.cms.presentation.web.controller.fix.IntegerEditor;
@@ -84,16 +86,19 @@ public class ReceiptEditController implements Controller , AuthenticateControlle
 		String aufnr = SapUtil.null2String(request.getParameter("aufnr"));//生产订单号
 		String matnr = SapUtil.null2String(request.getParameter("matnr"));//物料编码
 		String wemng = SapUtil.null2String(request.getParameter("wemng"));//总数量
-		String meng = SapUtil.null2String(request.getParameter("meng"));//尾箱箱数
+		String meng  = SapUtil.null2String(request.getParameter("meng"));//尾箱箱数
 		String charg = SapUtil.null2String(request.getParameter("charg"));//批次号
 		String sobkz = SapUtil.null2String(request.getParameter("sobkz"));//特殊库存标识
 		String lgort = SapUtil.null2String(request.getParameter("lgort"));//库存地点
 		String meins = SapUtil.null2String(request.getParameter("meins"));//单位
 		String objno = SapUtil.null2String(request.getParameter("objno"));//工牌号
 		String maktx = SapUtil.null2String(request.getParameter("maktx"));//物料描述
-		String boxs = SapUtil.null2String(request.getParameter("boxs"));//箱数
+		String boxs  = SapUtil.null2String(request.getParameter("boxs"));//箱数
 		String sonum = SapUtil.null2String(request.getParameter("sonum"));
-		
+		/*autur：qy since: 20160912*/
+		hrminfoService hr = new hrminfoServiceImpl();
+		String name  = hr.gethrminfoDataByObjno(objno).getName();
+		/*autur：qy since: 20160912*/
 		receipt.setAufnr(aufnr);
 		receipt.setMatnr(matnr);
 		receipt.setMeins(meins);
@@ -136,7 +141,7 @@ public class ReceiptEditController implements Controller , AuthenticateControlle
 		parameterList.setValue(sobkz,"I_SOBKZ");
 		parameterList.setValue(lgort,"I_LGORT");
 		parameterList.setValue(meins,"I_MEINS");
-		parameterList.setValue(objno,"I_PID");
+		parameterList.setValue(name,"I_PID");
 		
 		myConnection.execute(bapi);
 		

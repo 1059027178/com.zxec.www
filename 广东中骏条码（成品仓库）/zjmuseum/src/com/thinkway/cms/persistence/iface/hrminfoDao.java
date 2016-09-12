@@ -18,6 +18,8 @@ public interface hrminfoDao {
 
 	public hrminfo gethrminfoById(String id) throws SQLException;
 	
+	public hrminfo gethrminfoDataByObjno(String objno) throws SQLException;
+	
 	public int gethrminfoCountsByObjno(String objno) throws SQLException;
 
 	public List getAllhrminfos(Map param) throws SQLException ;
