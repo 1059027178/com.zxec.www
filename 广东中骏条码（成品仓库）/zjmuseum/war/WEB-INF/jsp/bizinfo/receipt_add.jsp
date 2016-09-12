@@ -114,6 +114,16 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
        }
    }
    document.onkeyup = keyUp;
+   
+   function keyDown() {
+       var keycode = event.keyCode;
+       var realkey = String.fromCharCode(event.keyCode);
+      // alert("按键码: " + keycode + " 字符: " + realkey);
+       if(keycode=='13'){
+       		acount();
+       }
+   }
+   document.onkeydown = keyDown;
 	
   function forward(){
   	window.location.href="/main.do?two=1";

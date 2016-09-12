@@ -89,6 +89,7 @@ public class MatLgpFifoViewController implements Controller , AuthenticateContro
 		String vbeln=ParamUtils.getParameter(request, "vbeln","");//获取发货单号
 		String matnr=ParamUtils.getParameter(request, "matnr","");//获取物料号 
 		String maktx=ParamUtils.getParameter(request, "maktx","");//获取物料描述
+//		System.out.println("maktx:"+maktx);
 		String posnr=ParamUtils.getParameter(request, "posnr","");//获取行项目号
 		String lfimg=ParamUtils.getParameter(request, "lfimg","");//获取交货数量 
 		String wadat=ParamUtils.getParameter(request, "wadat","");

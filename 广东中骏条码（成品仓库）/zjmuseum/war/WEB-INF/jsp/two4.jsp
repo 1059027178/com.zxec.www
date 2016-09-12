@@ -54,8 +54,8 @@
     </tr>
     <tr>
     <td>
-    	<input  class=button type="button" style="width:95px;heigth:20px" onclick="window.location.href='/logout.do';" value="退出">
-    	<input  class=button type="button" style="width:95px;heigth:20px" onclick="window.location.href='/main.do';" value="返回">
+    	<input  class=button type="button" style="width:48%;heigth:20px" onclick="window.location.href='/logout.do';" value="退出">
+    	<input  class=button type="button" style="width:50%;heigth:20px" onclick="window.location.href='/main.do';" value="返回">
     </td>
     </tr>
     </table>

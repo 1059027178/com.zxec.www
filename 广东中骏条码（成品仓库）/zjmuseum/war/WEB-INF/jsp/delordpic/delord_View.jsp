@@ -1,3 +1,4 @@
+<%@page import="java.net.URLEncoder"%>
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://displaytag.sf.net" prefix="display"%>
 <%@ page import="com.thinkway.cms.business.domains.User"%>
@@ -14,7 +15,7 @@
 	String vbeln=SapUtil.null2String((String)request.getAttribute("vbeln"));
 %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html>
 <HEAD>
 <TITLE><%=sysname%> - <%=company%></TITLE>
 <META http-equiv=Content-Type content="text/html; charset=UTF-8">
@@ -120,7 +121,7 @@
 					<%
 						if(SapUtil.getDoubleValue(pic.getLfimg())>pic.getRfmng()){
 					%>
-					<a href="/matlgpfifoView.do?vbeln=<%=vbeln %>&wadat=<%=wadat %>&lgort=<%=lgort %>&werks=<%=werks %>&matnr=<%=SapUtil.null2String(pic.getMatnr()) %>&posnr=<%=SapUtil.null2String(pic.getPosnr()) %>&lfimg=<%=pic.getLfimg() %>&maktx=<%=SapUtil.null2String(pic.getMaktx()) %>" >
+					<a href="/matlgpfifoView.do?vbeln=<%=vbeln %>&wadat=<%=wadat %>&lgort=<%=lgort %>&werks=<%=werks %>&matnr=<%=SapUtil.null2String(pic.getMatnr()) %>&posnr=<%=SapUtil.null2String(pic.getPosnr()) %>&lfimg=<%=pic.getLfimg() %>&maktx=<%=URLEncoder.encode(SapUtil.null2String(pic.getMaktx()), "utf-8") %>" >
 						<%=SapUtil.null2String(pic.getMatnr()) %>
 					<%}else{ %>
 						<%=SapUtil.null2String(pic.getMatnr()) %>

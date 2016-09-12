@@ -69,8 +69,8 @@
     </tr>
     <tr>
     <td >
-    	<input  class=button style="width:70px" type="button" onclick="window.location.href='/logout.do';" value="退出">
-    	<input  class=button style="width:100px" type="button" onclick="window.location.href='/userscedit.do';" value="修改密码">
+    	<input  class=button style="width:48%" type="button" onclick="window.location.href='/logout.do';" value="退出">
+    	<input  class=button style="width:50%" type="button" onclick="window.location.href='/userscedit.do';" value="修改密码">
      </td>
     </tr>
     </table>

@@ -116,10 +116,10 @@ function forward(){
 			<%} %>
 			<tr >
 				<td align="center" colspan="2">
-					<input  type="button" style="width:40px;" value="上一页" onclick="lastPage();"/>
-					<input  type="button" style="width:30px;"  value="返回" onclick="window.location.href='/delOrdPre.do';"></input>
-					<input  type="button" style="width:30px;"  onclick="window.location.href='/main.do';" value="首页">
-					<input  type="button" style="width:40px;"  value="下一页" onclick="nextPage();"/>
+					<input  type="button" style="width:40px;" value="<<" onclick="lastPage();"/>
+					<input  type="button" style="width:40px;"  value="返回" onclick="window.location.href='/delOrdPre.do';"></input>
+					<input  type="button" style="width:40px;"  onclick="window.location.href='/main.do';" value="首页">
+					<input  type="button" style="width:40px;"  value=">>" onclick="nextPage();"/>
 				</td>
 			</tr>
 		

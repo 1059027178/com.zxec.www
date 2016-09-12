@@ -83,7 +83,7 @@ function submit1(obj){
   </head>
   
   <body>
-  <div>
+  <div style="padding-top: 40px;">
   <form name="form" action="/receiptEdit.do">
      <input id="flag" name="flag" type="hidden" />
 	<input name="aufnr" type="hidden" value="${receiptObj.aufnr}"/>
@@ -105,10 +105,10 @@ function submit1(obj){
 
 	
 		<li class="li" style="margin: 20px 0px 0px 0px;">
-		<input type="button" valign="center" style="width:50px;height:25px;" class="button" onclick="submit1(this);" value="确定"/>
+		<input type="button" valign="center" style="width:40px;height:25px;margin-left: -30px;" class="button" onclick="submit1(this);" value="确定"/>
 		<input  class="button" type="button" style="width:40px;height:25px;" onclick="reset();" value="重置"/>
 		<input  class="button"  type="button" style="width:40px;height:25px;" onclick="forward();" value="返回"/>
-		<input   type="button" class="button" style="width:50px;height:25px;" onclick="window.location.href='/main.do';" value="首页">
+		<input   type="button" class="button" style="width:40px;height:25px;" onclick="window.location.href='/main.do';" value="首页">
 		</li>
 		</li>
 		</ul>
@@ -116,4 +116,7 @@ function submit1(obj){
 </form>
 </div>
   </body>
+  <script type="text/javascript">
+	document.getElementById("objno").focus();
+  </script>
 </html>
