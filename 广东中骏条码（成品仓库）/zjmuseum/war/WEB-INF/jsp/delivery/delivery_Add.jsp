@@ -34,7 +34,7 @@ function deliList(){
     			<li class="li">交货单号：<input type="text" class="text3" id="vbeln" name="vbeln"  value=""/></li>
     		<li class="li"></li>
     		<li class="li">
-    				<input class="button" type="submit" class=button onclick="return deliList();" value="确定">
+    				<input style="margin-left: -30px;" class="button" type="submit" class=button onclick="return deliList();" value="确定">
     				<input class="button" type="button" onclick="window.location.href='/main.do?two=3';" value="返回">
     				<input  type="button" onclick="window.location.href='/main.do';" value="首页">
     		</li>

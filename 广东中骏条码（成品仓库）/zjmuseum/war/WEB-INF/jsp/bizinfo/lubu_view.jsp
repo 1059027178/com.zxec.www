@@ -49,15 +49,15 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   <div>
      <ul>
      <li class="li"></li>
-		<li class="li">仓 库 号：<input name="lgnum" class="text" style="width:90px;background-color:white;" type="text" id="lgnum">	
+		<li class="li">仓<span style="width:7px;"></span>库<span style="width:7px;"></span>号：<input name="lgnum" class="text" style="width:90px;background-color:white;" type="text" id="lgnum" value="320">	
  		</li>
 		<li class="li">移动类型：<input name="bwlvs" class="text" style="width:90px;background-color:white;" type="text" id="bwlvs">	
  		</li>
  		<li class="li"></li>
 		<li class="li">
-		<input type="button" class="button" style="width:40px;height:25px;" type="button" onclick="submit1(this)" value="确定">
-		<input type="button" class="button" style="width:30px;height:25px;" type="button" onclick="forward()"value="返回">
-		<input type="button" class="button" style="width:30px;height:25px;" type="button" onclick="reset();" value="重置"/>
+		<input type="button" class="button" style="width:40px;height:25px;margin-left: -30px;" type="button" onclick="submit1(this)" value="确定">
+		<input type="button" class="button" style="width:40px;height:25px;" type="button" onclick="forward()"value="返回">
+		<input type="button" class="button" style="width:40px;height:25px;" type="button" onclick="reset();" value="重置"/>
 		<input type="button" class="button" style="width:40px;height:25px;" onclick="window.location.href='/main.do';" value="首页">
 		</li>
 </ul>

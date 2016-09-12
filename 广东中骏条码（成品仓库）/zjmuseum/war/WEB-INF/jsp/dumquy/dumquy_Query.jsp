@@ -40,7 +40,7 @@ function dumQuy(){
     	<ul>
     	<li class="li"></li>
     		<li class="li">
-    			²Ö ¿â ºÅ£º<input type="text" id="lgnum"  style="width:50%;heigth=70%" name="lgnum"  value=""/>
+    			²Ö ¿â ºÅ£º<input type="text" id="lgnum"  style="width:50%;heigth=70%" name="lgnum"  value="320"/>
     		</li>
     		<li class="li">
     			×ª´¢µ¥ºÅ£º<input type="text" id="tanum"  style="width:50%;heigth=70%" name="tanum"  value=""/>
@@ -48,7 +48,7 @@ function dumQuy(){
     		<li class="li"></li>
     		<li class="li">
     			<td align="center">
-    				<input type="button" class=button onclick="dumQuy()" value="²éÑ¯">
+    				<input type="button" class=button onclick="dumQuy()" style="margin-left: -30px;" value="²éÑ¯">
     				<input type="button" class=button onclick="window.location.href='/main.do?two=5';" value="·µ»Ø">
     				<input  class=button type="button" onclick="window.location.href='/main.do';" value="Ê×Ò³">
     			</td>

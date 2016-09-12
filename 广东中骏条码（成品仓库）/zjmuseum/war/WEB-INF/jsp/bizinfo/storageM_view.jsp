@@ -48,13 +48,13 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   <form name="form" action="/storageMList.do">
   <div style="margin:0px;padding:0;">
      <ul>
-     <li class="li">仓库号：<input name="lgnum" class="text" style="background-color:white;" type="text" id="lgnum">	
+     <li class="li">仓库号：<input name="lgnum" class="text" style="background-color:white;" type="text" id="lgnum" value="320">	
  		</li>
  	<li class="li">仓位号：<input name="lgpla" class="text" style="background-color:white;" type="text" id="lgpla">	
  		</li>
  	<li class="li"></li>
 <li class="li">
-<input class="button" type="button" style="width:20%"  onclick="submit1(this)" value="确定">
+<input class="button" type="button" style="width:20%;margin-left:-30px;"  onclick="submit1(this)" value="确定">
 <input class="button" type="button" style="width:20%"  onclick="forward()" value="返回">
 <input class="button"  type="button" style="width:20%"  onclick="window.location.href='/main.do';" value="首页">
 <input class="button" type="button" style="width:20%"  onclick="reset()" value="重置">
