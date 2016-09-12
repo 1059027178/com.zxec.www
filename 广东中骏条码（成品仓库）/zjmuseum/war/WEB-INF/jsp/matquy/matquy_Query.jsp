@@ -34,6 +34,8 @@ function matQuy(){
 		 	document.getElementById("matnr").value=str[1];
 		 	document.getElementById("lgort").value=str[7];
 		 	document.getElementById("charg").value=str[4];
+		 	document.getElementById("werks").value="3200";
+		 	
 		 	jQuery.ajax({
 				url:'/matquyJson.do',
 		 		async:false,
@@ -55,16 +57,17 @@ function matQuy(){
   		document.getElementById("lgort").value="";
   		document.getElementById("charg").value="";
   		document.getElementById("werks").value="";
+ 		document.getElementById("saomiao").focus();
   }
-  	function keyDown() {
+  	function keyUp() {
        var keycode = event.keyCode;
        var realkey = String.fromCharCode(event.keyCode);
       // alert("按键码: " + keycode + " 字符: " + realkey);
-       if(keycode=='13'){
+       if(keycode=='86'){
        		js();
        }
    }
-   document.onkeydown = keyDown;
+   document.onkeyup = keyUp;
 
 
   </script>
@@ -89,7 +92,7 @@ function matQuy(){
         <div class="div" style=" padding-top: 50px;">
     	<ul>
     		<li class="li">
-    			<input style="width:70%;heigth=20%" type="text" id="saomiao" onchange="js()" name="saomiao"  value=""/>
+    			<input style="width:75%;" type="text" id="saomiao" onchange="js()" name="saomiao"  value=""/>
     		</li>
     		<li class="li">
     			物料编码：<input  type="text" class="text" style="width:90px;background-color:white;" id="matnr" name="matnr"  value=""/>
@@ -105,10 +108,10 @@ function matQuy(){
     		</li>
     <li class="li"></li>
      <li class="li">
-    				<input  class="button"  type="button"  style="width:20%" onclick="matQuy()" value="查询">
-    				<input  class="button"  type="button" style="width:20%"  onclick="reset();" value="重置">
-    				<input  class="button"  type="button" style="width:20%" onclick="window.location.href='/main.do?two=5';" value="返回"></td>
-    				 <input  class=button type="button" style="width:20%" onclick="window.location.href='/main.do';" value="首页">
+    				<input  class="button"  type="button"  style="width:40px;height:25px;margin-left: -30px;" onclick="matQuy()" value="查询">
+    				<input  class="button"  type="button" style="width:40px;height:25px;"  onclick="reset();" value="重置">
+    				<input  class="button"  type="button" style="width:40px;height:25px;" onclick="window.location.href='/main.do?two=5';" value="返回"></td>
+    				 <input  class=button type="button" style="width:40px;height:25px;" onclick="window.location.href='/main.do';" value="首页">
  		</li>
     	</ul>
     	</div>

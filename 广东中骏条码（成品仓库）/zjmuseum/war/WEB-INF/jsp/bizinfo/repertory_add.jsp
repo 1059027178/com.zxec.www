@@ -57,7 +57,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   <div>
     
 	<ul>
-		<li class="li" >仓库号:<input name="lgnum" style="background-color:white;" class="text" type="text"  id="lgnum">
+		<li class="li" >仓库号:<input name="lgnum" style="background-color:white;" class="text" type="text"  id="lgnum" value="320">
 		</li>
      	<li class="li">仓位号:<input name="nlpla" class="text" style="background-color:white;" type="text"  id="nlpla" > </input>
 		</li>
@@ -65,7 +65,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
      	<li class="li"><input name="radio" style="width:20px;" type="radio" id="radio2" value="2" >出入库解冻</input></li>
      	<li class="li"><input name="radio" style="width:20px;" type="radio" id="radio3" value="3" >查看所有冻结仓位</input></li>
 		<li class="li">
-		<input class="button" type="button" onclick="submit1(this)" value="确定">
+		<input class="button" type="button" onclick="submit1(this)" value="确定" style="margin-left:-30px;margin-top:20px;">
 		<input  class="button" type="button" onclick="forward()" value="返回">
 		<input   type="button" class="button" onclick="window.location.href='/main.do';" value="首页">
 		</li>

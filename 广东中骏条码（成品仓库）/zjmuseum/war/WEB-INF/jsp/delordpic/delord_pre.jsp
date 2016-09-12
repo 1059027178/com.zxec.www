@@ -49,14 +49,14 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   <div class="div" style="padding-top:50px;">
     
 	<ul>
-     	<li class="li">工&nbsp;&nbsp;&nbsp;&nbsp;厂:<input name="werks" class="text" style="background-color:white;" type="text"  id="werks" value="3200"> </input>
+     	<li class="li">工&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;厂：<input name="werks" class="text" style="background-color:white;" type="text"  id="werks" value="3200"> </input>
 		</li>
-		<li class="li" >库存地点:<input name="lgort" style="background-color:white;" class="text" type="text"  id="lgort" value="3213">
+		<li class="li" >库存地点：<input name="lgort" style="background-color:white;" class="text" type="text"  id="lgort" value="3213">
 		</li>
-     	<li class="li">交货日期:<input name="wadat" style="background-color:white;" class="text" type="text" value="${currentdate}" id="wadat" onFocus="WdatePicker({startDate:'%y-%M-%d',dateFmt:'yyyy-MM-dd',alwaysUseStartDate:true})"/></li>
+     	<li class="li">交货日期：<input name="wadat" style="background-color:white;" class="text" type="text" value="${currentdate}" id="wadat" onFocus="WdatePicker({startDate:'%y-%M-%d',dateFmt:'yyyy-MM-dd',alwaysUseStartDate:true})"/></li>
 		<li class="li"></li>
 		<li class="li">
-		<input class="button" type="submit" style="width:40px;" onclick="return submit1(this)" value="确定">
+		<input class="button" type="submit" style="width:40px;margin-left: -30px;" onclick="return submit1(this)" value="确定">
 		<input  class="button" type="button" style="width:40px;" onclick="forward()" value="返回">
 		<input  class=button type="button" style="width:40px;"  onclick="window.location.href='/main.do';" value="首页">
 		</li>

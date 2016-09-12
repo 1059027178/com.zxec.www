@@ -4,8 +4,7 @@ String path = request.getContextPath();
 String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
 
 %>
-
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html>
   <head>
     <base href="<%=basePath%>">
@@ -86,6 +85,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	  		}
 	  		choose1();
 	  		getMaktx(matnr);
+	  		$("#boxs").focus();
   		}
   	}
   	function getMaktx(matnr){
@@ -105,16 +105,16 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		});
 	
 	}
-  	function keyDown() {
+	function keyUp() {
        var keycode = event.keyCode;
        var realkey = String.fromCharCode(event.keyCode);
       // alert("按键码: " + keycode + " 字符: " + realkey);
-       if(keycode=='13'){
+       if(keycode=='86'){
        		js();
        }
    }
-   document.onkeydown = keyDown;
-
+   document.onkeyup = keyUp;
+	
   function forward(){
   	window.location.href="/main.do?two=1";
   }
@@ -130,19 +130,20 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   <body>
   <form name=form action="/receiptView.do">
   <input type="hidden" name="sonum" id="sonum" >
-  	<div>
+  	<div style="margin-left:-15px;">
   		<ul>
-  			<li style="height:15px;list-style-type:none;padding:0; margin:0;}"><input name="str" style="height:20px;" type="text" style="white-space：nowrap;width:70%;"  id="str" onchange="js()"></li>
+  			<li style="height:15px;list-style-type:none;padding:0; margin:0;"><input name="str"  type="text" style="white-space：nowrap;width:70%;"  id="str" onchange="js()"></li>
   			<li class="li">生产订单：<input name="aufnr" style="height:20px;" size="5" readonly=readonly class="text"  type="text"  id="aufnr" > </input></li>
   			<li class="li">物料编码：<input name="matnr" style="height:20px;" class="text"  readonly=readonly type="text" id="matnr"></li>
   			<li class="li">物料描述：<input name="maktx" style="height:20px;" class="text"  readonly=readonly type="text" id="maktx"></li></br>
   			<li class="li">尾箱标识：<input type="checkbox" onclick="choose1();" id="bs" style="width:20px;height:20px;" name="bs"></li>
-  			<li class="li">箱数量/箱数：<input name="meng" style="height:20px;" readonly=readonly style="width:30px;background-color:#D8D8D8;height:20px;"  type="text"  id="meng">/<input name="boxs" style="width:30px;height:20px;" type="text"  id="boxs" onblur="acount();"></li>
-  			<li class="li">批&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;次：<input name="charg" readonly=readonly style="width:80px;background-color:#D8D8D8;height:20px;"  type="text"  id="charg"></li>
-  			<li class="li">总数&nbsp;量：<input name="wemng" type="text" class="text1" id="wemng" ><input name="meins" class="text2" readonly=readonly type="text"  id="meins"> </input></li>
-  			<li class="li">库存地点：<input name="lgort" class="text3" type="text" id="lgort"></li>
+  			<li class="li">箱数量/箱数：<input name="meng" style="width:40px;background-color:#D8D8D8;height:20px;" readonly=readonly type="text" id="meng"/>/<input name="boxs" style="width:35px;height:20px;" type="text"  id="boxs" onchange="acount();"/></li>
+  			<li class="li">批&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;次：<input name="charg" readonly=readonly  type="text" class="text" id="charg"></li>
+  			<li class="li">总<span style="margin-left:7px;"></span>数<span style="margin-left:7px;"></span>量：<input name="wemng" type="text" class="text1" id="wemng" /><input name="meins" style="width:33px;" class="text2" readonly=readonly type="text"  id="meins"/></li>
+  			<!-- <li class="li">总&nbsp;数&nbsp;&nbsp;量：<input name="wemng" type="text" class="text1" id="wemng" ><input name="meins" class="text2" readonly=readonly type="text"  id="meins"> </input></li>
+  			 --><li class="li">库存地点：<input name="lgort" class="text3" type="text" id="lgort"></li>
   			<li class="li">特殊库存：<input name="sobkz" style="height:20px;" readonly=readonly type="text" class="text"  id="sobkz"></li>
-  			<li class="li"><input type="button" style="width:50px;height:25px;" valign="center" class="button" onclick="submit1(this);" value="确定"/>
+  			<li class="li"><input type="button" style="width:40px;height:25px;margin-left:-30px;" valign="center" class="button" onclick="submit1(this);" value="确定"/>
   			<input  class="button"  type="button" style="width:40px;height:25px;" onclick="forward();" value="返回"/>
   			<input  class="button" type="button" style="width:40px;height:25px;" onclick="reset();" value="重置"/>
   			<input   type="button" class="button" style="width:50px;height:25px;" onclick="window.location.href='/main.do';" value="首页"></li>	

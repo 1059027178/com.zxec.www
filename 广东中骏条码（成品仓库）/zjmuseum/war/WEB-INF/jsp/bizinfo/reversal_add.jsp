@@ -86,6 +86,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	  		}
 	  		choose1();
 	  		getMaktx(matnr);
+	  		$("#boxs").focus();
   		}
   	}
   	function getMaktx(matnr){
@@ -105,15 +106,15 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		});
 	
 	}
-  	function keyDown() {
+  	function keyUp() {
        var keycode = event.keyCode;
        var realkey = String.fromCharCode(event.keyCode);
       // alert("按键码: " + keycode + " 字符: " + realkey);
-       if(keycode=='13'){
+       if(keycode=='86'){
        		js();
        }
    }
-   document.onkeydown = keyDown;
+   document.onkeyup = keyUp;
 
   function forward(){
   	window.location.href="/main.do?two=1";
@@ -130,21 +131,21 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   <body>
   <form name=form action="/reversalCrt.do">
   <input type="hidden" name="sonum" id="sonum" >
-  	<div>
+  	<div style="margin-left:-15px;">
   		<ul>
-  			<li style="height:15px;list-style-type:none;"><input name="str" type="text" style="width:70%;height:20px;"  id="str" onchange="js()"></li>
+  			<li style="height:15px;list-style-type:none;padding:0; margin:0;"><input name="str"  type="text" style="white-space：nowrap;width:82.5%;"  id="str" onchange="js()"></li>
   			<li class="li">生产订单：<input name="aufnr" size="5" readonly=readonly class="text"  type="text"  id="aufnr" > </input></li>
   			<li class="li">物料编码：<input name="matnr" class="text"  readonly=readonly type="text" id="matnr"></li>
   			<li class="li">物料描述：<input name="maktx" class="text"  readonly=readonly type="text" id="maktx"></li></br>
   			<li class="li">尾箱标识：<input type="checkbox" onclick="choose1();" id="bs" style="width:20px;height:20px;" name="bs"></li>
-  			<li class="li">箱数量/箱数：<input name="meng" readonly=readonly style="width:30px;background-color:#D8D8D8;height:20px;"  type="text"  id="meng">/<input name="boxs" style="width:30px;height:20px;" type="text"  id="boxs" onblur="acount();"></li>
-  			<li class="li">批&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;次：<input name="charg" readonly=readonly style="width:80px;background-color:#D8D8D8;height:20px;"  type="text"  id="charg"></li>
-  			<li class="li">总数&nbsp;&nbsp; &nbsp;量：<input name="wemng" type="text" class="text1" id="wemng" ><input name="meins" class="text2" readonly=readonly type="text"  id="meins"> </input></li>
+  			<li class="li">箱数量/箱数：<input name="meng" style="width:40px;background-color:#D8D8D8;height:20px;" readonly=readonly type="text" id="meng"/>/<input name="boxs" style="width:39px;height:20px;" type="text"  id="boxs" onchange="acount();"/></li>
+  			<li class="li">批&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;次：<input name="charg" readonly=readonly  type="text" class="text" id="charg"></li>
+  			<li class="li">总<span style="margin-left:7px;"></span>数<span style="margin-left:7px;"></span>量：<input name="wemng" type="text" class="text1" id="wemng" /><input name="meins" style="width:37px;" class="text2" readonly=readonly type="text"  id="meins"/></li>
   			<li class="li">库存地点：<input name="lgort" class="text3" type="text" id="lgort"></li>
   			<li class="li">特殊库存：<input name="sobkz" readonly=readonly type="text" class="text"  id="sobkz"></li>
-  			<li class="li"><input type="button" valign="center" class="button" onclick="submit1(this);" style="width:40px;height:25px;" value="确定"/>
-  			<input  class="button"  type="button" onclick="forward();" style="width:30px;height:25px;" value="返回"/>
-  			<input  class="button" type="button" onclick="reset();" style="width:30px;height:25px;" value="重置"/>
+  			<li class="li"><input type="button" valign="center" class="button" onclick="submit1(this);" style="margin-left:-30px;width:40px;height:25px;" value="确定"/>
+  			<input  class="button"  type="button" onclick="forward();" style="width:40px;height:25px;" value="返回"/>
+  			<input  class="button" type="button" onclick="reset();" style="width:40px;height:25px;" value="重置"/>
   			<input type="button" class="button" style="width:40px;height:25px;" onclick="window.location.href='/main.do';" value="首页"></li>
   		</ul>
   	</div>

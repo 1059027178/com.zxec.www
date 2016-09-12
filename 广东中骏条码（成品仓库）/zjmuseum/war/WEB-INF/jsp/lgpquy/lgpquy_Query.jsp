@@ -52,11 +52,11 @@ function reset(){
     			≤÷Œª∫≈£∫<input style="width:60%" type="text" id="lgpla" name="lgpla"  value=""/>
     		</li>
     		<li class="li">
-    			≤÷ø‚∫≈£∫<input style="width:60%" type="text" id="lgnum" name="lgnum"  value=""/>
+    			≤÷ø‚∫≈£∫<input style="width:60%" type="text" id="lgnum" name="lgnum"  value="320"/>
     		</li>
     		<li class="li"></li>
     			<li class="li" align="left">
-    				<input  class="button"  type="button" style="width:20%"  onclick="lgpQuy()" value="≤È—Ø">
+    				<input  class="button"  type="button" style="width:20%;margin-left: -30px;"  onclick="lgpQuy()" value="≤È—Ø">
     				<input  class="button"  type="button" style="width:20%"  onclick="reset();" value="«Â≥˝">
     				<input  class="button"  type="button" style="width:20%"  onclick="window.location.href='/main.do?two=5';" value="∑µªÿ">
     				<input  class=button type="button" style="width:20%" onclick="window.location.href='/main.do';" value=" ◊“≥">
