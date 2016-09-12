@@ -77,8 +77,10 @@ public class DeliveryAddController implements Controller , AuthenticateControlle
 		if(loginUserId==null||loginUserId.equals("")){
 			//insert code here
 		}else{
-			User loginUser = userService.getUser(loginUserId);			
-			model.put("loginUser",loginUser);			
+			User loginUser = userService.getUser(loginUserId);	
+			String vbeln = SapUtil.null2String(request.getParameter("vbeln"));//交货单号
+			model.put("vbeln",vbeln);	
+			model.put("loginUser",loginUser);		
 		}	
 		
 		return new ModelAndView(getViewName(),model);

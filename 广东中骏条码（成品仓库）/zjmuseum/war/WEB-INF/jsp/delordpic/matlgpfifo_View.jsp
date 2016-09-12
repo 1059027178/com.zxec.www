@@ -28,7 +28,7 @@
 <link href="/css/jiuhui_list.css" rel="stylesheet">
 
   <script  type="text/javascript">
-  	
+  	$("#str").focus();
   	function fanhui(){
   		document.thinkway.action="/delordView.do";
   		document.getElementById("page").value="1";
@@ -122,7 +122,7 @@
 
 </HEAD>
 <BODY>
-<div class="div">
+<div class="div" style="padding-left:5px;">
 	<form  id="thinkway" name="thinkway" method="post"  action="/delordpicAdd.do">
 	<input type="hidden" name="page" id="page" value="<%=pageNo %>"/>
 	<input type="hidden" name="vbeln" id="vbeln" value="<%=vbeln %>"/>
@@ -169,7 +169,7 @@
 					</tr>
 				</table>
 			<%	return;} %>
-			<table class="table_list" style="width:100%">
+			<table class="table_list" style="width:100%;">
 				<tr  class="tr_list_1">
 					<td class="td_list" align="center" colspan=3><input name="str" style="height:15px;" type="text" style="white-space：nowrap;width:70%;"  id="str"></td>
 				</tr>
@@ -241,11 +241,11 @@
 			<%} %>
 			
 			<tr>
-				<td align="center"  colspan="3"><input type="button" style="width:40px;" onclick="lastPage()" value="上一页">	<input type="hidden" name="maxxuhao" id="maxxuhao" value="<%=i %>"/>
-					<input type="button" style="width:30px;" onclick="validateForm()" value="保存"></input>
-					<input type="button" style="width:30px;" value="返回" onclick="fanhui();"></input>
-					<input  class=button type="button" style="width:30px;"  onclick="window.location.href='/main.do';" value="首页">
-					<input type="button" style="width:40px;" onclick="nextPage()" value="下一页"></td>
+				<td  colspan="3"><input type="button" style="width:40px;" onclick="lastPage()" value="<<">	<input type="hidden" name="maxxuhao" id="maxxuhao" value="<%=i %>"/>
+					<input type="button" style="width:40px;" onclick="validateForm()" value="保存"></input>
+					<input type="button" style="width:40px;" value="返回" onclick="fanhui();"></input>
+					<input  class=button type="button" style="width:40px;"  onclick="window.location.href='/main.do';" value="首页">
+					<input type="button" style="width:40px;" onclick="nextPage()" value=">>"></td>
 			</tr>
 		
 			</table>
@@ -254,5 +254,4 @@
 </div>
 
 </BODY>
-
 </HTML>
