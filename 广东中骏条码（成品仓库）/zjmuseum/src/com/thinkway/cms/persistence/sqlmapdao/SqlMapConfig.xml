@@ -76,6 +76,17 @@
   </transactionManager>
   <!-- yangyang:云服务器测试机 --> 
   
+    <!-- 本地测试机 -->
+   <!--  <transactionManager type="JDBC" commitRequired="false">
+    <dataSource type="SIMPLE">
+      <property name="JDBC.Driver" value="oracle.jdbc.driver.OracleDriver"/>
+      <property name="JDBC.ConnectionURL" value="jdbc:oracle:thin:@192.168.90.51:1521:ORCL"/>
+      <property name="JDBC.Username" value="zjfdcode"/>
+      <property name="JDBC.Password" value="zjfdcode"/>
+    </dataSource>
+ 	 </transactionManager> -->
+  <!-- 本地测试机 -->
+  
   <!-- List the SQL Map XML files. They can be loaded from the
        classpath, as they are here  -->
   <sqlMap resource="com/thinkway/cms/persistence/sqlmapdao/sql/Sequence.xml"/>
