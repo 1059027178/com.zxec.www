@@ -28,8 +28,8 @@
   		document.form.action="/dumpCheck.do";
   		document.form.submit();
   	}
-  	function shangjia(){
-  		document.form.action="/groundingAdd.do";
+  	function jizhangbiangeng(){
+  		document.form.action="/lubuView.do";
   		document.form.submit();
   	}
 	function jixu(){
@@ -61,7 +61,7 @@
     		<tr style="width:100%;heigth=20%">
     			<td align="center"><%if(radio.equals("1")){ %>
     				<input type="button" style="width:40px;" onclick="zhuangcu();" value="转储"><%}else{ %>
-    				<input type="button" style="width:40px;" onclick="shangjia();" value="上架"><%} %>
+    				<input type="button" style="width:40px;" onclick="jizhangbiangeng();" value="记账变更"><%} %>
     				<input type="button" style="width:40px;" onclick="window.location.href='/dumpView.do';"  value="返回">
     				<input type="button" style="width:40px;height:25px;" onclick="window.location.href='/main.do';" value="首页">
     			</td>

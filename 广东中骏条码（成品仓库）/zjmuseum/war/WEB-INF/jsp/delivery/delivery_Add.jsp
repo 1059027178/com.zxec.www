@@ -31,7 +31,7 @@ function deliList(){
     <form name="jiuhui"  id="jiuhui" action="/deliveryView.do">
     	<div style="margin-top:60px;">
     		<ul>
-    			<li class="li">交货单号：<input type="text" class="text3" id="vbeln" name="vbeln"  value=""/></li>
+    			<li class="li">交货单号：<input type="text" class="text3" id="vbeln" name="vbeln"  value="${vbeln }"/></li>
     		<li class="li"></li>
     		<li class="li">
     				<input style="margin-left: -30px;" class="button" type="submit" class=button onclick="return deliList();" value="确定">

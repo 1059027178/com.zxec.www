@@ -43,6 +43,12 @@
 
   		document.form.submit();
   	}
+  	function fahuo(){
+  	
+  		document.form.action="/deliveryAdd.do";
+
+  		document.form.submit();
+  	}
   </script>
   <body>
   		<div class="div" style="padding-top: 60px;">
@@ -72,6 +78,7 @@
     				<input type="button" style="width:40px;" onclick="back();" value="继续">
     				</c:if>
     				<input type="button" style="width:40px;"  onclick="window.location.href='/main.do';" value="首页">
+    				<input type="button" style="width:80px;" onclick="fahuo();" value="交货单发货">
     			</td>
     		</tr>
     	</table>
