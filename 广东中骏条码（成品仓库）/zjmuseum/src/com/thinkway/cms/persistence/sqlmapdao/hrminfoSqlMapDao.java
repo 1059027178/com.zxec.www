@@ -29,9 +29,15 @@ public class hrminfoSqlMapDao extends SqlMapDao implements hrminfoDao {
 	public hrminfo gethrminfoById(String id) throws SQLException {
 		return (hrminfo) sqlMapper.queryForObject("gethrminfoById", id);
 	}
+	
 	public int gethrminfoCountsByObjno(String objno) throws SQLException {
 		return ((Integer) sqlMapper.queryForObject("gethrminfoByObjno", objno)).intValue();
 	}
+	
+	public hrminfo gethrminfoDataByObjno(String objno) throws SQLException {
+		return ((hrminfo) sqlMapper.queryForObject("gethrminfoDataByObjno", objno));
+	}
+	
 	public List getAllhrminfos(Map param) throws SQLException {
 		return sqlMapper.queryForList("getAllhrminfos", param);
 	}
