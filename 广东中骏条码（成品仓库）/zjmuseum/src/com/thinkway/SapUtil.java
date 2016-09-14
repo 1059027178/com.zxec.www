@@ -29,6 +29,23 @@ public class SapUtil {
         JCO.Client myConnection = JCO.createClient( logonProperties );
 		return myConnection;
 	}
+	/**
+	 * SAP生产机地址
+	 * @author qianyang
+	 * @since 2016-09-14
+	 * @return
+	 */
+	/*public static com.sap.mw.jco.JCO.Client getSAPcon() {
+		Properties logonProperties = new Properties();
+		logonProperties.put("jco.client.sysnr", "00");
+		logonProperties.put("jco.client.ashost", "192.168.0.52");
+		logonProperties.put("jco.client.client", "800");
+		logonProperties.put("jco.client.user", "abap7");
+		logonProperties.put("jco.client.passwd", "domino");
+		logonProperties.put("jco.client.CodePage", "8400");
+		com.sap.mw.jco.JCO.Client myConnection = JCO.createClient(logonProperties);
+		return myConnection;
+	}*/
 	public static JCO.Client  getSAPconEn(){
 		JCO.Pool pool = JCO.getClientPoolManager().getPool(POOL_NAME);
 		JCO.Client myConnection = null;
