@@ -9,8 +9,8 @@
 <%-- <%@ taglib prefix="qhcms" uri="/qhcmsfunction" %>   --%>
 <%
 String desp = "展会管理工具";
-String company = "九慧";
-String sysname = "SAP交互系统";
+String company = "广东中骏";
+String sysname = "成品条码系统";
 String warnmsg1 = "请不要在公共电脑或网吧机器上使用本系统。";
 String warnmsg2 = "请不要在公共电脑或网吧机器上使用本系统。";
 String uploadDir = "/ckeditor/uploader/upload/";
