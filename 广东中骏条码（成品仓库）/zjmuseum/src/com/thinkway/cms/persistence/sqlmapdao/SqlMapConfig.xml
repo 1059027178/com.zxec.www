@@ -1,8 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 
-<!DOCTYPE sqlMapConfig
-    PUBLIC "-//ibatis.apache.org//DTD SQL Map Config 2.0//EN"
-    "http://ibatis.apache.org/dtd/sql-map-config-2.dtd">
+<!DOCTYPE sqlMapConfig PUBLIC "-//ibatis.apache.org//DTD SQL Map Config 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-config-2.dtd">
 
 <sqlMapConfig>
 
@@ -14,27 +12,9 @@
       enhancementEnabled="true"/>
 
 
-  <!-- Configure a built-in transaction manager.  If you're using an
-       app server, you probably want to use its transaction manager
-       and a managed datasource 
+  <!-- Configure a built-in transaction manager.  
+  If you're using an app server, you probably want to use its transaction manager and a managed datasource 
        
-  <transactionManager type="JDBC" commitRequired="false">
-    <dataSource type="SIMPLE">
-      <property name="JDBC.Driver" value="oracle.jdbc.driver.OracleDriver"/>
-      <property name="JDBC.ConnectionURL" value="jdbc:oracle:thin:@localhost:1521:orcl"/>
-      <property name="JDBC.Username" value="zxxt"/>
-      <property name="JDBC.Password" value="zxxt"/>
-    </dataSource>
-  </transactionManager>
-<transactionManager type="JDBC" commitRequired="false">
-    <dataSource type="SIMPLE">
-      <property name="JDBC.Driver" value="oracle.jdbc.driver.OracleDriver"/>
-      <property name="JDBC.ConnectionURL" value="jdbc:oracle:thin:@localhost:1521:orcl"/>
-      <property name="JDBC.Username" value="zxxt"/>
-      <property name="JDBC.Password" value="zxxt"/>
-    </dataSource>
-  </transactionManager> 
-  
   <transactionManager type="JDBC" commitRequired="false">
     <dataSource type="SIMPLE">
       <property name="JDBC.Driver" value="oracle.jdbc.driver.OracleDriver"/>
@@ -45,27 +25,19 @@
     </dataSource>
   </transactionManager> 
   -->
-  <!-- 生产机 -->
-    <!-- <transactionManager type="JDBC" commitRequired="false">
-    <dataSource type="SIMPLE">
-      <property name="JDBC.Driver" value="oracle.jdbc.driver.OracleDriver"/>
-      <property name="JDBC.ConnectionURL" value="jdbc:oracle:thin:@192.168.0.35:1521:BARCODE"/>
-      <property name="JDBC.Username" value="barcode"/>
-      <property name="JDBC.Password" value="ZXEC11"/>
-    </dataSource>
+  
+  <!-- 生产机:成品仓库 -->
+   <!--  <transactionManager type="JDBC" commitRequired="false">
+	    <dataSource type="SIMPLE">
+	      <property name="JDBC.Driver" value="oracle.jdbc.driver.OracleDriver"/>
+	      <property name="JDBC.ConnectionURL" value="jdbc:oracle:thin:@192.168.0.76:1521:ORCL"/>
+	      <property name="JDBC.Username" value="gdfdcode"/>
+	      <property name="JDBC.Password" value="gdfdcode"/>
+	    </dataSource>
  	 </transactionManager> -->
-  <!-- 生产机 -->
+  <!-- 生产机:成品仓库 -->
   
-    <!-- <transactionManager type="JDBC" commitRequired="false">
-    <dataSource type="SIMPLE">
-      <property name="JDBC.Driver" value="com.microsoft.sqlserver.jdbc.SQLServerDriver"/>
-      <property name="JDBC.ConnectionURL" value="jdbc:sqlserver://172.30.12.39:1433;DatabaseName=Tst_ecology20150228"/>
-		<property name="JDBC.Username" value="sa"/>
-      <property name="JDBC.Password" value="Tstoa@2015"/>
-    </dataSource>
-  </transactionManager> --> 
-  
-  <!-- yangyang：云服务器测试机 -->
+  <!-- 测试机 -->
     <transactionManager type="JDBC" commitRequired="false">
     <dataSource type="SIMPLE">
       <property name="JDBC.Driver" value="com.microsoft.sqlserver.jdbc.SQLServerDriver"/>
@@ -74,10 +46,7 @@
       <property name="JDBC.Password" value="zjcode"/>
     </dataSource>
   </transactionManager>
-  <!-- yangyang:云服务器测试机 --> 
-  
-    <!-- 本地测试机 -->
-   <!--  <transactionManager type="JDBC" commitRequired="false">
+    <!-- <transactionManager type="JDBC" commitRequired="false">
     <dataSource type="SIMPLE">
       <property name="JDBC.Driver" value="oracle.jdbc.driver.OracleDriver"/>
       <property name="JDBC.ConnectionURL" value="jdbc:oracle:thin:@192.168.90.51:1521:ORCL"/>
@@ -85,10 +54,9 @@
       <property name="JDBC.Password" value="zjfdcode"/>
     </dataSource>
  	 </transactionManager> -->
-  <!-- 本地测试机 -->
+  <!-- 测试机 -->
   
-  <!-- List the SQL Map XML files. They can be loaded from the
-       classpath, as they are here  -->
+  <!-- List the SQL Map XML files. They can be loaded from the classpath, as they are here  -->
   <sqlMap resource="com/thinkway/cms/persistence/sqlmapdao/sql/Sequence.xml"/>
   <sqlMap resource="com/thinkway/cms/persistence/sqlmapdao/sql/User.xml"/>
   <sqlMap resource="com/thinkway/cms/persistence/sqlmapdao/sql/UserLog.xml"/>
