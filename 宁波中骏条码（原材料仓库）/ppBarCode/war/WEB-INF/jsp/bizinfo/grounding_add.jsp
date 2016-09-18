@@ -148,7 +148,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   			<li class="li">物料描述：<input name="maktx" class="text"  readonly=readonly type="text" id="maktx" value="${receiptObj.maktx}"/></li>
   			<li class="li">袋数量/袋数：<input name="meng" readonly=readonly style="width:40px;background-color:#D8D8D8;height:20px;" type="text" id="meng" value="${receiptObj.meng}"/>/<input name="boxs" style="width:35px;height:20px;" type="text" value="${receiptObj.boxs}" id="boxs" onchange="acount();"/></li>
   			<li class="li">批<span style="margin-left:28px;"></span>次：<input name="charg" class="text" readonly=readonly value="${receiptObj.charg}" style="background-color:#D8D8D8;"  type="text"  id="charg"/></li>
-  			<li class="li">总<span style="margin-left:14px;"></span>数量：<input name="wemng" value="${receiptObj.wemng}" type="text" class="text1" id="wemng" /><input name="meins" value="KG" style="width:33px;" class="text2" readonly=readonly type="text"  id="meins"/></li>
+  			<li class="li">总<span style="margin-left:14px;"></span>数量：<input name="wemng" value="${receiptObj.wemng}" type="text" class="text1" id="wemng" /><input name="meins" value="${receiptObj.meins }" style="width:33px;" class="text2" readonly=readonly type="text"  id="meins"/></li>
   			<li class="li">库存地点：<input name="lgort" type="text"  value="${receiptObj.lgort}" class="text3" id="lgort"/></li>
   			<%-- <li class="li">库存类别：<input name="sobkz"  value="${receiptObj.sobkz}" readonly=readonly type="text" class="text"  id="sobkz"></li> --%>
   			<li class="li"><input type="button" valign="center" class="button" onclick="submit1(this);" style="width:40px;height:25px;margin:10px 0px 0px -28px;" value="确定"/>
