@@ -21,7 +21,7 @@ body {
 <head>
 <base href="<%=basePath%>">
 
-<title>生产领料单</title>
+<title>研发领料单</title>
 
 <meta http-equiv="pragma" content="no-cache">
 <meta http-equiv="cache-control" content="no-cache">
@@ -51,8 +51,9 @@ body {
 	function submit1(obj) {
 		try {
 			var dt = $("#produceDate").val().split("/");
-			produceDate = dt[0] + "" + ("0" + dt[1]).substr(-2) + "" + ("0" + dt[2]).substr(-2);
-			$("#budat").val(produceDate)
+			//produceDate = dt[0] + "" + ("0" + dt[1]).substr(-2) + "" + ("0" + dt[2]).substr(-2);
+			produceDate = dt[0] + getStr(dt[1]) + getStr(dt[2]);
+			$("#budat").val(produceDate);
 		} catch (e) {
 			$("#produceDate").val(date.getFullYear() + "/" + (date.getMonth() + 1) + "/" + date.getDate());
 			alert("错误的日期格式!");
@@ -60,6 +61,13 @@ body {
 		}
 		obj.disabled = false;
 		document.form.submit();
+	}
+	function getStr(str){
+		str += "";
+		if(str.length == 1){
+			str = "0" + str
+		}
+		return str;
 	}
 </script>
 </head>
