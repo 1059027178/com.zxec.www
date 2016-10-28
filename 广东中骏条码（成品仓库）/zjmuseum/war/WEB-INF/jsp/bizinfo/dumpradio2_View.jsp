@@ -50,8 +50,7 @@
 <div class="div">
 	<form  id="thinkway" name="thinkway" method="post" action="/dumpAdd.do">
 		 <input type="hidden" name="matnr" id="matnr" value="${matnr}">
-		<input type="hidden" name="charg" id="charg" value="${charg}">
-		<input type="hidden" name="charg" id="charg" value="${maktx}">
+		<input type="hidden" name="maktx" id="maktx" value="${maktx}">
 		<input type="hidden" name="sobkz" id="sobkz" value="${sobkz}">
 		<input type="hidden" name="sonum" id="sonum" value="${sonum}">
 		<input type="hidden" name="meins" id="meins" value="${meins}">
@@ -69,7 +68,7 @@
 				</tr>
 				<tr>
 					<td >批次:</td>
-					<td  >${charg}</td>
+					<td  ><input name="charg" type="text" style="width:35%"  id="charg" value="${charg_to}"> 到 <input name="charg_to" type="text" style="width:35%"  id="charg_to" value="${charg }"></td>
 				</tr>
 				<tr>
 					<td  >数量:</td>
@@ -77,14 +76,14 @@
 				</tr>
 				<tr>
 					<td >库存地点:</td>
-					<td  ><input name="lgort_from" type="text" style="width:25%"  id="lgort_from" value="">到<input name="lgort_to" type="text" style="width:25%"  id="lgort_to" value=""></td>	</tr>
+					<td  ><input name="lgort_from" type="text" style="width:35%"  id="lgort_from" value="${ lgort_to}"> 到 <input name="lgort_to" type="text" style="width:35%"  id="lgort_to" value="${lgort }"></td>	</tr>
 				<tr>
 					<td >特殊库存:</td>
 					<td  >${sobkz}${sonum}</td>
 				</tr>
 				<tr>
 					<td >移动类型:</td>
-					<td  ><input name="bwart" size="3" style="width:35%" type="text"  id="bwart"></td>
+					<td  ><input name="bwart" size="3" style="width:35%" type="text"  id="bwart" value="311"></td>
 				</tr>
 					<tr>
 					<td align="center" colspan="2">
@@ -98,5 +97,7 @@
 			</form>
 </div>
 </BODY>
-
+	<script type="text/javascript">
+		document.getElementById("charg_to").focus();
+	</script>
 </HTML>
