@@ -38,6 +38,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	  		var sonum=str[6];
 	  		var lgort=str[7];
 	  		var meins=str[8];
+	  		var charg_to = str[9];
+	  		var lgort_to = str[10];
 	  		$("#aufnr").attr("value",aufnr);
 	  		$("#matnr").attr("value",matnr);
 	  		$("#sonum").attr("value",sonum);
@@ -47,6 +49,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	  		$("#meins").attr("value",meins);
 	  		$("#sobkz").attr("value",sobkz);
 	  		$("#lgort").attr("value",lgort);
+	  		$("#charg_to").attr("value",charg_to);
+	  		$("#lgort_to").attr("value",lgort_to);
+	  		
 	  		//choose1();
 	  		getPlnum(matnr);
 	  		$("#lgpla").focus();
@@ -139,6 +144,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   <input type="hidden" name="maktx" id="maktx" >
   <input type="hidden" name="werks" id="werks" >
   <input type="hidden" name="meins" id="meins" >
+  <input type="hidden" name="lgort_to" id="lgort_to" >
+  <input type="hidden" name="charg_to" id="charg_to" >
   	<div style="padding-top:5px;margin-left: -15px;">
   		<ul>
   			<li style="height:15px;list-style-type:none;"><input name="str" class="text3" type="text" style="white-space：nowrap;width:82%;"  id="str" onchange="js()"></li>

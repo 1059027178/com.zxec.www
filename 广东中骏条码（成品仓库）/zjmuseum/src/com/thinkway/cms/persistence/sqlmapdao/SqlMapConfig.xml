@@ -27,7 +27,7 @@
   -->
   
   <!-- 生产机:成品仓库 -->
-   <!--  <transactionManager type="JDBC" commitRequired="false">
+    <!-- <transactionManager type="JDBC" commitRequired="false">
 	    <dataSource type="SIMPLE">
 	      <property name="JDBC.Driver" value="oracle.jdbc.driver.OracleDriver"/>
 	      <property name="JDBC.ConnectionURL" value="jdbc:oracle:thin:@192.168.0.76:1521:ORCL"/>

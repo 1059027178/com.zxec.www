@@ -186,6 +186,8 @@ public class DumpCheckController implements Controller , AuthenticateController{
 
 			return new ModelAndView(getRadio1Name(),model);
 		}else if(radio.equals("2")){
+			String charg_to = SapUtil.null2String(request.getParameter("charg_to"));
+			String lgort_to = SapUtil.null2String(request.getParameter("lgort_to"));
 //			System.out.println("charg:"+charg);
 			model.put("matnr", matnr);
 			model.put("maktx", maktx);
@@ -193,6 +195,8 @@ public class DumpCheckController implements Controller , AuthenticateController{
 			model.put("lgort", lgort);
 			model.put("sobkz", sobkz);
 			model.put("sonum", sonum);
+			model.put("charg_to", charg_to);
+			model.put("lgort_to", lgort_to);
 //			model.put("bwart", bwart);
 			model.put("meins", meins);
 //			model.put("werks", werks);

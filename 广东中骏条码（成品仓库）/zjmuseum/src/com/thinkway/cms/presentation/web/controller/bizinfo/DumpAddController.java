@@ -156,8 +156,9 @@ public class DumpAddController implements Controller , AuthenticateController{
 			String menge = SapUtil.null2String(request.getParameter("menge"));
 			String lgort_from = SapUtil.null2String(request.getParameter("lgort_from"));
 			String lgort_to = SapUtil.null2String(request.getParameter("lgort_to"));
+			String charg_to = SapUtil.null2String(request.getParameter("charg_to"));
 			String bwart = SapUtil.null2String(request.getParameter("bwart"));
-			System.out.println("charg:"+charg);
+			System.out.println("charg:"+charg+" charg_to:"+charg_to);
 			JCO.Client myConnection =null;
 			myConnection =SapUtil.getSAPcon();
 		    myConnection.connect(); 
@@ -172,6 +173,7 @@ public class DumpAddController implements Controller , AuthenticateController{
 	    	parameterList.setValue(bwart,"I_BWART");
 //	    	parameterList.setValue(lgort,"I_LGORT");
 	    	parameterList.setValue(charg,"I_CHARG");
+	    	parameterList.setValue(charg_to,"I_CHARG_TO");
 	    	parameterList.setValue(menge,"I_MENGE");
 	    	parameterList.setValue(meins,"I_MEINS");
 	    	parameterList.setValue(sobkz,"I_SOBKZ");
