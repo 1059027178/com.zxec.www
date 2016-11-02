@@ -11,7 +11,7 @@ import com.sap.mw.jco.JCO;
 public class SapUtil {
 	
 	public static final String POOL_NAME = "Sample_Pool";
-	public static final int max_connection = 3;
+	public static final int max_connection = 10;
 	/**
 	 * @author YangYang
 	 * @time   2016年05月31日
