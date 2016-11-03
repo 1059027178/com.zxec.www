@@ -110,7 +110,8 @@ public class DumpAddController implements Controller , AuthenticateController{
 				if(sl>0){xzsl+=sl;}
 				if(!MENGE.equals("")){
 					 	JCO.Client myConnection =null;
-						myConnection =SapUtil.getSAPconEn();
+//						myConnection =SapUtil.getSAPconEn();
+						myConnection =SapUtil.getSAPcon();
 					    myConnection.connect(); 
 						String functionName="ZFM_BC_03_21";//函数的名字
 					    JCO.Repository myRepository = new JCO.Repository("Repository",myConnection); //只是一個名字
