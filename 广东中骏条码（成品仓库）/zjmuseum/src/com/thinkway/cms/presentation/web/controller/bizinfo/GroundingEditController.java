@@ -98,7 +98,8 @@ public class GroundingEditController implements Controller , AuthenticateControl
 
 
 			JCO.Client myConnection =null;
-			myConnection =SapUtil.getSAPconEn();
+//			myConnection =SapUtil.getSAPconEn();
+			myConnection =SapUtil.getSAPcon();
 			
 		    myConnection.connect(); 
 		    //out.println("连接SAP成功");

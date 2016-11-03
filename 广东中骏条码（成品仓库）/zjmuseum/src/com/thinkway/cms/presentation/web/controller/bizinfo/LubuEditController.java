@@ -86,7 +86,8 @@ public class LubuEditController implements Controller , AuthenticateController{
 		try{
 		//out.println(aufnr+"/"+iquan+"/"+gmein);
 		JCO.Client myConnection =null;
-		myConnection =SapUtil.getSAPconEn();
+//		myConnection =SapUtil.getSAPconEn();
+		myConnection =SapUtil.getSAPcon();
 	    myConnection.connect(); 
 	    //out.println("连接SAP成功");
 		String functionName="ZFM_BC_13_21";//函数的名字
