@@ -69,6 +69,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	 			//$("#lgnum").attr("value",data.lgnum);
 	 			$("#maktx").attr("value",data.maktx);
 	 			$("#werks").attr("value",data.werks);
+	 			//$("#werks").attr("value","3200");
 	 		},
 	        error:function(){       
 		       alert("系统异常，请联系管理员");
