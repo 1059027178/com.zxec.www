@@ -20,7 +20,7 @@ jQuery(function($) {
 	$("#grid-table").jqGrid({
 		url : "admin!adminList.action",
 		datatype : "json",
-		height : "250",// weitao 修改此参数可以修改表格的高度
+		height : "100%",// weitao 修改此参数可以修改表格的高度
 		jsonReader : {
 			repeatitems : false,
 			root : "list",
@@ -35,70 +35,18 @@ jQuery(function($) {
 			order : "pager.orderType"
 
 		},
-		colModel : [ {
-			name : 'username',
-			index : 'username',
-			label : "登录名",
-			width : 80,
-			sortable : "true",
-			sorttype : "text"
-		}, {
-			name : 'email',
-			index : 'email',
-			label : "E-mail",
-			width : 160,
-			sortable : "true",
-			sorttype : "text"
-		}, {
-			name : 'name',
-			index : 'name',
-			label : "联系人",
-			width : 60,
-			sortable : "true",
-			sorttype : "text"
-		}, {
-			name : 'loginDate',
-			label : "最后登陆时间",
-			width : 100,
-			index : 'loginDate',
-			editable : false,
-			sortable : "true",
-			sorttype : "date",
-			unformat : pickDate,
-			formatter : datefmt
-		}, {
-			name : 'createDate',
-			label : "创建时间",
-			width : 100,
-			index : 'createDate',
-			editable : false,
-			sortable : "true",
-			sorttype : "date",
-			unformat : pickDate,
-			formatter : datefmt
-		}, {
-			name : 'loginIp',
-			index : 'loginIp',
-			label : "最后登陆IP",
-			width : 60,
-			sortable : "true",
-			sorttype : "text"
-		}, {
-			name : 'isAccountEnabledx',
-			index : 'isAccountEnabled',
-			width : 60,
-			label : "状态",
-			cellattr : addstyle,
-			sortable : "true",
-			sorttype : "text",
-			editable : true,
-			search : true,
-			stype : "select",
-			searchoptions : {
-				dataUrl : "dict!getDict1.action?dict.dictname=isAccountEnabled"
-			}
-		}, ],
-
+		colModel : [ 
+		    {name : 'username',index : 'username',label : "登录名",width : 80,sortable : "true",sorttype : "text"}, 
+			{name : 'email',index : 'email',label : "E-mail",width : 200,sortable : "true",sorttype : "text"}, 
+			{name : 'name',index : 'name',label : "姓名",width : 160,editable : true,sortable : "true",sorttype : "text"}, 
+			{name : 'department',index : 'department',label : "所属部门",width : 140,editable : true,sortable : "true",sorttype : "text"}, 
+			{name : 'factory',label : "所属工厂",width : 140,index : 'factory',editable : true,sortable : "true",sorttype : "text"}, 
+			{name : 'loginDate',label : "最后登陆时间",width : 160,index : 'loginDate',editable : true,sortable : "true",sorttype : "date",unformat : pickDate,formatter : datefmt}, 
+			{name : 'createDate',label : "创建时间",width : 160,index : 'createDate',editable : true,sortable : "true",sorttype : "date",unformat : pickDate,formatter : datefmt},
+			{name : 'loginIp',index : 'loginIp',label : "最后登陆IP",width : 140,sortable : "true",sorttype : "text"}, 
+			{name : 'isAccountEnabledx',index : 'isAccountEnabled',width : 60,label : "状态",cellattr : addstyle,sortable : "true",sorttype : "text",editable : true,search : true,stype : "select",
+			searchoptions : {dataUrl : "dict!getDict1.action?dict.dictname=isAccountEnabled"}}, 
+		],
 		viewrecords : true,
 		rowNum : 10,
 		rowList : [ 10, 20, 30 ],
