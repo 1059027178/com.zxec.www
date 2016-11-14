@@ -96,7 +96,8 @@ public class DumpCheckController implements Controller , AuthenticateController{
 		String lgpla = SapUtil.null2String(request.getParameter("lgpla"));//仓位
 		String maktx = SapUtil.null2String(request.getParameter("maktx"));
 		String werks = SapUtil.null2String(request.getParameter("werks"));
-		String meins = SapUtil.null2String(request.getParameter("meins"));
+		String meins = SapUtil.null2String(request.getParameter("meins"));//单位
+		String meng = SapUtil.null2String(request.getParameter("meng"));//每箱数量
 		String xzsl = SapUtil.null2String(request.getParameter("xzsl"));
 		System.out.println("radio:"+radio);
 		receipt.setMatnr(matnr);
@@ -199,7 +200,7 @@ public class DumpCheckController implements Controller , AuthenticateController{
 			model.put("lgort_to", lgort_to);
 //			model.put("bwart", bwart);
 			model.put("meins", meins);
-//			model.put("werks", werks);
+			model.put("meng", meng);
 //			model.put("werks", werks);
 			return new ModelAndView(getRadio2Name(),model);
 		}else{

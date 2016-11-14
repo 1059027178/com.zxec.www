@@ -43,7 +43,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	  		$("#aufnr").attr("value",aufnr);
 	  		$("#matnr").attr("value",matnr);
 	  		$("#sonum").attr("value",sonum);
-	  		//$("#meng").attr("value",meng);
+	  		$("#meng").attr("value",meng);
 	  		//$("#wemng").attr("value",wemng);
 	  		$("#charg").attr("value",charg);
 	  		$("#meins").attr("value",meins);
@@ -52,8 +52,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	  		$("#charg_to").attr("value",charg_to);
 	  		$("#lgort_to").attr("value",lgort_to);
 	  		
-	  		//choose1();
-	  		getPlnum(matnr);
+	  		//getPlnum(matnr);
+	  		getMaktx(matnr);
 	  		$("#lgpla").focus();
   		}
   	}
@@ -76,6 +76,22 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		    }
 		});
 	
+	}
+	function getMaktx(matnr){
+		if(matnr=='' || matnr==null)return;
+		jQuery.ajax({
+			url:'/receiptJson.do',
+			async:false,
+	 		type:"post",
+	 		data:{"showType":"getMaktx","matnr":matnr},
+	 		dataType:'json',
+	 		success:function(data){
+	 			$("#maktx").attr("value",data.maktx);
+	 		},
+	        error:function(){       
+		       alert("系统异常，请联系管理员");
+		    }
+		});
 	}
 	
   	function keyUp() {
@@ -116,7 +132,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
    		alert("请输入物料编码！");
    		return;
    }
-   if(chk=='2'){
+   if(chk=='1'){
    		var lgpla=document.getElementById("lgpla").value;
    		if(lgpla.length==0){
    			alert("仓位未填写，请填写");
@@ -142,8 +158,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   <body>
   <form name=form action="/dumpCheck.do">
   <input type="hidden" name="lgort" id="lgort" >
+  <input type="hidden" name="meng" id="meng" >
   <input type="hidden" name="maktx" id="maktx" >
-  <input type="hidden" name="werks" id="werks" >
+  <input type="hidden" name="werks" id="werks"  value="3200" >
   <input type="hidden" name="meins" id="meins" >
   <input type="hidden" name="lgort_to" id="lgort_to" >
   <input type="hidden" name="charg_to" id="charg_to" >

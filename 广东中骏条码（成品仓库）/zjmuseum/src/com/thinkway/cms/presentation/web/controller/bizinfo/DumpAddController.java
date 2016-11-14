@@ -170,6 +170,9 @@ public class DumpAddController implements Controller , AuthenticateController{
 		    JCO.Function bapi = ft.getFunction();
 	    	JCO.ParameterList  parameterList=bapi.getImportParameterList();//获得输入表的参数
 //			JCO.ParameterList   inputtable= bapi.getTableParameterList();//输入表的处理
+	    	//20161107新增：操作人字段
+	    	parameterList.setValue(userService.getUser(loginUserId).getUserName(),"I_UID");
+	    	//20161107新增：操作人字段
 			parameterList.setValue(matnr,"I_MATNR");//物料编码
 	    	parameterList.setValue(bwart,"I_BWART");
 //	    	parameterList.setValue(lgort,"I_LGORT");
@@ -203,7 +206,6 @@ public class DumpAddController implements Controller , AuthenticateController{
 		model.put("sonum", sonum);
 //		model.put("bwart", bwart);
 		model.put("meins", meins);
-//		model.put("werks", werks);
 //		model.put("werks", werks);
 				}catch(Exception e){
 					message=e.getMessage();
