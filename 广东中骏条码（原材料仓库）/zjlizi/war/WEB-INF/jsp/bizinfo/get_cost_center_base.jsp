@@ -65,7 +65,7 @@ body {
 	function getStr(str){
 		str += "";
 		if(str.length == 1){
-			str = "0" + str
+			str = "0" + str;
 		}
 		return str;
 	}
