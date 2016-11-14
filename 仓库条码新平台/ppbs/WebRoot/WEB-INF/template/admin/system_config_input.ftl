@@ -255,14 +255,14 @@ body{background:#fff;}
 						<input type="text" name="systemConfig.sapCodePage" class="formText" value="${(systemConfig.sapCodePage)!}" />
 					</td>
 				</tr>
-			<!-- 	<tr>
+			 	<tr>
 					<th>
 						SAP配置测试:
 					</th>
 					<td>
 						<input type="button" id="showSapTestWindow" class="formButtonL" value="SAP配置测试" />
 					</td>
-				</tr> -->
+				</tr> 
 			</table>
 			</div>
 			<div class="buttonArea">

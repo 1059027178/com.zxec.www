@@ -52,7 +52,7 @@
 		<smtpPort>25</smtpPort>  
 		<smtpUsername>webmaster</smtpUsername>  
 		<smtpPassword>test</smtpPassword>  
-		<sapHost>192.168.0.23</sapHost>  
+		<sapHost>192.168.0.20</sapHost>  
 		<sapClient>600</sapClient>  
 		<sapSysnr>00</sapSysnr>  
 		<sapUser>DEV08</sapUser>  

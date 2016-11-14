@@ -40,11 +40,14 @@ jQuery(function($) {
 	    },
 		//colNames:[ 'ID','权限对象名称','权限对象类型', 'myac'],
 		colModel:[
-			{name:'id', label:"ID", sorttype:"int",editable: true,hidden:true},
-			{name:'name',index:"name", label:"name",width:100,editable: true,hidden:false},
-			{name:'value',index:"value", label:"Value",width:200,editable: true,hidden:false},
-			{name:'isSystem',index:"isSystem",label:"是否系统自带",width:80,editable:false},
-			{name:'description',index:"description",label:"描述",width:100,editable:false}
+			{name:'id'		 , label:"ID", sorttype:"int",editable: true,hidden:true},
+			{name:'orderlist',index:"orderlist",label:"排序",width:25,editable:true,hidden:false},
+			{name:'name'	 ,index:"name", label:"资源名称",width:100,editable: true,hidden:false},
+			{name:'value'	 ,index:"value", label:"资源值",width:100,editable: true,hidden:false},
+			{name:'isSystem' ,index:"isSystem",label:"是否系统自带",width:100,editable:false},
+			{name:'createDate',index:"createDate",sorttype:"date", label:"创建时间",width:100,editable: true,hidden:false},
+			{name:'modifyDate',index:"modifyDate",sorttype:"date", label:"最后修改时间",width:100,editable: true,hidden:false},
+			{name:'description',index:"description",label:"描述",width:150,editable:false}
 		], 
 
 		viewrecords : true,

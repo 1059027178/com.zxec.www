@@ -159,6 +159,14 @@
 			<table id="tabs-2" class="inputTable tabContent">
 				<tr>
 					<th>
+						工厂:
+					</th>
+					<td>
+						<input type="text" name="admin.factory" class="formText" value="${(admin.factory)!}" />
+					</td>
+				</tr>
+				<tr>
+					<th>
 						部门:
 					</th>
 					<td>

@@ -14,6 +14,8 @@ import net.sf.json.util.CycleDetectionStrategy;
 
 import org.apache.commons.codec.digest.DigestUtils;
 import org.apache.commons.lang.StringUtils;
+import org.apache.struts2.convention.annotation.Action;
+import org.apache.struts2.convention.annotation.Actions;
 import org.apache.struts2.convention.annotation.ParentPackage;
 import org.apache.struts2.convention.annotation.Result;
 import org.apache.struts2.convention.annotation.Results;
@@ -46,7 +48,10 @@ import freemarker.template.TemplateHashModel;
  */
 
 @ParentPackage("admin")
-@Results({ @Result(name = "menuAction", location = "/pda/menu!first.action", type = "redirect") })
+@Results({ 
+	@Result(name = "menuAction"	 ,  location = "/pda/menu!first.action", type = "redirect"  ),
+	@Result(name = "menufpAction",  location = "/pda/menufp!first.action", type = "redirect"),
+	@Result(name = "menurmAction",  location = "/pda/menurm!first.action", type = "redirect")})
 public class AdminAction extends BaseAdminAction {
 
 	private static final long serialVersionUID = -5383463207248344967L;
@@ -151,13 +156,22 @@ public class AdminAction extends BaseAdminAction {
 		return "login";
 	}
 
-	// 后台主页面
+	// 后台主页面--权限区分-登录后进入
 		public String main() {
 			loginUsername = ((String) getSession("SPRING_SECURITY_LAST_USERNAME")).toLowerCase();
 			Admin admin = adminService.get("username", loginUsername);
 			for (Role role : admin.getRoleSet()) {
+				//后台超级管理员
 				if ("ROLE_ADMIN".equals(role.getValue())) {
 					return "index";
+				}
+				//成品仓库管理员
+				else if ("ROLE_FPROOM".equals(role.getValue())){
+					return "menufpAction";
+				}
+				//原材料仓库管理员
+				else if ("ROLE_RMROOM".equals(role.getValue())){
+					return "menurmAction";
 				}
 			}
 			return "menuAction";

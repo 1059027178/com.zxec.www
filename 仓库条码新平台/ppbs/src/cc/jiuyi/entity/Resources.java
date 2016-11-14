@@ -18,11 +18,8 @@ import javax.persistence.Transient;
 @Entity
 @Table(name="Resources")
 public class Resources extends BaseEntity {
-
-	private static final long serialVersionUID = 8931644891304446093L;
-
 	
-	
+	private static final long serialVersionUID = -3491287668841497143L;
 	private String name;// 资源名称
 	private String value;// 资源标识
 	private Boolean isSystem;// 是否为系统内置资源
@@ -44,7 +41,7 @@ public class Resources extends BaseEntity {
 		this.accessResourceSet = accessResourceSet;
 	}
 
-	@OneToMany(fetch = FetchType.LAZY,mappedBy = "resources")
+	@OneToMany(mappedBy = "resources",fetch = FetchType.LAZY)
 	public Set<AccessObject> getAccessobjectSet() {
 		return accessobjectSet;
 	}

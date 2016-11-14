@@ -80,7 +80,7 @@ body {
 										value="${pager.keyword!}" id="form-field-icon-1"> <a
 										id="searchButton2"
 										class="btn btn-white btn-default btn-sm btn-round"> <i
-										class="ace-icon fa fa-filter blue"></i> 搜索 </a>
+										class="ace-icon fa fa-filter blue"></i> 搜 索 </a>
 								</div>
 							</form>
 							<div class="row">

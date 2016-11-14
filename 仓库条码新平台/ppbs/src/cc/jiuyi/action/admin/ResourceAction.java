@@ -1,5 +1,7 @@
 package cc.jiuyi.action.admin;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -7,7 +9,6 @@ import cc.jiuyi.entity.Admin;
 import cc.jiuyi.entity.Resources;
 import cc.jiuyi.service.ResourcesService;
 import cc.jiuyi.util.ThinkWayUtil;
-
 import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
 import net.sf.json.JsonConfig;
@@ -74,10 +75,15 @@ public class ResourceAction extends BaseAdminAction {
 		
 		pager = resourceService.findByPager(pager);
 		
+		DateFormat format = new SimpleDateFormat("yyyy-MM-dd hh:mm");
+		
 		JSONArray jsonarray = new JSONArray();
 		for(int i=0;i < pager.getList().size();i++){
 			Resources resource = (Resources)pager.getList().get(i);
 			JSONObject jsonobject = new JSONObject();
+			jsonobject.put("createDate",format.format(resource.getCreateDate()));
+			jsonobject.put("modifyDate",format.format(resource.getModifyDate()));
+			jsonobject.put("orderlist",resource.getOrderList());
 			jsonobject.put("id", resource.getId());
 			jsonobject.put("name", resource.getName());
 			jsonobject.put("value", resource.getValue());
