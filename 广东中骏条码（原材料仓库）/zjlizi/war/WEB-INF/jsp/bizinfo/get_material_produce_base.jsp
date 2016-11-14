@@ -53,7 +53,7 @@ body {
 			var dt = $("#produceDate").val().split("/");
 			//produceDate = dt[0] + "" + ("0" + dt[1]).substr(-2) + "" + ("0" + dt[2]).substr(-2);
 			produceDate = dt[0] + getStr(dt[1]) + getStr(dt[2]);
-			$("#budat").val(produceDate)
+			$("#budat").val(produceDate);
 		} catch (e) {
 			$("#produceDate").val(date.getFullYear() + "/" + (date.getMonth() + 1) + "/" + date.getDate());
 			alert("错误的日期格式!");
@@ -65,7 +65,7 @@ body {
 	function getStr(str){
 		str += "";
 		if(str.length == 1){
-			str = "0" + str
+			str = "0" + str;
 		}
 		return str;
 	}
@@ -75,8 +75,7 @@ body {
 <body>
 	<form name="form" action="/getMaterialA.do">
 		<div>
-			 <input
-				type="hidden" name="budat" id="budat"/>
+			 <input type="hidden" name="budat" id="budat"/>
 			<ul>
 				<li class="li">工&emsp;&emsp;厂:<input name="werks" class="text"
 					style="background-color:white;" type="text" id="werks" value="3200" />
