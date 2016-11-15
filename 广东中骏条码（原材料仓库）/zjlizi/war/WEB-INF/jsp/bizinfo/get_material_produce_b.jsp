@@ -62,6 +62,11 @@
 				var per = document.getElementById("per" + (i + 1));
 				var pick = document.getElementById("pick" + (i + 1));
 				document.getElementById("requireTotal").value = (per.innerText - pick.innerText);
+				var requireTotal = document.getElementById("requireTotal").value;
+				if (requireTotal == 0){
+					alert("需求数量已全部下架！");return;
+				}
+				//alert("requireTotal = "+ requireTotal);return;
 				document.form.action = "/getMaterialC.do";
 				document.form.submit();
 				return;
