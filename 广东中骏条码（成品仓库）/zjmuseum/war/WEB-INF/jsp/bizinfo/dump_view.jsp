@@ -132,7 +132,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
    		alert("请输入物料编码！");
    		return;
    }
-   if(chk=='1'){
+   if(chk=='0'){
    		var lgpla=document.getElementById("lgpla").value;
    		if(lgpla.length==0){
    			alert("仓位未填写，请填写");
