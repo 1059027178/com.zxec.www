@@ -62,7 +62,7 @@ public class SapUtil {
 	/*public static com.sap.mw.jco.JCO.Client getSAPcon() {
 		Properties logonProperties = new Properties();
 		logonProperties.put("jco.client.sysnr", "00");
-		logonProperties.put("jco.client.ashost", "192.168.0.52");
+		logonProperties.put("jco.client.ashost", "192.168.0.183");
 		logonProperties.put("jco.client.client", "800");
 		logonProperties.put("jco.client.user", "abap7");
 		logonProperties.put("jco.client.passwd", "domino");
@@ -76,7 +76,7 @@ public class SapUtil {
 		if (pool == null) {
 			Properties logonProperties = new Properties();
 			logonProperties.put("jco.client.sysnr", "00");
-			logonProperties.put("jco.client.ashost", "192.168.0.52");
+			logonProperties.put("jco.client.ashost", "192.168.0.183");
 			logonProperties.put("jco.client.client", "800");
 			logonProperties.put("jco.client.user", "abap7");
 			logonProperties.put("jco.client.passwd", "domino");
