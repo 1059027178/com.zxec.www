@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.0.xsd">
+
+	<bean id="userService"
+		class="com.thinkway.cms.business.service.localimpl.UserServiceImpl">
+	</bean>
+	<bean id="delordpicService"
+		class="com.thinkway.cms.business.service.localimpl.DelOrdPicServiceImpl">
+	</bean>
+	<bean id="deliveryService"
+		class="com.thinkway.cms.business.service.localimpl.DeliveryServiceImpl">
+	</bean>
+	<bean id="dellockuserService"
+		class="com.thinkway.cms.business.service.localimpl.DelLockUserServiceImpl">
+	</bean>
+	<bean id="hrminfoService"
+	   class="com.thinkway.cms.business.service.localimpl.hrminfoServiceImpl">
+	</bean>
+</beans>
