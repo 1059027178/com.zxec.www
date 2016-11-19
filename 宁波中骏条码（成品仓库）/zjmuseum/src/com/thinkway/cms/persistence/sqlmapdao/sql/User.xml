@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE sqlMap
+    PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"
+    "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="User">
+
+  <!-- Use type aliases to avoid typing the full classname every time. -->
+  <typeAlias alias="User" type="com.thinkway.cms.business.domains.User"/>
+
+  <!-- Result maps describe the mapping between the columns returned
+       from a query, and the class properties.  A result map isn't
+       necessary if the columns (or aliases) match to the properties
+       exactly. -->
+  <resultMap id="UserResult" class="User">
+    <result property="userId" column="userId"/>
+    <result property="userName" column="userName"/>
+    <result property="userBH" column="userBH"/>
+    <result property="userPassword" column="userPassword"/>   
+    <result property="userFunction" column="userFunction"/> 
+    <result property="createUser" column="createUser" />
+	<result property="createDate" column="createDate" />
+	<result property="updateUser" column="updateUser" />
+	<result property="updateDate" column="updateDate" />
+  </resultMap>
+  
+  <cacheModel id="user-cache" type="LRU"> 
+	 <flushInterval hours="24"/> 
+	 <flushOnExecute statement="createUser"/> 
+	 <flushOnExecute statement="updateUser"/> 
+	 <flushOnExecute statement="deleteUserById"/> 
+	 <flushOnExecute statement="deleteUsersByIds"/> 
+	 <property name="size" value="24" /> 
+</cacheModel> 
+  
+
+ <!-- whereClause definition-->
+  	<sql id="userQueryClause">
+    <dynamic>
+			<isNotNull prepend="AND" property="userBH">
+				(A.userBH = #userBH#)
+			</isNotNull>
+			<isNotNull prepend="AND" property="userId">
+				(A.userId = #userId#)
+			</isNotNull>
+			<isNotNull prepend="AND" property="userName">
+				(A.userName  like '%'  ||  #userName#  ||  '%' )
+			</isNotNull>			
+		</dynamic>
+	</sql>
+  	<sql id="pageSQLUser">
+	    ORDER BY $sort$ $sdir$ 
+	</sql>
+	
+
+  <select id="getAllUsersByKW" resultMap="UserResult" parameterClass="Map" resultClass="List" cacheModel="user-cache">
+    select A.userId,
+           A.userName,
+           A.userBH,
+           A.userPassword,
+           A.userFunction,
+           A.createUser,
+           A.createDate,
+           A.updateUser,
+           A.updateDate
+    from userTable A 
+    where A.isDel = 'N'
+	<include refid="userQueryClause"/>	
+	<include refid="pageSQLUser" />
+  </select>
+    
+	<select id="getUsersCount"  resultClass="int" parameterClass="Map" cacheModel="user-cache">
+	SELECT COUNT(*) FROM userTable A where A.isDel = 'N'
+	<include refid="userQueryClause"/>	
+  	</select>	
+  	
+  <!-- A simpler select example without the result map.  Note the
+       aliases to match the properties of the target result class. -->
+  <select id="getUserById" parameterClass="int" resultClass="User" cacheModel="user-cache">
+    select A.userId,
+           A.userName,
+           A.userBH,
+           A.userPassword,
+           A.userFunction,
+           A.createUser,
+           A.createDate,
+           A.updateUser,
+           A.updateDate
+    from userTable A 
+    where A.userId = #userId# and A.isDel = 'N'
+  </select>
+  
+  <select id="findUserForLogin" parameterClass="User" resultClass="User" cacheModel="user-cache">
+    select
+      userId as userId,
+      userName as userName,
+      userBH as userBH,
+      userPassword as userPassword,
+      userFunction as userFunction,
+		  createUser as createUser,
+		  createDate as createDate,
+		  updateUser as updateUser,
+		  updateDate as updateDate
+    from userTable
+    where userBH = #userBH#
+    and userPassword = #userPassword#
+    and isDel = 'N'
+  </select>
+
+  <!-- Insert example, using the User parameter class -->
+  <insert id="createUser" parameterClass="User">
+    insert into userTable (
+      userId,
+      userName,
+      userBH,
+      userPassword,userFunction,createUser,createDate,updateUser,updateDate
+    )values (
+      #userId#,#userName#, #userBH#, #userPassword#, #userFunction#,#createUser#,#createDate#,#updateUser#,#updateDate#
+    )
+  </insert>
+
+  <!-- Update example, using the User parameter class -->
+  <update id="updateUser" parameterClass="User">
+    update userTable set
+      userName = #userName#,
+      userBH = #userBH#,
+      userPassword = #userPassword#,
+      userFunction = #userFunction#,
+	  createUser = #createUser#,
+	  createDate = #createDate#,
+	  updateUser = #updateUser#,
+	  updateDate = #updateDate#
+    where
+      userId = #userId#
+  </update>
+
+  <!-- Delete example, using an integer as the parameter class -->
+  <delete id="deleteUserById" parameterClass="Integer">
+    update userTable set isDel = 'Y' where userId = #userId#
+   </delete>
+
+<delete id="deleteUsersByIds"  parameterClass="List">
+      update userTable set isDel = 'Y' Where userId in 
+      <iterate open="(" close=")" conjunction=",">  
+        #values[]#
+     </iterate> 
+    </delete>  
+</sqlMap>

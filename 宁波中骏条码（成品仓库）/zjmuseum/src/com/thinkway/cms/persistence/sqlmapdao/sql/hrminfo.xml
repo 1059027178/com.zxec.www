@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE sqlMap
+    PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"
+    "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="hrminfo">
+
+  <!-- Use type aliases to avoid typing the full classname every time. -->
+  <typeAlias alias="hrminfo" type="com.thinkway.cms.business.domains.hrminfo"/>
+
+  <!-- Result maps describe the mapping between the columns returned
+       from a query, and the class properties.  A result map isn't
+       necessary if the columns (or aliases) match to the properties
+       exactly. 
+       -->
+  <resultMap id="hrminfoResult" class="hrminfo">
+    <result property="hrminfoId" column="hrminfoId"/>  
+	<result property="objno" column="objno"/>
+	<result property="name" column="name"/>
+	<result property="department" column="department"/>
+	<result property="sex" column="sex"/>
+
+  </resultMap>
+  
+  
+  <cacheModel id="hrminfo-cache"  type="LRU"> 
+	 <flushInterval hours="24"/> 
+	 <flushOnExecute statement="createhrminfo"/> 
+	 <flushOnExecute statement="updatehrminfo"/> 
+	 <flushOnExecute statement="deletehrminfo"/> 
+	 <flushOnExecute statement="deletehrminfoByIds"/> 
+	 <property name="size" value="1000" /> 
+</cacheModel> 
+
+  <select id="gethrminfoById" parameterClass="String" resultClass="hrminfo" cacheModel="hrminfo-cache">
+    select A.hrminfoId,
+	A.objno,
+	A.name,
+	A.department,
+	A.sex
+ from hrminfo A where A.hrminfoId = #hrminfoId#
+  </select>
+  
+  
+    <!-- goodsQueryClause definition-->
+  	<sql id="hrminfoQueryClause">
+    <dynamic>
+			<isNotNull prepend="AND" property="hrminfoId">
+				(A.hrminfoId = #hrminfoId#)
+			</isNotNull>
+		</dynamic>
+	</sql>
+	
+  <sql id="pageSQLhrminfo">
+	  	ORDER BY $sort$ $sdir$
+	</sql>
+    
+  <select id="getAllhrminfos" resultMap="hrminfoResult" parameterClass="Map" resultClass="List" cacheModel="hrminfo-cache">
+    select A.hrminfoId,
+	A.objno,
+	A.name,
+	A.department,
+	A.sex
+ from hrminfo A where A.isDel = 'N'
+    <include refid="hrminfoQueryClause"/>	
+    <include refid="pageSQLhrminfo" />
+  </select>
+  
+
+	
+  <select id="getAllhrminfosCount" resultClass="int" cacheModel="hrminfo-cache">
+    select COUNT(*) from hrminfo A where A.isDel = 'N'
+    <include refid="hrminfoQueryClause"/>
+  </select>
+    
+  <insert id="createhrminfo" parameterClass="hrminfo">
+    insert into hrminfo (
+      hrminfoId,
+	objno,
+	name,
+	department,
+	sex
+    ) values (
+      #hrminfoId#,
+	  #objno#,
+	  #name#,
+	  #department#,
+	  #sex#
+    )
+  </insert>
+  
+  <delete id="deletehrminfo" parameterClass="String">
+     update hrminfo set isDel = 'Y'  where hrminfoId = #hrminfoId#
+  </delete>
+
+  <update id="updatehrminfo" parameterClass="hrminfo">
+      update hrminfo set      
+	  objno = #objno#,
+	  name = #name#,
+	  department = #department#,
+	  sex = #sex#
+    where
+      hrminfoId = #hrminfoId#
+  </update>
+  
+  <delete id="deletehrminfoByIds"  parameterClass="List">
+      update hrminfo set isDel = 'Y' where hrminfoId in 
+      <iterate open="(" close=")" conjunction=",">  
+        #values[]#
+     </iterate> 
+    </delete>  
+  
+  
+  
+</sqlMap>
