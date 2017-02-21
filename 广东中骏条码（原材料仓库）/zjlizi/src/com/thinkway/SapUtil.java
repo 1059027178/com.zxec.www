@@ -28,15 +28,15 @@ public class SapUtil {
 	public static JCO.Client getSAPcon() {
 		Properties logonProperties = new Properties();
 		logonProperties.put("jco.client.sysnr", "00");
-		logonProperties.put("jco.client.ashost", "192.168.0.50");
+		logonProperties.put("jco.client.ashost", "192.168.0.182");
 		logonProperties.put("jco.client.client", "667");
 		logonProperties.put("jco.client.user", "abap7");
-		logonProperties.put("jco.client.passwd", "123456");
+		logonProperties.put("jco.client.passwd", "121212");
 		logonProperties.put("jco.client.CodePage", "8400");
 		JCO.Client myConnection = JCO.createClient(logonProperties);
 		return myConnection;
 	}
-	public static JCO.Client getSAPconEn() {
+	/*public static JCO.Client getSAPconEn() {
 		JCO.Pool pool = JCO.getClientPoolManager().getPool(POOL_NAME);
 		JCO.Client myConnection = null;
 		if (pool == null) {
@@ -52,7 +52,7 @@ public class SapUtil {
 		}
 		myConnection = JCO.getClient(POOL_NAME);
 		return myConnection;
-	}
+	}*/
 	/**
 	 * SAP生产机地址
 	 * @author qianyang
