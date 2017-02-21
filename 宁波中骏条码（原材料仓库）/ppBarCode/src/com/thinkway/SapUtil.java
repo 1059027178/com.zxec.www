@@ -28,10 +28,10 @@ public class SapUtil {
 	public static JCO.Client getSAPcon() {
 		Properties logonProperties = new Properties();
 		logonProperties.put("jco.client.sysnr", "00");
-		logonProperties.put("jco.client.ashost", "192.168.0.50");
+		logonProperties.put("jco.client.ashost", "192.168.0.182");
 		logonProperties.put("jco.client.client", "667");
 		logonProperties.put("jco.client.user", "abap7");
-		logonProperties.put("jco.client.passwd", "123456");
+		logonProperties.put("jco.client.passwd", "121212");
 		logonProperties.put("jco.client.CodePage", "8400");
 		JCO.Client myConnection = JCO.createClient(logonProperties);
 		return myConnection;
