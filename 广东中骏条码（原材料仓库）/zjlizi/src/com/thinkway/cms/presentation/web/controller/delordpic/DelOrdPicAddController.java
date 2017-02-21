@@ -119,7 +119,8 @@ public class DelOrdPicAddController implements Controller , AuthenticateControll
 			double menge=0;
 		
 		 	JCO.Client myConnection =null;
-			myConnection =SapUtil.getSAPconEn();
+//			myConnection =SapUtil.getSAPconEn();
+			myConnection =SapUtil.getSAPcon();
 		    myConnection.connect(); 
 			String functionName="ZFM_BC_04_41";//函数的名字
 		    JCO.Repository myRepository = new JCO.Repository("Repository",myConnection); //只是一個名字
