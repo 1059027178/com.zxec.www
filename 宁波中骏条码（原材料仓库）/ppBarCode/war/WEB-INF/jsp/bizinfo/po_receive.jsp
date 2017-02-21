@@ -17,9 +17,10 @@
 	<form id="form" name="form" action="/groundingAdd.do" method="post"
 		onsubmit="return false;">
 		<div id="page1">
-			<input type="hidden" id="poNumber"><input type="hidden"
-				id="supplier"><input type="hidden" id="supplierBatch"><input
-						type="hidden" id="produceDate">
+			<input type="hidden" id="poNumber">
+			<input type="hidden" id="supplier">
+			<input type="hidden" id="supplierBatch">
+			<input type="hidden" id="produceDate">
 							<div style="padding-top:35px;">
 								<ul>
 									<li style="height:15px;list-style-type:none;">PO收货:<input
@@ -27,11 +28,15 @@
 										style="white-space：nowrap;width:140px;" id="barcodes">
 									</li>
 									<li class="li"></li>
-									<li class="li">采购订单：<input class="text" readonly=readonly
+									<!-- <li class="li">采购订单：<input class="text" readonly=readonly
 										type="text" id="purchaseOrder" style="width:85px;"><input
 											class="text" readonly=readonly type="text"
 											style="width:30px;" id="lineItem">
+									</li> -->
+									<li class="li">供应商：<input class="text" readonly=readonly
+										type="text" id="lifnr" style="width:120px;margin-left:20px;" name="lifnr">
 									</li>
+									
 									<li class="li">物料编码：<input class="text" readonly=readonly
 										type="text" id="materialId" style="width:120px;" name="matnr">
 									</li>
@@ -93,6 +98,7 @@
 				$("#purchaseOrder").val(barcodes[0]);
 				$("#lineItem").val(barcodes[1]);
 				$("#supplier").val(barcodes[2]);
+				$("#lifnr").val(barcodes[2]);
 				$("#materialId").val(barcodes[3]);
 				$("#perAmount").val(barcodes[4]);
 				$("#unit").val(barcodes[5]);
@@ -100,6 +106,7 @@
 				$("#batch").val(barcodes[7]);
 				$("#produceDate").val(barcodes[10]);
 				$("#supplierBatch").val(barcodes[11]);
+				//$("#description").val(barcodes[12]);
 				getMaktx(barcodes[3]);
 				$("#pockets").focus();
 			}
@@ -115,6 +122,7 @@
 					$("#purchaseOrder").val(barcodes[0]);
 					$("#lineItem").val(barcodes[1]);
 					$("#supplier").val(barcodes[2]);
+					$("#lifnr").val(barcodes[2]);
 					$("#materialId").val(barcodes[3]);
 					$("#perAmount").val(barcodes[4]);
 					$("#unit").val(barcodes[5]);
@@ -122,6 +130,7 @@
 					$("#batch").val(barcodes[7]);
 					$("#produceDate").val(barcodes[10]);
 					$("#supplierBatch").val(barcodes[11]);
+					//$("#description").val(barcodes[12]);
 					getMaktx(barcodes[3]);
 					$("#pockets").focus();
 				}
@@ -176,7 +185,7 @@
 					url : '/poReceive.do',
 					async : false,
 					type : "post",
-					data : {
+					/*data : {
 						"purchaseOrder" : $("#purchaseOrder").val(),
 						"lineItem" : $("#lineItem").val(),
 						"supplier" : $("#supplier").val(),
@@ -190,6 +199,19 @@
 						"totalAmount" : $("#totalAmount").val(),
 						"storageLocation" : $("#storageLocation").val(),
 						"interface" : "ZFM_BC_14_11",
+						"showType" : "poReceive"
+					},*/
+					data : {
+						"supplier" : $("#supplier").val(),
+						"lifnr" : $("#lifnr").val(),
+						"materialId" : $("#materialId").val(),
+						"description" : $("#description").val(),
+						"storageLocation" : $("#storageLocation").val(),
+						"batch" : $("#batch").val(),
+						"produceDate" : $("#produceDate").val(),
+						"supplierBatch" : $("#supplierBatch").val(),
+						"totalAmount" : $("#totalAmount").val(),
+						"interface" : "ZRFC_MM_WRITE_MIGO",
 						"showType" : "poReceive"
 					},
 					dataType : 'json',

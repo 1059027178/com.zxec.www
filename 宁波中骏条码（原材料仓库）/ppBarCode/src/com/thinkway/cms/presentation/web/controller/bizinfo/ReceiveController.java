@@ -27,7 +27,7 @@ public class ReceiveController extends MultiActionController implements Authenti
 
 	public ModelAndView poReceive(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		SAPRequest sapRequest = new SAPRequest(SapUtil.null2String(request.getParameter("interface")));
-		sapRequest.addParameter("I_UID", "" + request.getSession().getAttribute(SessionManager.USER_ID));
+		/*sapRequest.addParameter("I_UID", "" + request.getSession().getAttribute(SessionManager.USER_ID));
 		sapRequest.addParameter("I_PID", "" + request.getSession().getAttribute(SessionManager.USER_NAME));
 		sapRequest.addParameter("I_EBELN", SapUtil.null2String(request.getParameter("purchaseOrder")));
 		sapRequest.addParameter("I_EBELP", SapUtil.null2String(request.getParameter("lineItem")));
@@ -35,9 +35,30 @@ public class ReceiveController extends MultiActionController implements Authenti
 		sapRequest.addParameter("I_MEINS", SapUtil.null2String(request.getParameter("unit")));
 		sapRequest.addParameter("I_LGORT", SapUtil.null2String(request.getParameter("storageLocation")));
 		sapRequest.addParameter("I_CHARG", SapUtil.null2String(request.getParameter("batch")));
-		//		sapRequest.addParameter("I_SOBKZ", SapUtil.null2String(request.getParameter("supplierBatch")));//?特殊库存类型
 		sapRequest.addParameter("I_CHARG_G", SapUtil.null2String(request.getParameter("supplierBatch")));
-		sapRequest.addParameter("I_BUDAT_G", SapUtil.null2String(request.getParameter("produceDate")));
+		sapRequest.addParameter("I_BUDAT_G", SapUtil.null2String(request.getParameter("produceDate")));*/
+		/**
+		 * 20161221修改
+		 * 作者：qy
+		 */
+		sapRequest.addParameter("I_USERID", "" + request.getSession().getAttribute(SessionManager.USER_ID));
+		sapRequest.addParameter("I_USERNAME", "" + request.getSession().getAttribute(SessionManager.USER_NAME));
+		sapRequest.addParameter("I_WERKS", "3100");
+		sapRequest.addParameter("I_LIFNR", SapUtil.null2String(request.getParameter("lifnr")));
+		sapRequest.addParameter("I_LGORT", SapUtil.null2String(request.getParameter("storageLocation")));
+		sapRequest.addParameter("I_CHARG", SapUtil.null2String(request.getParameter("batch")));
+		sapRequest.addParameter("I_HSDAT", SapUtil.null2String(request.getParameter("produceDate")));
+		sapRequest.addParameter("I_LICHA", SapUtil.null2String(request.getParameter("supplierBatch")));
+		sapRequest.addParameter("I_MENGE", SapUtil.null2String(request.getParameter("totalAmount")));
+		//如果无物料编码--则将物料描述传入物料编码
+		String materialId = SapUtil.null2String(request.getParameter("materialId"));
+		if(!materialId.equals("")){
+			sapRequest.addParameter("I_MATNR", SapUtil.null2String(request.getParameter("materialId")));
+		}else{
+			sapRequest.addParameter("I_MATNR", SapUtil.null2String(request.getParameter("description")));
+			System.out.println("物料描述 == " + SapUtil.null2String(request.getParameter("description")));
+		}
+		
 		SAPModel model = SapUtil.OperSAP(sapRequest);
 		if ("E".equals(model.getOuts().getStructure("ES_RETURN").getString("MSGTY"))) {
 			response.getWriter().write(
