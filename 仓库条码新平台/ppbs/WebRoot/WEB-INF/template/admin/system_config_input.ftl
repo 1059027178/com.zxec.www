@@ -10,7 +10,7 @@
 <#include "/WEB-INF/template/common/include.ftl">
 <link href="${base}/template/admin/css/input.css" rel="stylesheet" type="text/css" />
 <script type="text/javascript">
-$().ready(function() {
+$(function() {
 
 	var $isLoginFailureLockInput = $("input[name='systemConfig.isLoginFailureLock']");
 	var $loginFailureLockCountTr = $("#loginFailureLockCountTr");
@@ -46,7 +46,6 @@ $().ready(function() {
 			$loginFailureLockTimeTr.hide();
 		}
 	});
-	
 	// SMTP测试窗口
 	$showSmtpTestWindow.click( function() {
 		var windowHtml = '<form id="smtpTestForm" action="mail!ajaxSendSmtpTest.action"><input type="hidden" name="smtpFromMail" class="{required: true, email: true, messages: {required: \'请填写发件人邮箱!\', email: \'发件人邮箱格式错误!\'}}" value="' + $smtpFromMail.val() + '" /><input type="hidden" name="smtpHost" value="' + $smtpHost.val() + '" class="{required: true, messages: {required: \'请填写SMTP服务器地址!\'}}" /><input type="hidden" name="smtpPort" value="' + $smtpPort.val() + '" class="{required: true, digits: true, messages: {required: \'请填写SMTP服务器端口!\', digits: \'SMTP服务器端口必须为零或正整数!\'}}" /><input type="hidden" name="smtpUsername" value="' + $smtpUsername.val() + '" class="{required: true, messages: {required: \'请填写SMTP会员编号!\'}}" /><input type="hidden" name="smtpPassword" value="' + $smtpPassword.val() + '" class="{required: true, messages: {required: \'请填写SMTP密码!\'}}" />收件人邮箱：<input type="text" name="smtpToMail" class="formText {required: true, email: true, messages: {required: \'请填写收件人邮箱!\', email: \'收件人邮箱格式错误!\'}}" /><div class="blank1"></div><p id="smtpTestStatus"></p><div class="blank1"></div><input type="submit" class="formButton" value="测试发送" /></form>';
@@ -94,6 +93,32 @@ $().ready(function() {
 			$pointScale.addClass("ignoreValidate");
 			$pointScaleTr.hide();
 		}
+	});
+	//SAP配置测试
+	$showSapTestWindow.click(function (){
+		$.ajax({
+			url : 'test_conn_sap!testconn.action',
+			async:false,
+			type:"post",
+			data:{
+				"sapHost":$sapHost.val(),
+				"sapClient":$sapClient.val(),
+				"sapSysnr":$sapSysnr.val(),
+				"sapUser":$sapUser.val(),
+				"sapPasswd":$sapPasswd.val(),
+				"sapLang":$sapLang.val(),
+				"sapCodePage":$sapCodePage.val()
+			},
+			dataType : 'json',
+			success : function(result) {
+				if (result["msgType"] != "E") {
+					alert("success");
+				}
+			},
+			error:function(){
+		       alert("系统异常，请联系管理员");
+		    }
+		});
 	});
 	
 })
@@ -236,7 +261,7 @@ body{background:#fff;}
 						SAP密码:
 					</th>
 					<td>
-						<input type="password" name="systemConfig.sapPasswd" class="formText" title="留空则不进行密码修改" />
+						<input type="text" name="systemConfig.sapPasswd" class="formText" value="${(systemConfig.sapPasswd)!}"  />
 					</td>
 				</tr>
 				<tr>
