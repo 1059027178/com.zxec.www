@@ -34,7 +34,7 @@ function matQuy(){
 		 	document.getElementById("matnr").value=str[1];
 		 	document.getElementById("lgort").value=str[7];
 		 	document.getElementById("charg").value=str[4];
-		 	document.getElementById("werks").value="3200";
+		 	//document.getElementById("werks").value="3300";
 		 	
 		 	jQuery.ajax({
 				url:'/matquyJson.do',
@@ -104,7 +104,7 @@ function matQuy(){
     			批  &nbsp;&nbsp; 次：<input  type="text" class="text" style="width:90px;background-color:white;" id="charg" name="charg"  value=""/>
     		</li>
     		<li class="li">
-    		工  &nbsp;&nbsp; 厂：<input  type="text" class="text" id="werks" style="width:90px;background-color:white;" name="werks"  value=""/></td>
+    		工  &nbsp;&nbsp; 厂：<input  type="text" class="text" id="werks" style="width:90px;background-color:white;" name="werks"  value="3300"/></td>
     		</li>
     <li class="li"></li>
      <li class="li">

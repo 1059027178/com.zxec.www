@@ -52,7 +52,7 @@ function reset(){
     			≤÷Œª∫≈£∫<input style="width:60%" type="text" id="lgpla" name="lgpla"  value=""/>
     		</li>
     		<li class="li">
-    			≤÷ø‚∫≈£∫<input style="width:60%" type="text" id="lgnum" name="lgnum"  value="320"/>
+    			≤÷ø‚∫≈£∫<input style="width:60%" type="text" id="lgnum" name="lgnum"  value="330"/>
     		</li>
     		<li class="li"></li>
     			<li class="li" align="left">

@@ -132,13 +132,13 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
    		alert("请输入物料编码！");
    		return;
    }
-   if(chk=='0'){
+   /* if(chk=='0'){
    		var lgpla=document.getElementById("lgpla").value;
    		if(lgpla.length==0){
    			alert("仓位未填写，请填写");
    			return;
    		}
-   }
+   } */
   	document.form.submit();
   }
   function reset(){
@@ -160,7 +160,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   <input type="hidden" name="lgort" id="lgort" >
   <input type="hidden" name="meng" id="meng" >
   <input type="hidden" name="maktx" id="maktx" >
-  <input type="hidden" name="werks" id="werks"  value="3200" >
+  <input type="hidden" name="werks" id="werks"  value="3300" >
   <input type="hidden" name="meins" id="meins" >
   <input type="hidden" name="lgort_to" id="lgort_to" >
   <input type="hidden" name="charg_to" id="charg_to" >
@@ -170,11 +170,11 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   			<li class="li">物料编码：<input name="matnr" class="text"  readonly=readonly type="text" id="matnr"></li>
 			<li class="li">批&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;次：<input name="charg" readonly=readonly class="text"  type="text"  id="charg"></li>
   			<li class="li">特殊库存：<input name="sobkz" style="width:20px;" type="text" style="width:17%" id="sobkz" class="text"><input name="sonum" readonly=readonly style="width:40.5%;" type="text" class="text"  id="sonum"></li>
-  			<li class="li">仓<span style="margin-left:7px;"></span>库<span style="margin-left:7px;"></span>号：<input name="lgnum" class="text3"  type="text"  id="lgnum" value="320"></li>
+  			<li class="li">仓<span style="margin-left:7px;"></span>库<span style="margin-left:7px;"></span>号：<input name="lgnum" class="text3"  type="text"  id="lgnum" value="330"></li>
   			<li class="li">仓<span style="margin-left:7px;"></span>位<span style="margin-left:7px;"></span>号：<input name="lgpla" class="text3"  type="text"  id="lgpla"></li>
-  			<li class="li"><input name="radio" style="width:20px;" onclick="chooseRadio3();" checked=checked type="radio" id="radio1" value="1">下架转储出库</input></li>
-     	<li class="li"><input name="radio" style="width:20px;" type="radio" onclick="chooseRadio3();" id="radio2" value="2" >直接转储出入库</input></li>
-     	<li class="li"><input name="radio" style="width:20px;" type="radio" onclick="chooseRadio3();" id="radio3" value="3" >质检过账</input></li>
+  			<!-- <li class="li"><input name="radio" style="width:20px;" onclick="chooseRadio3();"  type="radio" id="radio1" value="1">下架转储出库</input></li> -->
+     	<li class="li"><input name="radio" style="width:20px;" type="radio" onclick="chooseRadio3();" checked=checked id="radio2" value="2" >直接转储出入库</input></li>
+     	<!-- <li class="li"><input name="radio" style="width:20px;" type="radio" onclick="chooseRadio3();" id="radio3" value="3" >质检过账</input></li> -->
   			<li class="li">
   			<input type="button" valign="center" style="width:40px;height:25px;margin-left:-30px;margin-top: 30px;" class="button" onclick="submit1(this);" value="确定"/>
   			<input  class="button"  type="button" style="width:40px;height:25px;" onclick="forward();" value="返回"/>

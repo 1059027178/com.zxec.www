@@ -49,7 +49,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   <div>
      <ul>
      <li class="li"></li>
-		<li class="li">仓<span style="width:7px;"></span>库<span style="width:7px;"></span>号：<input name="lgnum" class="text" style="width:90px;background-color:white;" type="text" id="lgnum" value="320">	
+		<li class="li">仓<span style="width:7px;"></span>库<span style="width:7px;"></span>号：<input name="lgnum" class="text" style="width:90px;background-color:white;" type="text" id="lgnum" value="330">	
  		</li>
 		<li class="li">移动类型：<input name="bwlvs" class="text" style="width:90px;background-color:white;" type="text" id="bwlvs">	
  		</li>
