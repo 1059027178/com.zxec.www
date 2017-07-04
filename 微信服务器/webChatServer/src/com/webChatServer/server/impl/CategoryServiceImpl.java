@@ -1,6 +1,7 @@
 package com.webChatServer.server.impl;
 
 import org.hibernate.Session;
+import org.hibernate.SessionFactory;
 
 import com.webChatServer.model.Category;
 import com.webChatServer.server.iface.CategoryService;
@@ -28,5 +29,21 @@ public class CategoryServiceImpl implements CategoryService{
 			HibernateSessionFactory.closeSession();
 		}
 	}
+	/***spring与hibernate整合后的环境***/
+	/*private SessionFactory sessionFactory;
+	//当需要使用sessoinFactory的时候，Spring会将sessionFactory注入进来  
+	public void setSessionFactory(SessionFactory sessionFactory) {
+		this.sessionFactory = sessionFactory;
+	}
+	//从当前线程获取session，如果没有则创建一个新的session  
+	protected Session getSession() {
+		return sessionFactory.getCurrentSession();
+	}
+	@Override
+	public void update(Category category) {
+		// TODO Auto-generated method stub
+		getSession().update(category);
+	}*/
+	
 	
 }
