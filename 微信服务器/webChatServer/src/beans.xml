@@ -19,7 +19,17 @@
 		http://www.springframework.org/schema/tx 
 		http://www.springframework.org/schema/tx/spring-tx-3.2.xsd">
 		
-		<!-- 测试spring 是否配置正确 -->
+<!-- 测试spring 是否配置正确 -->
 		<bean id="date" class="java.util.Date"/>
 		
 </beans>
+
+
+
+
+
+
+
+
+
+

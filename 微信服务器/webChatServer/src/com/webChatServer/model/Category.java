@@ -1,11 +1,16 @@
 package com.webChatServer.model;
 
 import java.math.BigDecimal;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
+
+import org.hibernate.annotations.GenericGenerator;
 
 /**
  * Category entity. @author MyEclipse Persistence Tools
@@ -13,7 +18,6 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "CATEGORY", schema = "WEIXINTEST")
 public class Category implements java.io.Serializable {
-
 	// Fields
 
 	private BigDecimal ctId;
@@ -33,9 +37,16 @@ public class Category implements java.io.Serializable {
 	}
 
 	// Property accessors
+	/**
+	 * 【在hibernate中一般只使用序列来解决自增长问题】：
+	 * 1.在数据库中新增序列,具体oracle sql如下：
+	 * oracle sql ：create sequence seq_on_test increment by 1 start with 1 nomaxvalue nocycle nocache;
+	 * 2.设置对应序列的信息（名称、每次增加多少）。
+	 */
 	@Id
-	@GeneratedValue
-	@Column(name = "CT_ID", unique = true, nullable = false, precision = 22, scale = 0)
+	@GeneratedValue(strategy=GenerationType.SEQUENCE,generator="SEQ_ON_TEST")
+	@SequenceGenerator(name="SEQ_ON_TEST",sequenceName="SEQ_ON_TEST",allocationSize=1)
+	@Column(name = "CT_ID", unique = true, nullable = true, precision = 22, scale = 0)
 	public BigDecimal getCtId() {
 		return this.ctId;
 	}

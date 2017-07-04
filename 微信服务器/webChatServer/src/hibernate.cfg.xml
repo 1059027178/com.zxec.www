@@ -9,6 +9,7 @@
 		<property name="dialect">
 			org.hibernate.dialect.OracleDialect
 		</property>
+		
 		<property name="connection.url">
 			jdbc:oracle:thin:@192.168.0.95:1521:ORCL
 		</property>
@@ -17,10 +18,9 @@
 		<property name="connection.driver_class">
 			oracle.jdbc.OracleDriver
 		</property>
-		<property name="myeclipse.connection.profile">
-			192.168.0.95
-		</property>
-
+		
+		<!-- 使用注解时实体PO对象需要在*hibernate.cfg.xml 文件中配置 -->
+		<mapping class="com.webChatServer.model.Category" />
 	</session-factory>
-
+	
 </hibernate-configuration>
