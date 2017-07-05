@@ -46,15 +46,15 @@ public class TestSSHConfig {
 /**【测试Hibernate与spring的整合】**/
 	@Resource
 	private CategoryService categoryService;
-	
+	/*
 	@Test
 	public void hibernateAndSpringNew(){
 		categoryService.save(new Category("服装1", 1));
 	}
-	
+	*/
 	@Test
 	public void hibernateAndSpring(){
-		categoryService.update(new Category(10,"裙子", 0));
+		categoryService.update(new Category(11,"裙子2", 0));
 	}
 }
 
