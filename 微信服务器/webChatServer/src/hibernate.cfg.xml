@@ -9,7 +9,8 @@
 		<property name="dialect">
 			org.hibernate.dialect.OracleDialect
 		</property>
-		
+		<!-- 将spring和hibernate进行整合时，需要将此配置放于spring的beans.xml中管理 -->
+		<!-- 
 		<property name="connection.url">
 			jdbc:oracle:thin:@192.168.0.95:1521:ORCL
 		</property>
@@ -18,7 +19,7 @@
 		<property name="connection.driver_class">
 			oracle.jdbc.OracleDriver
 		</property>
-		
+		 -->
 		<!-- 使用注解时实体PO对象需要在*hibernate.cfg.xml 文件中配置 -->
 		<mapping class="com.webChatServer.model.Category" />
 	</session-factory>

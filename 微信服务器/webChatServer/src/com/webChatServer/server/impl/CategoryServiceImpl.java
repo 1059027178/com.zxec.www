@@ -9,7 +9,8 @@ import com.webChatServer.utils.HibernateSessionFactory;
 
 public class CategoryServiceImpl implements CategoryService{
 
-	@Override //没有和Spring整合的情况  
+/**【没有和Spring整合的情况 】**/
+	/*@Override 
 	public void save(Category category) {
 		// TODO Auto-generated method stub
 		Session session = HibernateSessionFactory.getSession();
@@ -28,9 +29,10 @@ public class CategoryServiceImpl implements CategoryService{
 		}finally{
 			HibernateSessionFactory.closeSession();
 		}
-	}
-	/***spring与hibernate整合后的环境***/
-	/*private SessionFactory sessionFactory;
+	}*/
+	
+/***【spring与hibernate整合后的环境】***/
+	private SessionFactory sessionFactory;
 	//当需要使用sessoinFactory的时候，Spring会将sessionFactory注入进来  
 	public void setSessionFactory(SessionFactory sessionFactory) {
 		this.sessionFactory = sessionFactory;
@@ -39,11 +41,16 @@ public class CategoryServiceImpl implements CategoryService{
 	protected Session getSession() {
 		return sessionFactory.getCurrentSession();
 	}
+	@Override 
+	public void save(Category category) {
+		getSession().save(category);
+	}
+	
 	@Override
 	public void update(Category category) {
 		// TODO Auto-generated method stub
 		getSession().update(category);
-	}*/
+	}
 	
 	
 }
