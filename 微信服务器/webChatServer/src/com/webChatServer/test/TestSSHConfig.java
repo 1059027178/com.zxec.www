@@ -30,19 +30,32 @@ import com.webChatServer.server.impl.CategoryServiceImpl;
 public class TestSSHConfig {
 	@Resource
 	private Date date;
-	
-	@Test//测试Spring IOC的开发环境  
+	//*****************测试Spring IOC的开发环境  
+	@Test
 	public void springIOC(){
 		System.out.println(date);
 	}
-	
-	@Test//测试Hibernate的开发环境，因为没有整合，可以直接new  
+/**【测试Hibernate的开发环境，因为没有整合，可以直接new】**/
+	/*@Test
 	public void hibernate(){
 		CategoryService categoryService = new CategoryServiceImpl();
-		Category category = new Category("男士运动服12", 1);
+		Category category = new Category(2,"服装2", 1);
 		categoryService.save(category);
+	}*/
+	
+/**【测试Hibernate与spring的整合】**/
+	@Resource
+	private CategoryService categoryService;
+	
+	@Test
+	public void hibernateAndSpringNew(){
+		categoryService.save(new Category("服装1", 1));
 	}
 	
+	@Test
+	public void hibernateAndSpring(){
+		categoryService.update(new Category(10,"裙子", 0));
+	}
 }
 
 

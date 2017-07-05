@@ -20,7 +20,7 @@ import org.hibernate.annotations.GenericGenerator;
 public class Category implements java.io.Serializable {
 	// Fields
 
-	private BigDecimal ctId;
+	private int ctId;
 	private String ctType;
 	private int hot;
 
@@ -36,6 +36,13 @@ public class Category implements java.io.Serializable {
 		this.hot = hot;
 	}
 
+	public Category(int ctId, String ctType, int hot) {
+		// TODO Auto-generated constructor stub
+		this.ctId = ctId;
+		this.ctType = ctType;
+		this.hot = hot;
+	}
+
 	// Property accessors
 	/**
 	 * 【在hibernate中一般只使用序列来解决自增长问题】：
@@ -47,11 +54,11 @@ public class Category implements java.io.Serializable {
 	@GeneratedValue(strategy=GenerationType.SEQUENCE,generator="SEQ_ON_TEST")
 	@SequenceGenerator(name="SEQ_ON_TEST",sequenceName="SEQ_ON_TEST",allocationSize=1)
 	@Column(name = "CT_ID", unique = true, nullable = true, precision = 22, scale = 0)
-	public BigDecimal getCtId() {
+	public int getCtId() {
 		return this.ctId;
 	}
 
-	public void setCtId(BigDecimal ctId) {
+	public void setCtId(int ctId) {
 		this.ctId = ctId;
 	}
 
