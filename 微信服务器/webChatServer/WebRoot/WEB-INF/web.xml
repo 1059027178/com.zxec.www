@@ -1,21 +1,46 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xmlns="http://java.sun.com/xml/ns/javaee"
-	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd"
-	id="WebApp_ID" version="3.0">
-	<display-name>e_shop</display-name>
+<web-app id="WebApp_ID" version="3.0"
+		xmlns="http://java.sun.com/xml/ns/javaee"
+		xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+		xsi:schemaLocation="http://java.sun.com/xml/ns/javaee 
+		http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd">
+	<display-name>webChatServer</display-name>
 	<welcome-file-list>
 		<welcome-file>index.jsp</welcome-file>
 	</welcome-file-list>
-	<!-- spring整合Struts：配置StrutsPrepareAndExecuteFilter过滤器st -->
+	<!-- spring整合struts：配置StrutsPrepareAndExecuteFilter过滤器st -->
 	<filter>
-		<filter-name>Struts2</filter-name>
+		<filter-name>struts2</filter-name>
+		<!-- 
+		报错问题：ClassNotFoundException: org.apache.struts2.dispatcher.ng.filter.StrutsPrepareAndExecuteFilter
+		报错原因：搭建struts2的环境时,一般的做法是把jar包拖到WEB-INF下的lib文件中,Tomcat启动时,会到这个目录下加载jar文件,
+		但如果你使用的是User Libraries,那么就在lib下就没有相应的jar文件了,虽然程序编译是没有问题的,但很有可能Tomcat启动时会报这个错,
+		解决方法：
+			1.手动将User library中的jar包添加到项目发布时自动加载的目录下:
+　　　　		2.选中项目,右键选择Properties->Myeclispe->Deployment Assembly->new: 
+			3.将需要的包全部加入进来即可。
+		-->
 		<filter-class>org.apache.struts2.dispatcher.ng.filter.StrutsPrepareAndExecuteFilter</filter-class>
 	</filter>
 		<!-- struts2入口:所有的.action后缀都会经过过滤器 -->
 	<filter-mapping>
-		<filter-name>Struts2</filter-name>
+		<filter-name>struts2</filter-name>
 		<url-pattern>*.action</url-pattern>
 	</filter-mapping>
 	<!-- spring整合Struts配置ed -->
+	<!--  
+		【程序运行时会直接跳过对应的struts的过滤器，到此监听器中，以便使用spring管理struts】
+		在web.xml中配置监听器ContextLoaderListener，这样在服务器启动的时候就可以加载Spring的配置文件了
+		web.xml中监听器的启动优先级要高于过滤器，所以配在下面无所谓的
+	-->
+	<listener>
+		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+	</listener>
+	<context-param>
+		<param-name>contextConfigLocation</param-name>
+		<param-value>classpath:beans.xml</param-value>
+	</context-param>
 </web-app>
+
+
+

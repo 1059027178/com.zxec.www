@@ -1,4 +1,4 @@
-<%@ page language="java" import="java.util.*" pageEncoding="ISO-8859-1"%>
+<%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
 <%
 String path = request.getContextPath();
 String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
@@ -21,6 +21,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   </head>
   
   <body>
-    This is my JSP page. <br>
+  	<!-- 两种方法均可 -->
+  	<!-- <a href="${pageContext.request.contextPath}/category_update.action">访问update</a> -->
+  	<a href="${ pageContext.request.contextPath }/category_update.action?category.ctId=9&category.ctType=衣服&category.hot=0">访问update</a>
+  	<a href="category_save.action?category.ctType=围巾&category.hot=0">访问save</a>
   </body>
 </html>
