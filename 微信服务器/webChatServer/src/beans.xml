@@ -73,7 +73,13 @@
 		<property name="sessionFactory" ref="sessionFactory"/>
 	</bean>
 <!--********************************以上是用于spring 与hibernate 整合的相关配置************************-->
-
+<!--********************************以下是用于Struts与spring的整合配置相关配置*************************-->
+	<!-- 配置Action和它的依赖 -->
+	<bean id="categoryAction" class="com.webChatServer.action.CategoryAction" scope="prototype">
+		<!-- 依赖的categoryService用上面和Hibernate整合时配置好的categoryService -->
+		<property name="categoryServer" ref="categoryService"></property>
+	</bean>
+<!--********************************以上是用于Struts与spring的整合配置相关配置*************************-->
 </beans>
 
 
