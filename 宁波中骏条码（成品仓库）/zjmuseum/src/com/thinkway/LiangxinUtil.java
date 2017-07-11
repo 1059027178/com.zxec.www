@@ -9,13 +9,13 @@ import com.sap.mw.jco.JCO;
 public class LiangxinUtil {
 	
 
-	/*public static JCO.Client  getSAPcon(){
+	public static JCO.Client  getSAPcon(){
 		Properties logonProperties = new Properties();
-        logonProperties.put("jco.client.ashost","192.168.0.50");
-        logonProperties.put("jco.client.client","668");          
+        logonProperties.put("jco.client.ashost","192.168.0.182");
+        logonProperties.put("jco.client.client","667");          
         logonProperties.put("jco.client.sysnr","00");          
-        logonProperties.put("jco.client.user","JIUH");        
-        logonProperties.put("jco.client.passwd","zxec12"); 
+        logonProperties.put("jco.client.user","abap7");        
+        logonProperties.put("jco.client.passwd","654321"); 
         logonProperties.put("jco.client.lang","zh"); 
         logonProperties.put("jco.client.CodePage","8400"); 
         JCO.Client myConnection = JCO.createClient( logonProperties );
@@ -23,16 +23,16 @@ public class LiangxinUtil {
 	}
 	public static JCO.Client  getSAPconEn(){
 		Properties logonProperties = new Properties();
-        logonProperties.put("jco.client.ashost","192.168.0.50");
-        logonProperties.put("jco.client.client","668");          
+        logonProperties.put("jco.client.ashost","192.168.0.182");
+        logonProperties.put("jco.client.client","667");          
         logonProperties.put("jco.client.sysnr","00");          
-        logonProperties.put("jco.client.user","JIUH");        
-        logonProperties.put("jco.client.passwd","zxec12");   
+        logonProperties.put("jco.client.user","abap7");        
+        logonProperties.put("jco.client.passwd","654321");   
         logonProperties.put("jco.client.lang","EN");  
         JCO.Client myConnection = JCO.createClient( logonProperties );
 		return myConnection;
-	}*/
-	public static JCO.Client  getSAPcon(){
+	}
+	/*public static JCO.Client  getSAPcon(){
 		Properties logonProperties = new Properties();
 		logonProperties.put("jco.client.sysnr", "00");
 		logonProperties.put("jco.client.ashost", "192.168.0.183");
@@ -55,7 +55,7 @@ public class LiangxinUtil {
         logonProperties.put("jco.client.lang","EN");  
         JCO.Client myConnection = JCO.createClient( logonProperties );
 		return myConnection;
-	}
+	}*/
 	public  static void releaseClient(JCO.Client myConnection){
 		if(null!=myConnection){
 			JCO.releaseClient(myConnection);
