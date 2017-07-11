@@ -35,16 +35,16 @@
     </dataSource>
   </transactionManager>  -->
   
-  <!-- yangyang：云服务器测试机 -->
+  <!-- yangyang：测试机 -->
     <transactionManager type="JDBC" commitRequired="false">
     <dataSource type="SIMPLE">
-      <property name="JDBC.Driver" value="com.microsoft.sqlserver.jdbc.SQLServerDriver"/>
-      <property name="JDBC.ConnectionURL" value="jdbc:sqlserver://114.55.29.104:1433;DatabaseName=zjcodeTest"/>
-		<property name="JDBC.Username" value="zjcode"/>
-      <property name="JDBC.Password" value="zjcode"/>
+    	<property name="JDBC.Driver" value="oracle.jdbc.driver.OracleDriver"/>
+		<property name="JDBC.ConnectionURL" value="jdbc:oracle:thin:@192.168.0.76:1521:ORCL"/>
+	    <property name="JDBC.Username" value="zjcodeTest"/>
+	    <property name="JDBC.Password" value="zjcodeTest"/>
     </dataSource>
   </transactionManager>
-  <!-- yangyang:云服务器测试机 --> 
+  <!-- yangyang:测试机 --> 
   
   <!-- <transactionManager type="JDBC" commitRequired="false">
     <dataSource type="SIMPLE">
