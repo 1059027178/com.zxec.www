@@ -97,6 +97,8 @@ public class DumpCheckController implements Controller , AuthenticateController{
 		String maktx = LiangxinUtil.null2String(request.getParameter("maktx"));
 		String werks = LiangxinUtil.null2String(request.getParameter("werks"));
 		String meins = LiangxinUtil.null2String(request.getParameter("meins"));
+		String meng = LiangxinUtil.null2String(request.getParameter("meng"));//每箱数量
+		String xzsl = LiangxinUtil.null2String(request.getParameter("xzsl"));
 		System.out.println("radio:"+radio);
 		receipt.setMatnr(matnr);
 		receipt.setSobkz(sobkz);
@@ -107,6 +109,8 @@ public class DumpCheckController implements Controller , AuthenticateController{
 		model.put("receipt", receipt);
 		model.put("lgort", lgort);
 		model.put("werks", werks);
+		model.put("xzsl", xzsl);
+		System.out.println("****************xzsl ="+xzsl);
 		if(radio.equals("1")){
 			PaginatedListHelper paginaredList=new PaginatedListHelper();
 			String currentPage=ParamUtils.getParameter(request, "page", "1");
@@ -182,6 +186,8 @@ public class DumpCheckController implements Controller , AuthenticateController{
 
 			return new ModelAndView(getRadio1Name(),model);
 		}else if(radio.equals("2")){
+			String charg_to = LiangxinUtil.null2String(request.getParameter("charg_to"));
+			String lgort_to = LiangxinUtil.null2String(request.getParameter("lgort_to"));
 //			System.out.println("charg:"+charg);
 			model.put("matnr", matnr);
 			model.put("maktx", maktx);
@@ -192,7 +198,13 @@ public class DumpCheckController implements Controller , AuthenticateController{
 //			model.put("bwart", bwart);
 			model.put("meins", meins);
 //			model.put("werks", werks);
-//			model.put("werks", werks);
+			model.put("meng", meng);
+			System.out.println("****************meng ="+meng);
+			System.out.println("****************meng ="+meng);
+			System.out.println("****************charg_to ="+charg_to);
+			System.out.println("****************lgort_to ="+lgort_to);
+			model.put("charg_to", charg_to);
+			model.put("lgort_to", lgort_to);
 			return new ModelAndView(getRadio2Name(),model);
 		}else{
 			model.put("matnr", matnr);
