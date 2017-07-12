@@ -38,19 +38,23 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	  		var sonum=str[6];
 	  		var lgort=str[7];
 	  		var meins=str[8];
+	  		var charg_to = str[9];
+	  		var lgort_to = str[10];
 	  		$("#aufnr").attr("value",aufnr);
 	  		$("#matnr").attr("value",matnr);
 	  		$("#sonum").attr("value",sonum);
-	  		//$("#meng").attr("value",meng);
+	  		$("#meng").attr("value",meng);
 	  		//$("#wemng").attr("value",wemng);
 	  		$("#charg").attr("value",charg);
 	  		$("#meins").attr("value",meins);
 	  		$("#sobkz").attr("value",sobkz);
 	  		$("#lgort").attr("value",lgort);
+	  		$("#charg_to").attr("value",charg_to);
+	  		$("#lgort_to").attr("value",lgort_to);
 	  		
-	  	
-	  		//choose1();
-	  		getPlnum(matnr);
+	  		//getPlnum(matnr);
+	  		getMaktx(matnr);
+	  		$("#lgpla").focus();
   		}
   	}
   	function getPlnum(matnr){
@@ -62,9 +66,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	 		data:{"showType":"getPlnum","matnr":matnr},
 	 		dataType:'json',
 	 		success:function(data){
-	 			$("#lgnum").attr("value",data.lgnum);
+	 			//$("#lgnum").attr("value",data.lgnum);
 	 			$("#maktx").attr("value",data.maktx);
 	 			$("#werks").attr("value",data.werks);
+	 			//$("#werks").attr("value","3200");
 	 		},
 	        error:function(){       
 		       alert("系统异常，请联系管理员");
@@ -72,16 +77,32 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		});
 	
 	}
+	function getMaktx(matnr){
+		if(matnr=='' || matnr==null)return;
+		jQuery.ajax({
+			url:'/receiptJson.do',
+			async:false,
+	 		type:"post",
+	 		data:{"showType":"getMaktx","matnr":matnr},
+	 		dataType:'json',
+	 		success:function(data){
+	 			$("#maktx").attr("value",data.maktx);
+	 		},
+	        error:function(){       
+		       alert("系统异常，请联系管理员");
+		    }
+		});
+	}
 	
-  	function keyDown() {
+  	function keyUp() {
        var keycode = event.keyCode;
        var realkey = String.fromCharCode(event.keyCode);
       // alert("按键码: " + keycode + " 字符: " + realkey);
-       if(keycode=='13'){
+       if(keycode=='86'){
        		js();
        }
    }
-   document.onkeydown = keyDown;
+   document.onkeyup = keyUp;
 
   function forward(){
   	window.location.href="/main.do?two=4";
@@ -111,7 +132,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
    		alert("请输入物料编码！");
    		return;
    }
-   if(chk=='2'){
+   if(chk=='0'){
    		var lgpla=document.getElementById("lgpla").value;
    		if(lgpla.length==0){
    			alert("仓位未填写，请填写");
@@ -122,6 +143,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   }
   function reset(){
   	$('.input').val("");
+  	$("str").focus();
   }
  function chooseRadio3(){
  	var radio3=$('input[name="radio"]:checked').val();
@@ -136,24 +158,27 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   <body>
   <form name=form action="/dumpCheck.do">
   <input type="hidden" name="lgort" id="lgort" >
+  <input type="hidden" name="meng" id="meng" >
   <input type="hidden" name="maktx" id="maktx" >
-  <input type="hidden" name="werks" id="werks" >
+  <input type="hidden" name="werks" id="werks"  value="3100" >
   <input type="hidden" name="meins" id="meins" >
-  	<div style="padding-top:50px;">
+  <input type="hidden" name="lgort_to" id="lgort_to" >
+  <input type="hidden" name="charg_to" id="charg_to" >
+  	<div style="padding-top:5px;margin-left: -15px;">
   		<ul>
-  			<li style="height:15px;list-style-type:none;"><input name="str" class="text3" type="text" style="white-space：nowrap;width:150px;"  id="str" onchange="js()"></li>
+  			<li style="height:15px;list-style-type:none;"><input name="str" class="text3" type="text" style="white-space：nowrap;width:82%;"  id="str" onchange="js()"></li>
   			<li class="li">物料编码：<input name="matnr" class="text"  readonly=readonly type="text" id="matnr"></li>
-			<li class="li">批&nbsp;&nbsp;&nbsp;&nbsp;次：<input name="charg" readonly=readonly class="text"  type="text"  id="charg"></li>
-  			<li class="li">特殊库存：<input name="sobkz" style="width:20px;" type="text" style="width:17%" id="sobkz" class="text"><input name="sonum" readonly=readonly style="width:42%;" type="text" class="text"  id="sonum"></li>
-  			<li class="li">仓库&nbsp;&nbsp;号：<input name="lgnum" readonly=readonly class="text3"  type="text"  id="lgnum"></li>
-  			<li class="li">仓&nbsp;&nbsp;位号：<input name="lgpla" class="text3"  type="text"  id="lgpla"></li>
+			<li class="li">批&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;次：<input name="charg" readonly=readonly class="text"  type="text"  id="charg"></li>
+  			<li class="li">特殊库存：<input name="sobkz" style="width:20px;" type="text" style="width:17%" id="sobkz" class="text"><input name="sonum" readonly=readonly style="width:40.5%;" type="text" class="text"  id="sonum"></li>
+  			<li class="li">仓<span style="margin-left:7px;"></span>库<span style="margin-left:7px;"></span>号：<input name="lgnum" class="text3"  type="text"  id="lgnum" value="310"></li>
+  			<li class="li">仓<span style="margin-left:7px;"></span>位<span style="margin-left:7px;"></span>号：<input name="lgpla" class="text3"  type="text"  id="lgpla"></li>
   			<li class="li"><input name="radio" style="width:20px;" onclick="chooseRadio3();" checked=checked type="radio" id="radio1" value="1">下架转储出库</input></li>
      	<li class="li"><input name="radio" style="width:20px;" type="radio" onclick="chooseRadio3();" id="radio2" value="2" >直接转储出入库</input></li>
      	<li class="li"><input name="radio" style="width:20px;" type="radio" onclick="chooseRadio3();" id="radio3" value="3" >质检过账</input></li>
   			<li class="li">
-  			<input type="button" valign="center" style="width:40px;height:25px;" class="button" onclick="submit1(this);" value="确定"/>
-  			<input  class="button"  type="button" style="width:30px;height:25px;" onclick="forward();" value="返回"/>
-  			<input  class="button" type="button" style="width:30px;height:25px;" onclick="reset();" value="重置"/>
+  			<input type="button" valign="center" style="width:40px;height:25px;margin-left:-30px;margin-top: 30px;" class="button" onclick="submit1(this);" value="确定"/>
+  			<input  class="button"  type="button" style="width:40px;height:25px;" onclick="forward();" value="返回"/>
+  			<input  class="button" type="button" style="width:40px;height:25px;" onclick="reset();" value="重置"/>
   			<input type="button" class="button" style="width:40px;height:25px;" onclick="window.location.href='/main.do';" value="首页"></li>
   			
   		</ul>
