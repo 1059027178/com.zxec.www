@@ -8,6 +8,7 @@
 	<welcome-file-list>
 		<welcome-file>index.jsp</welcome-file>
 	</welcome-file-list>
+	
 	<!-- spring整合struts：配置StrutsPrepareAndExecuteFilter过滤器st -->
 	<filter>
 		<filter-name>struts2</filter-name>
@@ -22,12 +23,15 @@
 		-->
 		<filter-class>org.apache.struts2.dispatcher.ng.filter.StrutsPrepareAndExecuteFilter</filter-class>
 	</filter>
+	
 		<!-- struts2入口:所有的.action后缀都会经过过滤器 -->
 	<filter-mapping>
 		<filter-name>struts2</filter-name>
 		<url-pattern>*.action</url-pattern>
 	</filter-mapping>
+	
 	<!-- spring整合Struts配置ed -->
+	
 	<!--  
 		【程序运行时会直接跳过对应的struts的过滤器，到此监听器中，以便使用spring管理struts】
 		在web.xml中配置监听器ContextLoaderListener，这样在服务器启动的时候就可以加载Spring的配置文件了
