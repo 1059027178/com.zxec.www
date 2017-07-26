@@ -23,6 +23,7 @@
 	<bean id="date" class="java.util.Date"/>
 	
 <!--********************************以下是用于spring 与hibernate 整合的相关配置************************-->
+
 	<!-- com.mchange.v2.c3p0.ComboPooledDataSource类在c3p0-0.9.5.1.jar包的com.mchange.v2.c3p0包中 -->  
 	<bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource">
 		<property name="driverClass" value="oracle.jdbc.OracleDriver"/>
@@ -30,17 +31,20 @@
 		<property name="user" value="weixintest" />
 		<property name="password" value="zxec11" />
 	</bean>
+	
 	<!-- 加载hibernate配置文件：配置sessionFactory -->  
 	<!-- org.springframework.orm.hibernate4.LocalSessionFactoryBean类在spring-orm-4.2.4.RELEASE.jar包的org.springframework.orm.hibernate4包中 --> 
 	<bean id="sessionFactory" class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">
 		<property name="dataSource" ref="dataSource"/>
 		<property name="configLocation" value="classpath:hibernate.cfg.xml"/>
 	</bean>
+	
 	<!-- 配置事务管理器 -->
 	<!-- org.springframework.orm.hibernate4.HibernateTransactionManager类spring-orm-4.2.4.RELEASE.jar包的org.springframework.orm.hibernate4包中 -->  
 	<bean id="transactionManger" class="org.springframework.orm.hibernate4.HibernateTransactionManager">
 		<property name="sessionFactory" ref="sessionFactory"/>
 	</bean>
+	
 	<!-- 配置advice通知：指定哪些方法需要什么类型的事务模式 
 		 REQUIRED:表示如果存在事务，则支持当前的事务，如果没有则创建一个新的事务
 		 SUPPORTS:表示如果存在事务，则支持当前的事务，如果没有就算了
@@ -53,6 +57,7 @@
 			<tx:method name="*" 	  propagation="SUPPORTS"/>
 		</tx:attributes>
 	</tx:advice>
+	
 	<!-- 配置aop切面：
 		 AOP即面向切面编程，
 		 aop:pointcut定义一个切面，expression属性中配置的意思是所有com.webChatServer.server.impl包下的所有方法，
@@ -67,18 +72,25 @@
 		<!-- 连接以上advice 和 pointcut -->
 			<aop:advisor advice-ref="advice" pointcut-ref="pointcut"/>
 		</aop:config>
+		
 <!-- 使用hibernate+spring环境 -->
+
 	<!-- 配置对应的server：依赖的sessionFactory用我们之前配好的sessionFactory-->  
 	<bean id="categoryService" class="com.webChatServer.server.impl.CategoryServiceImpl">
 		<property name="sessionFactory" ref="sessionFactory"/>
 	</bean>
+	
 <!--********************************以上是用于spring 与hibernate 整合的相关配置************************-->
+
+
 <!--********************************以下是用于Struts与spring的整合配置相关配置*************************-->
+
 	<!-- 配置Action和它的依赖 -->
 	<bean id="categoryAction" class="com.webChatServer.action.CategoryAction" scope="prototype">
 		<!-- 依赖的categoryService用上面和Hibernate整合时配置好的categoryService -->
 		<property name="categoryServer" ref="categoryService"></property>
 	</bean>
+	
 <!--********************************以上是用于Struts与spring的整合配置相关配置*************************-->
 </beans>
 
