@@ -17,8 +17,8 @@ public class CenterAction {
 	public String index(Model model)
 	{
 		TestTb tb = new TestTb();
-		tb.setId(8);
-		tb.setName("曹操");
+		tb.setId(9);
+		tb.setName("曹操1");
 		System.out.println("haha");
 		testTbService.add(tb);
 		return "index";
