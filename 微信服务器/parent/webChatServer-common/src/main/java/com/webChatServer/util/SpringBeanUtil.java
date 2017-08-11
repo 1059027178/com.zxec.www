@@ -5,7 +5,7 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationContextAware;
 /** 
  * 直接通过Spring 上下文获取SpringBean,用于多线程环境 
- * by qianyang @20160405 
+ * by qianyang @20170811 
  */  
 public class SpringBeanUtil implements ApplicationContextAware{  
     
