@@ -1,8 +1,6 @@
 import org.junit.runner.RunWith;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
-
 import com.webChatServer.util.SpringBeanUtil;
-
 import cn.webChatServer.pojo.AccessToken;
 import cn.webChatServer.service.WebChatService;
 

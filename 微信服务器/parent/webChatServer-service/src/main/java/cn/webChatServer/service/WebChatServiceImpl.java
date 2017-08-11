@@ -1,5 +1,12 @@
 package cn.webChatServer.service;
 
+import java.io.IOException;
+import java.io.InputStream;
+
+import org.apache.ibatis.io.Resources;
+import org.apache.ibatis.session.SqlSession;
+import org.apache.ibatis.session.SqlSessionFactory;
+import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 import org.json.JSONObject;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -7,6 +14,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import cn.webChatServer.dao.WXInfoDao;
+import cn.webChatServer.dao.WXInfoDaoImpl;
 import cn.webChatServer.pojo.AccessToken;
 import cn.webChatServer.pojo.WXInfo;
 import cn.webChatServer.service.WebChatService;
@@ -18,16 +26,30 @@ import com.webChatServer.util.WebChartPort;
 @Service("webChatService")
 public class WebChatServiceImpl implements WebChatService{
 	
-	@Autowired
+	private SqlSession sqlSession;
 	private WXInfoDao wxInfoDao;
 	//一定要写被注入对象的set方法 
 	/*public void setWxInfoDao(WXInfoDao wxInfoDao) {
 		this.wxInfoDao = wxInfoDao;
 	}*/
-
 	private WXInfo wxInfo = null;
-	
 	private AccessToken accessToken = null;
+	public WebChatServiceImpl(){
+		// mybatis-config.xml
+		String resource = "mybatis-config.xml";
+		try {
+			// 读取配置文件
+			InputStream is = Resources.getResourceAsStream(resource);
+			// 构建SqlSessionFactory
+			SqlSessionFactory sqlSessionFactory = new SqlSessionFactoryBuilder().build(is);
+			// 获取sqlSession
+			sqlSession = sqlSessionFactory.openSession();
+			this.wxInfoDao = new WXInfoDaoImpl(sqlSession);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
 	
 	public AccessToken getAccessToken() {
 		// TODO Auto-generated method stub
