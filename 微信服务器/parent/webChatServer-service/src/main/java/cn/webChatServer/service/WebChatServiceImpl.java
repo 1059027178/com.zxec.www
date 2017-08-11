@@ -20,7 +20,11 @@ public class WebChatServiceImpl implements WebChatService{
 	
 	@Autowired
 	private WXInfoDao wxInfoDao;
-	
+	//一定要写被注入对象的set方法 
+	/*public void setWxInfoDao(WXInfoDao wxInfoDao) {
+		this.wxInfoDao = wxInfoDao;
+	}*/
+
 	private WXInfo wxInfo = null;
 	
 	private AccessToken accessToken = null;

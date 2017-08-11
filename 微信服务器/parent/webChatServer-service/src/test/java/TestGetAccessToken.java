@@ -12,18 +12,19 @@ public class TestGetAccessToken implements Runnable {
 		Thread thread = new Thread(new TestGetAccessToken());
 		thread.start();
 	}*/
-	private WebChatService webChartServer;
+	private WebChatService webChatService;
 	private AccessToken accessToken = null;
 
-	public TestGetAccessToken() {
-		this.webChartServer = (WebChatService) SpringBeanUtil.getBeanByName("webChartServer");
+	public TestGetAccessToken(WebChatService webChatService) {
+//		this.webChatService = (WebChatService) SpringBeanUtil.getBeanByName("webChatService");
+		this.webChatService = webChatService;
 	}
 	public void run() {
 		// TODO Auto-generated method stub
 		try {
-			accessToken = webChartServer.getAccessToken();
+			accessToken = webChatService.getAccessToken();
 			Thread.sleep((accessToken.getExpiresIn() - 200) * 1000);
-			new Thread(new TestGetAccessToken()).start();
+			new Thread(new TestGetAccessToken(webChatService)).start();
 			// 更新access_token
 			System.out.println("**************");
 		} catch (Exception e) {
@@ -33,10 +34,10 @@ public class TestGetAccessToken implements Runnable {
 	}
 
 	public WebChatService getWebChartServer() {
-		return webChartServer;
+		return webChatService;
 	}
 
-	public void setWebChartServer(WebChatService webChartServer) {
-		this.webChartServer = webChartServer;
+	public void setWebChartServer(WebChatService webChatService) {
+		this.webChatService = webChatService;
 	}
 }
