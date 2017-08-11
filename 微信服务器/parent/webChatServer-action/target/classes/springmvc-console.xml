@@ -19,19 +19,20 @@
 		http://code.alibabatech.com/schema/dubbo        
 		http://code.alibabatech.com/schema/dubbo/dubbo.xsd">
 
-	<!-- 读取Property -->
-	<bean
-		class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
-		<property name="locations">
-			<set>
-				<value>classpath:jdbc.properties</value>
-			</set>
-		</property>
+	<!-- 扫描包 -->
+	<context:component-scan base-package="cn.webChatServer" />
+
+	<!-- 处理器 映射器 适配器 -->
+	<mvc:annotation-driven />
+
+	<!-- 视图解析器 -->
+	<bean id="jspViewResolver"
+		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+		<property name="prefix" value="/WEB-INF/console/"></property>
+		<property name="suffix" value=".jsp"></property>
 	</bean>
 
-	<!-- 载入 config文件夹下的所有xml配置  -->
-	<import resource="config/*.xml" />
-	<!-- 注册工具类的bean -->
-	<bean class="com.webChatServer.util.SpringBeanUtil"></bean>
+	<!-- 导入dubbo消费方的配置 -->
+	<import resource="dubbo-consumer.xml" />
 
 </beans>

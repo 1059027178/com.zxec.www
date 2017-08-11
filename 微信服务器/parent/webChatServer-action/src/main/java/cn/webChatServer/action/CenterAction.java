@@ -4,7 +4,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
-
 import cn.webChatServer.pojo.TestTb;
 import cn.webChatServer.service.TestTbService;
 
@@ -12,6 +11,7 @@ import cn.webChatServer.service.TestTbService;
 public class CenterAction {
 	@Autowired
 	private TestTbService testTbService;
+	
 	
 	@RequestMapping(value="/test/index.do")
 	public String index(Model model)
@@ -23,5 +23,6 @@ public class CenterAction {
 		testTbService.add(tb);
 		return "index";
 	}
+	
 
 }
