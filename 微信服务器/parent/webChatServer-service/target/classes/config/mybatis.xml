@@ -19,19 +19,17 @@
 		http://code.alibabatech.com/schema/dubbo        
 		http://code.alibabatech.com/schema/dubbo/dubbo.xsd">
 
-	<!-- 读取Property -->
-	<bean
-		class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
-		<property name="locations">
-			<set>
-				<value>classpath:jdbc.properties</value>
-			</set>
-		</property>
+	<!-- Mybatis工厂 -->
+	<bean class="org.mybatis.spring.SqlSessionFactoryBean">
+		<!-- 数据源 -->
+		<property name="dataSource" ref="dataSource" />
+		<!-- 配置Mybati的核心配置文件 -->
+		<property name="configLocation" value="classpath:mybatis-config.xml" />
 	</bean>
-
-	<!-- 载入 config文件夹下的所有xml配置  -->
-	<import resource="config/*.xml" />
-	<!-- 注册工具类的bean -->
-	<bean class="com.webChatServer.util.SpringBeanUtil"></bean>
-
+	
+	<!-- 扫描基本包 Mapper 接口 Mapper文件 -->
+	<bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+		<property name="basePackage" value="cn.webChatServer.dao" />
+	</bean>
+	
 </beans>

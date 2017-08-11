@@ -19,19 +19,23 @@
 		http://code.alibabatech.com/schema/dubbo        
 		http://code.alibabatech.com/schema/dubbo/dubbo.xsd">
 
-	<!-- 读取Property -->
-	<bean
-		class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
-		<property name="locations">
-			<set>
-				<value>classpath:jdbc.properties</value>
-			</set>
-		</property>
-	</bean>
+	<!-- dubbo服务提供方的配置 -->
+	<!-- 1、Dubbo服务方提供方名称 -->
+	<dubbo:application name="webChatServer-service" />
 
-	<!-- 载入 config文件夹下的所有xml配置  -->
-	<import resource="config/*.xml" />
-	<!-- 注册工具类的bean -->
-	<bean class="com.webChatServer.util.SpringBeanUtil"></bean>
+	<!-- 2、连接zookeeper注册中心 (如果zookeeper是多台机器用，间隔) -->
+	<!-- <dubbo:registry address="192.168.56.101:2181" protocol="zookeeper"/> -->
+
+	<!-- 不使用注册中心 -->
+	<dubbo:registry address="N/A" />
+
+
+	<!-- 3、暴露 IP PORT 接口 http://ip:port 默认端口号：20880 -->
+	<dubbo:protocol port="20880" name="dubbo" host="127.0.0.1" />
+
+	<!-- 4、暴露 接口 ref="testTbService" 使用注解注入时，需要在实现类的Service注解里面起个名字 -->
+	<dubbo:service 
+		interface="cn.webChatServer.service.TestTbService" ref="testTbService" />
+
 
 </beans>

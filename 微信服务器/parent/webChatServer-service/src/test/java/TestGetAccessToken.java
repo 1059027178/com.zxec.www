@@ -1,35 +1,42 @@
-import org.springframework.beans.factory.annotation.Autowired;
+import org.junit.runner.RunWith;
+import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+
+import com.webChatServer.util.SpringBeanUtil;
 
 import cn.webChatServer.pojo.AccessToken;
-import cn.webChatServer.service.WebChartServer;
+import cn.webChatServer.service.WebChatService;
 
+@RunWith(SpringJUnit4ClassRunner.class)
+public class TestGetAccessToken implements Runnable {
+	/*public static void main(String[] args) {
+		Thread thread = new Thread(new TestGetAccessToken());
+		thread.start();
+	}*/
+	private WebChatService webChartServer;
+	private AccessToken accessToken = null;
 
-public class TestGetAccessToken {
-	
-	@Autowired
-	private static  WebChartServer webChartServer;
-	@Autowired
-	private static  AccessToken accessToken;
-	
-	public static void main(String[] args) {
-		TestGetAccessToken.InitThread();
+	public TestGetAccessToken() {
+		this.webChartServer = (WebChatService) SpringBeanUtil.getBeanByName("webChartServer");
 	}
-	
-	public static void InitThread(){
-		new Thread(new Runnable() {
-			public void run() {
-				// TODO Auto-generated method stub
-				try {
-					accessToken = webChartServer.getAccessToken();
-					Thread.sleep((accessToken.getExpiresIn() - 200) * 1000);
-					TestGetAccessToken.InitThread();
-					//更新access_token
-					System.out.println("**************");
-				} catch (InterruptedException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-			}
-		}).start();
+	public void run() {
+		// TODO Auto-generated method stub
+		try {
+			accessToken = webChartServer.getAccessToken();
+			Thread.sleep((accessToken.getExpiresIn() - 200) * 1000);
+			new Thread(new TestGetAccessToken()).start();
+			// 更新access_token
+			System.out.println("**************");
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+
+	public WebChatService getWebChartServer() {
+		return webChartServer;
+	}
+
+	public void setWebChartServer(WebChatService webChartServer) {
+		this.webChartServer = webChartServer;
 	}
 }
