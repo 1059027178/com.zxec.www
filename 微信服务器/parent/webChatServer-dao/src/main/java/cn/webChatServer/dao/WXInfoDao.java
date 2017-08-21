@@ -10,13 +10,6 @@ public interface WXInfoDao {
 	 */
 	public abstract WXInfo queryByClassName(String className);
 	/**
-	 * 通用查询：
-	 * 在表wxinfo中，自定义条件查询
-	 * @param condition（如 and id = 12 and name = 'qy'）
-	 * @return
-	 */
-	public abstract WXInfo queryByCondition(String condition);
-	/**
 	 * 更新信息
 	 * @param className
 	 */

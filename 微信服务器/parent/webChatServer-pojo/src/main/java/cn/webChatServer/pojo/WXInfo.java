@@ -10,6 +10,12 @@ import java.io.Serializable;
  */
 public class WXInfo implements Serializable{
 	private static final long serialVersionUID = 1L;
+	
+	/**
+	 * 服务器外网访问地址
+	 */
+	private String address;
+	
 	/**
 	 * 数据类别
 	 */
@@ -29,6 +35,11 @@ public class WXInfo implements Serializable{
 	 * 接口调用凭证
 	 */
 	private String accessToken;
+	
+	/**
+	 * 接口调用凭证有效时间
+	 */
+	private String accessTokenExpiresIn;
 	
 	/**
 	 * JS接口调用凭证
@@ -73,5 +84,21 @@ public class WXInfo implements Serializable{
 
 	public void setJSAPITicket(String jSAPITicket) {
 		JSAPITicket = jSAPITicket;
+	}
+
+	public String getAccessTokenExpiresIn() {
+		return accessTokenExpiresIn;
+	}
+
+	public void setAccessTokenExpiresIn(String accessTokenExpiresIn) {
+		this.accessTokenExpiresIn = accessTokenExpiresIn;
+	}
+
+	public String getAddress() {
+		return address;
+	}
+
+	public void setAddress(String address) {
+		this.address = address;
 	}
 }
