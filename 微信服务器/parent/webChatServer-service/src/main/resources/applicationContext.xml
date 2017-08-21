@@ -31,7 +31,5 @@
 
 	<!-- 载入 config文件夹下的所有xml配置  -->
 	<import resource="config/*.xml" />
-	<!-- 注册工具类的bean -->
-	<bean class="com.webChatServer.util.SpringBeanUtil"></bean>
 
 </beans>
