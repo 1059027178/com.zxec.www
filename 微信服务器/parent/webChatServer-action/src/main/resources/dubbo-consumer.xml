@@ -30,12 +30,17 @@
 	<!-- 不使用注册中心 -->
 	<dubbo:registry address="N/A" />
 
-	<!-- 3、调用接口 -->
+	<!-- 3.1、测试接口 -->
 	<dubbo:reference interface="cn.webChatServer.service.TestTbService"
 		id="testTbService" timeout="600000" url="dubbo://127.0.0.1:20880" />
 		
+	<!-- 3.2、微信接口 -->
 	<dubbo:reference interface="cn.webChatServer.service.WebChatService"
 		id="webChatService" timeout="600000" url="dubbo://127.0.0.1:20880" />
+		
+	<!-- 3.3、报工接口 -->
+	<dubbo:reference interface="cn.webChatServer.service.ReportWorkHoursService"
+		id="reportWorkHoursService" timeout="600000" url="dubbo://127.0.0.1:20880" />
 
 	<!-- 设置超时时间 -->
 	<dubbo:consumer timeout="600000" check="false"/>

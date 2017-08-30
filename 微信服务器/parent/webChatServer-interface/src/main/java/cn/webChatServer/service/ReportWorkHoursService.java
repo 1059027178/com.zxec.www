@@ -11,9 +11,12 @@ import java.util.List;
 public interface ReportWorkHoursService {
 	
 	/**
-	 * 判断用户是否已开通MES权限
-	 * @param userID 用户工号
-	 * @return 是否开通
+	 *  判断用户是否已开通MES权限
+	 * @param strIP 服务器IP
+	 * @param strModule 模块名称（MES）
+	 * @param strUser 服务器IP
+	 * @param strValue 用户工号
+	 * @return 
 	 */
-	public List<String> judgeIfOpenMES(String userID);
+	public List<String> judgeIfOpenMES(String strIP, String strModule, String strUser, String strValue);
 }

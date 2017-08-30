@@ -38,5 +38,7 @@
 		interface="cn.webChatServer.service.TestTbService" ref="testTbService" />
 	<dubbo:service 
 		interface="cn.webChatServer.service.WebChatService" ref="webChatService" />
+	<dubbo:service 
+		interface="cn.webChatServer.service.ReportWorkHoursService" ref="reportWorkHoursService" />
 
 </beans>
