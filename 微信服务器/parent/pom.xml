@@ -234,8 +234,6 @@
 				<version>10.2.0.3</version>
 			</dependency>
 			
-			
-
 			<dependency>
 				<groupId>org.mybatis.generator</groupId>
 				<artifactId>mybatis-generator-core</artifactId>
@@ -247,13 +245,6 @@
 				<groupId>com.github.abel533</groupId>
 				<artifactId>mapper</artifactId>
 				<version>2.3.4</version>
-			</dependency>
-			
-			<!-- 添加CXF插件，以便支持webaservice接口调用 -->
-			<dependency>
-				<groupId>org.apache.cxf</groupId>
-				<artifactId>apache-cxf</artifactId>
-				<version>3.1.12</version>
 			</dependency>
 
 		</dependencies>

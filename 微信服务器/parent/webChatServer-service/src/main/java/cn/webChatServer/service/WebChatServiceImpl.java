@@ -44,8 +44,13 @@ public class WebChatServiceImpl implements WebChatService{
 		URL = WebChartPort.ACCESS_TOKEN.replace("ID", corpID).replace("SECRECT", secretID);
 		
 		//发起HTTPS请求
+		//方式一：
 		jsonObject = new JSONObject();
 		jsonObject = NetWorkUtil.httpsRequest(URL, "GET", null);
+		//方式二：
+		//发起HTTP请求
+//		String string = NetWorkUtil.httpRequest(URL, "GET", null);
+//		jsonObject = new JSONObject(string);
 		
 		//分析返回结果：如果成功获取，则存起来，同时返回对应的accessToken
 		errcode = jsonObject.getInt("errcode");
@@ -73,7 +78,7 @@ public class WebChatServiceImpl implements WebChatService{
 	 */
 	public String achieveWebChartUserID(String code) {
 		// TODO Auto-generated method stub
-		System.out.println("【获取用户ID开始】>>>>>>");
+		System.out.println("【2.获取用户ID开始】>>>>>>");
 		String result = "";
 		//从数据库获取缓存token
 		wxInfo = wxInfoDao.queryByClassName(WebChartPort.WEB_CHAT_NAME);

@@ -49,7 +49,7 @@ public class CenterAction {
 	public String login(@RequestParam("code")String code,@RequestParam("viewName") String viewName){
 		//如果code 为null，则先进行处理
 		code = ( code == null ? "" : code );
-		System.out.println( "【用户登录code = " + code +"】");
+		System.out.println( "【1.用户登录code = " + code +"】");
 		
 		//重定向地址
 		String to_url = "";
@@ -60,6 +60,7 @@ public class CenterAction {
 
 		//如果未取到-则跳转重新进入
 		if(flag1){
+			System.out.println("【获取工号失败，更新token并重新获取！】");
 			//更新token
 			webChatService.achieveAccessToken();
 			
@@ -68,8 +69,8 @@ public class CenterAction {
 		}
 		//成功后跳转到对应的模块
 		else{
-			to_url = "/" + viewName + "?userID=" + userID;
-			System.out.println( "【用户" + userID + "登录成功，跳转到 " + to_url +"】");
+			to_url = "/center/" + viewName + ".do?userID=" + userID;
+			System.out.println( "【3.用户" + userID + "登录成功，跳转到 " + to_url +"】");
 		}
 		//跳转到对应的页面（1、失败后重定向至login；2、成功后根据viewName跳转到对应的Controller）
 		return "redirect:" + to_url;
@@ -81,28 +82,32 @@ public class CenterAction {
 	 * @return
 	 */
 	@RequestMapping(value="reportWork")
-	public String reportWork(@RequestParam("userID")String userID){
-		System.out.println( "【###用 户 " + userID +"进入报工开始】");
+	public String reportWork(Model model,@RequestParam("userID")String userID){
+		System.out.println( "【###用 户 " + userID +"进入MES权限验证开始】");
 		
 		//验证用户是否开通MES权限
-		List<String> result = reportWorkHoursService.judgeIfOpenMES(userID);
-		boolean flag = ( "成功".equals( result.get(0) ) );
+		List<String> result = reportWorkHoursService.judgeIfOpenMES("192.168.0.39", "MES", "192.168.0.39", "E" + userID);
+		boolean flag = ( "成功".equals( result.get(0).trim() ) );
 		String to_url = "";
 		if(flag){
 			
 			String userNo = "E" + userID;
-			String userName = result.get(2);
+			String userName = result.get(3).trim();
+			System.out.println("###用户"+ userName +"验证通过！");
+			model.addAttribute("userNo", userNo);
+			model.addAttribute("userName", userName);
 			//显示相关报工页面
 			to_url = "reportWork/reportWorkIndex";
 			
 		}else{
 			
+			System.out.println("###用户"+ userID + "验证失败,原因为 "+ result.get(1).trim());
 			//屏蔽相关报工页面
 			to_url = "reportWork/reportWorkNoOpen";
 			
 		}
 		
-		System.out.println( "【###用 户 " + userID +"进入报工结束】");
+		System.out.println( "【###用 户 " + userID +"进入MES权限验证结束】");
 		return to_url;
 	}
 	/**

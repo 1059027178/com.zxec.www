@@ -28,9 +28,16 @@
 	<!-- 视图解析器 -->
 	<bean id="jspViewResolver"
 		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
-		<property name="prefix" value="/WEB-INF/console/"></property>
-		<property name="suffix" value=".jsp"></property>
+		<property name="prefix" value="/WEB-INF/console/"/>
+		<property name="suffix" value=".jsp"/>
 	</bean>
+	<bean id="htmlviewResolver"    
+        class="org.springframework.web.servlet.view.InternalResourceViewResolver">   
+        <property name="order" value="0" />  
+        <property name="prefix" value="/WEB-INF/console/"/>  
+        <property name="suffix" value=".html" />    
+        <property name="contentType" value="text/html;charset=UTF-8"></property>    
+    </bean>
 
 	<!-- 导入dubbo消费方的配置 -->
 	<import resource="dubbo-consumer.xml" />
