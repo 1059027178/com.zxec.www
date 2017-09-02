@@ -29,7 +29,7 @@ public class SapUtil {
         JCO.Client myConnection = JCO.createClient( logonProperties );
 		return myConnection;
 	}
-	public static JCO.Client  getSAPconEn(){
+	public static JCO.Client  getSAPconEn(){ 
 		JCO.Pool pool = JCO.getClientPoolManager().getPool(POOL_NAME);
 		JCO.Client myConnection = null;
 		if(pool==null){
