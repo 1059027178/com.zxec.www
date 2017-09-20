@@ -18,13 +18,26 @@
    		http://www.springframework.org/schema/task/spring-task.xsd
 		http://code.alibabatech.com/schema/dubbo        
 		http://code.alibabatech.com/schema/dubbo/dubbo.xsd">
-
+		
+	<!-- **********************159oracle中间池************************* -->
 	<!-- 数据源 druid -->
 	<bean id="dataSource" class="com.alibaba.druid.pool.DruidDataSource">
 		<property name="driverClassName" value="${driverClassName}" />
 		<property name="url" value="${url}" />
 		<property name="username" value="${username}" />
 		<property name="password" value="${password}" />
+		<!-- 配置防御SQL注入攻击：(默认)缺省配置的WallFilter -->
+		<property name="filters" value="stat,wall"/>
 	</bean>
-
+	
+	<!-- **********************71EHR数据库************************* -->
+	<!-- 数据源 druid -->
+	<bean id="dataSource2" class="com.alibaba.druid.pool.DruidDataSource">
+		<property name="driverClassName" value="${71.driverClassName}" />
+		<property name="url" value="${71.url}" />
+		<property name="username" value="${71.username}" />
+		<property name="password" value="${71.password}" />
+		<!-- 配置防御SQL注入攻击：(默认)缺省配置的WallFilter -->
+		<property name="filters" value="stat,wall"/>
+	</bean>
 </beans>

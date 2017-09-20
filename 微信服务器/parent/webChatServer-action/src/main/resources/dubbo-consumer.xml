@@ -41,8 +41,16 @@
 	<!-- 3.3、报工接口 -->
 	<dubbo:reference interface="cn.webChatServer.service.ReportWorkHoursService"
 		id="reportWorkHoursService" timeout="600000" url="dubbo://127.0.0.1:20880" />
-
+		
+	<!-- 3.4、薪资查询接口 -->
+	<dubbo:reference interface="cn.webChatServer.service.MySalaryService"
+		id="mySalaryService" timeout="600000" url="dubbo://127.0.0.1:20880" />
+		
+	<!-- 3.5、假期查询接口 -->
+	<dubbo:reference interface="cn.webChatServer.service.MyHolidayService"
+		id="myHolidayService" timeout="600000" url="dubbo://127.0.0.1:20880" />
+		
+		
 	<!-- 设置超时时间 -->
 	<dubbo:consumer timeout="600000" check="false"/>
-
 </beans>

@@ -10,9 +10,14 @@ public interface WXInfoDao {
 	 */
 	public abstract WXInfo queryByClassName(String className);
 	/**
-	 * 更新信息
+	 * 更新access_token信息
 	 * @param className
 	 */
-	public abstract void updateWXInfo(WXInfo wXInfo);
+	public abstract void updataWXInfo(WXInfo wXInfo);
+	/**
+	 * 更新jsapi_ticket信息
+	 * @param wXInfo
+	 */
+	public abstract void updataWXInfoByJsapiTicket(WXInfo wXInfo);
 	
 }

@@ -20,7 +20,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   <body>
   	<div>
     	<p style="color: red;font-size:35px;font-weight: bold;margin-top: 50px;">
-               对不起，你的账号还未开通MES模块权限，请联系管理员开通相关权限后使用！
+               对不起，你的账号还未开通MES模块权限，请联系管理员开通相关权限后使用！<br />
+               错误提示：${reason }
     	</p>
 	</div>
   </body>

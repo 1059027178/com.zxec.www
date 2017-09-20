@@ -9,7 +9,7 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.AbstractJUnit4SpringContextTests;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(locations={"classpath:applicationContext.xml"})
+@ContextConfiguration(locations={"classpath:*/applicationContext.xml"})
 public class WebChatServiceImplTest  extends AbstractJUnit4SpringContextTests{
 	@Autowired
 	private WebChatService webChatService;
@@ -26,5 +26,5 @@ public class WebChatServiceImplTest  extends AbstractJUnit4SpringContextTests{
 		String id = webChatService.achieveWebChartUserID("IPP93RaTC04fRe5zJ0J9KAZeyFYX2x7smuTiPxfMK40&");
 		System.out.println(id);
 	}
-
+	
 }

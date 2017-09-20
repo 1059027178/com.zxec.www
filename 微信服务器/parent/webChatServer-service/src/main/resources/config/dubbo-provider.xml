@@ -40,5 +40,9 @@
 		interface="cn.webChatServer.service.WebChatService" ref="webChatService" />
 	<dubbo:service 
 		interface="cn.webChatServer.service.ReportWorkHoursService" ref="reportWorkHoursService" />
+	<dubbo:service 
+		interface="cn.webChatServer.service.MySalaryService" ref="mySalaryService" />
+	<dubbo:service 
+		interface="cn.webChatServer.service.MyHolidayService" ref="myHolidayService" />
 
 </beans>

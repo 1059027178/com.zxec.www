@@ -18,13 +18,23 @@
    		http://www.springframework.org/schema/task/spring-task.xsd
 		http://code.alibabatech.com/schema/dubbo        
 		http://code.alibabatech.com/schema/dubbo/dubbo.xsd">
-
+		
+	<!-- **********************159oracle中间池************************* -->
 	<!-- 事务 @Transactional -->
 	<bean id="transactionManager"
 		class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
 		<property name="dataSource" ref="dataSource" />
 	</bean>
-	
 	<!-- 开启注解的事务 -->
 	<tx:annotation-driven transaction-manager="transactionManager" />
+	
+	<!-- **********************71EHR数据库************************* -->
+	<!-- 事务 @Transactional -->
+	<bean id="transactionManager2"
+		class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+		<property name="dataSource" ref="dataSource2" />
+	</bean>
+	<!-- 开启注解的事务 -->
+	<tx:annotation-driven transaction-manager="transactionManager2" />
 </beans>
+

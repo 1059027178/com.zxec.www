@@ -19,4 +19,13 @@ public interface ReportWorkHoursService {
 	 * @return 
 	 */
 	public List<String> judgeIfOpenMES(String strIP, String strModule, String strUser, String strValue);
+	/**
+	 * 查询流转卡信息
+	 * @param strIP 服务器IP （192.168.0.39）
+	 * @param strModule 模块名称（MES） 
+	 * @param strUser 服务器IP （192.168.0.39）
+	 * @param cardno 流转卡卡号
+	 * @return
+	 */
+	public String[] checkFinishCardno(String strIP, String strModule, String strUser,String cardno);
 }
