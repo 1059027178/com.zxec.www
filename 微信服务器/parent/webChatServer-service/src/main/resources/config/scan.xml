@@ -21,5 +21,6 @@
 
 	<!-- 扫描 -->
 	<context:component-scan base-package="cn.webChatServer" />
-
+	<!-- enable autowire -->
+	<context:annotation-config />
 </beans>

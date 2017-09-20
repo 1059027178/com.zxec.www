@@ -3,6 +3,7 @@ package cn.webChatServer.pojo;
 import java.io.Serializable;
 
 /**
+ * 对应后台表：WXINFO
  * 手动编写：
  * 微信企业号基础信息类
  * @author qianyang
@@ -45,6 +46,14 @@ public class WXInfo implements Serializable{
 	 * JS接口调用凭证
 	 */
 	private String JSAPITicket;
+	/**
+	 * JS接口调用凭证有效时间
+	 */
+	private String JSAPITicketExpiresIn;
+	/**
+	 * JS接口调用记录时间戳（单位：秒）(获取方式：当前时间戳+jsapi有效时间-200)
+	 */
+	private String ticketTimestamp;
 
 	public String getClassName() {
 		return className;
@@ -100,5 +109,21 @@ public class WXInfo implements Serializable{
 
 	public void setAddress(String address) {
 		this.address = address;
+	}
+
+	public String getJSAPITicketExpiresIn() {
+		return JSAPITicketExpiresIn;
+	}
+
+	public void setJSAPITicketExpiresIn(String jSAPITicketExpiresIn) {
+		JSAPITicketExpiresIn = jSAPITicketExpiresIn;
+	}
+
+	public String getTicketTimestamp() {
+		return ticketTimestamp;
+	}
+
+	public void setTicketTimestamp(String ticketTimestamp) {
+		this.ticketTimestamp = ticketTimestamp;
 	}
 }

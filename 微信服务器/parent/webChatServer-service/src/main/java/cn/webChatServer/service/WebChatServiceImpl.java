@@ -1,19 +1,17 @@
 package cn.webChatServer.service;
 
 import java.util.Date;
-
+import java.util.Map;
 import org.json.JSONObject;
-import org.junit.Test;
-import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import cn.webChatServer.dao.WXInfoDao;
 import cn.webChatServer.pojo.WXInfo;
 import cn.webChatServer.service.WebChatService;
 
 import com.webChatServer.util.NetWorkUtil;
+import com.webChatServer.util.SignUtil;
 import com.webChatServer.util.WebChartPort;
 
 //@Component
@@ -64,7 +62,7 @@ public class WebChatServiceImpl implements WebChatService{
 			//本地保存，用于下次使用
 			wxInfo.setAccessToken(access_token);
 			wxInfo.setAccessTokenExpiresIn(expires_in+"");
-			wxInfoDao.updateWXInfo(wxInfo);
+			wxInfoDao.updataWXInfo(wxInfo);
 		}else{
 			errmsg = jsonObject.getString("errmsg");
 			System.out.println("【access_token获取失败代码："+ errcode +"，原因：" + errmsg + "】");
@@ -122,4 +120,85 @@ public class WebChatServiceImpl implements WebChatService{
 		
 		return URL;
 	}
+	public String[] achieveJsapiTicket() {
+		System.out.println("【获取JsapiTicket开始】>>>>>>");
+		String[] result = new String[2];
+		//从数据库中取出access_token
+		wxInfo = wxInfoDao.queryByClassName(WebChartPort.WEB_CHAT_NAME);
+		access_token = wxInfo.getAccessToken();
+		
+		//拼接获取userID接口请求地址,发起HTTP请求
+		URL = WebChartPort.JSAPI_TICKET.replace("ACCESS_TOKE", access_token);
+		String str1 = NetWorkUtil.httpRequest(URL, "GET", null);
+		jsonObject =new JSONObject(str1);
+		//分析结果：如果是以上错误代码，则重新获取token
+		errcode = jsonObject.getInt("errcode");
+		boolean flag1 = (0 == errcode );
+		//分析返回结果：如果成功获取，则存起来，同时返回对应的accessToken
+		errcode = jsonObject.getInt("errcode");
+		boolean returnFlag = ( 0 == errcode );
+		if(returnFlag){
+			
+			String ticket = jsonObject.getString("ticket");
+			int expires_in = jsonObject.getInt("expires_in");
+			System.out.println("【ticket为" + ticket + "】");
+			System.out.println("【expires_in为" + expires_in + "】");
+			
+			//本地保存，用于下次使用
+			wxInfo.setJSAPITicket(ticket);
+			int nowTimestamp = (int) System.currentTimeMillis()/1000;//取当前时间戳
+			wxInfo.setTicketTimestamp(nowTimestamp + "");//记录当前时间戳
+			wxInfo.setJSAPITicket(ticket);//记录当前js调用凭证
+			wxInfo.setJSAPITicketExpiresIn(expires_in + "");//记录当前凭证有效期（秒）
+			wxInfoDao.updataWXInfoByJsapiTicket(wxInfo);
+
+			result[0] = ticket;
+			result[1] = expires_in + "";
+		}else{
+			errmsg = jsonObject.getString("errmsg");
+			System.out.println("【JsapiTicket获取失败代码："+ errcode +"，原因：" + errmsg + "】");
+		}
+		System.out.println("【获取JsapiTicket结束】>>>>>>");
+		return result;
+	}
+	public String achieveJsapiInfo(String url) {
+		//获取微信基础信息
+		System.out.println("【初始化JSAPI相关信息开始】>>>>>>");
+		wxInfo = wxInfoDao.queryByClassName(WebChartPort.WEB_CHAT_NAME);
+		String corpid = wxInfo.getCorpID();//取微信企业号id
+		String ticket = wxInfo.getJSAPITicket();//取ticket
+		
+		if( ticket == null ){
+			
+			String[] str = this.achieveJsapiTicket();
+			ticket = str[0] == null ? "" : str[0];
+			
+		}else{
+			
+			int expiresIn = Integer.parseInt(wxInfo.getJSAPITicketExpiresIn()); //ticket有效期
+			int jsapiTimestamp = Integer.parseInt(wxInfo.getTicketTimestamp());//取最后调用jsapi时间戳
+			int nowTimestamp = (int) System.currentTimeMillis()/1000;//取当前时间戳
+			
+			//判断ticket是否失效（当前时间戳 - ticket获取时时间戳   > (ticket有效期 - 200)）
+			boolean flag = ( ( nowTimestamp - jsapiTimestamp ) > ( expiresIn - 200 ) );
+			if(flag) ticket = this.achieveJsapiTicket()[0];//失效重新获取
+		}
+		//生成签名信息
+//		System.out.println("ticket = " + ticket);
+		Map<String, String> ret = SignUtil.sign(ticket, url);
+		String nonceStr = ret.get("nonceStr");//生成签名的随机串
+		String timestamp = ret.get("timestamp");//生成签名时的时间戳
+		String signature = ret.get("signature");//生成的签名
+		String jsapi_ticket = ret.get("jsapi_ticket");//生成前的凭证
+		jsonObject = new JSONObject();
+		jsonObject.put("appId", corpid); // 必填，企业号的唯一标识，此处填写企业号corpid
+		jsonObject.put("timestamp", timestamp);
+		jsonObject.put("nonceStr", nonceStr);
+		jsonObject.put("signature", signature);
+		jsonObject.put("jsapi_ticket", jsapi_ticket);
+		
+		System.out.println("【初始化JSAPI相关信息结束：】" + jsonObject.toString() + ">>>>>>");
+		return jsonObject.toString();
+	}
+	
 }

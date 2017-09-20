@@ -4,7 +4,7 @@ import java.io.Serializable;
 
 
 /**
- * 
+ * 对应后台表：test_tb
  * 测试表实体类
  * @author Administrator
  *

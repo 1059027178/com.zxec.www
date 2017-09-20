@@ -48,7 +48,7 @@ public class ReportWorkHoursServiceImpl implements ReportWorkHoursService{
 				Element element = (Element) elementList.get(i);
 				String str = element.getTextTrim();
 				resultList.add(str);
-				System.out.println("str = " + str);
+//				System.out.println("str = " + str);
 			}
 		} catch (DocumentException e) {
 			// TODO Auto-generated catch block
@@ -60,6 +60,23 @@ public class ReportWorkHoursServiceImpl implements ReportWorkHoursService{
 		ReportWorkHoursServiceImpl hoursServiceImpl = new ReportWorkHoursServiceImpl();
 		List<String> list = hoursServiceImpl.judgeIfOpenMES("192.168.0.39", "MES", "192.168.0.39", "6753");
 	}*/
+	//还未完成---
+	public String[] checkFinishCardno(String strIP, String strModule, String strUser,String cardno) {
+		String[] strs = new String[4];
+		//请求参数 
+        String REQUESTBODY ="<strIP>"+ strIP +"</strIP>"
+        		+ "<strModule>"+ strModule +"</strModule>"
+        		+ "<strUser>"+ strUser +"</strUser>"
+        		+ "<strValue>"+ cardno +"</strValue>";
+        //请求方法名
+        String METHOD = "CheckSubmitBarCode";
+        //拼接请求参数
+        String soapStr = MESConfigInfo.SOAP_HEAD.replace("METHOD", METHOD).replace("REQUESTBODY", REQUESTBODY);
+        //发起请求
+        String resultStr = NetWorkUtil.httpRequest(MESConfigInfo.MES_WEBSERVICE_ADDRESS, "POST", soapStr);
+        System.out.println("请求返回 =" + resultStr);
+		return strs;
+	}
 	
 	
 }

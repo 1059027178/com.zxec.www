@@ -1,5 +1,8 @@
 package cn.webChatServer.action;
 
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -7,8 +10,15 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.webChatServer.util.MySalaryUtil;
+
+import cn.webChatServer.ehr.pojo.Holiday;
+import cn.webChatServer.pojo.Salary;
 import cn.webChatServer.pojo.TestTb;
+import cn.webChatServer.service.MyHolidayService;
+import cn.webChatServer.service.MySalaryService;
 import cn.webChatServer.service.ReportWorkHoursService;
 import cn.webChatServer.service.TestTbService;
 import cn.webChatServer.service.WebChatService;
@@ -23,6 +33,10 @@ public class CenterAction {
 	private WebChatService webChatService;//微信接口调用
 	@Autowired
 	private ReportWorkHoursService reportWorkHoursService;//报工调用
+	@Autowired
+	private MySalaryService mySalaryService;//薪资查询调用
+	@Autowired
+	private MyHolidayService myHolidayService;//假期查询接口调用
 	/**
 	 * 测试action，不要鸟他
 	 * @param model
@@ -38,7 +52,7 @@ public class CenterAction {
 		testTbService.add(tb);
 		return "index";
 	}
-	
+	/***********************************微信登录一级目录**********************************************/
 	/**
 	 * 【微信用户登录统一入口，URL中使用viewName参数区分跳转目标Controller】
 	 * @param code
@@ -76,6 +90,22 @@ public class CenterAction {
 		return "redirect:" + to_url;
 	}
 	/**
+	 * 
+	 * @param model
+	 * @param url 当前调用页面的url完整路径
+	 * @return
+	 */
+	@RequestMapping(value="getJsapiInJson")
+	public String getJsapiInJson(Model model, @RequestParam("url")String url){
+		System.out.println( "【###用户进入jsapi签名开始】");
+		String resultStr =  webChatService.achieveJsapiInfo(url);
+		
+		System.out.println( "【###用户进入jsapi签名结束】");
+		
+		return "";
+	}
+	/***********************************我的报工一级目录**********************************************/
+	/**
 	 * viewName = reportWorkHour;
 	 * 我要报工
 	 * @param userID
@@ -83,31 +113,34 @@ public class CenterAction {
 	 */
 	@RequestMapping(value="reportWork")
 	public String reportWork(Model model,@RequestParam("userID")String userID){
-		System.out.println( "【###用 户 " + userID +"进入MES权限验证开始】");
-		
+		System.out.println( "【###用户 " + userID +"进入MES权限验证开始】");
+
+		String userNo = "E" + userID;
 		//验证用户是否开通MES权限
-		List<String> result = reportWorkHoursService.judgeIfOpenMES("192.168.0.39", "MES", "192.168.0.39", "E" + userID);
+		List<String> result = reportWorkHoursService.judgeIfOpenMES("192.168.0.39", "MES", "192.168.0.39", userNo);
 		boolean flag = ( "成功".equals( result.get(0).trim() ) );
 		String to_url = "";
 		if(flag){
 			
-			String userNo = "E" + userID;
 			String userName = result.get(3).trim();
 			System.out.println("###用户"+ userName +"验证通过！");
+			
+			//放入model，自动传入到前端页面
 			model.addAttribute("userNo", userNo);
 			model.addAttribute("userName", userName);
+			
 			//显示相关报工页面
 			to_url = "reportWork/reportWorkIndex";
 			
 		}else{
 			
+			//放入model，自动传入到前端页面
+			model.addAttribute("reason", result.get(1).trim());
 			System.out.println("###用户"+ userID + "验证失败,原因为 "+ result.get(1).trim());
-			//屏蔽相关报工页面
+			//跳转到报错页面
 			to_url = "reportWork/reportWorkNoOpen";
-			
 		}
-		
-		System.out.println( "【###用 户 " + userID +"进入MES权限验证结束】");
+		System.out.println( "【###用户 " + userID +"进入MES权限验证结束】");
 		return to_url;
 	}
 	/**
@@ -117,7 +150,7 @@ public class CenterAction {
 	 * @return
 	 */
 	@RequestMapping(value="myYield")
-	public String myYield(@RequestParam("userID")String userID){
+	public String myYield(Model model,@RequestParam("userID")String userID){
 		System.out.println( "【###用 户 " + userID +"进入报工开始】");
 		
 		
@@ -126,5 +159,46 @@ public class CenterAction {
 		return "myYield";
 		
 	}
+	/***********************************我的薪资一级目录（已测试数据源）**********************************************/
+	/**
+	 * viewName = mySalary
+	 * 我的薪资
+	 * @param model 
+	 * @param userID 用户工号
+ 	 * @return
+	 */
+	@RequestMapping(value="mySalary")
+	public String mySalary(Model model,@RequestParam("userID")String userID){
+		System.out.println( "【###用户 " + userID +"进入薪资查询开始】");
+		//默认显示5个月
+		List<Salary> salaryList = mySalaryService.achieveSalaryInfo(userID, MySalaryUtil.SHOW_EHTRY);
+		model.addAttribute("salaryList", salaryList);
+		System.out.println( "【###用户 " + userID +"进入薪资查询结束】");
+		return "salary/mySalary";
+	}
+	/***********************************我的假期--待测试（连接sql server数据库未通过）**********************************************/
+	@RequestMapping(value="myHoliday")
+	public String myHoliday(Model model,@RequestParam("userID")String userID){
+		System.out.println( "【###用户 " + userID +"进入假期查询开始】");
+		Holiday holiday = myHolidayService.queryByUserNo(userID);
+		
+		model.addAttribute("holiday", holiday);
+		
+		System.out.println( "【###用户 " + userID +"进入假期查询结束】");
+		return "holiday/myHoliday";
+		
+	}
 	
+	/***********************************公共功能**********************************************/
+	/**
+	 * @param url (当前url完整路径)
+	 * @return 当前调用jsapi相关信息
+	 */
+	@RequestMapping(value="achieveJsapiInfo")
+	@ResponseBody
+	public String achieveJsapiInfo(@RequestParam("url")String url){
+		System.out.println("获取到URL= " + url);
+		String str = webChatService.achieveJsapiInfo(url);
+		return str;
+	}
 }
