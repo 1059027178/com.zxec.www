@@ -36,24 +36,15 @@
 	    </dataSource>
  	 </transactionManager> -->
   <!-- 生产机:成品仓库 -->
-  
   <!-- 测试机 -->
     <transactionManager type="JDBC" commitRequired="false">
-    <dataSource type="SIMPLE">
-      <property name="JDBC.Driver" value="com.microsoft.sqlserver.jdbc.SQLServerDriver"/>
-      <property name="JDBC.ConnectionURL" value="jdbc:sqlserver://114.55.29.104:1433;DatabaseName=zjcodeTest"/>
-		<property name="JDBC.Username" value="zjcode"/>
-      <property name="JDBC.Password" value="zjcode"/>
-    </dataSource>
-  </transactionManager>
-    <!-- <transactionManager type="JDBC" commitRequired="false">
-    <dataSource type="SIMPLE">
-      <property name="JDBC.Driver" value="oracle.jdbc.driver.OracleDriver"/>
-      <property name="JDBC.ConnectionURL" value="jdbc:oracle:thin:@192.168.90.51:1521:ORCL"/>
-      <property name="JDBC.Username" value="zjfdcode"/>
-      <property name="JDBC.Password" value="zjfdcode"/>
-    </dataSource>
- 	 </transactionManager> -->
+	    <dataSource type="SIMPLE">
+	       <property name="JDBC.Driver" value="oracle.jdbc.driver.OracleDriver"/>
+	      <property name="JDBC.ConnectionURL" value="jdbc:oracle:thin:@192.168.0.76:1521:ORCL"/>
+	      <property name="JDBC.Username" value="zjcodeTest"/>
+	      <property name="JDBC.Password" value="zjcodeTest"/>
+	    </dataSource>
+ 	 </transactionManager>
   <!-- 测试机 -->
   
   <!-- List the SQL Map XML files. They can be loaded from the classpath, as they are here  -->

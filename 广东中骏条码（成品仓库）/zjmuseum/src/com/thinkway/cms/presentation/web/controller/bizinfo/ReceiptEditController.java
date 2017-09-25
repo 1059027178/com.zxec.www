@@ -95,6 +95,7 @@ public class ReceiptEditController implements Controller , AuthenticateControlle
 		String maktx = SapUtil.null2String(request.getParameter("maktx"));//物料描述
 		String boxs  = SapUtil.null2String(request.getParameter("boxs"));//箱数
 		String sonum = SapUtil.null2String(request.getParameter("sonum"));
+		String tmid = SapUtil.null2String(request.getParameter("tmid"));//新增
 		/*autur：qy since: 20160912*/
 		hrminfoService hr = new hrminfoServiceImpl();
 		String name  = hr.gethrminfoDataByObjno(objno).getName();
@@ -110,6 +111,7 @@ public class ReceiptEditController implements Controller , AuthenticateControlle
 		receipt.setBoxs(boxs);
 		receipt.setMaktx(maktx);
 		receipt.setSonum(sonum);
+		model.put("tmid", tmid);
 		model.put("receiptObj", receipt);
 		String message="";	
 		try{
@@ -142,6 +144,8 @@ public class ReceiptEditController implements Controller , AuthenticateControlle
 		parameterList.setValue(lgort,"I_LGORT");
 		parameterList.setValue(meins,"I_MEINS");
 		parameterList.setValue(name,"I_PID");
+		
+		parameterList.setValue(tmid,"I_ZTMID");
 		
 		myConnection.execute(bapi);
 		

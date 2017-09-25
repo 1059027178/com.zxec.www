@@ -43,13 +43,18 @@
       </td>
     </tr>
     <tr>
-    <td>
+   <!--  <td>
     	<input  class=button type="button" style="width:200px" onclick="window.location.href='/dumpView.do';" value="3.库存转储">
-      </td>
+      </td> -->
     </tr>
      <tr>
     <td>
-    	<input  class=button type="button" style="width:200px" onclick="window.location.href='/lubuView.do';" value="4.记账变更">
+    	<input  class=button type="button" style="width:200px" onclick="window.location.href='/lubuView.do';" value="3.记账变更">
+      </td>
+    </tr>
+    <tr>
+    <td>
+    	<input  class=button type="button" style="width:200px" onclick="window.location.href='/batchStorage.do';" value="4.批量入库">
       </td>
     </tr>
     <tr>

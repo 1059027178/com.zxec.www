@@ -92,6 +92,8 @@ public class ReceiptViewController implements Controller , AuthenticateControlle
 		String boxs = SapUtil.null2String(request.getParameter("boxs"));//箱数
 		String maktx = SapUtil.null2String(request.getParameter("maktx"));//物料描述
 		String sonum = SapUtil.null2String(request.getParameter("sonum"));//特殊库存编码
+		//20170911新增条码id
+		String tmid = SapUtil.null2String(request.getParameter("tmid"));//tmid
 		//String aufnr = SapUtil.null2String(request.getParameter("aufnr"));
 		
 		receipt.setAufnr(aufnr);
@@ -105,6 +107,8 @@ public class ReceiptViewController implements Controller , AuthenticateControlle
 		receipt.setBoxs(boxs);
 		receipt.setMaktx(maktx);
 		receipt.setSonum(sonum);
+		
+		model.put("tmid", tmid);
 		model.put("receiptObj", receipt);
 		
 		//System.out.println("end:"+SapUtil.getCurrentDateTime());

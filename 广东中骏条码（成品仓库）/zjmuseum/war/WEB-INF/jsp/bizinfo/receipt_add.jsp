@@ -17,10 +17,11 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	<meta http-equiv="keywords" content="keyword1,keyword2,keyword3">
 	<meta http-equiv="description" content="This is my page">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no, target-densitydpi=medium-dpi" />
-		<script src="/js/jquery.js"></script>  
+	<script src="/js/jquery.js"></script>  
 	<script src="/js/jquery-ui-bootstrap/assets/js/jquery-ui-1.10.0.custom.min.js" type="text/javascript"></script>  
 	<script src="/js/jquery-ui-bootstrap/assets/js/jquery-ui-datepicker.zh-cn.js" type="text/javascript"></script>    
 	<link href="/css/jiuhui.css" rel="stylesheet">
+	<script type="text/javascript" src="../../../js/alert.js"></script>
   </head>
   <script type="text/javascript">
   	function choose1(){
@@ -67,6 +68,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	  		var sonum=str[6];
 	  		var lgort=str[7];
 	  		var meins=str[8];
+	  		var tmid=str[9];
 	  		$("#aufnr").attr("value",aufnr);
 	  		$("#matnr").attr("value",matnr);
 	  		$("#sonum").attr("value",sonum);
@@ -76,7 +78,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	  		$("#meins").attr("value",meins);
 	  		$("#sobkz").attr("value",sobkz);
 	  		$("#lgort").attr("value",lgort);
-	  		
+	  		$("#tmid").val(tmid);
 	  		if(bs=='X'){
 	  			$("#bs").attr("checked","checked");
 	  			
@@ -85,9 +87,46 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	  		}
 	  		choose1();
 	  		getMaktx(matnr);
-	  		$("#boxs").focus();
+	  		//添加唯一码校验
+	  		checkTmid(tmid,lgort.substring(0,2)+"00");
   		}
   	}
+  	function checkTmid(tmid,werks){
+  		//console.log("tmid = " + tmid);
+  		//console.log("werks = " + werks);
+  		if(tmid=='' || tmid==null)return;
+  		if(werks=='' || werks==null)return;
+		jQuery.ajax({
+			url:'/checkoutJson.do',
+	 		async:false,
+	 		type:"post",
+	 		data:{
+		 		"showType":"checkout",
+		 		"ZTMID":tmid,
+		 		"WERKS":werks
+	 		},
+	 		success:function(data){
+	 			var dataObj = eval("("+data+")");
+	 			var flag = dataObj.ZYFHGZ;
+	 			//console.log("flag = " + flag);
+	 			if(flag == ""){//未过账
+	 			
+	 				$("#boxs").focus();
+	 				
+	 			}else if (flag == "X"){//已过账
+	 			
+	 				$("input[type=text]").val("");
+	 				$("#str").focus();
+	 				alert(tmid + "已入库！");
+	 			}
+	 		},
+	        error:function(){
+		       alert("系统异常，请联系管理员");
+		    }
+		});
+  		
+  	}
+  	
   	function getMaktx(matnr){
   		if(matnr=='' || matnr==null)return;
 		jQuery.ajax({
@@ -142,20 +181,21 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   <input type="hidden" name="sonum" id="sonum" >
   	<div style="margin-left:-15px;">
   		<ul>
-  			<li style="height:15px;list-style-type:none;padding:0; margin:0;"><input name="str"  type="text" style="white-space：nowrap;width:70%;"  id="str" onchange="js()"></li>
+  			<li style="height:15px;list-style-type:none;padding:0; margin-top:0;"><input name="str"  type="text" style="white-space：nowrap;width:70%;"  id="str" onchange="js()"></li>
+  			<li class="li">唯一标识：<input name="tmid" style="height:20px;" size="5" readonly=readonly class="text"  type="text"  id="tmid" > </input></li>
   			<li class="li">生产订单：<input name="aufnr" style="height:20px;" size="5" readonly=readonly class="text"  type="text"  id="aufnr" > </input></li>
   			<li class="li">物料编码：<input name="matnr" style="height:20px;" class="text"  readonly=readonly type="text" id="matnr"></li>
   			<li class="li">物料描述：<input name="maktx" style="height:20px;" class="text"  readonly=readonly type="text" id="maktx"></li></br>
   			<li class="li">尾箱标识：<input type="checkbox" onclick="choose1();" id="bs" style="width:20px;height:20px;" name="bs"></li>
   			<li class="li">箱数量/箱数：<input name="meng" style="width:40px;background-color:#D8D8D8;height:20px;" readonly=readonly type="text" id="meng"/>/<input name="boxs" style="width:35px;height:20px;" type="text"  id="boxs" onchange="acount();"/></li>
-  			<li class="li">批&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;次：<input name="charg" readonly=readonly  type="text" class="text" id="charg"></li>
+  			<li class="li">批&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;次：<input name="charg" readonly=readonly  type="text" class="text" id="charg" style="width:80px;"></li>
   			<li class="li">总<span style="margin-left:7px;"></span>数<span style="margin-left:7px;"></span>量：<input name="wemng" type="text" class="text1" id="wemng" /><input name="meins" style="width:33px;" class="text2" readonly=readonly type="text"  id="meins"/></li>
   			<li class="li">库存地点：<input name="lgort" class="text3" type="text" id="lgort"></li>
   			<li class="li">特殊库存：<input name="sobkz" style="height:20px;" readonly=readonly type="text" class="text"  id="sobkz"></li>
   			<li class="li"><input type="button" style="width:40px;height:25px;margin-left:-30px;" valign="center" class="button" onclick="submit1(this);" value="确定"/>
   			<input  class="button"  type="button" style="width:40px;height:25px;" onclick="forward();" value="返回"/>
   			<input  class="button" type="button" style="width:40px;height:25px;" onclick="reset();" value="重置"/>
-  			<input   type="button" class="button" style="width:50px;height:25px;" onclick="window.location.href='/main.do';" value="首页"></li>	
+  			<input   type="button" class="button" style="width:40px;height:25px;" onclick="window.location.href='/main.do';" value="首页"></li>	
   		</ul>
   	</div>
      

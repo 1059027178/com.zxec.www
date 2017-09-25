@@ -3,9 +3,15 @@ package com.thinkway;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.List;
+import java.util.Map;
 import java.util.Properties;
+import java.util.Map.Entry;
 
+import com.sap.mw.jco.IFunctionTemplate;
 import com.sap.mw.jco.JCO;
+import com.thinkway.cms.util.SAPModel;
+import com.thinkway.cms.util.SAPRequest;
 
 
 public class SapUtil {
@@ -21,24 +27,24 @@ public class SapUtil {
 	public static JCO.Client  getSAPcon(){
 		Properties logonProperties = new Properties();
 	        logonProperties.put("jco.client.sysnr","00");
-	        logonProperties.put("jco.client.ashost","192.168.0.50");
+	        logonProperties.put("jco.client.ashost","192.168.0.182");
 	        logonProperties.put("jco.client.client","667"); 
 	        logonProperties.put("jco.client.user","abap7");        
-	        logonProperties.put("jco.client.passwd","123456"); 
+	        logonProperties.put("jco.client.passwd","654321"); 
 	        logonProperties.put("jco.client.CodePage","8400"); 
         JCO.Client myConnection = JCO.createClient( logonProperties );
 		return myConnection;
 	}
-	public static JCO.Client  getSAPconEn(){
+	public static JCO.Client  getSAPconEn(){ 
 		JCO.Pool pool = JCO.getClientPoolManager().getPool(POOL_NAME);
 		JCO.Client myConnection = null;
 		if(pool==null){
 			Properties logonProperties = new Properties();
 		        logonProperties.put("jco.client.sysnr","00");
-		        logonProperties.put("jco.client.ashost","192.168.0.50");
+		        logonProperties.put("jco.client.ashost","192.168.0.182");
 		        logonProperties.put("jco.client.client","667"); 
 		        logonProperties.put("jco.client.user","abap7");        
-		        logonProperties.put("jco.client.passwd","123456");  
+		        logonProperties.put("jco.client.passwd","654321");  
 		        logonProperties.put("jco.client.CodePage","8400"); 
 	        
 	        JCO.addClientPool( POOL_NAME, max_connection, logonProperties); // properties
@@ -122,5 +128,67 @@ public class SapUtil {
 			i=-1;
 		}
 		return i;
+	}
+	/**
+	 * 通过{@link SAPRequest} 访问SAP
+	 * 
+	 * @param sapRequest
+	 *            封装了函数名，输入参数，输入表（输入结构）
+	 * @return 请求结果
+	 */
+	public static SAPModel OperSAP(SAPRequest sapRequest) {
+		SAPModel model = new SAPModel();
+		JCO.Client conn = null;
+		try {
+			conn = SapUtil.getSAPcon();
+			conn.connect();
+
+			JCO.Repository repo = new JCO.Repository("Repository", conn);
+			IFunctionTemplate ft = repo.getFunctionTemplate(sapRequest.getFunctionName());
+			JCO.Function bapi = ft.getFunction();
+			JCO.ParameterList parameterList = bapi.getImportParameterList();
+
+			// 输入参数赋值
+			if (null != sapRequest.getInputParameterMap()) {
+				for (Map.Entry<String, String> entry : sapRequest.getInputParameterMap().entrySet()) {
+					try {
+						parameterList.setValue(entry.getValue().trim(), entry.getKey());
+					} catch (Exception e) {
+						e.printStackTrace();
+					}
+				}
+			}
+
+			// 输入表赋值
+			if (null != sapRequest.getInputTables()) {
+				JCO.ParameterList inputTable = bapi.getTableParameterList();
+				for (Entry<String, List<Map<String, String>>> entry : sapRequest.getInputTables().entrySet()) {
+					JCO.Table iTable = inputTable.getTable(entry.getKey());
+					for (Map<String, String> columnMapList : entry.getValue()) {
+						iTable.appendRow();
+						for (Entry<String, String> columnMap : columnMapList.entrySet()) {
+							if (null == columnMap.getValue()) {
+								continue;
+							}
+							iTable.setValue(columnMap.getValue().trim(), columnMap.getKey().trim());
+						}
+					}
+				}
+			}
+
+			conn.execute(bapi);
+			model.setOuts(bapi);
+			model.setOuttab(bapi);
+			model.setOperationType(SAPModel.SUCCESS);
+
+		} catch (Exception e) {
+			model.setOperationType(SAPModel.ERROR);
+			model.setExceptionMessage(e.getMessage());
+		} finally {
+			if (null != conn) {
+				SapUtil.releaseClient(conn);
+			}
+		}
+		return model;
 	}
 }
