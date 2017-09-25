@@ -96,7 +96,9 @@
 	
 	<!-- main view控制器 -->
 	<bean name="/main.do" class="com.thinkway.cms.presentation.web.controller.user.MainController">
-		<property name="viewName" value="/WEB-INF/jsp/one.jsp"/>	
+		<property name="viewName" value="/WEB-INF/jsp/one.jsp"/>
+		<!-- 新增半成品 -->
+		<property name="viewName2" value="/WEB-INF/jsp/two.jsp"/>	
 		<property name="view1" value="/WEB-INF/jsp/two1.jsp"/>	
 		<property name="view2" value="/WEB-INF/jsp/two2.jsp"/>	
 		<property name="view3" value="/WEB-INF/jsp/two3.jsp"/>	
@@ -539,6 +541,98 @@
 		<property name="tokenNeed" value="N"></property>
 		<property name="userService" ref="userService"></property>
 		<property name="authenticator" ref="authenticator"/>
+	</bean>
+	<!-- 批量入库20170906 -->
+	<bean name="/batchStorage.do" class="com.thinkway.cms.presentation.web.controller.bizinfo.BatchStorageViewController">
+		<property name="viewName" value="/WEB-INF/jsp/bizinfo/batchStorage_view.jsp"/>
+		<property name="permission" value="1000"></property>
+		<property name="tokenNeed" value="N"></property>
+		<property name="userService" ref="userService"></property>
+		<property name="authenticator" ref="authenticator"/>
+	</bean>
+	<bean name="/batchStorageList.do" class="com.thinkway.cms.presentation.web.controller.bizinfo.BatchStorageListController">
+		<property name="viewName" value="/WEB-INF/jsp/bizinfo/batchStorage_list.jsp"/>
+		<property name="permission" value="1000"></property>
+		<property name="tokenNeed" value="N"></property>
+		<property name="userService" ref="userService"></property>
+		<property name="authenticator" ref="authenticator"/>
+	</bean>
+	<bean name="/batchStorageEdit.do" class="com.thinkway.cms.presentation.web.controller.bizinfo.BatchStorageEditController">
+		<property name="viewName" value="/WEB-INF/jsp/bizinfo/batchStorage_edit.jsp"/>
+		<property name="permission" value="1000"></property>
+		<property name="tokenNeed" value="N"></property>
+		<property name="userService" ref="userService"></property>
+		<property name="authenticator" ref="authenticator"/>
+	</bean>
+	<bean name="/checkoutJson.do" class="org.springframework.web.servlet.mvc.multiaction.MultiActionController">
+		<property name="methodNameResolver" ref="paramResolver"></property>
+		<property name="delegate" ref="checkoutJsonController"></property>
+	</bean>
+	<bean id="checkoutJsonController" class="com.thinkway.cms.presentation.web.controller.bizinfo.BatchStorageJsonController">
+		<property name="userService" ref="userService"></property>
+		<property name="hrminfoService" ref="hrminfoService"></property>
+		<property name="permission" value="901"></property>
+		<property name="maxUploadSize" value="104857600" />
+		<property name="uploadDir" value="${app.uploadpath}" />
+		<property name="tokenNeed" value="N"></property>
+		<property name="authenticator" ref="authenticator"/>
+	</bean>
+	<!-- 生产调拨（半成品仓库使用）领料20170908 -->
+	<bean name="/delivery.do" class="com.thinkway.cms.presentation.web.controller.bizinfo.DeliveryController">
+		<property name="viewName" value="/WEB-INF/jsp/bizinfo/get_material_produce_base.jsp" />
+		<property name="permission" value="1000"></property>
+		<property name="tokenNeed" value="N"></property>
+		<property name="userService" ref="userService" />
+		<property name="authenticator" ref="authenticator" />
+	</bean>
+	<bean name="/getMaterialA.do"
+		class="com.thinkway.cms.presentation.web.controller.bizinfo.GetMaterialAController">
+		<property name="viewName"
+			value="/WEB-INF/jsp/bizinfo/get_material_produce_a.jsp" />
+		<property name="permission" value="1002"></property>
+		<property name="msg"
+			value="/WEB-INF/jsp/bizinfo/get_material_produce_error.jsp" />
+		<property name="tokenNeed" value="N"></property>
+		<property name="userService" ref="userService"></property>
+		<property name="authenticator" ref="authenticator" />
+	</bean>
+	<bean name="/getMaterialB.do"
+		class="com.thinkway.cms.presentation.web.controller.bizinfo.GetMaterialBController">
+		<property name="viewName" value="/WEB-INF/jsp/bizinfo/get_material_produce_b.jsp" />
+		<property name="permission" value="1000"></property>
+		<property name="msg" value="/WEB-INF/jsp/bizinfo/get_material_produce_error.jsp" />
+		<property name="tokenNeed" value="N"></property>
+		<property name="userService" ref="userService"></property>
+		<property name="authenticator" ref="authenticator" />
+	</bean>
+	<bean name="/getMaterialC.do"
+		class="com.thinkway.cms.presentation.web.controller.bizinfo.GetMaterialCController">
+		<property name="viewName" value="/WEB-INF/jsp/bizinfo/get_material_produce_c.jsp" />
+		<property name="permission" value="1000"></property>
+		<property name="msg" value="/WEB-INF/jsp/bizinfo/get_material_produce_error.jsp" />
+		<property name="tokenNeed" value="N"></property>
+		<property name="userService" ref="userService"></property>
+		<property name="authenticator" ref="authenticator" />
+	</bean>
+	<bean name="/getMaterialD.do"
+		class="com.thinkway.cms.presentation.web.controller.bizinfo.GetMaterialDController">
+		<property name="viewName" value="/WEB-INF/jsp/bizinfo/get_material_produce_d.jsp" />
+		<property name="permission" value="1000"></property>
+		<property name="msg" value="/WEB-INF/jsp/bizinfo/get_material_produce_error.jsp" />
+		<property name="tokenNeed" value="N"></property>
+		<property name="userService" ref="userService"></property>
+		<property name="authenticator" ref="authenticator" />
+	</bean>
+	<bean name="/getMaterialE.do"
+		class="com.thinkway.cms.presentation.web.controller.bizinfo.GetMaterialEController">
+		<property name="viewName"
+			value="/WEB-INF/jsp/bizinfo/get_material_produce_e.jsp" />
+		<property name="permission" value="1000"></property>
+		<property name="msg"
+			value="/WEB-INF/jsp/bizinfo/get_material_produce_error.jsp" />
+		<property name="tokenNeed" value="N"></property>
+		<property name="userService" ref="userService"></property>
+		<property name="authenticator" ref="authenticator" />
 	</bean>
 	<!-- 记账变更 -->
 	<bean name="/lubuView.do" class="com.thinkway.cms.presentation.web.controller.bizinfo.LubuViewController">

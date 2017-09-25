@@ -97,6 +97,7 @@ function submit1(obj){
 	<input name="boxs" type="hidden" value="${receiptObj.boxs}"/>
 	<input name="maktx" type="hidden" value="${receiptObj.maktx}"/>
 	<input name="sonum" type="hidden" value="${receiptObj.sonum}"/>
+	<input name="tmid" type="hidden" value="${tmid}"/>
 	
      <ul>
      	<li class="li" ></li>

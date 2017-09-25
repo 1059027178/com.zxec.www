@@ -1,0 +1,235 @@
+<%@page import="java.util.HashMap"%>
+<%@page import="java.util.Map"%>
+<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib uri="http://displaytag.sf.net" prefix="display"%>
+<%@ include file="../include/const.jsp"%>
+<%@ page import="java.util.List"%>
+<%@ page import="com.thinkway.SapUtil"%>
+<%@ page import="com.thinkway.cms.business.domains.MaterialDetail"%>
+<%
+	int pageNo=SapUtil.getIntValue((String)request.getAttribute("page"));
+	int pageNum=(Integer)request.getAttribute("pageNum");
+	String werks=(String)request.getAttribute("werks");
+	String budat=(String)request.getAttribute("budat");
+	String lgort=(String)request.getAttribute("lgort");
+	String materialGettenId = (String) request.getAttribute("materialGettenId");
+	List<MaterialDetail> list = (List) request.getAttribute("materialDetailList");
+%>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<HEAD>
+<TITLE><%=sysname%> - <%=company%></TITLE>
+<META http-equiv=Content-Type content="text/html; charset=UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="<%=desp%>">
+<meta name="company" content="<%=company%>">
+<LINK href="/css/jiuhui_list.css" type=text/css rel=STYLESHEET>
+	<script src="/js/jquery.js"></script>
+	<script type="text/javascript" src="../../../js/alert.js"></script>
+<script>
+// 点击radio所在行，即可点中该行的radio
+ $(document).on('click', '.tr_list_1, .tr_list_2', function() {
+ $(this).find("input[type='radio']").prop("checked", true);
+  $(this).prev().find("input[type='radio']").prop("checked", true);
+ });
+ //过账
+function posting(obj) {
+  	obj.disabled=false;
+	var count = <%=list.size()%>;
+	var msg = "";
+	for (var j = 1 ; j <= count ; j++ ){
+		var pick = $("input[name=pickAmount" + j + "]");
+		var per = $("#per"+ j ).text();
+		if(isNaN(pick.val())){
+			msg += ("<br/><br/>第" + j + "行输入" + pick.val() + "不合法！"  );
+		}
+		else if( parseFloat(pick.val()) > parseFloat(per) ){
+			msg += ("<br/><br/>第" + j + "行拣配"+ pick.val() + "大于预制" + per + "数量！" );
+		}
+	}
+	if(!msg == ""){
+		alert(msg);return false;
+	}else if(msg == ""){
+		document.form.action = "/getMaterialE.do";
+		document.form.submit();
+		return true;
+	}
+}
+	//跳页
+	function EnterPress(e) {
+		var e = e || window.event;
+		if (e.keyCode == 13) {
+		var pageNum =<%=pageNum%>;
+		var pageNo=document.getElementById("jumpTable").value;
+			if ((/(^[1-9]\d*$)/.test(pageNo))&&pageNo>0&&pageNo<pageNum+1) {
+				document.getElementById("page").value = pageNo;
+				document.form.action = "/getMaterialB.do";
+				document.form.submit();
+			} 
+			document.getElementById("jumpTable").value="";
+		}
+	}
+	
+	//下架
+	function confirm() {
+		debugger
+		var temp = document.getElementsByName("param");
+
+		for ( var i = 0; i < temp.length; i++) {
+			if (temp[i].checked) {
+				var per = document.getElementById("per" + (i + 1));
+				var pick = document.getElementById("pick" + (i + 1));
+				document.getElementById("requireTotal").value = (per.innerText - pick.innerText);
+				var requireTotal = document.getElementById("requireTotal").value;
+				if (requireTotal == 0){
+					alert("需求数量已全部下架！");return;
+				}
+				document.form.action = "/getMaterialC.do";
+				document.form.submit();
+				return;
+			}
+		}
+		alert("请选择一项");
+	}
+
+	function lastPage() {
+		var pageNo =<%=pageNo%>;
+		var pageNum =<%=pageNum%>;
+		if (pageNo == 1)
+			return;
+		document.getElementById("page").value = pageNo - 1;
+		document.form.action = "/getMaterialB.do";
+		document.form.submit();
+	}
+	function nextPage() {
+		var pageNo =<%=pageNo%>;
+		var pageNum =<%=pageNum%>;
+		if (pageNo == pageNum)
+			return;
+		document.getElementById("page").value = pageNo + 1;
+		document.form.action = "/getMaterialB.do";
+		document.form.submit();
+	}
+	//校验，每次只能输入小于或等于预制数量的拣配数量
+	function checkAmount(thisObj){
+		var thisValue = thisObj.value;
+		var thisValue1 = parseFloat(thisValue);
+		if(isNaN(thisValue1)){
+			thisObj.value = "";
+			thisObj.focus();
+			alert("请输入数字！");
+		}else{
+			var tr1 = thisObj.parentNode.parentNode;
+			var td1 = tr1.children[0].innerText;
+			var perAmount = parseFloat(td1);
+			if(thisValue1 > perAmount){
+				thisObj.value = "";
+				thisObj.focus();
+				alert("拣配数量过大！");
+			}
+		}
+	}
+</script>
+</HEAD>
+<BODY>
+	<div class="div"><!-- 
+		<form id="form" name="form" method="post" onsubmit="return false;"> -->
+		<form name="form" method="post" >
+			<input type="hidden" id="page" name="page" value="<%=pageNo%>" /> 
+			<input type="hidden" name="werks" value="<%=werks%>"> 
+			<input type="hidden" name="budat" value="<%=budat%>"> 
+			<input type="hidden" name="lgort" value="<%=lgort%>">
+			<input type="hidden" id="requireTotal" name="requireTotal" /> 
+			<input type="hidden" name="materialGettenId" value="<%=materialGettenId%>" />
+			
+			<!-- <input type="hidden" name="lgnum" value="321"  />
+			 --><%
+				if (list == null) {
+			%>
+			<table style="width:100%;">
+				<tr><td>没有数据！</td></tr>
+				<tr>
+					<td align="center">
+						<input type="button" class="button" style="width:40px;" value="返回" onclick="window.location.href='/delivery.do';"/> 
+						<input type="button" class="button" style="width:40px;" onclick="window.location.href='/main.do';" value="首页"/>
+					</td>
+				</tr>
+			</table>
+			<%return;}%>
+			<%	if (list.size() == 0) {%>
+			<table style="width:100%;">
+				<tr><td>没有数据！</td></tr>
+				<tr>
+					<td align="center">
+						<input type="button" class="button" style="width:40px;" value="返回" onclick="window.location.href='/delivery.do';"></input> 
+						<input type="button" class="button" style="width:40px;" onclick="window.location.href='/main.do';" value="首页" />
+					</td>
+				</tr>
+			</table>
+			<%return;}%>
+			<table class="table_list" style="width:100%;margin-top:20px;margin-left:10px">
+				<tr class="tr_list_1" bordercolor="#000000">
+					<td class="td_list">序号</td>
+					<td class="td_list">物料</td>
+					<td class="td_list">单位</td>
+					<td class="td_list">批次</td>
+				</tr>
+				<tr class="tr_list_1" bordercolor="#000000">
+					<td class="td_list"></td>
+					<td class="td_list">数量</td>
+					<td class="td_list"></td>
+					<td class="td_list">已拣配数量</td>
+				</tr>
+				<%
+					request.getSession().setAttribute("list", list);
+					int i = 1;
+					for (i = 1; i <= list.size(); i++) {
+						MaterialDetail pic = (MaterialDetail) list.get(i - 1);
+				%>
+				<tr <%if (i % 2 == 1) {%> class="tr_list_2" <%} else {%> class="tr_list_1" <%}%>>
+					<td class="td_list" rowspan="2">
+						<input type="radio" style="display:none" name="param" value="<%=pic.getMaterialId()%>@<%=pic.getBatch()%>@<%=pic.getMaterialGettenId()%>@<%=pic.getLineItem()%>" />
+						<%=pic.getNum()%>
+					</td>
+					<td class="td_list"><%=pic.getMaterialId()%></td>
+					<td class="td_list"><%=pic.getUnit()%></td>
+					<td class="td_list"><%=pic.getBatch()%></td>
+				</tr>
+				<tr <%if (i % 2 == 1) {%> class="tr_list_2" <%} else {%> class="tr_list_1" <%}%>>
+					<td class="td_list" id="per<%=i%>"><%=pic.getPerAmount()%></td>
+					<td class="td_list"></td>
+					<%-- <td class="td_list" id="pick<%=i%>"><%=pic.getPickingAmount()%></td> --%>
+					<td class="td_list" id="pick<%=i%>">
+						<input type="text" name="pickAmount<%=i%>" value="<%=pic.getPickingAmount()%>" style="width:50px;" onchange="checkAmount(this)"/>
+					</td>
+				</tr>
+				<%
+					}
+				%>
+			</table>
+			<table class="table_list" style="width:100%;margin-top:5px;">
+				<tr>
+					<td align="center">
+						<input type="button" class="button" style="width:40px;" value="过账" onclick = "return posting(this);"/>
+					</td>
+					<!-- <td align="center">
+						<input type="button" class="button" style="width:40px;" value="下架" onclick="confirm()"></input>
+					</td> -->
+					<td align="center">
+						<input type="button" class="button" style="width:40px;" value="返回" onclick="window.location.href='/delivery.do';"/>
+					</td>
+					<td align="center">
+						<input type="button" class="button" style="width:40px;" value="<<" onclick="lastPage();" />
+					</td>
+					<td align="center">
+						<input type="button" class="button" style="width:40px;" value=">>" onclick="nextPage();" />
+					</td>
+					<td>
+						<input type="text" valign="center" style="width:30px;height:18px;" id="jumpTable" onkeypress="EnterPress(event)" />
+					</td>
+				</tr>
+			</table>
+		</form>
+	</div>
+</BODY>
+</HTML>

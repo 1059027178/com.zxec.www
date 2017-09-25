@@ -65,8 +65,9 @@ public class MainController implements Controller,AuthenticateController{
 	public void setUserService(UserService userService) {
 		this.userService = userService;
 	}
-	
+
 	private String viewName = null;
+	private String viewName2 = null;
 	private String view1 = null;
 	private String view2 = null;
 	private String view3 = null;
@@ -175,6 +176,12 @@ public class MainController implements Controller,AuthenticateController{
 			model.put("keywords", kw);
 			return new ModelAndView(getViewAdmin(),model);
 		}
+		//新增半成品
+		else if(!(user.getUserFunction().indexOf("1002")<0)){
+			
+			System.out.println(getViewName2());
+			return new ModelAndView(getViewName2(),model);
+		}
 		System.out.println(getViewName());
 		return new ModelAndView(getViewName(),model);
 	}
@@ -186,7 +193,13 @@ public class MainController implements Controller,AuthenticateController{
 	public void setViewName(String viewName) {
 		this.viewName = viewName;
 	}
+	public String getViewName2() {
+		return viewName2;
+	}
 
+	public void setViewName2(String viewName2) {
+		this.viewName2 = viewName2;
+	}
 	public String getView1() {
 		return view1;
 	}
@@ -234,5 +247,4 @@ public class MainController implements Controller,AuthenticateController{
 	public void setViewAdmin(String viewAdmin) {
 		this.viewAdmin = viewAdmin;
 	}
-	
 }

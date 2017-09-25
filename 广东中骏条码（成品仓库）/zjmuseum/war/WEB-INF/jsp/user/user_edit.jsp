@@ -75,7 +75,7 @@
 		$("#userName").formValidator({onShow:"请输入用户别名",onFocus:"用户名至少1个字符,最多10个字符"}).inputValidator({min:1,max:10,onError:"您输入的用户名不合法,请确认"}).defaultPassed();
 		//$("#inputPassword").formValidator({onShow:"",onFocus:"",onCorrect:"密码一致"}).compareValidator({desID:"inputPasswordAg",operateor:"=",onError:"2次密码不一致,请确认"});
 		//$("#inputPasswordAg").formValidator({onShow:"",onFocus:"",onCorrect:"密码一致"}).compareValidator({desID:"inputPassword",operateor:"=",onError:"2次密码不一致,请确认"});
-		$("#userFunction").formValidator({onShow:"请输入权限字符串",onFocus:"1000-表示普通用户,1001-表示管理员,中间用半角逗号隔开"}).inputValidator({min:4,max:120,onError:"您输入的权限字符串不合法"}).defaultPassed();
+		$("#userFunction").formValidator({onShow:"请输入权限字符串",onFocus:"1000-表示普通用户,1001-表示管理员,1002-表示半成品用户,中间用半角逗号隔开"}).inputValidator({min:4,max:120,onError:"您输入的权限字符串不合法"}).defaultPassed();
 	});
 	
 	function successInfoShow(themsg){
