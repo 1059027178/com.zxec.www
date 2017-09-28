@@ -1,10 +1,13 @@
 package cn.webChatServer.action;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+
+import com.webChatServer.util.MySalaryUtil;
 
 import cn.webChatServer.service.ReportWorkHoursService;
 
@@ -29,6 +32,11 @@ public class ReportWorkAction {
 	@RequestMapping(value="reportWorkTest")
 	public String reportWorkTest(){
 		System.out.println("报工页面测试！！！");
+		String strEnc = MySalaryUtil.dealStringToUrlParm(true, "6753");
+	 	System.out.println("加密结果："+ strEnc);
+	 	String strDes = MySalaryUtil.dealStringToUrlParm(false, strEnc);
+	 	System.out.println("解密结果："+ strDes);
+	 	
 		return "reportWork/reportWorkIndex";
 	}
 }

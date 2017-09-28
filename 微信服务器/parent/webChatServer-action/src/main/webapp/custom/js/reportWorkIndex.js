@@ -54,7 +54,7 @@ $(document).ready(function(){
  */
 var jsapiInit = function (){
 	var thisURL = location.href.split('#')[0];
-	console.log("href = " + thisURL);
+//	console.log("href = " + thisURL);
 	$.ajax({
 		type:"post",
 		url:"achieveJsapiInfo.do?url="+ thisURL,
@@ -63,7 +63,7 @@ var jsapiInit = function (){
 //	 		console.log("data =" + data);
 	 		var dataObj = eval('(' + data + ')');
 	 		wx.config({
-			    debug: 	   true,
+			    debug: 	   false,
 				appId: 	   dataObj.appId, // 必填，企业号的唯一标识，此处填写企业号corpid
 				timestamp: dataObj.timestamp, // 必填，生成签名的时间戳
 				nonceStr:  dataObj.nonceStr,// 必填，生成签名的随机串
@@ -97,7 +97,7 @@ var jsapiInit = function (){
 	});
 };
 var finishCardnoFun = function() {
-	alert("finish_cardno is click !");
+	//alert("finish_cardno is click !");
 	wx.scanQRCode({
 		needResult: 1,
 		desc: 'scanQRCode desc',

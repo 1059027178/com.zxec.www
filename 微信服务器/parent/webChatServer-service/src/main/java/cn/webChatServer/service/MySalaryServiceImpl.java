@@ -30,7 +30,7 @@ public class MySalaryServiceImpl implements MySalaryService{
 		String dateStr = format.format(date);
 		for(int i = 1 ; i <= showEntry ; i++ ){
 			String checkYearAndMonth = MySalaryUtil.getLastMonth(dateStr, i+1);
-			System.out.println("checkYearAndMonth = " + checkYearAndMonth);
+//			System.out.println("checkYearAndMonth = " + checkYearAndMonth);
 			salary = mySalaryDao.queryByUserIdAndMonth(userID, checkYearAndMonth);
 			if(salary == null){
 				Salary salary1 = new Salary();
