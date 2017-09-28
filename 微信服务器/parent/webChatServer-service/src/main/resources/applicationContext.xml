@@ -23,15 +23,27 @@
 		http://cxf.apache.org/jaxws
 		http://cxf.apache.org/schemas/jaxws.xsd" >
 
-	<!-- 读取Property -->
-	<bean
+	<!-- 方法一：读取Property -->
+	<!-- <bean
 		class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
 		<property name="locations">
 			<set>
 				<value>classpath:jdbc.properties</value>
 			</set>
 		</property>
-	</bean>
+	</bean> -->
+	<!-- 方法二：读取Property -->
+	<bean id="configProperties" class="org.springframework.beans.factory.config.PropertiesFactoryBean">
+          <property name="locations">
+              <list>
+                  <value>classpath:jdbc.properties</value>
+                  <!-- <value>classpath:desConfig.properties</value> -->
+             </list>
+          </property>
+    </bean>
+	<bean id="propertyConfigurer" class="org.springframework.beans.factory.config.PreferencesPlaceholderConfigurer">
+   		<property name="properties" ref="configProperties" />
+	</bean> 
 
 	<!-- 载入 config文件夹下的所有xml配置  -->
 	<import resource="config/*.xml" />

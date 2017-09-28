@@ -129,11 +129,10 @@ public class WebChatServiceImpl implements WebChatService{
 		
 		//拼接获取userID接口请求地址,发起HTTP请求
 		URL = WebChartPort.JSAPI_TICKET.replace("ACCESS_TOKE", access_token);
-		String str1 = NetWorkUtil.httpRequest(URL, "GET", null);
-		jsonObject =new JSONObject(str1);
-		//分析结果：如果是以上错误代码，则重新获取token
-		errcode = jsonObject.getInt("errcode");
-		boolean flag1 = (0 == errcode );
+		/*String str1 = NetWorkUtil.httpRequest(URL, "GET", null);
+		jsonObject =new JSONObject(str1);*/
+		jsonObject =new JSONObject();
+		jsonObject = NetWorkUtil.httpsRequest(URL, "GET", null);
 		//分析返回结果：如果成功获取，则存起来，同时返回对应的accessToken
 		errcode = jsonObject.getInt("errcode");
 		boolean returnFlag = ( 0 == errcode );
@@ -146,7 +145,7 @@ public class WebChatServiceImpl implements WebChatService{
 			
 			//本地保存，用于下次使用
 			wxInfo.setJSAPITicket(ticket);
-			int nowTimestamp = (int) System.currentTimeMillis()/1000;//取当前时间戳
+			long nowTimestamp = System.currentTimeMillis()/1000;//取当前时间戳
 			wxInfo.setTicketTimestamp(nowTimestamp + "");//记录当前时间戳
 			wxInfo.setJSAPITicket(ticket);//记录当前js调用凭证
 			wxInfo.setJSAPITicketExpiresIn(expires_in + "");//记录当前凭证有效期（秒）
@@ -176,8 +175,8 @@ public class WebChatServiceImpl implements WebChatService{
 		}else{
 			
 			int expiresIn = Integer.parseInt(wxInfo.getJSAPITicketExpiresIn()); //ticket有效期
-			int jsapiTimestamp = Integer.parseInt(wxInfo.getTicketTimestamp());//取最后调用jsapi时间戳
-			int nowTimestamp = (int) System.currentTimeMillis()/1000;//取当前时间戳
+			long jsapiTimestamp = Long.parseLong(wxInfo.getTicketTimestamp());//取最后调用jsapi时间戳
+			long nowTimestamp = System.currentTimeMillis()/1000;//取当前时间戳
 			
 			//判断ticket是否失效（当前时间戳 - ticket获取时时间戳   > (ticket有效期 - 200)）
 			boolean flag = ( ( nowTimestamp - jsapiTimestamp ) > ( expiresIn - 200 ) );

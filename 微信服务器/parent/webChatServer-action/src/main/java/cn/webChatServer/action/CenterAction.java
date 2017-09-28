@@ -1,8 +1,5 @@
 package cn.webChatServer.action;
 
-import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -83,26 +80,11 @@ public class CenterAction {
 		}
 		//成功后跳转到对应的模块
 		else{
-			to_url = "/center/" + viewName + ".do?userID=" + userID;
+			to_url = "/center/" + viewName + ".do?userID=" + MySalaryUtil.dealStringToUrlParm(true, userID);//加密
 			System.out.println( "【3.用户" + userID + "登录成功，跳转到 " + to_url +"】");
 		}
 		//跳转到对应的页面（1、失败后重定向至login；2、成功后根据viewName跳转到对应的Controller）
 		return "redirect:" + to_url;
-	}
-	/**
-	 * 
-	 * @param model
-	 * @param url 当前调用页面的url完整路径
-	 * @return
-	 */
-	@RequestMapping(value="getJsapiInJson")
-	public String getJsapiInJson(Model model, @RequestParam("url")String url){
-		System.out.println( "【###用户进入jsapi签名开始】");
-		String resultStr =  webChatService.achieveJsapiInfo(url);
-		
-		System.out.println( "【###用户进入jsapi签名结束】");
-		
-		return "";
 	}
 	/***********************************我的报工一级目录**********************************************/
 	/**
@@ -113,8 +95,10 @@ public class CenterAction {
 	 */
 	@RequestMapping(value="reportWork")
 	public String reportWork(Model model,@RequestParam("userID")String userID){
+		//解密
+		userID = MySalaryUtil.dealStringToUrlParm(false, userID);
 		System.out.println( "【###用户 " + userID +"进入MES权限验证开始】");
-
+		
 		String userNo = "E" + userID;
 		//验证用户是否开通MES权限
 		List<String> result = reportWorkHoursService.judgeIfOpenMES("192.168.0.39", "MES", "192.168.0.39", userNo);
@@ -151,6 +135,8 @@ public class CenterAction {
 	 */
 	@RequestMapping(value="myYield")
 	public String myYield(Model model,@RequestParam("userID")String userID){
+		//解密
+		userID = MySalaryUtil.dealStringToUrlParm(false, userID);
 		System.out.println( "【###用 户 " + userID +"进入报工开始】");
 		
 		
@@ -169,6 +155,8 @@ public class CenterAction {
 	 */
 	@RequestMapping(value="mySalary")
 	public String mySalary(Model model,@RequestParam("userID")String userID){
+		//解密
+		userID = MySalaryUtil.dealStringToUrlParm(false, userID);
 		System.out.println( "【###用户 " + userID +"进入薪资查询开始】");
 		//默认显示5个月
 		List<Salary> salaryList = mySalaryService.achieveSalaryInfo(userID, MySalaryUtil.SHOW_EHTRY);
@@ -179,6 +167,9 @@ public class CenterAction {
 	/***********************************我的假期--待测试（连接sql server数据库未通过）**********************************************/
 	@RequestMapping(value="myHoliday")
 	public String myHoliday(Model model,@RequestParam("userID")String userID){
+		//解密
+		userID = MySalaryUtil.dealStringToUrlParm(false, userID);
+		
 		System.out.println( "【###用户 " + userID +"进入假期查询开始】");
 		Holiday holiday = myHolidayService.queryByUserNo(userID);
 		
@@ -201,4 +192,7 @@ public class CenterAction {
 		String str = webChatService.achieveJsapiInfo(url);
 		return str;
 	}
+
 }
+
+

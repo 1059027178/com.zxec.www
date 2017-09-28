@@ -21,7 +21,7 @@
 		
 	<!-- **********************159oracle中间池************************* -->
 	<!-- 数据源 druid -->
-	<bean id="dataSource" class="com.alibaba.druid.pool.DruidDataSource">
+	<bean id="dataSource" class="com.alibaba.druid.pool.DruidDataSource" destroy-method="close">
 		<property name="driverClassName" value="${driverClassName}" />
 		<property name="url" value="${url}" />
 		<property name="username" value="${username}" />
@@ -31,8 +31,8 @@
 	</bean>
 	
 	<!-- **********************71EHR数据库************************* -->
-	<!-- 数据源 druid -->
-	<bean id="dataSource2" class="com.alibaba.druid.pool.DruidDataSource">
+	<!-- 数据源 druid； destroy-method="close"意思是使用完毕后关闭流 -->
+	<bean id="dataSource2" class="com.alibaba.druid.pool.DruidDataSource"  destroy-method="close">
 		<property name="driverClassName" value="${71.driverClassName}" />
 		<property name="url" value="${71.url}" />
 		<property name="username" value="${71.username}" />
