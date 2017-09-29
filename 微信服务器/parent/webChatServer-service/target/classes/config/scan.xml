@@ -4,8 +4,6 @@
 	xmlns:context="http://www.springframework.org/schema/context"
 	xmlns:aop="http://www.springframework.org/schema/aop" xmlns:tx="http://www.springframework.org/schema/tx"
 	xmlns:task="http://www.springframework.org/schema/task" xmlns:dubbo="http://code.alibabatech.com/schema/dubbo"
-	xmlns:jaxws="http://cxf.apache.org/jaxws"
-	xmlns:soap="http://cxf.apache.org/bindings/soap"
 	xsi:schemaLocation="http://www.springframework.org/schema/beans 
 		http://www.springframework.org/schema/beans/spring-beans.xsd 
 		http://www.springframework.org/schema/mvc 
@@ -19,21 +17,10 @@
 		http://www.springframework.org/schema/task
    		http://www.springframework.org/schema/task/spring-task.xsd
 		http://code.alibabatech.com/schema/dubbo        
-		http://code.alibabatech.com/schema/dubbo/dubbo.xsd
-		http://cxf.apache.org/jaxws
-		http://cxf.apache.org/schemas/jaxws.xsd" >
+		http://code.alibabatech.com/schema/dubbo/dubbo.xsd">
 
-	<!-- 方法一：读取Property -->
-	<bean
-		class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
-		<property name="locations">
-			<set>
-				<value>classpath:druid.properties</value>
-			</set>
-		</property>
-	</bean>
-	
-	<!-- 载入 config文件夹下的所有xml配置  -->
-	<import resource="config/*.xml" />
-
+	<!-- 扫描 -->
+	<context:component-scan base-package="cn.webChatServer" />
+	<!-- enable autowire -->
+	<context:annotation-config />
 </beans>

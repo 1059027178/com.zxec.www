@@ -21,11 +21,15 @@ Holiday holiday  = (Holiday) request.getAttribute("holiday");
   <body>
 	<br />出现按钮代表bootstrap引入成功！
 	<button type="button" class="btn btn-warning">警告按钮</button><br/>
+		<%if(holiday == null){%>
+			<p style="color: red;font-size:35px;font-weight: bold;margin-top: 50px;">未查询到相关假期信息！</p>
+		<%}else{ %>
 		<input TYPE="text" value="<%=holiday.getUserName()%>"/><br/>
 		<input TYPE="text" value="<%=holiday.getUserNo()%>"/><br/>
 		<input TYPE="text" value="<%=holiday.getDueAdjustReset()%>"/><br/>
 		<input TYPE="text" value="<%=holiday.getDueYearHoliday()%>"/><br/>
 		<input TYPE="text" value="<%=holiday.getUsableAdjustReset()%>"/><br/>
 		<input TYPE="text" value="<%=holiday.getUsableYearHoliday()%>"/>
+		<%} %>
 	  </body>
 </html>

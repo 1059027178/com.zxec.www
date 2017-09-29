@@ -42,14 +42,14 @@
 		(
 			<include refid="holidayOtherInfo"/>
 			(
-				<include refid="holidayYear"/> &apos; 11 &apos;
+				<include refid="holidayYear"/> &apos;11&apos;
 			)
 		) as T3
 		left join
 		(
 			<include refid="holidayOtherInfo"/>
 			(
-				<include refid="holidayYear"/> &apos; 12 &apos;'
+				<include refid="holidayYear"/> &apos;12&apos;
 			)
 		) T4
 		on T3.A0190 = T4.A0190
