@@ -168,7 +168,7 @@ public class CenterAction {
 	@RequestMapping(value="myHoliday")
 	public String myHoliday(Model model,@RequestParam("userID")String userID){
 		//解密
-		userID = MySalaryUtil.dealStringToUrlParm(false, userID);
+//		userID = MySalaryUtil.dealStringToUrlParm(false, userID);
 		
 		System.out.println( "【###用户 " + userID +"进入假期查询开始】");
 		Holiday holiday = myHolidayService.queryByUserNo(userID);
@@ -188,7 +188,7 @@ public class CenterAction {
 	@RequestMapping(value="achieveJsapiInfo")
 	@ResponseBody
 	public String achieveJsapiInfo(@RequestParam("url")String url){
-		System.out.println("获取到URL= " + url);
+//		System.out.println("获取到URL= " + url);
 		String str = webChatService.achieveJsapiInfo(url);
 		return str;
 	}

@@ -1,8 +1,8 @@
 -------------------------------------------------------------------------------
 Test set: cn.webChatServer.action.CenterActionTest
 -------------------------------------------------------------------------------
-Tests run: 5, Failures: 0, Errors: 5, Skipped: 0, Time elapsed: 0.092 sec <<< FAILURE!
-testIndex(cn.webChatServer.action.CenterActionTest)  Time elapsed: 0.01 sec  <<< ERROR!
+Tests run: 5, Failures: 0, Errors: 5, Skipped: 0, Time elapsed: 0.103 sec <<< FAILURE!
+testIndex(cn.webChatServer.action.CenterActionTest)  Time elapsed: 0.015 sec  <<< ERROR!
 java.lang.NoClassDefFoundError: javax/servlet/ServletException
 	at org.springframework.test.web.servlet.setup.MockMvcBuilders.webAppContextSetup(MockMvcBuilders.java:46)
 	at cn.webChatServer.action.CenterActionTest.before(CenterActionTest.java:23)
@@ -88,7 +88,7 @@ Caused by: java.lang.ClassNotFoundException: javax.servlet.ServletException
 	at java.lang.ClassLoader.loadClass(ClassLoader.java:358)
 	... 31 more
 
-testMySalary(cn.webChatServer.action.CenterActionTest)  Time elapsed: 0 sec  <<< ERROR!
+testMySalary(cn.webChatServer.action.CenterActionTest)  Time elapsed: 0.002 sec  <<< ERROR!
 java.lang.NoClassDefFoundError: javax/servlet/ServletException
 	at org.springframework.test.web.servlet.setup.MockMvcBuilders.webAppContextSetup(MockMvcBuilders.java:46)
 	at cn.webChatServer.action.CenterActionTest.before(CenterActionTest.java:23)
@@ -131,7 +131,7 @@ Caused by: java.lang.ClassNotFoundException: javax.servlet.ServletException
 	at java.lang.ClassLoader.loadClass(ClassLoader.java:358)
 	... 31 more
 
-testMyYield(cn.webChatServer.action.CenterActionTest)  Time elapsed: 0.001 sec  <<< ERROR!
+testMyYield(cn.webChatServer.action.CenterActionTest)  Time elapsed: 0.002 sec  <<< ERROR!
 java.lang.NoClassDefFoundError: javax/servlet/ServletException
 	at org.springframework.test.web.servlet.setup.MockMvcBuilders.webAppContextSetup(MockMvcBuilders.java:46)
 	at cn.webChatServer.action.CenterActionTest.before(CenterActionTest.java:23)
@@ -174,7 +174,7 @@ Caused by: java.lang.ClassNotFoundException: javax.servlet.ServletException
 	at java.lang.ClassLoader.loadClass(ClassLoader.java:358)
 	... 31 more
 
-testReportWork(cn.webChatServer.action.CenterActionTest)  Time elapsed: 0.001 sec  <<< ERROR!
+testReportWork(cn.webChatServer.action.CenterActionTest)  Time elapsed: 0.002 sec  <<< ERROR!
 java.lang.NoClassDefFoundError: javax/servlet/ServletException
 	at org.springframework.test.web.servlet.setup.MockMvcBuilders.webAppContextSetup(MockMvcBuilders.java:46)
 	at cn.webChatServer.action.CenterActionTest.before(CenterActionTest.java:23)

@@ -4,8 +4,6 @@
 	xmlns:context="http://www.springframework.org/schema/context"
 	xmlns:aop="http://www.springframework.org/schema/aop" xmlns:tx="http://www.springframework.org/schema/tx"
 	xmlns:task="http://www.springframework.org/schema/task" xmlns:dubbo="http://code.alibabatech.com/schema/dubbo"
-	xmlns:jaxws="http://cxf.apache.org/jaxws"
-	xmlns:soap="http://cxf.apache.org/bindings/soap"
 	xsi:schemaLocation="http://www.springframework.org/schema/beans 
 		http://www.springframework.org/schema/beans/spring-beans.xsd 
 		http://www.springframework.org/schema/mvc 
@@ -19,21 +17,27 @@
 		http://www.springframework.org/schema/task
    		http://www.springframework.org/schema/task/spring-task.xsd
 		http://code.alibabatech.com/schema/dubbo        
-		http://code.alibabatech.com/schema/dubbo/dubbo.xsd
-		http://cxf.apache.org/jaxws
-		http://cxf.apache.org/schemas/jaxws.xsd" >
-
-	<!-- 方法一：读取Property -->
-	<bean
-		class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
-		<property name="locations">
-			<set>
-				<value>classpath:druid.properties</value>
-			</set>
-		</property>
+		http://code.alibabatech.com/schema/dubbo/dubbo.xsd">
+		
+	<!-- **********************159oracle中间池************************* -->
+	<!-- 数据源 druid -->
+	<bean id="dataSource" class="com.alibaba.druid.pool.DruidDataSource" destroy-method="close">
+		<property name="driverClassName" value="${driverClassName}" />
+		<property name="url" value="${url}" />
+		<property name="username" value="${username}" />
+		<property name="password" value="${password}" />
+		<!-- 配置防御SQL注入攻击：(默认)缺省配置的WallFilter -->
+		<property name="filters" value="stat,wall"/>
 	</bean>
 	
-	<!-- 载入 config文件夹下的所有xml配置  -->
-	<import resource="config/*.xml" />
-
+	<!-- **********************71EHR数据库************************* -->
+	<!-- 数据源 druid； destroy-method="close"意思是使用完毕后关闭流 -->
+	<bean id="dataSource2" class="com.alibaba.druid.pool.DruidDataSource"  destroy-method="close">
+		<property name="driverClassName" value="${71.driverClassName}" />
+		<property name="url" value="${71.url}" />
+		<property name="username" value="${71.username}" />
+		<property name="password" value="${71.password}" />
+		<!-- 配置防御SQL注入攻击：(默认)缺省配置的WallFilter -->
+		<property name="filters" value="stat,wall"/>
+	</bean>
 </beans>
