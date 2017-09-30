@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- 省略了dao的实现接口时需注意以下：
+	1.namespace命名必须和dao的全路径相同；
+	2.sql的id必须和dao的接口方法名一致；
+	3.dao中的输入参数类型必须和sql的输入参数类型一致；
+	4.dao的方法返回类型必须和sql中resultType类型一致（resultMap两者必存其一）
+ -->
+<mapper namespace="cn.webChatServer.ehr.dao.MyHolidayDao">
+	<sql id="holidayYear">
+		select id from k_holidaySetting 
+		where 
+			year(EndDate) = year(getDate()) 
+			and ClassName = 
+	</sql>
+	<sql id="holidayOtherInfo">
+		select 
+			t2.A0190,
+			t2.A0101,
+			t1.SYNJ,
+			t1.HolidayNum
+		from K_SpecialLeave t1
+		inner join 
+			A01 t2 on t1.A0188 = t2.A0188
+		where 
+			t2.A0191 = &apos;1&apos;
+			and t2.Deleted = 0 
+			and t2.A0190 = #{userNo}
+			and t1.years = 
+	</sql>
+	<!-- 通过UserNo工号查询 -->
+	<select id="queryByUserNo" parameterType="String" resultType = "cn.webChatServer.ehr.pojo.Holiday">
+		select 
+			T3.A0190 userNo,
+			T3.A0101 userName,
+			T3.HolidayNum dueAdjustReset,
+			T3.SYNJ usableAdjustReset,
+			T4.HolidayNum dueYearHoliday,
+			T4.SYNJ usableYearHoliday
+		from 
+		(
+			<include refid="holidayOtherInfo"/>
+			(
+				<include refid="holidayYear"/> &apos;11&apos;
+			)
+		) as T3
+		left join
+		(
+			<include refid="holidayOtherInfo"/>
+			(
+				<include refid="holidayYear"/> &apos;12&apos;
+			)
+		) T4
+		on T3.A0190 = T4.A0190
+		
+	</select>
+	
+</mapper>
