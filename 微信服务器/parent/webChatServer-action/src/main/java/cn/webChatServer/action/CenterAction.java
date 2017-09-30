@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.webChatServer.util.MESConfigInfo;
 import com.webChatServer.util.MySalaryUtil;
 
 import cn.webChatServer.ehr.pojo.Holiday;
@@ -49,7 +50,7 @@ public class CenterAction {
 		testTbService.add(tb);
 		return "index";
 	}
-	/***********************************微信登录一级目录**********************************************/
+	/***********************************微信登录一级目录（通过测试）**********************************************/
 	/**
 	 * 【微信用户登录统一入口，URL中使用viewName参数区分跳转目标Controller】
 	 * @param code
@@ -86,7 +87,7 @@ public class CenterAction {
 		//跳转到对应的页面（1、失败后重定向至login；2、成功后根据viewName跳转到对应的Controller）
 		return "redirect:" + to_url;
 	}
-	/***********************************我的报工一级目录**********************************************/
+	/***********************************我的报工一级目录（待测试）**********************************************/
 	/**
 	 * viewName = reportWorkHour;
 	 * 我要报工
@@ -101,7 +102,7 @@ public class CenterAction {
 		
 		String userNo = "E" + userID;
 		//验证用户是否开通MES权限
-		List<String> result = reportWorkHoursService.judgeIfOpenMES("192.168.0.39", "MES", "192.168.0.39", userNo);
+		List<String> result = reportWorkHoursService.judgeIfOpenMES(MESConfigInfo.HOST_IP, "MES", MESConfigInfo.HOST_IP, userNo);
 		boolean flag = ( "成功".equals( result.get(0).trim() ) );
 		String to_url = "";
 		if(flag){
@@ -145,7 +146,7 @@ public class CenterAction {
 		return "myYield";
 		
 	}
-	/***********************************我的薪资一级目录（已测试数据源）**********************************************/
+	/***********************************我的薪资一级目录（测试完成）**********************************************/
 	/**
 	 * viewName = mySalary
 	 * 我的薪资
@@ -164,11 +165,11 @@ public class CenterAction {
 		System.out.println( "【###用户 " + userID +"进入薪资查询结束】");
 		return "salary/mySalary";
 	}
-	/***********************************我的假期--待测试（连接sql server数据库未通过）**********************************************/
+	/***********************************我的假期--（测试完成）**********************************************/
 	@RequestMapping(value="myHoliday")
 	public String myHoliday(Model model,@RequestParam("userID")String userID){
 		//解密
-//		userID = MySalaryUtil.dealStringToUrlParm(false, userID);
+		userID = MySalaryUtil.dealStringToUrlParm(false, userID);
 		
 		System.out.println( "【###用户 " + userID +"进入假期查询开始】");
 		Holiday holiday = myHolidayService.queryByUserNo(userID);
@@ -180,7 +181,7 @@ public class CenterAction {
 		
 	}
 	
-	/***********************************公共功能**********************************************/
+	/***********************************公共功能（测试完成）**********************************************/
 	/**
 	 * @param url (当前url完整路径)
 	 * @return 当前调用jsapi相关信息
