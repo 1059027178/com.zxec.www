@@ -17,7 +17,7 @@ import cn.webChatServer.ehr.pojo.Holiday;
  *@TransactionConfiguration(transactionManager = "transactionManager", defaultRollback = true)
  */
 @RunWith(SpringJUnit4ClassRunner.class)  //使用junit4进行测试  
-@ContextConfiguration({"classpath:*/applicationContext.xml"}) //加载配置文件  
+@ContextConfiguration(locations={"classpath:applicationContext.xml"}) //加载配置文件  
 public class MyHolidayServiceImplTest {
 	
 	@Autowired
@@ -25,8 +25,15 @@ public class MyHolidayServiceImplTest {
 	
 	@Test
 	public void testQueryByUserNo() {
-		Holiday holiday = holidayService.queryByUserNo("6753");
-		System.out.println(holiday);
+		Holiday holiday = holidayService.queryByUserNo("6853");
+		System.out.println("#####################################################");
+		System.out.println("工号：" + holiday.getUserNo());
+		System.out.println("姓名：" + holiday.getUserName());
+		System.out.println("全部调休：" + holiday.getDueAdjustReset());
+		System.out.println("剩余调休：" + holiday.getUsableAdjustReset());
+		System.out.println("全部年假：" + holiday.getDueYearHoliday());
+		System.out.println("剩余年假：" + holiday.getUsableYearHoliday());
+		System.out.println("#####################################################");
 	}
 
 }
