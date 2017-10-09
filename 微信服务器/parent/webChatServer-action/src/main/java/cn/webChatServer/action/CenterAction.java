@@ -2,6 +2,8 @@ package cn.webChatServer.action;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -58,7 +60,7 @@ public class CenterAction {
 	 * @return
 	 */
 	@RequestMapping(value="login")
-	public String login(@RequestParam("code")String code,@RequestParam("viewName") String viewName){
+	public String login(@RequestParam("code")String code,@RequestParam("viewName") String viewName,HttpServletRequest request) {
 		//如果code 为null，则先进行处理
 		code = ( code == null ? "" : code );
 		System.out.println( "【1.用户登录code = " + code +"】");
@@ -69,15 +71,16 @@ public class CenterAction {
 		//获取用户ID
 		String userID = webChatService.achieveWebChartUserID(code);
 		boolean flag1 = ( userID.equals("") );
+//		boolean flag1 = ( "".equals("") );
 
 		//如果未取到-则跳转重新进入
 		if(flag1){
 			System.out.println("【获取工号失败，更新token并重新获取！】");
 			//更新token
 			webChatService.achieveAccessToken();
-			
+			String serverName = request.getServerName();//取得服务器名
 			//重定向--调用achieveAuth2CoreURL()，取得重定向地址
-			to_url = webChatService.achieveAuth2CoreURL(viewName);
+			to_url = webChatService.achieveAuth2CoreURL(viewName,serverName);
 		}
 		//成功后跳转到对应的模块
 		else{
