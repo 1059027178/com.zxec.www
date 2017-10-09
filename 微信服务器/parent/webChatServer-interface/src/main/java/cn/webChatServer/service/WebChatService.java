@@ -24,9 +24,10 @@ public interface WebChatService {
 	/**
 	 * 取得更新core地址，进行页面重定向
 	 * @param viewName (请求模块名称)
+	 * @param serverName (服务器名称，即域名)
 	 * @return
 	 */
-	public String achieveAuth2CoreURL(String viewName);
+	public String achieveAuth2CoreURL(String viewName,String serverName);
 	/**
 	 * 更新jsapi_ticket
 	 * 返回ticket 及 有效期

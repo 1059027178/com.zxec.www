@@ -29,7 +29,6 @@ public class WebChatServiceImpl implements WebChatService{
 //	暂时不使用定时更新---因为当已存在token时，实际的有效期小于标准值
 //	@Scheduled(cron= WebChartPort.GET_TOKEN_REFRESH_TIME)
 	public void achieveAccessToken() {
-		// TODO Auto-generated method stub
 		Date date = new Date();
 		System.out.println("【时间：" + date.toString() + ",获取accessToken开始】>>>>>>");
 		
@@ -84,6 +83,7 @@ public class WebChatServiceImpl implements WebChatService{
 		
 		//拼接获取userID接口请求地址
 		URL = WebChartPort.USER_INFO.replace("ACCESS_TOKEN", access_token).replace("CODE", code);
+//		URL = WebChartPort.USER_INFO.replace("ACCESS_TOKEN", "2332").replace("CODE", code);
 		
 		//发起HTTPS请求
 		jsonObject = new JSONObject();
@@ -104,7 +104,7 @@ public class WebChatServiceImpl implements WebChatService{
 		System.out.println("【获取用户ID结束:ID = "+result+"】>>>>>>");
 		return result;
 	}
-	public String achieveAuth2CoreURL(String viewName) {
+	public String achieveAuth2CoreURL(String viewName,String serverName) {
 		System.out.println("【获取重定向URL开始】>>>>>>");
 		// TODO Auto-generated method stub
 		//获取企业号corpID，secretID
@@ -113,7 +113,8 @@ public class WebChatServiceImpl implements WebChatService{
 		String address = wxInfo.getAddress();
 		
 		//拼接获取userID接口请求地址
-		String url2 = "http://" + address + "/webChatServer-action/center/login.do?viewName=" + viewName;
+		String url2 = "http://" + serverName + "/webChatServer-action/center/login.do?viewName=" + viewName;
+//		String url2 = "/center/login.do?viewName=" + viewName;
 		URL = WebChartPort.OAUTH2_CODE.replace("CORPID", corpID).replace("REDIRECT_URI", url2);
 		
 		System.out.println("【获取重定向URL结束URL= " + URL + "】>>>>>>");
