@@ -21,7 +21,6 @@
 
 	<!-- 扫描包 -->
 	<context:component-scan base-package="cn.webChatServer" />
-
 	<!-- 处理器 映射器 适配器 -->
 	<mvc:annotation-driven />
 

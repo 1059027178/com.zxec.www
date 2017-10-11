@@ -15,7 +15,6 @@ import com.webChatServer.util.NetWorkUtil;
 @Service("reportWorkHoursService")
 public class ReportWorkHoursServiceImpl implements ReportWorkHoursService{
 	public List<String> judgeIfOpenMES(String strIP, String strModule, String strUser, String strValue) {
-		// TODO Auto-generated method stub
 		List<String> resultList = new ArrayList<String>();
         //请求参数 
         String REQUESTBODY ="<strIP>"+ strIP +"</strIP>"
@@ -28,7 +27,7 @@ public class ReportWorkHoursServiceImpl implements ReportWorkHoursService{
         String soapStr = MESConfigInfo.SOAP_HEAD.replace("METHOD", METHOD).replace("REQUESTBODY", REQUESTBODY);
         //发起请求
         String resultStr = NetWorkUtil.httpRequest(MESConfigInfo.MES_WEBSERVICE_ADDRESS, "POST", soapStr);
-        System.out.println("请求返回 =" + resultStr);
+//        System.out.println("请求返回 =" + resultStr);
         /****************解析返回结果*****************/
         int dataStartIndex = resultStr.indexOf("<CheckSubmitBarCodeResult>");
         int dataEndIndex = resultStr.indexOf("</CheckSubmitBarCodeResult>");
@@ -43,7 +42,7 @@ public class ReportWorkHoursServiceImpl implements ReportWorkHoursService{
         try {
 			Document document = DocumentHelper.parseText(dataStr);
 			Element root = document.getRootElement();// 指向根节点
-			List elementList = root.elements("string");// 所有的string节点
+			List<Element> elementList = root.elements("string");// 所有的string节点
 			for( int i = 0 ; i < elementList.size() ; i++ ){
 				Element element = (Element) elementList.get(i);
 				String str = element.getTextTrim();
@@ -56,27 +55,26 @@ public class ReportWorkHoursServiceImpl implements ReportWorkHoursService{
 		} 
 		return resultList;
 	}
-	/*public static void main(String[] args) {
-		ReportWorkHoursServiceImpl hoursServiceImpl = new ReportWorkHoursServiceImpl();
-		List<String> list = hoursServiceImpl.judgeIfOpenMES("192.168.0.39", "MES", "192.168.0.39", "6753");
-	}*/
-	//还未完成---
-	public String[] checkFinishCardno(String strIP, String strModule, String strUser,String cardno) {
-		String[] strs = new String[4];
-		//请求参数 
+
+	public String checkMatterno(String strIP, String strModule,String strUser, String matterno) {
+        //请求参数 
         String REQUESTBODY ="<strIP>"+ strIP +"</strIP>"
         		+ "<strModule>"+ strModule +"</strModule>"
         		+ "<strUser>"+ strUser +"</strUser>"
-        		+ "<strValue>"+ cardno +"</strValue>";
+        		+ "<strValue>"+ matterno +"</strValue>";
         //请求方法名
-        String METHOD = "CheckSubmitBarCode";
+        String METHOD = "GetMaterByJson";
         //拼接请求参数
         String soapStr = MESConfigInfo.SOAP_HEAD.replace("METHOD", METHOD).replace("REQUESTBODY", REQUESTBODY);
         //发起请求
         String resultStr = NetWorkUtil.httpRequest(MESConfigInfo.MES_WEBSERVICE_ADDRESS, "POST", soapStr);
-        System.out.println("请求返回 =" + resultStr);
-		return strs;
+//        System.out.println(resultStr);
+        /****************解析返回结果*****************/
+        int dataStartIndex = resultStr.indexOf("<GetMaterByJsonResult>");
+        int dataEndIndex = resultStr.indexOf("</GetMaterByJsonResult>");
+        String dataStr = resultStr.substring(dataStartIndex + "<GetMaterByJsonResult>".length(), dataEndIndex);
+//        System.out.println("dataStr = "+dataStr);
+        
+		return dataStr;
 	}
-	
-	
 }
