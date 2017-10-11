@@ -11,21 +11,22 @@ import java.util.List;
 public interface ReportWorkHoursService {
 	
 	/**
-	 *  判断用户是否已开通MES权限
+	 *  验证工号或流转卡号是否有效
 	 * @param strIP 服务器IP
 	 * @param strModule 模块名称（MES）
 	 * @param strUser 服务器IP
-	 * @param strValue 用户工号
+	 * @param strValue 用户工号、流转卡号
 	 * @return 
 	 */
 	public List<String> judgeIfOpenMES(String strIP, String strModule, String strUser, String strValue);
 	/**
-	 * 查询流转卡信息
-	 * @param strIP 服务器IP （192.168.0.39）
-	 * @param strModule 模块名称（MES） 
-	 * @param strUser 服务器IP （192.168.0.39）
-	 * @param cardno 流转卡卡号
-	 * @return
+	 *  验证物料号是否有效
+	 * @param strIP 服务器IP
+	 * @param strModule 模块名称（MES）
+	 * @param strUser 服务器IP
+	 * @param strValue 物料代码
+	 * @return 
 	 */
-	public String[] checkFinishCardno(String strIP, String strModule, String strUser,String cardno);
+	public String checkMatterno(String strIP, String strModule, String strUser, String matterno);
+	
 }

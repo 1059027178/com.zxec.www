@@ -71,8 +71,6 @@ public class CenterAction {
 		//获取用户ID
 		String userID = webChatService.achieveWebChartUserID(code);
 		boolean flag1 = ( userID.equals("") );
-//		boolean flag1 = ( "".equals("") );
-
 		//如果未取到-则跳转重新进入
 		if(flag1){
 			System.out.println("【获取工号失败，更新token并重新获取！】");
