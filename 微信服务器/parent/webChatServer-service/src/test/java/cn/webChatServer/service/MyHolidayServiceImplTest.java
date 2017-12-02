@@ -1,12 +1,27 @@
 package cn.webChatServer.service;
 
+import java.text.DecimalFormat;
+import java.text.NumberFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.List;
+
+import org.json.JSONArray;
+import org.json.JSONObject;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
+import com.informix.util.stringUtil;
+
+import cn.webChatServer.dao.CheckInfoDao;
+import cn.webChatServer.ehr.pojo.HistoryHoliday;
 import cn.webChatServer.ehr.pojo.Holiday;
+import cn.webChatServer.ehr.pojo.ProjectRanking;
+import cn.webChatServer.pojo.CheckInfo;
 /**
  * @author qianyang
  *如果加入以下代码，所有继承该类的测试类都会遵循该配置，也可以不加，在测试类的方法上///控制事务，参见下一个实例  
@@ -22,6 +37,8 @@ public class MyHolidayServiceImplTest {
 	
 	@Autowired
 	private MyHolidayService holidayService;
+	@Autowired
+	private CheckInfoDao checkInfoDao;
 	
 	@Test
 	public void testQueryByUserNo() {
@@ -35,5 +52,30 @@ public class MyHolidayServiceImplTest {
 		System.out.println("剩余年假：" + holiday.getUsableYearHoliday());
 		System.out.println("#####################################################");
 	}
-
+	@Test
+	public void testQueryByUserIdAndCheckDay(){
+		List<CheckInfo> checkInfoList = checkInfoDao.queryByUserIdAndCheckDay("6753", "2017-10-17");
+		System.err.println("##################!!!!!" + checkInfoList.get(0).getCheckDate());
+		System.err.println("################!!!!!" + checkInfoList.get(1).getCheckDate());
+	}
+	@Test
+	public void testQueryHistoryByUserNo(){
+		HistoryHoliday historyHoliday = holidayService.queryHistoryByUserNo("6794");
+		System.out.println(historyHoliday);
+	}
+	@Test
+	public void testQueryHistoryMonthByUserNo(){
+		List<HistoryHoliday> historyHolidays = holidayService.queryHistoryMonthByUserNo("6753");
+	}
+	@Test
+	public void testQueryHistoryRankingToUserNo(){
+		List<ProjectRanking> queryMonthByDept 	 = holidayService.queryHistoryRankingToUserNo("6753","1");
+		System.out.println (queryMonthByDept);
+		List<ProjectRanking> queryMonthByCompany = holidayService.queryHistoryRankingToUserNo("6753","2");
+		System.out.println (queryMonthByCompany);
+		List<ProjectRanking> queryYearByDept 	 = holidayService.queryHistoryRankingToUserNo("6753","3");
+		System.out.println (queryYearByDept);
+		List<ProjectRanking> queryYearByCompany  = holidayService.queryHistoryRankingToUserNo("6753","4");
+		System.out.println (queryYearByCompany);
+	}
 }

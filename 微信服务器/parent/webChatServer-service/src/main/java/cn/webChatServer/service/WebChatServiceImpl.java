@@ -99,7 +99,7 @@ public class WebChatServiceImpl implements WebChatService{
 		//2.返回错误
 		else{
 			errmsg = jsonObject.getString("errmsg");
-			System.out.println("【access_token获取失败代码："+ errcode +"，原因：" + errmsg + "】");
+			System.out.println("【工号获取失败："+ errcode +"，原因：" + errmsg + "】");
 		}
 		System.out.println("【获取用户ID结束:ID = "+result+"】>>>>>>");
 		return result;

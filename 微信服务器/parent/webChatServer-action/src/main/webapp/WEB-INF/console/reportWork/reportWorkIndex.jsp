@@ -20,8 +20,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     <!-- 引入微信官方调用JS接口所需库 -->
     <script src="http://res.wx.qq.com/open/js/jweixin-1.2.0.js"></script>
     <!-- 引入自定义文件 -->
-    <script src=".././custom/js/reportWorkIndex.js"></script>
-    <link href=".././custom/css/reportWorkIndex.css" rel="stylesheet">
+    <script src=".././custom/js/public.js"></script>
+    <script src=".././custom/js/report_work_index.js"></script>
+    <link href=".././custom/css/report_work_index.css" rel="stylesheet">
 	
   </head>
   <body>
@@ -45,7 +46,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		</div>
 		<!--质检报工-->
 		<div class="form-group reportCheck" >
-			<lable class="col-lg-4 col-md-6 col-sm-3 col-xs-4 span3 control"> 物料号: </lable>
+			<lable class="col-lg-4 col-md-6 col-sm-3 col-xs-4 span3 control"> 物料代码: </lable>
 			<div   class="col-lg-8 col-md-6 col-sm-9 col-xs-8 span9 input-group">
 				<input type="text" class="form-control" rows="2" id="check_matterno" placeholder="输入物料号或扫码输入"> 
 				<span class="input-group-addon">

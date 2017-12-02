@@ -12,8 +12,8 @@
 
 	<!-- 通过className查询 -->
 	<select id="queryByUserIdAndMonth" parameterType="String" resultType = "cn.webChatServer.pojo.Salary">
-		select * from SIDIGONGZI where 
-		ny = #{ny}
+		select * from SIDIGONGZI where rownum = 1
+		and ny = #{ny}
 		and gh = #{gh}
 	</select>
 	

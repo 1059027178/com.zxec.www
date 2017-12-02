@@ -18,7 +18,6 @@
    		http://www.springframework.org/schema/task/spring-task.xsd
 		http://code.alibabatech.com/schema/dubbo        
 		http://code.alibabatech.com/schema/dubbo/dubbo.xsd">
-		
 	<!-- **********************159oracle中间池************************* -->
 	<!-- 数据源 druid -->
 	<bean id="dataSource" class="com.alibaba.druid.pool.DruidDataSource" destroy-method="close">
@@ -27,9 +26,9 @@
 		<property name="username" value="${username}" />
 		<property name="password" value="${password}" />
 		<!-- 配置防御SQL注入攻击：(默认)缺省配置的WallFilter -->
-		<property name="filters" value="stat,wall"/>
+		<!-- <property name="filters" value="stat,wall"/> -->
+		<property name="filters" value="stat"/>
 	</bean>
-	
 	<!-- **********************71EHR数据库************************* -->
 	<!-- 数据源 druid； destroy-method="close"意思是使用完毕后关闭流 -->
 	<bean id="dataSource2" class="com.alibaba.druid.pool.DruidDataSource"  destroy-method="close">
@@ -38,6 +37,9 @@
 		<property name="username" value="${71.username}" />
 		<property name="password" value="${71.password}" />
 		<!-- 配置防御SQL注入攻击：(默认)缺省配置的WallFilter -->
-		<property name="filters" value="stat,wall"/>
+		<!-- 属性类型是字符串，通过别名的方式配置扩展插件，
+		常用的插件有：监控统计用的filter:stat 日志用的filter:log4j 防御sql注入的filter:wall -->
+		<!-- <property name="filters" value="stat,wall"/> -->
+		<property name="filters" value="stat"/>
 	</bean>
 </beans>

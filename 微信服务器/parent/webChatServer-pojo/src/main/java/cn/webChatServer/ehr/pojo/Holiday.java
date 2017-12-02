@@ -2,6 +2,8 @@ package cn.webChatServer.ehr.pojo;
 
 import java.io.Serializable;
 
+import com.webChatServer.util.MySalaryUtil;
+
 public class Holiday implements Serializable{
 	
 	private static final long serialVersionUID = 536238760434732006L;
