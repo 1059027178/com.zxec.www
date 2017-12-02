@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- 省略了dao的实现接口时需注意以下：
+	1.namespace命名必须和dao的全路径相同；
+	2.sql的id必须和dao的接口方法名一致；
+	3.dao中的输入参数类型必须和sql的输入参数类型一致；
+	4.dao的方法返回类型必须和sql中resultType类型一致
+ -->
+ <!-- 测试通过 -->
+<mapper namespace="cn.webChatServer.dao.MySalaryDao">
+
+	<!-- 通过className查询 -->
+	<select id="queryByUserIdAndMonth" parameterType="String" resultType = "cn.webChatServer.pojo.Salary">
+		select * from SIDIGONGZI where rownum = 1
+		and ny = #{ny}
+		and gh = #{gh}
+	</select>
+	
+</mapper>
