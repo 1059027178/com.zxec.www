@@ -83,7 +83,6 @@ public class NetWorkUtil {
     }
     /** 
      * 发起http请求并获取结果 
-     *  
      * @param requestUrl 请求地址 
      * @param requestMethod 请求方式（GET、POST） 
      * @param outputStr 提交的数据 
@@ -96,11 +95,9 @@ public class NetWorkUtil {
 			HttpURLConnection httpUrlConn = (HttpURLConnection) url.openConnection();  
 	        httpUrlConn.setDoOutput(true);  
 	        httpUrlConn.setDoInput(true);  
-	        httpUrlConn.setUseCaches(false);  
+	        httpUrlConn.setUseCaches(false); 
+	        httpUrlConn.setConnectTimeout(300000);
 	        httpUrlConn.setReadTimeout(300000); 
-	        httpUrlConn.setDoOutput(true);  
-            httpUrlConn.setDoInput(true);  
-            httpUrlConn.setUseCaches(false);  
             // 设置请求方式（GET/POST）  
             httpUrlConn.setRequestMethod(requestMethod);  
 	        httpUrlConn.setRequestProperty("Content-Type", "text/xml;charset=UTF-8");
@@ -112,9 +109,10 @@ public class NetWorkUtil {
                 OutputStream outputStream = httpUrlConn.getOutputStream();  
                 // 注意编码格式，防止中文乱码  
                 outputStream.write(outputStr.getBytes("UTF-8"));  
-                outputStream.close();  
+                outputStream.flush();
+                outputStream.close();
+                outputStream = null;
             }  
-  
             // 将返回的输入流转换成字符串  
         	InputStream inputStream = httpUrlConn.getInputStream();  
             InputStreamReader inputStreamReader = new InputStreamReader(inputStream, "utf-8");  

@@ -103,13 +103,22 @@ List<Salary> salaryList = (List<Salary>) request.getAttribute("salaryList");
 											<td>绩效考核</td>
 											<td><%=MySalaryUtil.ObjToBlank(salary.getXjkh()) %></td>
 										</tr>
+										<tr class="success">
+											<td>假日加班费</td>
+											<td><%=MySalaryUtil.ObjToBlank(salary.getJrjbf()) %></td>
+										</tr>
 										<tr class="active">
 											<td>加班费合计</td>
 											<td><%=MySalaryUtil.ObjToBlank(salary.getJbfhj()) %></td>
 										</tr>
 										<tr class="success">
 											<td>补助结计</td>
-											<td><%=MySalaryUtil.ObjToBlank(salary.getBzjj()) %></td>
+											<%String bzjj = salary.getBzjj();
+											  String qqj  = salary.getQqj();
+											  if(bzjj == null || bzjj.trim().equals("null") || bzjj.trim().equals("NULL") || bzjj.trim().equals("")) bzjj = "0";
+											  if(qqj  == null || qqj .trim().equals("null") || qqj.trim().equals("NULL")  || qqj.trim().equals(""))  qqj  = "0";
+											  double b = Double.parseDouble(bzjj) + Double.parseDouble(qqj);%>
+											<td><%=MySalaryUtil.ObjToBlank(b)%></td>
 										</tr>
 										<tr class="warning">
 											<td>福利一餐补</td>

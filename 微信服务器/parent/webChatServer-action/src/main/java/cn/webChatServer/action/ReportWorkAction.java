@@ -1,18 +1,16 @@
 package cn.webChatServer.action;
-
-import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.List;
 
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.informix.util.stringUtil;
 import com.webChatServer.util.MESConfigInfo;
 import com.webChatServer.util.MySalaryUtil;
 
@@ -29,13 +27,13 @@ public class ReportWorkAction {
 	 * @return 当前调用jsapi相关信息
 	 */
 	//解决注解@ResponseBody 出现乱码问题，在@RequestMapping中添加编码设置即可
-	@RequestMapping(value="reportFinish", produces = "text/plain;charset=UTF-8")
+	@RequestMapping(value="reportFinish", produces = "text/plain;charset=UTF-8",method=RequestMethod.GET)
 	@ResponseBody	
 	public String reportFinish(@RequestParam("result")String result) {
 		System.out.println("【###用户进入完工报工验证流转卡、工号 "+ result + "查询开始】");
 		JSONObject jsonObject = new JSONObject();
 		List<String> resultList = new ArrayList<String>();
-		resultList = reportWorkHoursService.judgeIfOpenMES(MESConfigInfo.HOST_IP, "MES", MESConfigInfo.HOST_IP, result);
+		resultList = reportWorkHoursService.judgeIfOpenMES(result);
 		jsonObject.put("flag", resultList.get(0).trim());
 		jsonObject.put("type", resultList.get(1).trim());
 		jsonObject.put("str1", resultList.get(2).trim());
@@ -49,13 +47,11 @@ public class ReportWorkAction {
 	 * @param result 物料号
 	 * @return 当前调用jsapi相关信息
 	 */
-	@RequestMapping(value="reportCheck", produces = "text/plain;charset=UTF-8")
+	@RequestMapping(value="reportCheck", produces = "text/plain;charset=UTF-8",method=RequestMethod.GET)
 	@ResponseBody	
 	public String reportCheck(@RequestParam("result")String result){
 		System.out.println("【###用户进入质检报工验证物料码 "+ result + "查询开始】");
-		
-		String resultStr = reportWorkHoursService.checkMatterno(MESConfigInfo.HOST_IP, "MES", MESConfigInfo.HOST_IP, result);
-		
+		String resultStr = reportWorkHoursService.checkMatterno(result);
 		JSONObject jsonObject = new JSONObject();
 		int flag = resultStr.indexOf("IT_MATNR");
 		String msg = "";
@@ -72,7 +68,73 @@ public class ReportWorkAction {
 		
 		return jsonObject.toString();
 	}
-	
+	/**
+	 * 完工报工明细查询
+	 * @param userNo 员工工号
+	 * @param userName 员工姓名
+	 * @param finish_cardno 流转卡号
+	 * @return
+	 */
+	@RequestMapping(value="queryDetailByLZK",method=RequestMethod.GET)
+	public String queryMESDataByLZK(@RequestParam("userNo")String userNo,
+			@RequestParam("userName")String userName,
+			@RequestParam("finish_cardno")String finishCardno){
+		System.out.println("【###用户 "+ userNo + "进入完工报工明细查询开始】");
+		JSONObject jsonObject = new JSONObject();
+		jsonObject = reportWorkHoursService.queryMESDataByLZK(userNo, userName, finishCardno);
+		
+		System.out.println("【###用户 "+ userNo + "进入完工报工明细查询结束】");
+		return "";
+	}
+	/**
+	 * 质检报工明细查询
+	 * @param userNo 员工工号
+	 * @param userName 员工姓名
+	 * @param finish_cardno 流转卡号
+	 * @return
+	 */
+	@RequestMapping(value="queryDetailByMatter",method=RequestMethod.GET)
+	public String queryMESDataByMatter(@RequestParam("userNo")String userNo,
+			@RequestParam("userName")String userName,
+			@RequestParam("finish_cardno")String checkMatterno){
+		System.out.println("【###用户 "+ userNo + "进入质检报工明细查询开始】");
+		
+		
+		System.out.println("【###用户 "+ userNo + "进入质检报工明细查询结束】");
+		return "";
+	}
+	@RequestMapping(value="queryFinishCardNo")
+	public String queryFinishCardNo(Model model,
+			@RequestParam(value = "finishCardNo",required = false,defaultValue = "") String cardNo){
+		String msg = "";
+		if(cardNo != null || cardNo != ""){
+			//返回有数据
+			msg = "1";
+			
+			
+		}else{
+			msg = "0";
+		}
+		model.addAttribute("msg", msg);
+		
+		return "reportWork/queryFinishCardNo";
+	}
+	/**
+	 * viewName = myYield;
+	 * 我的产量
+	 * @param userID
+	 * @return
+	 */
+	@RequestMapping(value="myYield")
+	public String myYield(Model model,@RequestParam("userID")String userID){
+		//解密
+		userID = MySalaryUtil.dealStringToUrlParm(false, userID);
+		System.out.println( "【###用 户 " + userID +"进入报工开始】");
+		
+		System.out.println( "【###用 户 " + userID +"进入报工结束】");
+		return "reportWork/myYield";
+		
+	}
 	
 	/*测试页面*/
 	@RequestMapping(value="reportWorkTest")

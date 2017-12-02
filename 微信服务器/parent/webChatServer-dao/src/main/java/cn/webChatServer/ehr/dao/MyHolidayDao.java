@@ -5,7 +5,7 @@ import cn.webChatServer.ehr.pojo.Holiday;
  * @author qianyang
  * @createDate 2017年09月18日
  * <p>
- * 功能：用于查询工号下对应的假期信息
+ * 功能：（非操作工）用于查询工号下对应的可用假期信息
  */
 public interface MyHolidayDao {
 	/**

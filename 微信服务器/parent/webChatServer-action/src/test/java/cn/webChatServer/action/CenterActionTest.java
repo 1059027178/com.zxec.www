@@ -21,9 +21,9 @@ public class CenterActionTest {
 	public void before() {
 		// 可以对所有的controller来进行测试
 		mockMvc = MockMvcBuilders.webAppContextSetup(context).build();
-		// 仅仅对单个Controller来进行测试
-		// mockMvc = MockMvcBuilders.standaloneSetup(new
-		// MeunController()).build();
+//		 仅仅对单个Controller来进行测试
+		 mockMvc = MockMvcBuilders.standaloneSetup(new
+		 HolidayAction()).build();
 	}
 
 	@Test

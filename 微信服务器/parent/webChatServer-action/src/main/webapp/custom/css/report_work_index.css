@@ -1,0 +1,46 @@
+/*隐藏物料号输入*/
+
+.reportCheck {
+	display: none;
+}
+
+
+/*隐藏流转卡号输入*/
+
+.reportFinish {
+	display: none;
+}
+
+
+/*隐藏员工信息*/
+
+.userInfo {
+	display: none;
+}
+
+
+/*返回按钮隐藏*/
+
+.backBtn {
+	display: none;
+}
+
+.form-group {
+	margin-top: 30px;
+}
+
+.container #userName {
+	border-radius: 3px;
+}
+
+.container .backBtn {
+	margin-top: 20px;
+}
+
+div .reportFinish {
+	margin-top: 50px;
+}
+
+div .reportCheck {
+	margin-top: 50px;
+}
