@@ -49,7 +49,9 @@
 	<!-- 3.5、假期查询接口 -->
 	<dubbo:reference interface="cn.webChatServer.service.MyHolidayService"
 		id="myHolidayService" timeout="600000" url="dubbo://127.0.0.1:20880" />
-		
+	<!-- 3.6、EHR个人信息查询接口 -->
+	<dubbo:reference interface="cn.webChatServer.service.MyInfoService"
+		id="myInfoService" timeout="600000" url="dubbo://127.0.0.1:20880" />
 		
 	<!-- 设置超时时间 -->
 	<dubbo:consumer timeout="600000" check="false"/>

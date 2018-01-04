@@ -2,11 +2,10 @@ package cn.webChatServer.action;
 
 import java.util.List;
 
-import javax.print.attribute.standard.Media;
 import javax.servlet.http.HttpServletRequest;
 
+import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -14,14 +13,15 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.webChatServer.util.MESConfigInfo;
 import com.webChatServer.util.MySalaryUtil;
 
 import cn.webChatServer.ehr.pojo.HistoryHoliday;
 import cn.webChatServer.ehr.pojo.Holiday;
+import cn.webChatServer.ehr.pojo.MyInfo;
 import cn.webChatServer.pojo.Salary;
 import cn.webChatServer.pojo.TestTb;
 import cn.webChatServer.service.MyHolidayService;
+import cn.webChatServer.service.MyInfoService;
 import cn.webChatServer.service.MySalaryService;
 import cn.webChatServer.service.ReportWorkHoursService;
 import cn.webChatServer.service.TestTbService;
@@ -40,8 +40,10 @@ public class CenterAction {
 	private MySalaryService mySalaryService;//薪资查询调用
 	@Autowired
 	private MyHolidayService myHolidayService;//假期查询接口调用
+	@Autowired
+	private MyInfoService myInfoService; //个人信息查询接口调用
 	/**
-	 * 测试action，不要鸟他
+	 * 测试action，不用管
 	 * @param model
 	 * @return
 	 */
@@ -166,7 +168,40 @@ public class CenterAction {
 		return "holiday/myHoliday";
 		
 	}
-	
+	/***********************************我的考勤--（已测试）**********************************************/
+	@RequestMapping(value="myCheck")
+	public String myCheck(Model model,@RequestParam("userID")String userID){
+		//解密
+		userID = MySalaryUtil.dealStringToUrlParm(false, userID);
+		List<Object> checkData = myHolidayService.queryCheckDataByUserIdAndCheckDay(userID);
+		model.addAttribute("checkData",checkData);
+		return "check/myCheck";
+	}
+	/***********************************我的信息--（已测试）**********************************************/
+	@RequestMapping(value="myInfo")
+	public String myInfo(Model model,@RequestParam("userID")String userID){
+		//解密
+		userID = MySalaryUtil.dealStringToUrlParm(false, userID);
+		MyInfo myInfo = myInfoService.queryMyInfoByUserNo(userID);
+		model.addAttribute("myInfo",myInfo);
+		return "personInfo/myInfo";
+	}
+	//已测试
+	/**
+	 * @param myInfo 为提交时的数据（这里spring做了自动的封装，转为了对象）
+	 * @return 当前调用jsapi相关信息
+	 */
+	@RequestMapping(value="updateMyInfo",method=RequestMethod.POST)
+	@ResponseBody
+	public String updateMyInfo(MyInfo myInfo){
+//		System.out.println("----------异步请求成功");
+		boolean flag = false;
+		flag = myInfoService.updateMyInfo(myInfo);
+		System.out.println("修改"+myInfo.getUserno()+"个人信息是否成功 =" + flag);
+		JSONObject jsonObject = new JSONObject();
+		jsonObject.put("msg", flag);
+		return jsonObject.toString();
+	}
 	/***********************************公共功能（测试完成）**********************************************/
 	/**
 	 * @param url (当前url完整路径)

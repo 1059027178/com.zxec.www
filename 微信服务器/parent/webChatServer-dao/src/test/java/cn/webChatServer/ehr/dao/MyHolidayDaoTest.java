@@ -23,5 +23,6 @@ public class MyHolidayDaoTest {
 	@Test
 	public void testQueryByUserNo() {
 		Holiday hoiday = holidayDao.queryByUserNo("6753");
+		System.out.println(hoiday);
 	}
 }

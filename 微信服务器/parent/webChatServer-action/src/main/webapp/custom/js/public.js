@@ -28,5 +28,52 @@ var jsapiInit = function (){
 		    alert("初始化页面错误，请关闭页面重新进入！");
 		}
 	});
-	
 };
+/**
+ * 显示遮罩层
+ * a的值为：{target:"",message:""}
+ * target为对应遮罩层的元素，message为提示文本
+ */
+var blockUI = function (a) {
+    var a = $.extend(!0, {}, a), b = "";
+    if (b = a.iconOnly ? '<div class="loading-message ' + (a.boxed ? "loading-message-boxed" : "") + '"><img style="" src="../custom/img/loading-spinner-grey.gif" align=""></div>' : a.textOnly ? '<div class="loading-message ' + (a.boxed ? "loading-message-boxed" : "") + '"><span>&nbsp;&nbsp;' + (a.message ? a.message : "LOADING...") + "</span></div>" : '<div class="loading-message ' + (a.boxed ? "loading-message-boxed" : "") + '"><img style="" src="../custom/img/loading-spinner-grey.gif" align=""><span>&nbsp;&nbsp;' + (a.message ? a.message : "LOADING...") + "</span></div>",
+            a.target) {
+        var c = $(a.target);
+        c.height() <= $window.height() && (a.cenrerY = !0), c.block({
+            message: b,
+            baseZ: a.zIndex ? a.zIndex : 1e3,
+            centerY: void 0 != a.cenrerY ? a.cenrerY : !1,
+            css: {
+                top: "10%",
+                border: "0",
+                padding: "0",
+                backgroundColor: "none"
+            },
+            overlayCSS: {
+                backgroundColor: a.overlayColor ? a.overlayColor : "#999",
+                opacity: a.boxed ? .05 : .1,
+                cursor: "wait"
+            }
+        })
+    } else $.blockUI({
+        message: b,
+        baseZ: a.zIndex ? a.zIndex : 1e3,
+        css: {border: "0", padding: "0", backgroundColor: "none"},
+        overlayCSS: {
+            backgroundColor: a.overlayColor ? a.overlayColor : "#000",
+            opacity: a.boxed ? .05 : .1,
+            cursor: "wait"
+        }
+    })
+}
+//去除遮罩层
+var unblockUI = function (a) {
+    if (a) {
+        var b = $(a);
+        b.unblock({
+            onUnblock: function () {
+                $(a).css("position", ""), $(a).css("zoom", "")
+            }
+        })
+    } else $.unblockUI()
+}
