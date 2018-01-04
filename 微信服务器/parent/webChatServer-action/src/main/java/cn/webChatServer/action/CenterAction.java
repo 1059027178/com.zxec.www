@@ -1,5 +1,6 @@
 package cn.webChatServer.action;
 
+import java.util.Calendar;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -166,8 +167,23 @@ public class CenterAction {
 		model.addAttribute("historyHoliday", historyHoliday);
 		System.out.println( "【###用户 " + userID +"进入假期查询结束】");
 		return "holiday/myHoliday";
-		
 	}
+	//--未休假期查询
+	@RequestMapping(value="myHolidayOne")
+	public String myHolidayOne(Model model,@RequestParam("userID")String userID){
+		//解密
+		userID = MySalaryUtil.dealStringToUrlParm(false, userID);
+		System.out.println( "【###用户 " + userID +"进入剩余假期查询开始】");
+		Holiday holiday = myHolidayService.queryByUserNo(userID);
+		Calendar date = Calendar.getInstance();
+	    String year = String.valueOf(date.get(Calendar.YEAR));
+		model.addAttribute("holiday", holiday);
+	    model.addAttribute("year",year);
+		System.out.println( "【###用户 " + userID +"进入剩余假期查询结束】");
+		return "holiday/myHolidayOne";
+	}
+	
+	
 	/***********************************我的考勤--（已测试）**********************************************/
 	@RequestMapping(value="myCheck")
 	public String myCheck(Model model,@RequestParam("userID")String userID){
