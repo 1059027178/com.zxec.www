@@ -1,0 +1,38 @@
+@CHARSET "UTF-8";
+
+.body {
+	background-color: #f5f5f5;
+}
+
+.margin_left {
+	margin-left: 0.3em;
+}
+
+.margin_right {
+	margin-right: 0.5em;
+}
+
+.float-right {
+	float: right;
+}
+
+.small {
+	height: 20px;
+	width: 20px;
+}
+
+.page_edit {
+	display: none;
+}
+
+.margin-bottom30 {
+	margin-bottom: 20px;
+}
+
+.editbutton {
+	display: none;
+	margin-bottom: 75px;
+}
+#fatherBirth,#motherBirth{
+	background-color: #f5f5f5;
+}

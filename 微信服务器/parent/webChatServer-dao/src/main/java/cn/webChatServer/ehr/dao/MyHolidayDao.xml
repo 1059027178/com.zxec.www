@@ -16,6 +16,7 @@
 	</sql>
 	<sql id="holidayOtherInfo">
 		select 
+			top 1
 			t2.A0190,
 			t2.A0101,
 			t1.SYNJ,

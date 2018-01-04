@@ -5,10 +5,13 @@ import java.net.URLDecoder;
 import java.net.URLEncoder;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Date;
 
 public class MySalaryUtil {
 	/**获取薪资条目数*/
 	public static final int SHOW_EHTRY = 5; 
+	/**获取考勤数据条目数*/
+	public static final int SHOW_CHECK_DATA_COUNT = 7; 
 	/**加密密钥(随意输入一串字符)*/
 	private static final String ENCRYPT_KEY = "4290jdflsdjfkKLSDJFLKSJFKLEWIRNNC4359640018235DSJKFSsdfjk";
 	
@@ -33,6 +36,19 @@ public class MySalaryUtil {
         cal.set(year,month-temp,Calendar.DATE);
         lastMonth = dft.format(cal.getTime());
         return lastMonth;
+    }
+	/**
+	 * 获取过去第几天的日期(past 为正) 或者 未来 第几天的日期(past 为负)
+	 * @param calendar(当前日历)
+	 * @param past
+	 * @return
+	 */
+	public static String getPastDate(Calendar calendar,int past) {
+        calendar.set(Calendar.DAY_OF_YEAR, calendar.get(Calendar.DAY_OF_YEAR) - past);
+        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+        Date today = calendar.getTime();
+        String result = format.format(today);
+        return result;
     }
 	/**
 	 * 处理为0或者为null的对象-->""

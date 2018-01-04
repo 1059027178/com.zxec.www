@@ -1,9 +1,6 @@
 package cn.webChatServer.service;
 
 import java.util.List;
-
-import org.json.JSONArray;
-
 import cn.webChatServer.ehr.pojo.HistoryHoliday;
 import cn.webChatServer.ehr.pojo.Holiday;
 import cn.webChatServer.ehr.pojo.ProjectRanking;
@@ -38,4 +35,10 @@ public interface MyHolidayService {
 	 * @return
 	 */
 	public List<ProjectRanking> queryHistoryRankingToUserNo(String userNo,String flag);
+	/**
+	 * 查询考勤记录(一周记录)
+	 * @param userId 用户工号
+	 * @return
+	 */
+	public List<Object> queryCheckDataByUserIdAndCheckDay(String userId);
 }
