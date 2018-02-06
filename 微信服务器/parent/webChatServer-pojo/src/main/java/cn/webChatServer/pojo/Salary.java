@@ -41,7 +41,7 @@ public class Salary implements Serializable {
 	private String ybbz; // 夜班补助
 	private String gwbz; // 高温补助
 	private String qqj; // 全勤奖 +
-	private String qtbz; // 其他补助/调整
+	private String qtbz; // 其他补助/调 整
 	private String bzjj; // 补助结计
 	private String qtjl; // 其他奖励
 	private String flcb; // 福利—餐补
@@ -67,6 +67,7 @@ public class Salary implements Serializable {
 	private String sjcqts; // 实际出勤天数
 	private Date lzsj; // 离职时间
 	private Date rcsj; // 入职时间
+	private String grsb; // 个人社保
 	public int getIdNo() {
 		return idNo;
 	}
@@ -396,6 +397,12 @@ public class Salary implements Serializable {
 	}
 	public void setRcsj(Date rcsj) {
 		this.rcsj = rcsj;
+	}
+	public String getGrsb() {
+		return grsb;
+	}
+	public void setGrsb(String grsb) {
+		this.grsb = grsb;
 	}
 	
 }
