@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- 省略了dao的实现接口时需注意以下：
+	1.namespace命名必须和dao的全路径相同；
+	2.sql的id必须和dao的接口方法名一致；
+	3.dao中的输入参数类型必须和sql的输入参数类型一致；
+	4.dao的方法返回类型必须和sql中resultType类型一致（resultMap两者必存其一）
+ -->
+<mapper namespace="cn.webChatServer.ehr.dao.MyInfoDao">
+	<!-- 通过UserNo工号查询 -->
+	<select id="queryMyInfoByUserNo" parameterType="String" resultType = "cn.webChatServer.ehr.pojo.MyInfo">
+		SELECT
+			t1.A0101 username,
+			t1.A0190 userno,
+			t1.A0144 entry,
+			t1.A0152 gongling,
+			t1.A0117 useraddress,
+			t1.A0222 usertel,
+			t1.EMAIL email,
+			t2.MC0000 comp,
+			t3.CONTENT dept,
+			t4.MC0000 station,
+			t5.MC0000 post,
+			t1.fatherName fatherName,
+			t1.fatherBirth,
+			t1.motherName,
+			t1.motherBirth,
+			t1.tel tel,
+			t1.address address
+		FROM
+			A01 AS t1
+		INNER JOIN BM_24 AS t2 ON t1.A0110 = t2.BM0000
+		INNER JOIN B01   AS t3 ON t1.DEPT_CODE = t3.DEPT_CODE
+		INNER JOIN E01   AS t4 ON t1.E0101 = t4.E0101
+		INNER JOIN BM_HX AS t5 ON t1.C0107 = t5.BM0000
+		WHERE
+			t1.A0190 = #{userNo}
+	</select>
+	<!-- 更新个人信息 -->
+	<update id="updateMyInfoByUserNo" parameterType="cn.webChatServer.ehr.pojo.MyInfo" >
+		UPDATE A01
+		SET 
+			A0222 = #{usertel},
+			EMAIL = #{email},
+			A0117 = #{useraddress},
+			fatherName = #{fatherName},
+			fatherBirth = #{fatherBirth},
+			motherName = #{motherName},
+			motherBirth = #{motherBirth},
+			tel = #{tel},
+			address = #{address}
+		WHERE
+			A0190 = #{userno}
+	</update>
+</mapper>
