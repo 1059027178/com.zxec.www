@@ -144,7 +144,7 @@ List<Salary> salaryList = (List<Salary>) request.getAttribute("salaryList");
 											<td>周末加班费</td>
 											<td><%=MySalaryUtil.ObjToBlank(salary.getZmjbf()) %></td>
 										</tr>
-										<tr class="warning">
+										<tr class="success">
 											<td>个人医疗</td>
 											<td><%=MySalaryUtil.ObjToBlank(salary.getGryiliao()) %></td>
 										</tr>
@@ -155,6 +155,10 @@ List<Salary> salaryList = (List<Salary>) request.getAttribute("salaryList");
 										<tr class="danger">
 											<td>个人公积金</td>
 											<td><%=MySalaryUtil.ObjToBlank(salary.getGrgjj()) %></td>
+										</tr>
+										<tr class="success">
+											<td>个人社保</td>
+											<td><%=MySalaryUtil.ObjToBlank(salary.getGrsb()) %></td>
 										</tr>
 										<tr class="active">
 											<td>税前工资</td>
