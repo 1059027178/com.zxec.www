@@ -38,8 +38,11 @@
 		interface="cn.webChatServer.service.TestTbService" ref="testTbService" />
 	<dubbo:service 
 		interface="cn.webChatServer.service.WebChatService" ref="webChatService" />
+		<!-- 此接口暂未使用 -->
+	<!-- <dubbo:service 
+		interface="cn.webChatServer.service.ReportWorkHoursService" ref="reportWorkHoursService" /> -->
 	<dubbo:service 
-		interface="cn.webChatServer.service.ReportWorkHoursService" ref="reportWorkHoursService" />
+		interface="cn.webChatServer.service.IntegrationMESService" ref="integrationMESService" />	
 	<dubbo:service 
 		interface="cn.webChatServer.service.MySalaryService" ref="mySalaryService" />
 	<dubbo:service 

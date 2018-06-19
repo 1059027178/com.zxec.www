@@ -11,9 +11,15 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.webChatServer.util.MESConfigInfo;
+import com.alibaba.fastjson.JSON;
 import com.webChatServer.util.MySalaryUtil;
 
+import cn.webChartServer.action.simulateData.MesFinishCardNoData;
+import cn.webChartServer.action.simulateData.MesMyOutputData;
+import cn.webChatServer.mes.pojo.FlowCard;
+import cn.webChatServer.mes.pojo.MyOutput;
+import cn.webChatServer.mes.pojo.MyOutputIntoParms;
+import cn.webChatServer.service.IntegrationMESService;
 import cn.webChatServer.service.ReportWorkHoursService;
 
 @Controller
@@ -21,6 +27,8 @@ import cn.webChatServer.service.ReportWorkHoursService;
 public class ReportWorkAction {
 	@Autowired
 	private ReportWorkHoursService reportWorkHoursService;//报工调用
+	@Autowired
+	private IntegrationMESService integrationMESService;//mes新平台相关Service
 	/**
 	 * 完工报工
 	 * @param result 工号或者流转卡号
@@ -28,7 +36,7 @@ public class ReportWorkAction {
 	 */
 	//解决注解@ResponseBody 出现乱码问题，在@RequestMapping中添加编码设置即可
 	@RequestMapping(value="reportFinish", produces = "text/plain;charset=UTF-8",method=RequestMethod.GET)
-	@ResponseBody	
+	@ResponseBody
 	public String reportFinish(@RequestParam("result")String result) {
 		System.out.println("【###用户进入完工报工验证流转卡、工号 "+ result + "查询开始】");
 		JSONObject jsonObject = new JSONObject();
@@ -103,39 +111,64 @@ public class ReportWorkAction {
 		System.out.println("【###用户 "+ userNo + "进入质检报工明细查询结束】");
 		return "";
 	}
-	@RequestMapping(value="queryFinishCardNo")
-	public String queryFinishCardNo(Model model,
-			@RequestParam(value = "finishCardNo",required = false,defaultValue = "") String cardNo){
-		String msg = "";
-		if(cardNo != null || cardNo != ""){
-			//返回有数据
-			msg = "1";
-			
-			
-		}else{
-			msg = "0";
+	//--------------------------------------装配新版MES对接
+	/**
+	 * 我的产量
+	 * @param myOutput
+	 * @return
+	 */
+	@RequestMapping(value="myOutput",produces = "text/plain;charset=UTF-8",method=RequestMethod.POST)
+	@ResponseBody
+	public String myYield(Model model, MyOutputIntoParms intoParms){
+		System.out.println(intoParms);
+		System.out.println( "【###用 户 " + intoParms.getUserNo() +"进入产量查询开始】");
+		//查询我的产量
+		MyOutput findMyOutput = integrationMESService.findMyOut(intoParms);
+		//模拟返回数据
+//		MyOutput findMyOutput = new MesMyOutputData().getMyOutputPOJO();
+		//处理返回结果
+		JSONObject jsonObject = new JSONObject();
+		String strResult = "";
+		boolean flag = true;
+		if (findMyOutput != null) {
+			strResult = JSON.toJSONString(findMyOutput);
+		} else {
+			flag = false;
 		}
-		model.addAttribute("msg", msg);
-		
+		jsonObject.put("flag", flag);
+		jsonObject.put("myOutput", strResult);
+		System.out.println( "【###用 户 " + intoParms.getUserNo() +"进入产量查询结束】");
+		return jsonObject.toString();
+	}
+	@RequestMapping(value="queryCard")
+	public String findCardNo(){
 		return "reportWork/queryFinishCardNo";
 	}
 	/**
-	 * viewName = myYield;
-	 * 我的产量
-	 * @param userID
+	 * 查询流转卡信息
+	 * @param cardNo
 	 * @return
 	 */
-	@RequestMapping(value="myYield")
-	public String myYield(Model model,@RequestParam("userID")String userID){
-		//解密
-		userID = MySalaryUtil.dealStringToUrlParm(false, userID);
-		System.out.println( "【###用 户 " + userID +"进入报工开始】");
-		
-		System.out.println( "【###用 户 " + userID +"进入报工结束】");
-		return "reportWork/myYield";
-		
+	@RequestMapping(value="queryFinishCardNo",produces = "text/plain;charset=UTF-8")
+	@ResponseBody
+	public String queryFinishCardNo(@RequestParam(value = "cardno",defaultValue="") String cardNo){
+		System.out.println( "【### 流转卡" + cardNo + "查询开始】");
+		FlowCard flowCard = integrationMESService.findFlowCard(cardNo);
+		//模拟返回数据
+		//FlowCard flowCard = new MesFinishCardNoData().getFlowCardPOJO();
+		JSONObject jsonObject = new JSONObject();
+		String strResult = "";
+		boolean flag = true;
+		if (flowCard != null) {
+			strResult = JSON.toJSONString(flowCard);
+		} else {
+			flag = false;
+		}
+		jsonObject.put("flag", flag);
+		jsonObject.put("flowCard", strResult);
+		System.out.println( "【### 流转卡" + cardNo + "查询结束】");
+		return jsonObject.toString();
 	}
-	
 	/*测试页面*/
 	@RequestMapping(value="reportWorkTest")
 	public String reportWorkTest(){
@@ -144,7 +177,7 @@ public class ReportWorkAction {
 	 	System.out.println("加密结果："+ strEnc);
 	 	String strDes = MySalaryUtil.dealStringToUrlParm(false, strEnc);
 	 	System.out.println("解密结果："+ strDes);
-	 	
 		return "reportWork/reportWorkIndex";
 	}
+	
 }

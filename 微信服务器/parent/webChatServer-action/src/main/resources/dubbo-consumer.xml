@@ -38,9 +38,12 @@
 	<dubbo:reference interface="cn.webChatServer.service.WebChatService"
 		id="webChatService" timeout="600000" url="dubbo://127.0.0.1:20880" />
 		
-	<!-- 3.3、报工接口 -->
+	<!-- 3.3、报工接口:此接口暂未使用 -->
 	<dubbo:reference interface="cn.webChatServer.service.ReportWorkHoursService"
 		id="reportWorkHoursService" timeout="600000" url="dubbo://127.0.0.1:20880" />
+		<!-- 此接口为mes新平台查询接口 -->
+		<dubbo:reference interface="cn.webChatServer.service.IntegrationMESService"
+		id="integrationMESService" timeout="600000" url="dubbo://127.0.0.1:20880" />
 		
 	<!-- 3.4、薪资查询接口 -->
 	<dubbo:reference interface="cn.webChatServer.service.MySalaryService"
