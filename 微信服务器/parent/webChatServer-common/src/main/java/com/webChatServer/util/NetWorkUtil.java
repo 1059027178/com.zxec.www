@@ -17,6 +17,9 @@ import javax.net.ssl.TrustManager;
 import org.json.JSONObject;
 
 public class NetWorkUtil {
+	private NetWorkUtil(){
+		
+	}
 	/** 
      * 发起https请求并获取结果 
      *  
@@ -130,9 +133,64 @@ public class NetWorkUtil {
             httpUrlConn.disconnect(); 
 	        
 		} catch (ConnectException ce) {  
-        	System.out.println("Weixin server connection timed out.");
+        	System.out.println( "address:" + requestUrl + " server connection timed out.");
         } catch (Exception e) {  
-        	System.out.println("https request error："+ e);  
+        	System.out.println("http request error："+ e);  
+        }  
+    	return buffer.toString();
+    }
+    /** 
+     * 发起http请求并获取结果 
+     * @param requestUrl 请求地址 
+     * @param requestMethod 请求方式（GET、POST） 
+     * @param outputStr 提交的数据 
+     * @return String 
+     */  
+    public static String httpRequestMES(String requestUrl, String requestMethod, String outputStr) {
+    	StringBuffer buffer = new StringBuffer();  
+		try {
+			URL url = new URL(requestUrl);
+			HttpURLConnection httpUrlConn = (HttpURLConnection) url.openConnection();  
+	        httpUrlConn.setDoOutput(true);  
+	        httpUrlConn.setDoInput(true);  
+	        httpUrlConn.setUseCaches(false); 
+	        httpUrlConn.setConnectTimeout(300000);
+	        httpUrlConn.setReadTimeout(300000); 
+            // 设置请求方式（GET/POST）  
+            httpUrlConn.setRequestMethod(requestMethod);  
+	        httpUrlConn.setRequestProperty("Content-Type", "application/json");
+  
+            if ("GET".equalsIgnoreCase(requestMethod)) httpUrlConn.connect();  
+  
+            // 当有数据需要提交时  
+            if (null != outputStr) {  
+                OutputStream outputStream = httpUrlConn.getOutputStream();  
+                // 注意编码格式，防止中文乱码  
+                outputStream.write(outputStr.getBytes("UTF-8"));  
+                outputStream.flush();
+                outputStream.close();
+                outputStream = null;
+            }  
+            // 将返回的输入流转换成字符串  
+        	InputStream inputStream = httpUrlConn.getInputStream();  
+            InputStreamReader inputStreamReader = new InputStreamReader(inputStream, "utf-8");  
+            BufferedReader bufferedReader = new BufferedReader(inputStreamReader);  
+  
+            String str = null;  
+            while ((str = bufferedReader.readLine()) != null) {  
+                buffer.append(str);  
+            }
+            bufferedReader.close();  
+            inputStreamReader.close();  
+            // 释放资源  
+            inputStream.close();  
+            inputStream = null;  
+            httpUrlConn.disconnect(); 
+	        
+		} catch (ConnectException ce) {  
+        	System.out.println( "address:" + requestUrl + " server connection timed out.");
+        } catch (Exception e) {  
+        	System.out.println("http request error："+ e);  
         }  
     	return buffer.toString();
     } 

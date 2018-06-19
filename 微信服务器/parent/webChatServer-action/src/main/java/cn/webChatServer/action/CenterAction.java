@@ -95,6 +95,21 @@ public class CenterAction {
 		//跳转到对应的页面（1、失败后重定向至login；2、成功后根据viewName跳转到对应的Controller）
 		return "redirect:" + to_url;
 	}
+	/***********************************我的产量、流转卡查询（MES数据查询）**********************************************/
+	@RequestMapping(value="queryMyOutput")
+	public String findmesOutput(Model model,@RequestParam("userID")String userID){
+		//解密
+		userID = MySalaryUtil.dealStringToUrlParm(false, userID);
+		//获取ehr中员工姓名
+		MyInfo myInfo = myInfoService.queryMyInfoByUserNo(userID);
+		String userName = myInfo.getUsername();
+		model.addAttribute("userNo", userID);
+		model.addAttribute("userName", userName);
+		return "reportWork/myOutputQuery";
+	}
+	
+	
+	
 	/***********************************我的报工一级目录（待测试）**********************************************/
 	/**
 	 * viewName = reportWorkHour;

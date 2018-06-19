@@ -6,15 +6,24 @@ import org.dom4j.Element;
 import com.informix.util.stringUtil;
 
 public class MESConfigInfo {
+	//私有构造，避免使用时，创建对象
+	private MESConfigInfo(){
+		
+	}
+	/**MES正式机webAPI接口调用地址*/
+	public static final String MES_WEBAPI_URL = "http://192.168.0.41:8088/selfhost/webapi/wx/WX_GetTaskReport";//产量查询
+	public static final String MES_CARDNO_WEBAPI_URL = "";//流转卡查询
 	
-	/**MES生产机WebService功能调用接口*/
-//	public static final String MES_WEBSERVICE_ADDRESS = "http://192.168.0.41/BHService.asmx?wsdl";
-	/**MES测试机*/
+	/**MES生产机WebService功能调用接口--已废弃*/
+	//public static final String MES_WEBSERVICE_ADDRESS = "http://192.168.0.41/BHService.asmx?wsdl";
+	/**MES测试机--已废弃*/
 	public static final String MES_WEBSERVICE_ADDRESS = "http://192.168.0.41:53213/BHService.asmx?wsdl";
 	/**服务器名*/
 	public static final String HOST_IP = "192.168.0.39";
 	/**mes模块名称*/
 	public static final String MES = "MES";
+	
+	
 	/**
 	 * MES webservice服务器请求头
 	 * @param requestMethodName 请求方法
