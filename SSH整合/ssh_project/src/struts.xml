@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+ <!DOCTYPE struts PUBLIC
+	"-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+	"http://struts.apache.org/dtds/struts-2.3.dtd">
+
+<struts>
+	<!-- struts2与spring 整合配置一:常量配置
+		# struts.objectFactory = spring 将struts的创建交给spring容器
+		# struts.objectFactory.spring.autoWire = name spring负责装配action依赖属性(默认已打开)
+	-->
+	<constant name="struts.objectFactory" value="spring"></constant>
+	
+	<package name="ssh" namespace="/" extends="struts-default">
+		<!-- 整合方案一：不推荐，需要使用spring中的功能时，必须由spring完整管理action的生命周期
+			class属性仍然配置action的完整类名，struts2仍然创建action，由spring负责组装action中的依赖属性
+		-->
+		<!-- <action name="UserAction_*" class="com.ssh.web.acion.UserAcion" method="{1}">
+			<result name="success">/success.jsp</result>
+		</action> -->
+		<!-- 整合方案二：
+			spring负责管理action的完整生命周期，在class中填写spring的beanName属性，需要手动组装依赖属性(spring中手动注入属性)
+		-->
+		<action name="UserAction_*" class="userAction" method="{1}">
+			<result name="success">/success.jsp</result>
+		</action>
+	</package>
+</struts>

@@ -6,5 +6,10 @@
 	xmlns:tx="http://www.springframework.org/schema/tx"
 	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.2.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.2.xsd http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.2.xsd http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.2.xsd ">
 	
-	<bean name="userAcion" class="com.ssh.web.acion.UserAcion"></bean>
+	<!-- struts2与spring整合方案二：需要手动注入action需要的属性,方案一不需要手动注入 -->
+	<bean name="userAction" class="com.ssh.web.acion.UserAcion">
+		<property name="userService" ref="userService"></property>
+	</bean>
+	<!-- service -->
+	<bean name="userService" class="com.ssh.service.impl.UserServicceImpl"></bean>
 </beans>
