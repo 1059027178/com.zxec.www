@@ -1,5 +1,8 @@
 package com.ssh.pojo;
 
+import java.util.HashSet;
+import java.util.Set;
+
 public class User {
 	/*
 	 * CREATE TABLE `sys_user` (

@@ -5,7 +5,36 @@
 	xmlns:aop="http://www.springframework.org/schema/aop" 
 	xmlns:tx="http://www.springframework.org/schema/tx"
 	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.2.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.2.xsd http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.2.xsd http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.2.xsd ">
+	<!-- hibernate与spring整合配置=========================================================== -->
+	<!-- hibernate与spring整合方法一：仍然使用外部hibernate.cfg.xml配置 -->
+	<!-- <bean name="sessionFactory" class="org.springframework.orm.hibernate5.LocalSessionFactoryBean">
+		<property name="configLocations" value="classpath:hibernate.cfg.xml"></property>
+	</bean> -->
+	<!-- hibernate与spring整合方法二【推荐】：将hibernate配置放入spring中 -->
+	<bean name="sessionFactory" class="org.springframework.orm.hibernate5.LocalSessionFactoryBean">
+		<!-- 基础信息 -->
+		<property name="hibernateProperties">
+			<props>
+				<!-- 必须配置的信息 -->
+				<prop key="hibernate.connection.driver_class">oracle.jdbc.driver.OracleDriver</prop>
+				<prop key="hibernate.connection.url">jdbc:oracle:thin:@192.168.0.95:1521:orcl</prop>
+				<prop key="hibernate.connection.username">weixintest</prop>
+				<prop key="hibernate.connection.password">zxec11</prop>
+				<prop key="hibernate.dialect">org.hibernate.dialect.Oracle10gDialect</prop>
+				<!-- 可选配置 -->
+				<prop key="hibernate.show_sql">true</prop>
+				<prop key="hibernate.format_sql">true</prop>
+				<prop key="hibernate.hbm2ddl.auto">update</prop>
+			</props>
+		</property>
+		<!-- 指定ORM源数据，指定包路径，spring自动读取 -->
+		<property name="mappingDirectoryLocations" value="classpath:com/ssh/pojo"></property>
+	</bean>
+	<!-- hibernate与spring整合配置=========================================================== -->
 	
+	
+	
+	<!-- struts2与spring整合配置=========================================================== -->
 	<!-- struts2与spring整合方案一：不需要手动注入，注意beanName属性应该和action中的属性名一致 -->
 	<!-- <bean name="userAction" class="com.ssh.web.acion.UserAcion"></bean> -->
 	<!-- struts2与spring整合方案二：需要手动注入action需要的属性 -->
@@ -14,4 +43,6 @@
 	</bean>
 	<!-- service -->
 	<bean name="userService" class="com.ssh.service.impl.UserServicceImpl"></bean>
+	<!-- struts2与spring整合配置=========================================================== -->
+	
 </beans>
