@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-configuration PUBLIC
+	"-//Hibernate/Hibernate Configuration DTD 3.0//EN"
+	"http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
+<hibernate-configuration>
+	<session-factory>
+		<!-- 数据库连接 -->
+		<property name="hibernate.connection.driver_class">oracle.jdbc.driver.OracleDriver</property>
+		<property name="hibernate.connection.url">jdbc:oracle:thin:@192.168.0.95:1521:orcl</property>
+		<property name="hibernate.connection.username">weixintest</property>
+		<property name="hibernate.connection.password">zxec11</property>
+		<!-- 数据库方言 -->
+		<property name="hibernate.dialect">org.hibernate.dialect.Oracle10gDialect</property>
+		<!-- 控制台是否显示sql -->
+		<property name="hibernate.show_sql">true</property>
+		<!-- 是否自动格式化sql -->
+		<property name="hibernate.format_sql">true</property>
+		<!-- 是否自动提交更新至数据库
+			update(检查更新并自动提交,不删除数据,若表不存在则会自动建表)
+			validate(检查更新不自动提交) -->
+		<property name="hibernate.hbm2ddl.auto">update</property>
+		<!-- 交给spring进行管理
+			数据库的事务隔离级别:1(读未提交)|2(读已提交)|4(可重复读)|8(串行化) -->
+		<!-- <property name="hibernate.connection.isolation">2</property> -->
+		<!-- 交给spring进行管理
+			指定session与当前线程绑定 -->
+		<!-- <property name="hibernate.current_session_context_class">thread</property> -->
+		
+		<!-- 指定ORM元数据 -->
+		<mapping resource="com/ssh/pojo/Customer.hbm.xml" />
+		<mapping resource="com/ssh/pojo/LinkMan.hbm.xml" />
+		<mapping resource="com/ssh/pojo/User.hbm.xml" />
+	</session-factory>
+</hibernate-configuration>
