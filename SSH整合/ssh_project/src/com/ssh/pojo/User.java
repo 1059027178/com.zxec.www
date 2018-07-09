@@ -1,9 +1,11 @@
 package com.ssh.pojo;
 
+import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
 
-public class User {
+public class User  implements Serializable{
+	private static final long serialVersionUID = -9025005275701053602L;
 	/*
 	 * CREATE TABLE `sys_user` (
 	  `user_id` bigint(32) NOT NULL AUTO_INCREMENT COMMENT '用户id',

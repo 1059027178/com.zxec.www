@@ -68,7 +68,50 @@
 		<property name="userService" ref="userService"></property>
 	</bean>
 	<!-- service -->
-	<bean name="userService" class="com.ssh.service.impl.UserServicceImpl"></bean>
+	<bean name="userService" class="com.ssh.service.impl.UserServiceImpl">
+		<property name="userDao" ref="userDao"></property>
+	</bean>
 	<!-- struts2与spring整合配置=========================================================== -->
+	
+	<!-- 第四步：hibernateTemplate与spring整合配置================================================= -->
+	<bean name="userDao" class="com.ssh.dao.impl.UserDaoImpl">
+		<!-- 注入sessionfactory -->
+		<property name="sessionFactory" ref="sessionFactory"></property>
+	</bean>
+	<!-- hibernateTemplate与spring整合配置=========================================================== -->
+	
+	<!-- 第五步：事务配置================================================= -->
+	<!-- 方式一：xml配置方式 -->
+	<bean name="transactionManager" class="org.springframework.orm.hibernate5.HibernateTransactionManager">
+		<property name="sessionFactory" ref="sessionFactory"></property>
+	</bean>
+		<!-- 配置通知 -->
+	<!-- <tx:advice id="txAdvice" transaction-manager="transactionManager" >
+		<tx:attributes>
+			以方法为单位使用通配符，表示以该方法名开头的方法都会添加对应的事务属性
+			<tx:method name="save*"     isolation="READ_COMMITTED" propagation="REQUIRED" read-only="false" />
+			<tx:method name="persist*"  isolation="READ_COMMITTED" propagation="REQUIRED" read-only="false"/>
+			<tx:method name="update*"	isolation="READ_COMMITTED" propagation="REQUIRED" read-only="false"/>
+			<tx:method name="modify*"	isolation="READ_COMMITTED" propagation="REQUIRED" read-only="false"/>
+			<tx:method name="delete*"	isolation="READ_COMMITTED" propagation="REQUIRED" read-only="false"/>
+			<tx:method name="remove*"	isolation="READ_COMMITTED" propagation="REQUIRED" read-only="false"/>
+			<tx:method name="get*"		isolation="READ_COMMITTED" propagation="REQUIRED" read-only="true"/>
+			<tx:method name="find*"		isolation="READ_COMMITTED" propagation="REQUIRED" read-only="true"/>
+		</tx:attributes>
+	</tx:advice> -->
+		<!--将通知织入对象 
+			aop:pointcut  配置切点
+			aop:advisor   配置切面
+		-->
+	<!-- <aop:config>
+		<aop:pointcut expression="execution(* com.ssh.service.impl.*ServiceImpl.*(..))" id="txpc"/>
+		<aop:advisor advice-ref="txAdvice" pointcut-ref="txpc"/>
+	</aop:config> -->
+	<!-- 方式二：注解配置方式 -->
+	<bean name="userService2" class="com.ssh.service.impl.UserServiceImpl2">
+		<property name="userDao" ref="userDao"></property>
+	</bean>
+	<tx:annotation-driven transaction-manager="transactionManager"/>
+	<!-- 事务配置================================================= -->
 	
 </beans>
